@@ -12,4 +12,11 @@
     <string name="login_hint_email">E-mail</string>
     <string name="login_hint_password">Heslo</string>
     <string name="login_confirm">Přihlásit se</string>
+    <string name="login_error_invalid_credentials">Neplatné jméno nebo heslo</string>
+
+    <!-- General errors -->
+
+    <string name="error_unknown">Neznámá chyba</string>
+    <string name="error_general_format">Chyba %d - %s</string>
+    <string name="error_internet_connection">Internet není dostupný</string>
 </resources>
