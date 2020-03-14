@@ -18,16 +18,17 @@ abstract class BaseViewModel : ViewModel() {
 
     protected fun CoroutineScope.launchWithErrorHandling(
         context: CoroutineContext = EmptyCoroutineContext,
+        errorPropagationStreams: Array<StateLiveData<*>> = emptyArray(),
         block: suspend CoroutineScope.() -> Unit
     ): Job = launch(context) {
         try {
             block()
         } catch (error: Throwable) {
-            handleError(error)
+            handleError(error, errorPropagationStreams)
         }
     }
 
-    protected open fun handleError(error: Throwable, vararg streams: StateLiveData<*>) {
+    protected open fun handleError(error: Throwable, streams: Array<StateLiveData<*>> = emptyArray()) {
         errorStream.value = error
         streams.forEach { it.error(error) }
     }

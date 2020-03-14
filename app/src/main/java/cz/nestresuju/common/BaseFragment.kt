@@ -21,7 +21,7 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
     )
 
     protected var _binding: B? = null
-    protected val binding: B
+    protected val viewBinding: B
         get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

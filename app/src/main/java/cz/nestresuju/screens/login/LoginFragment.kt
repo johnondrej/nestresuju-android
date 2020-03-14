@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import cz.nestresuju.common.BaseFragment
+import cz.nestresuju.common.visible
 import cz.nestresuju.databinding.FragmentLoginBinding
 import cz.nestresuju.model.common.State
 import cz.nestresuju.model.errors.handlers.InternetErrorsHandler
@@ -38,10 +39,17 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                     // TODO: redirect to app
                 }
             }
+
+            val enableInput = state != State.Loading
+
+            viewBinding.progress.visible = state == State.Loading
+            viewBinding.btnLogin.isEnabled = enableInput
+            viewBinding.editEmail.isEnabled = enableInput
+            viewBinding.editPassword.isEnabled = enableInput
         })
 
-        binding.btnLogin.setOnClickListener {
-            viewModel.login(username = binding.editEmail.text.toString(), password = binding.editPassword.text.toString())
+        viewBinding.btnLogin.setOnClickListener {
+            viewModel.login(username = viewBinding.editEmail.text.toString(), password = viewBinding.editPassword.text.toString())
         }
     }
 }

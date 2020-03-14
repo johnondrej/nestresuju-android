@@ -14,7 +14,7 @@ class LoginViewModel(private val authRepository: AuthRepository) : BaseViewModel
     val loginStream = EmptyStateLiveData()
 
     fun login(username: String, password: String) {
-        viewModelScope.launchWithErrorHandling {
+        viewModelScope.launchWithErrorHandling(errorPropagationStreams = arrayOf(loginStream)) {
             loginStream.loading()
             authRepository.login(username, password)
             loginStream.loaded()
