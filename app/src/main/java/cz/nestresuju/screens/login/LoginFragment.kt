@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import com.google.android.material.snackbar.Snackbar
+import cz.nestresuju.MainActivity
 import cz.nestresuju.common.BaseFragment
 import cz.nestresuju.common.visible
 import cz.nestresuju.databinding.FragmentLoginBinding
@@ -35,8 +35,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         viewModel.loginStream.observe(viewLifecycleOwner, Observer { state ->
             when (state) {
                 is State.Loaded -> {
-                    Snackbar.make(view, "Přihlášení úspěšné!", Snackbar.LENGTH_LONG).show()
-                    // TODO: redirect to app
+                    requireActivity().let {
+                        MainActivity.launch(context = it)
+                        it.finish()
+                    }
                 }
             }
 

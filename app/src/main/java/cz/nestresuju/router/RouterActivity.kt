@@ -2,21 +2,27 @@ package cz.nestresuju.router
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import cz.nestresuju.MainActivity
 import cz.nestresuju.screens.login.LoginActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Entry activity that routes user to another parts of the app.
  */
 class RouterActivity : AppCompatActivity() {
 
+    private val viewModel by viewModel<RouterViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        route()
-        finish()
-    }
 
-    private fun route() {
-        // TODO: route to application when user is already logged in
-        LoginActivity.launch(context = this)
+        viewModel.routeStream.observe(this, Observer { route ->
+            when (route) {
+                InitialRoute.Login -> LoginActivity.launch(context = this)
+                InitialRoute.Main -> MainActivity.launch(context = this)
+            }
+            finish()
+        })
     }
 }
