@@ -7,19 +7,31 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="cz.nestresuju.ui.home.HomeFragment"
+        android:name="cz.nestresuju.screens.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="cz.nestresuju.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_program"
+        android:name="cz.nestresuju.screens.program.ProgramFragment"
+        android:label="@string/title_program"
+        tools:layout="@layout/fragment_program" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="cz.nestresuju.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_diary"
+        android:name="cz.nestresuju.screens.diary.DiaryFragment"
+        android:label="@string/title_diary"
+        tools:layout="@layout/fragment_diary" />
+
+    <fragment
+        android:id="@+id/navigation_library"
+        android:name="cz.nestresuju.screens.library.LibraryFragment"
+        android:label="@string/title_library"
+        tools:layout="@layout/fragment_library" />
+
+    <fragment
+        android:id="@+id/navigation_about_app"
+        android:name="cz.nestresuju.screens.about.AboutAppFragment"
+        android:label="@string/title_about_app"
+        tools:layout="@layout/fragment_about" />
 </navigation>

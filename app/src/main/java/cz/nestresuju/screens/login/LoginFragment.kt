@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import cz.nestresuju.MainActivity
-import cz.nestresuju.common.BaseFragment
-import cz.nestresuju.common.visible
+import cz.nestresuju.common.extensions.visible
 import cz.nestresuju.databinding.FragmentLoginBinding
 import cz.nestresuju.model.common.State
 import cz.nestresuju.model.errors.handlers.InternetErrorsHandler
 import cz.nestresuju.model.errors.handlers.UnknownErrorsHandler
+import cz.nestresuju.screens.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**

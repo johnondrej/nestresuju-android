@@ -1,4 +1,4 @@
-package cz.nestresuju.common
+package cz.nestresuju.common.extensions
 
 import android.view.View
 

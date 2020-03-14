@@ -1,4 +1,4 @@
-package cz.nestresuju.common
+package cz.nestresuju.screens.base
 
 import androidx.lifecycle.ViewModel
 import com.hadilq.liveevent.LiveEvent

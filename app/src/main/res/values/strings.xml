@@ -3,9 +3,11 @@
 
     <!-- Navigation -->
 
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Nástěnka</string>
+    <string name="title_program">Program</string>
+    <string name="title_diary">Deníček</string>
+    <string name="title_library">Knihovna</string>
+    <string name="title_about_app">O aplikaci</string>
 
     <!-- Login screen -->
 

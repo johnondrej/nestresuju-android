@@ -1,4 +1,4 @@
-package cz.nestresuju.ui.home
+package cz.nestresuju.screens.program
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import cz.nestresuju.R
 
-class HomeFragment : Fragment() {
+class ProgramFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var programViewModel: ProgramViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        programViewModel =
+            ViewModelProviders.of(this).get(ProgramViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_program, container, false)
+        val textView: TextView = root.findViewById(R.id.text_program)
+        programViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

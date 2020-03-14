@@ -1,4 +1,4 @@
-package cz.nestresuju.common
+package cz.nestresuju.common.extensions
 
 import android.content.Context
 import android.content.Intent

@@ -1,4 +1,4 @@
-package cz.nestresuju.ui.dashboard
+package cz.nestresuju.screens.about
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import cz.nestresuju.R
 
-class DashboardFragment : Fragment() {
+class AboutAppFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var aboutAppViewModel: AboutAppViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
+        aboutAppViewModel =
+            ViewModelProviders.of(this).get(AboutAppViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_about, container, false)
+        val textView: TextView = root.findViewById(R.id.text_about)
+        aboutAppViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
