@@ -1,4 +1,4 @@
-package cz.nestresuju.model.errors
+package cz.nestresuju.model.errors.constants
 
 /**
  * Constants representing inner error codes from auth response body.

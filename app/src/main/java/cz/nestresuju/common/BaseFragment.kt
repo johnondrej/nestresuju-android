@@ -5,11 +5,8 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
-import com.google.android.material.snackbar.Snackbar
-import cz.nestresuju.R
-import cz.nestresuju.model.errors.InternetConnectionException
-import cz.nestresuju.model.errors.ServerException
-import cz.nestresuju.model.errors.UnknownException
+import cz.nestresuju.model.errors.handlers.InternetErrorsHandler
+import cz.nestresuju.model.errors.handlers.UnknownErrorsHandler
 
 /**
  * Base [Fragment] with support for error handling and another common cases.
@@ -17,6 +14,11 @@ import cz.nestresuju.model.errors.UnknownException
 abstract class BaseFragment<B : ViewBinding> : Fragment() {
 
     protected abstract val viewModel: BaseViewModel
+
+    protected open val errorHandlers = arrayOf(
+        InternetErrorsHandler(),
+        UnknownErrorsHandler()
+    )
 
     protected var _binding: B? = null
     protected val binding: B
@@ -34,13 +36,11 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
         _binding = null
     }
 
-    protected open fun handleError(error: Throwable) {
-        view?.let {
-            when (error) {
-                is InternetConnectionException -> Snackbar.make(it, R.string.error_internet_connection, Snackbar.LENGTH_LONG).show()
-                is ServerException ->
-                    Snackbar.make(it, getString(R.string.error_general_format, error.errorCode, error.description), Snackbar.LENGTH_LONG).show()
-                is UnknownException -> Snackbar.make(it, R.string.error_unknown, Snackbar.LENGTH_LONG).show()
+    private fun handleError(error: Throwable) {
+        for (errorHandler in errorHandlers) {
+            val handled = errorHandler.handleError(handlingView = this, error = error)
+            if (handled) {
+                break
             }
         }
     }

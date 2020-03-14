@@ -2,6 +2,7 @@ package cz.nestresuju.common
 
 import androidx.lifecycle.ViewModel
 import com.hadilq.liveevent.LiveEvent
+import cz.nestresuju.model.common.StateLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -26,7 +27,8 @@ abstract class BaseViewModel : ViewModel() {
         }
     }
 
-    protected open fun handleError(error: Throwable) {
+    protected open fun handleError(error: Throwable, vararg streams: StateLiveData<*>) {
         errorStream.value = error
+        streams.forEach { it.error(error) }
     }
 }

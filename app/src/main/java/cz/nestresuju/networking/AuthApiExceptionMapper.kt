@@ -2,6 +2,8 @@ package cz.nestresuju.networking
 
 import com.squareup.moshi.Moshi
 import cz.nestresuju.model.errors.*
+import cz.nestresuju.model.errors.constants.AuthErrorCodes
+import cz.nestresuju.model.errors.constants.HttpErrorCodes
 import retrofit2.HttpException
 import timber.log.Timber
 import java.net.SocketTimeoutException

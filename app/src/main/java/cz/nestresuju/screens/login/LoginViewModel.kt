@@ -1,9 +1,9 @@
 package cz.nestresuju.screens.login
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cz.nestresuju.common.BaseViewModel
+import cz.nestresuju.model.common.EmptyStateLiveData
 import cz.nestresuju.model.repositories.AuthRepository
 
 /**
@@ -11,13 +11,13 @@ import cz.nestresuju.model.repositories.AuthRepository
  */
 class LoginViewModel(private val authRepository: AuthRepository) : BaseViewModel() {
 
-    private val _loginLiveData = MutableLiveData<Unit>()
-    val loginStream = _loginLiveData
+    val loginStream = EmptyStateLiveData()
 
     fun login(username: String, password: String) {
         viewModelScope.launchWithErrorHandling {
+            loginStream.loading()
             authRepository.login(username, password)
-            _loginLiveData.value = Unit
+            loginStream.loaded()
         }
     }
 }

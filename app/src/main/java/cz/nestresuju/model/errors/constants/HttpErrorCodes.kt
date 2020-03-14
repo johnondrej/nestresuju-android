@@ -1,4 +1,4 @@
-package cz.nestresuju.model.errors
+package cz.nestresuju.model.errors.constants
 
 /**
  * Constants representing specific HTTP error codes.
