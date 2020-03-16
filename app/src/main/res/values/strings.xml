@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Nestresuju</string>
 
+    <!-- General -->
+    <string name="next">Další</string>
+
     <!-- Navigation -->
 
     <string name="title_home">Nástěnka</string>
@@ -15,6 +18,9 @@
     <string name="login_hint_password">Heslo</string>
     <string name="login_confirm">Přihlásit se</string>
     <string name="login_error_invalid_credentials">Neplatné jméno nebo heslo</string>
+    <string name="login_consent_title">Informovaný souhlas</string>
+    <string name="login_consent_text">Kliknutím na tlačítko „Další“ souhlasíte s účastí na výzkumu účinnosti a uživatelské zkušenosti s mobilní aplikací Nestresuju, který je prováděný v rámci diplomové práce Andrey Kretíkové na katedře psychologie na FF UK. Užíváním Nestresuju souhlasíte se zasíláním dat o Vaši aktivitě v této mobilní aplikaci na server, kam mají přístup pouze členové výzkumného týmu. Vaše data budou anonymizována a svůj souhlas s účastí můžete kdykoliv odvolat a deaktivovat svůj uživatelský účet přímo v Nestresuju.</string>
+    <string name="login_consent_missing_error">Potvrďte souhlas s účastí na výzkumu pro pokračování do aplikace</string>
 
     <!-- General errors -->
 

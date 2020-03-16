@@ -17,7 +17,12 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 /**
  * Fragment for login screen.
  */
-class LoginFragment : BaseFragment<FragmentLoginBinding>() {
+class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginConsentDialogFragment.OnConfirmedListener {
+
+    companion object {
+
+        private const val TAG_CONSENT_DIALOG = "consent_dialog"
+    }
 
     override val errorHandlers = arrayOf(
         InternetErrorsHandler(),
@@ -50,8 +55,18 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             viewBinding.editPassword.isEnabled = enableInput
         })
 
+        viewModel.consentStream.observe(viewLifecycleOwner, Observer { showConsentDialog() })
+
         viewBinding.btnLogin.setOnClickListener {
             viewModel.login(username = viewBinding.editEmail.text.toString(), password = viewBinding.editPassword.text.toString())
         }
+    }
+
+    override fun onConsentConfirmed(confirmed: Boolean) {
+        viewModel.onConsentConfirmed(confirmed)
+    }
+
+    private fun showConsentDialog() {
+        LoginConsentDialogFragment().show(childFragmentManager, TAG_CONSENT_DIALOG)
     }
 }
