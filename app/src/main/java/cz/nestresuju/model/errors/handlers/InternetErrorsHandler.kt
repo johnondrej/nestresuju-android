@@ -7,7 +7,7 @@ import cz.nestresuju.model.errors.InternetConnectionException
 import cz.nestresuju.model.errors.ServerException
 
 /**
- * Handle internet connection related exceptions by showing snackbar.
+ * Handle internet connection related exceptions by showing alert.
  */
 class InternetErrorsHandler : FragmentErrorHandler {
 
