@@ -20,7 +20,7 @@ class InternetErrorsHandler : FragmentErrorHandler {
                         return true
                     }
                     is ServerException -> {
-                        Snackbar.make(it, getString(R.string.error_general_format, error.errorCode, error.description), Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(it, getString(R.string.error_http_format, error.errorCode, error.description), Snackbar.LENGTH_LONG).show()
                         return true
                     }
                     else -> false
