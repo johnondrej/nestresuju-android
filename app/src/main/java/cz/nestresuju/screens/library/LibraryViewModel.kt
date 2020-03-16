@@ -2,9 +2,9 @@ package cz.nestresuju.screens.library
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import cz.nestresuju.screens.base.BaseViewModel
 
-class LibraryViewModel : ViewModel() {
+class LibraryViewModel : BaseViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "Knihovna"

@@ -2,9 +2,9 @@ package cz.nestresuju.screens.diary
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import cz.nestresuju.screens.base.BaseViewModel
 
-class DiaryViewModel : ViewModel() {
+class DiaryViewModel : BaseViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "Deníček"

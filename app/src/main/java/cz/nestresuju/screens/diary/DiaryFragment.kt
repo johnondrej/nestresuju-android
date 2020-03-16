@@ -4,28 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import cz.nestresuju.R
+import cz.nestresuju.databinding.FragmentDiaryBinding
+import cz.nestresuju.screens.base.BaseFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DiaryFragment : Fragment() {
+class DiaryFragment : BaseFragment<FragmentDiaryBinding>() {
 
-    private lateinit var diaryViewModel: DiaryViewModel
+    override val viewModel by viewModel<DiaryViewModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        diaryViewModel =
-            ViewModelProviders.of(this).get(DiaryViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_diary, container, false)
-        val textView: TextView = root.findViewById(R.id.text_diary)
-        diaryViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return FragmentDiaryBinding.inflate(inflater, container, false).also { _binding = it }.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.text.observe(viewLifecycleOwner, Observer {
+            viewBinding.textDiary.text = it
         })
-        return root
     }
 }

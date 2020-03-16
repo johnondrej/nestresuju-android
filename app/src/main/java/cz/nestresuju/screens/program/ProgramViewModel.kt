@@ -2,9 +2,9 @@ package cz.nestresuju.screens.program
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import cz.nestresuju.screens.base.BaseViewModel
 
-class ProgramViewModel : ViewModel() {
+class ProgramViewModel : BaseViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "Program"
