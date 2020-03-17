@@ -29,6 +29,7 @@
     <string name="diary_stress_level_2">Dobře</string>
     <string name="diary_stress_level_3">Nic moc</string>
     <string name="diary_stress_level_4">Vystresovaně</string>
+    <string name="diary_empty_answer_error">Prosím vyplň odpověď na otázku</string>
 
     <!-- General errors -->
 
