@@ -19,8 +19,12 @@ class DiaryFragment : BaseFragment<FragmentDiaryBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.text.observe(viewLifecycleOwner, Observer {
-            viewBinding.textDiary.text = it
+        viewModel.stressLevelStream.observe(viewLifecycleOwner, Observer { stressLevel ->
+            viewBinding.diaryInput.select(stressLevel)
         })
+
+        viewBinding.diaryInput.setOnStressLevelSelectedListener { stressLevel ->
+            viewModel.onStressLevelSelected(stressLevel)
+        }
     }
 }

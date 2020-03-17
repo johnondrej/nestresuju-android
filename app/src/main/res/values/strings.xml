@@ -22,9 +22,17 @@
     <string name="login_consent_text">Kliknutím na tlačítko „Další“ souhlasíte s účastí na výzkumu účinnosti a uživatelské zkušenosti s mobilní aplikací Nestresuju, který je prováděný v rámci diplomové práce Andrey Kretíkové na katedře psychologie na FF UK. Užíváním Nestresuju souhlasíte se zasíláním dat o Vaši aktivitě v této mobilní aplikaci na server, kam mají přístup pouze členové výzkumného týmu. Vaše data budou anonymizována a svůj souhlas s účastí můžete kdykoliv odvolat a deaktivovat svůj uživatelský účet přímo v Nestresuju.</string>
     <string name="login_consent_missing_error">Potvrďte souhlas s účastí na výzkumu pro pokračování do aplikace</string>
 
+    <!-- Diary -->
+
+    <string name="diary_input_title">Jak se dnes cítíš?</string>
+    <string name="diary_stress_level_1">Skvěle</string>
+    <string name="diary_stress_level_2">Dobře</string>
+    <string name="diary_stress_level_3">Nic moc</string>
+    <string name="diary_stress_level_4">Vystresovaně</string>
+
     <!-- General errors -->
 
     <string name="error_unknown">Neznámá chyba</string>
-    <string name="error_http_format">Chyba %d - %s</string>
+    <string name="error_http_format">Chyba %1$d - %2$s</string>
     <string name="error_internet_connection">Internet není dostupný</string>
 </resources>
