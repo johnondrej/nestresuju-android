@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="diaryInputMode" format="enum">
+        <enum name="large" value="0" />
+        <enum name="small" value="1" />
+    </attr>
 
     <declare-styleable name="DiaryNewEntryView">
-        <attr name="mode" format="enum">
-            <enum name="big" value="0" />
-            <enum name="small" value="1" />
-        </attr>
+        <attr name="diaryInputMode" />
     </declare-styleable>
 
     <declare-styleable name="DiaryStressLevelView">
         <attr name="image" format="reference" />
         <attr name="text" format="reference" />
+        <attr name="diaryInputMode" />
     </declare-styleable>
 </resources>
