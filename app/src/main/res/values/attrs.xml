@@ -5,11 +5,11 @@
         <enum name="small" value="1" />
     </attr>
 
-    <declare-styleable name="DiaryNewEntryView">
+    <declare-styleable name="DiaryInputView">
         <attr name="diaryInputMode" />
     </declare-styleable>
 
-    <declare-styleable name="DiaryStressLevelView">
+    <declare-styleable name="DiaryStressLevelChoiceView">
         <attr name="image" format="reference" />
         <attr name="text" format="reference" />
         <attr name="diaryInputMode" />

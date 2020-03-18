@@ -12,15 +12,24 @@
         android:clipToPadding="false"
         android:paddingBottom="8dp">
 
-        <cz.nestresuju.views.diary.stresslevel.DiaryNewEntryView
+        <cz.nestresuju.views.diary.stresslevel.DiaryInputView
             android:id="@+id/diary_input"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:diaryInputMode="small"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <cz.nestresuju.views.diary.stresslevel.DiaryStressLevelView
+            android:id="@+id/stress_level_example"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:diaryInputMode="small" />
+            app:layout_constraintTop_toBottomOf="@id/diary_input" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

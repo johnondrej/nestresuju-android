@@ -11,18 +11,18 @@ import cz.nestresuju.model.entities.domain.diary.StressLevelInput
 /**
  * View for adding new entries to the diary.
  */
-class DiaryNewEntryView(context: Context, attributes: AttributeSet) : CardView(context, attributes) {
+class DiaryInputView(context: Context, attributes: AttributeSet) : CardView(context, attributes) {
 
-    private val smiley1: DiaryStressLevelView
-    private val smiley2: DiaryStressLevelView
-    private val smiley3: DiaryStressLevelView
-    private val smiley4: DiaryStressLevelView
-    private val btnNote: DiaryStressLevelView?
+    private val smiley1: DiaryStressLevelChoiceView
+    private val smiley2: DiaryStressLevelChoiceView
+    private val smiley3: DiaryStressLevelChoiceView
+    private val smiley4: DiaryStressLevelChoiceView
+    private val btnNote: DiaryStressLevelChoiceView?
     private val questionView: DiaryQuestionView
 
     init {
-        val attrs = context.obtainStyledAttributes(attributes, R.styleable.DiaryNewEntryView)
-        val mode = attrs.getInt(R.styleable.DiaryNewEntryView_diaryInputMode, 0)
+        val attrs = context.obtainStyledAttributes(attributes, R.styleable.DiaryInputView)
+        val mode = attrs.getInt(R.styleable.DiaryInputView_diaryInputMode, 0)
         when (mode) {
             0 -> View.inflate(context, R.layout.view_diary_input_large, this)
             1 -> View.inflate(context, R.layout.view_diary_input_small, this)

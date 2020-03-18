@@ -1,37 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:viewBindingIgnore="true">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/txt_title"
-            style="@style/TextAppearance.Headline2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="@string/diary_input_title"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <cz.nestresuju.views.diary.stresslevel.DiaryStressLevelChoiceView
             android:id="@+id/smiley_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             app:diaryInputMode="small"
             app:image="@drawable/ic_diary_smiley_1"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/smiley_2"
-            app:layout_constraintTop_toBottomOf="@id/txt_title" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <cz.nestresuju.views.diary.stresslevel.DiaryStressLevelChoiceView
             android:id="@+id/smiley_2"
@@ -57,39 +45,50 @@
             android:id="@+id/smiley_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
             app:diaryInputMode="small"
             app:image="@drawable/ic_diary_smiley_4"
             app:layout_constraintLeft_toRightOf="@id/smiley_3"
-            app:layout_constraintRight_toLeftOf="@id/input_note"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/smiley_3" />
 
-        <cz.nestresuju.views.diary.stresslevel.DiaryStressLevelChoiceView
-            android:id="@+id/input_note"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            app:diaryInputMode="small"
-            app:image="@drawable/ic_diary_note"
-            app:layout_constraintLeft_toRightOf="@id/smiley_4"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/smiley_4" />
-
-        <Space
-            android:id="@+id/bottom_space"
-            android:layout_width="wrap_content"
-            android:layout_height="8dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_note" />
-
-        <cz.nestresuju.views.diary.stresslevel.DiaryQuestionView
-            android:id="@+id/view_question"
+        <TextView
+            android:id="@+id/txt_question"
+            style="@style/TextAppearance.Headline3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:visibility="gone"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bottom_space" />
+            app:layout_constraintTop_toBottomOf="@id/smiley_1" />
+
+        <TextView
+            android:id="@+id/txt_answer"
+            style="@style/TextAppearance.PrimaryText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/btn_edit"
+            app:layout_constraintTop_toBottomOf="@id/txt_question" />
+
+        <ImageView
+            android:id="@+id/btn_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:src="@drawable/ic_edit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="8dp"
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_answer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
