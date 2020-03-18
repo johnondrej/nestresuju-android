@@ -12,7 +12,7 @@
         android:clipToPadding="false"
         android:paddingBottom="8dp">
 
-        <cz.nestresuju.views.diary.stresslevel.DiaryInputView
+        <cz.nestresuju.views.diary.input.DiaryInputView
             android:id="@+id/diary_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <cz.nestresuju.views.diary.stresslevel.DiaryStressLevelView
+        <cz.nestresuju.views.diary.DiaryStressLevelView
             android:id="@+id/stress_level_example"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -30,6 +30,15 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/diary_input" />
+
+        <cz.nestresuju.views.diary.DiaryNoteView
+            android:id="@+id/note_example"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/stress_level_example" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

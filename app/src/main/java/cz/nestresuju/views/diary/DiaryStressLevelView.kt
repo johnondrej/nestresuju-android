@@ -1,4 +1,4 @@
-package cz.nestresuju.views.diary.stresslevel
+package cz.nestresuju.views.diary
 
 import android.content.Context
 import android.util.AttributeSet
@@ -13,7 +13,7 @@ class DiaryStressLevelView(context: Context, attributes: AttributeSet) : CardVie
 
     private val binding = ViewDiaryStressLevelBinding.inflate(LayoutInflater.from(context), this, true)
 
-    fun setOnEditListener(onEdit: () -> Unit) {
+    fun setOnEditClickedListener(onEdit: () -> Unit) {
         binding.btnEdit.setOnClickListener { onEdit() }
     }
 }

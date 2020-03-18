@@ -1,4 +1,4 @@
-package cz.nestresuju.views.diary.stresslevel
+package cz.nestresuju.views.diary.input
 
 import android.content.Context
 import android.util.AttributeSet

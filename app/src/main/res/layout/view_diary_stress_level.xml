@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <cz.nestresuju.views.diary.stresslevel.DiaryStressLevelChoiceView
+        <cz.nestresuju.views.diary.input.DiaryStressLevelChoiceView
             android:id="@+id/smiley_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
             app:layout_constraintRight_toLeftOf="@id/smiley_2"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <cz.nestresuju.views.diary.stresslevel.DiaryStressLevelChoiceView
+        <cz.nestresuju.views.diary.input.DiaryStressLevelChoiceView
             android:id="@+id/smiley_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             app:layout_constraintRight_toLeftOf="@id/smiley_3"
             app:layout_constraintTop_toTopOf="@id/smiley_1" />
 
-        <cz.nestresuju.views.diary.stresslevel.DiaryStressLevelChoiceView
+        <cz.nestresuju.views.diary.input.DiaryStressLevelChoiceView
             android:id="@+id/smiley_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             app:layout_constraintRight_toLeftOf="@id/smiley_4"
             app:layout_constraintTop_toTopOf="@id/smiley_2" />
 
-        <cz.nestresuju.views.diary.stresslevel.DiaryStressLevelChoiceView
+        <cz.nestresuju.views.diary.input.DiaryStressLevelChoiceView
             android:id="@+id/smiley_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
