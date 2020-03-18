@@ -31,7 +31,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txt_title">
 
-            <cz.nestresuju.views.diary.DiaryStressLevelView
+            <cz.nestresuju.views.diary.stresslevel.DiaryStressLevelView
                 android:id="@+id/smiley_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
                 app:image="@drawable/ic_diary_smiley_1"
                 app:text="@string/diary_stress_level_1" />
 
-            <cz.nestresuju.views.diary.DiaryStressLevelView
+            <cz.nestresuju.views.diary.stresslevel.DiaryStressLevelView
                 android:id="@+id/smiley_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                 app:image="@drawable/ic_diary_smiley_2"
                 app:text="@string/diary_stress_level_2" />
 
-            <cz.nestresuju.views.diary.DiaryStressLevelView
+            <cz.nestresuju.views.diary.stresslevel.DiaryStressLevelView
                 android:id="@+id/smiley_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                 app:image="@drawable/ic_diary_smiley_3"
                 app:text="@string/diary_stress_level_3" />
 
-            <cz.nestresuju.views.diary.DiaryStressLevelView
+            <cz.nestresuju.views.diary.stresslevel.DiaryStressLevelView
                 android:id="@+id/smiley_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
 
         </LinearLayout>
 
-        <cz.nestresuju.views.diary.DiaryQuestionView
+        <cz.nestresuju.views.diary.stresslevel.DiaryQuestionView
             android:id="@+id/view_question"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
