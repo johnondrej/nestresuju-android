@@ -2,7 +2,8 @@
     <string name="app_name">Nestresuju</string>
 
     <!-- General -->
-    <string name="next">Další</string>
+    <string name="general_next">Další</string>
+    <string name="general_save">Uložit</string>
 
     <!-- Navigation -->
 
@@ -31,6 +32,7 @@
     <string name="diary_stress_level_4">Vystresovaně</string>
     <string name="diary_note_title">Zadej text poznámky</string>
     <string name="diary_empty_answer_error">Prosím vyplň odpověď na otázku</string>
+    <string name="diary_edit_note_title">Upravit poznámku</string>
 
     <!-- General errors -->
 

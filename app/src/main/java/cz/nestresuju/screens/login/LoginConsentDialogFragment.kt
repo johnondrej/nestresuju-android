@@ -15,7 +15,7 @@ class LoginConsentDialogFragment : DialogFragment() {
         return AlertDialog.Builder(requireContext())
             .setTitle(R.string.login_consent_title)
             .setMessage(R.string.login_consent_text)
-            .setPositiveButton(R.string.next) { _, _ ->
+            .setPositiveButton(R.string.general_next) { _, _ ->
                 (parentFragment as? OnConfirmedListener)?.onConsentConfirmed(confirmed = true)
             }.setNegativeButton(android.R.string.cancel) { _, _ ->
                 (parentFragment as? OnConfirmedListener)?.onConsentConfirmed(confirmed = false)

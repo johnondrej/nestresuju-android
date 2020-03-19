@@ -13,6 +13,11 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DiaryFragment : BaseFragment<FragmentDiaryBinding>() {
 
+    companion object {
+
+        private const val TAG_EDIT_NOTE_DIALOG = "edit_note_dialog"
+    }
+
     override val viewModel by viewModel<DiaryViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,6 +42,10 @@ class DiaryFragment : BaseFragment<FragmentDiaryBinding>() {
             } else {
                 Snackbar.make(view, R.string.diary_empty_answer_error, Snackbar.LENGTH_LONG).show()
             }
+        }
+
+        viewBinding.noteExample.setOnEditClickedListener {
+            DiaryEditNoteDialogFragment().show(childFragmentManager, TAG_EDIT_NOTE_DIALOG)
         }
     }
 }
