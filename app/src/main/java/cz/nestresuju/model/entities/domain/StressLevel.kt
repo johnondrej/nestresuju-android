@@ -1,13 +1,13 @@
-package cz.nestresuju.model.entities.domain.diary
+package cz.nestresuju.model.entities.domain
 
 /**
  * Enum representing all possible stress level input values.
  */
-enum class StressLevelInput {
+enum class StressLevel {
 
-    GREAT,
-    GOOD,
-    BAD,
     STRESSED,
+    BAD,
+    GOOD,
+    GREAT,
     NONE // used when adding note without stress level
 }

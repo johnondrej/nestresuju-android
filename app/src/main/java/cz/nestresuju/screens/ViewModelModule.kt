@@ -22,7 +22,7 @@ val viewModelModule = module {
 
     viewModel { AboutAppViewModel() }
 
-    viewModel { DiaryViewModel() }
+    viewModel { DiaryViewModel(diaryRepository = get()) }
 
     viewModel { HomeViewModel() }
 

@@ -1,6 +1,7 @@
 package cz.nestresuju
 
 import android.app.Application
+import cz.nestresuju.model.converters.converterModule
 import cz.nestresuju.model.repositories.repositoryModule
 import cz.nestresuju.networking.networkingModule
 import cz.nestresuju.screens.viewModelModule
@@ -19,6 +20,7 @@ class NestresujuApp : Application() {
             androidContext(this@NestresujuApp)
             modules(
                 networkingModule,
+                converterModule,
                 repositoryModule,
                 viewModelModule
             )

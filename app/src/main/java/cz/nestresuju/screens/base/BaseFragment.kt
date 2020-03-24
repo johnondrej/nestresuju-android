@@ -40,8 +40,10 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
         for (errorHandler in errorHandlers) {
             val handled = errorHandler.handleError(handlingView = this, error = error)
             if (handled) {
-                break
+                return
             }
         }
+
+        throw error
     }
 }

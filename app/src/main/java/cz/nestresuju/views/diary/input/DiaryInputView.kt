@@ -6,7 +6,7 @@ import android.view.View
 import androidx.cardview.widget.CardView
 import cz.nestresuju.R
 import cz.nestresuju.common.extensions.visible
-import cz.nestresuju.model.entities.domain.diary.StressLevelInput
+import cz.nestresuju.model.entities.domain.StressLevel
 
 /**
  * View for adding new entries to the diary.
@@ -42,20 +42,20 @@ class DiaryInputView(context: Context, attributes: AttributeSet) : CardView(cont
         questionView.setOnConfirmationListener(listener)
     }
 
-    fun setOnStressLevelSelectedListener(listener: (StressLevelInput) -> Unit) {
-        smiley1.setOnClickListener { listener(StressLevelInput.GREAT) }
-        smiley2.setOnClickListener { listener(StressLevelInput.GOOD) }
-        smiley3.setOnClickListener { listener(StressLevelInput.BAD) }
-        smiley4.setOnClickListener { listener(StressLevelInput.STRESSED) }
-        btnNote?.setOnClickListener { listener(StressLevelInput.NONE) }
+    fun setOnStressLevelSelectedListener(listener: (StressLevel) -> Unit) {
+        smiley1.setOnClickListener { listener(StressLevel.STRESSED) }
+        smiley2.setOnClickListener { listener(StressLevel.BAD) }
+        smiley3.setOnClickListener { listener(StressLevel.GOOD) }
+        smiley4.setOnClickListener { listener(StressLevel.GREAT) }
+        btnNote?.setOnClickListener { listener(StressLevel.NONE) }
     }
 
-    fun select(stressLevel: StressLevelInput, question: String) {
-        smiley1.setOptionSelected(stressLevel == StressLevelInput.GREAT)
-        smiley2.setOptionSelected(stressLevel == StressLevelInput.GOOD)
-        smiley3.setOptionSelected(stressLevel == StressLevelInput.BAD)
-        smiley4.setOptionSelected(stressLevel == StressLevelInput.STRESSED)
-        btnNote?.setOptionSelected(stressLevel == StressLevelInput.NONE)
+    fun select(stressLevel: StressLevel, question: String) {
+        smiley1.setOptionSelected(stressLevel == StressLevel.STRESSED)
+        smiley2.setOptionSelected(stressLevel == StressLevel.BAD)
+        smiley3.setOptionSelected(stressLevel == StressLevel.GOOD)
+        smiley4.setOptionSelected(stressLevel == StressLevel.GREAT)
+        btnNote?.setOptionSelected(stressLevel == StressLevel.NONE)
 
         with(questionView) {
             visible = true

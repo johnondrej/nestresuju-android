@@ -30,6 +30,10 @@ class DiaryFragment : BaseFragment<FragmentDiaryBinding>() {
             viewBinding.diaryInput.select(stressLevel, "Jak se cítíš?") // TODO: pass question from VM
         })
 
+        viewModel.entriesStream.observe(viewLifecycleOwner, Observer { entries ->
+            // TODO: show entries
+        })
+
         viewModel.clearAnswerEvent.observe(viewLifecycleOwner, Observer { viewBinding.diaryInput.clearAnswer() })
 
         viewBinding.diaryInput.setOnStressLevelSelectedListener { stressLevel ->

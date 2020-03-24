@@ -9,4 +9,8 @@ import org.koin.dsl.module
 val repositoryModule = module {
 
     factory { AuthRepository(authApiDefinition = get(), oAuthManager = get()) }
+
+    factory<DiaryRepository> {
+        DiaryRepositoryImpl(apiDefinition = get(), diaryEntitiesConverter = get())
+    }
 }

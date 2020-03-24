@@ -2,18 +2,35 @@ package cz.nestresuju.screens.diary
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.hadilq.liveevent.LiveEvent
-import cz.nestresuju.model.entities.domain.diary.StressLevelInput
+import cz.nestresuju.model.entities.domain.DiaryEntry
+import cz.nestresuju.model.entities.domain.StressLevel
+import cz.nestresuju.model.repositories.DiaryRepository
 import cz.nestresuju.screens.base.BaseViewModel
 
-class DiaryViewModel : BaseViewModel() {
+class DiaryViewModel(private val diaryRepository: DiaryRepository) : BaseViewModel() {
 
-    private val _stressLevelLiveData = MutableLiveData<StressLevelInput>()
-    val stressLevelStream: LiveData<StressLevelInput> = _stressLevelLiveData
+    private val _stressLevelLiveData = MutableLiveData<StressLevel>()
+    val stressLevelStream: LiveData<StressLevel> = _stressLevelLiveData
+
+    private val _entriesLiveData = MutableLiveData<List<DiaryEntry>>()
+    val entriesStream: LiveData<List<DiaryEntry>> = _entriesLiveData
 
     val clearAnswerEvent = LiveEvent<Unit>()
 
-    fun onStressLevelSelected(stressLevel: StressLevelInput) {
+    init {
+        fetchDiaryEntries()
+    }
+
+    fun fetchDiaryEntries() {
+        viewModelScope.launchWithErrorHandling {
+            val entries = diaryRepository.fetchDiaryEntries()
+            _entriesLiveData.value = entries
+        }
+    }
+
+    fun onStressLevelSelected(stressLevel: StressLevel) {
         _stressLevelLiveData.value = stressLevel
         clearAnswerEvent.value = Unit
     }
