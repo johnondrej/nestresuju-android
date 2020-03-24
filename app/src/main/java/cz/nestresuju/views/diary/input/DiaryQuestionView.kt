@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.inputmethod.EditorInfo
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.widget.doAfterTextChanged
 import cz.nestresuju.databinding.ViewDiaryInputQuestionBinding
 
 /**
@@ -26,17 +27,19 @@ class DiaryQuestionView(context: Context, attributes: AttributeSet) : Constraint
         }
     }
 
-    fun setOnConfirmationListener(listener: (String) -> Unit) {
-        with(binding) {
-            btnConfirm.setOnClickListener { listener(editAnswer.text.toString()) }
-        }
+    fun setOnConfirmationListener(listener: () -> Unit) {
+        binding.btnConfirm.setOnClickListener { listener() }
+    }
+
+    fun setOnAnswerChangedListener(listener: (String) -> Unit) {
+        binding.editAnswer.doAfterTextChanged { answer -> listener(answer.toString()) }
     }
 
     fun setQuestion(question: String) {
         binding.txtQuestion.text = question
     }
 
-    fun clearAnswer() {
-        binding.editAnswer.text.clear()
+    fun setAnswer(answer: String) {
+        binding.editAnswer.setText(answer)
     }
 }

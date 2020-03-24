@@ -38,7 +38,7 @@ class DiaryInputView(context: Context, attributes: AttributeSet) : CardView(cont
         attrs.recycle()
     }
 
-    fun setOnConfirmationListener(listener: (String) -> Unit) {
+    fun setOnConfirmationListener(listener: () -> Unit) {
         questionView.setOnConfirmationListener(listener)
     }
 
@@ -48,6 +48,10 @@ class DiaryInputView(context: Context, attributes: AttributeSet) : CardView(cont
         smiley3.setOnClickListener { listener(StressLevel.GOOD) }
         smiley4.setOnClickListener { listener(StressLevel.GREAT) }
         btnNote?.setOnClickListener { listener(StressLevel.NONE) }
+    }
+
+    fun setOnAnswerChangedListener(listener: (String) -> Unit) {
+        questionView.setOnAnswerChangedListener(listener)
     }
 
     fun select(stressLevel: StressLevel, question: String) {
@@ -63,7 +67,7 @@ class DiaryInputView(context: Context, attributes: AttributeSet) : CardView(cont
         }
     }
 
-    fun clearAnswer() {
-        questionView.clearAnswer()
+    fun setAnswer(answer: String) {
+        questionView.setAnswer(answer)
     }
 }

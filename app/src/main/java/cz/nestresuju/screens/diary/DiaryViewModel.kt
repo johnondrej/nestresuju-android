@@ -8,6 +8,7 @@ import cz.nestresuju.model.entities.domain.DiaryEntry
 import cz.nestresuju.model.entities.domain.StressLevel
 import cz.nestresuju.model.repositories.DiaryRepository
 import cz.nestresuju.screens.base.BaseViewModel
+import cz.nestresuju.screens.diary.errors.EmptyAnswerException
 
 class DiaryViewModel(private val diaryRepository: DiaryRepository) : BaseViewModel() {
 
@@ -18,6 +19,7 @@ class DiaryViewModel(private val diaryRepository: DiaryRepository) : BaseViewMod
     val entriesStream: LiveData<List<DiaryEntry>> = _entriesLiveData
 
     val clearAnswerEvent = LiveEvent<Unit>()
+    var answer: String? = null
 
     init {
         fetchDiaryEntries()
@@ -33,9 +35,14 @@ class DiaryViewModel(private val diaryRepository: DiaryRepository) : BaseViewMod
     fun onStressLevelSelected(stressLevel: StressLevel) {
         _stressLevelLiveData.value = stressLevel
         clearAnswerEvent.value = Unit
+        answer = null
     }
 
-    fun onAnswerConfirmed(answer: String) {
-        // TODO
+    fun onAnswerConfirmed() {
+        if (!answer.isNullOrBlank()) {
+            // TODO
+        } else {
+            errorStream.value = EmptyAnswerException()
+        }
     }
 }
