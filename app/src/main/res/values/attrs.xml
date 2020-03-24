@@ -14,4 +14,9 @@
         <attr name="text" format="reference" />
         <attr name="diaryInputMode" />
     </declare-styleable>
+
+    <declare-styleable name="CustomListView">
+        <attr name="emptyText" format="reference" />
+        <attr name="errorText" format="reference" />
+    </declare-styleable>
 </resources>

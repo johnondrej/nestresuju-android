@@ -33,6 +33,7 @@
     <string name="diary_note_title">Zadej text poznámky</string>
     <string name="diary_empty_answer_error">Prosím vyplň odpověď na otázku</string>
     <string name="diary_edit_note_title">Upravit poznámku</string>
+    <string name="diary_empty">Zatím tu nejsou žádné záznamy</string>
 
     <!-- General errors -->
 

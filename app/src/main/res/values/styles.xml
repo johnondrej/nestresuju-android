@@ -39,6 +39,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextAppearance.Error" parent="TextAppearance.PrimaryText">
+        <item name="android:textColor">@color/textError</item>
+    </style>
+
     <!-- Buttons -->
 
     <style name="PrimaryButton" parent="Widget.MaterialComponents.Button">

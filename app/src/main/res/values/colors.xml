@@ -10,4 +10,5 @@
     <color name="textPrimary">#666666</color>
     <color name="textHeadline">#222222</color>
     <color name="textSecondary">@android:color/white</color>
+    <color name="textError">#bb3333</color>
 </resources>
