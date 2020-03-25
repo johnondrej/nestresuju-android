@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.appdistribution'
 apply plugin: 'io.fabric'
 
 android {
@@ -39,6 +40,11 @@ android {
             applicationIdSuffix ".debug"
             manifestPlaceholders = [crashlyticsCollectionEnabled: "false"]
             ext.enableCrashlytics = false
+
+            firebaseAppDistribution {
+                groups = "Nestresuju"
+                releaseNotesFile = "${project.rootDir}/changelog.txt"
+            }
         }
 
         release {
@@ -46,6 +52,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [crashlyticsCollectionEnabled: "true"]
             signingConfig signingConfigs.release
+
+            firebaseAppDistribution {
+                groups = "Nestresuju"
+                releaseNotesFile = "${project.rootDir}/changelog.txt"
+            }
         }
     }
 

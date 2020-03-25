@@ -24,6 +24,7 @@ before_script:
 
 stages:
   - build
+  - deploy
 
 lintDebug:
   stage: build
@@ -37,3 +38,8 @@ assembleDebug:
   artifacts:
     paths:
       - app/build/outputs/
+
+deployDebug:
+  stage: deploy
+  script:
+    - ./gradlew appDistributionUploadDebug
