@@ -23,23 +23,12 @@ before_script:
   - echo "$KEYSTORE_PROPERTIES" | base64 -d > keystore.properties
 
 stages:
-  - build
-  - deploy
+  - buildAndDeploy
 
-lintDebug:
-  stage: build
+assembleAndDeployDebug:
+  stage: buildAndDeploy
   script:
-    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
-
-assembleDebug:
-  stage: build
-  script:
-    - ./gradlew assembleDebug
+    - ./gradlew assembleDebug appDistributionUploadDebug
   artifacts:
     paths:
       - app/build/outputs/
-
-deployDebug:
-  stage: deploy
-  script:
-    - ./gradlew appDistributionUploadDebug
