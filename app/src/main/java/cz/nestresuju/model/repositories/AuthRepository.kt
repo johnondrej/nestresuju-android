@@ -19,8 +19,9 @@ class AuthRepository(
     companion object {
         private const val CLIENT_ID = "client.mobile"
         private const val CLIENT_SECRET = "mobile_secret"
-        private const val GRANT_TYPE = "password"
-        private const val SCOPE = "nestresuju_mobile"
+        private const val GRANT_TYPE_PASSWORD = "password"
+        private const val GRANT_TYPE_REFRESH_TOKEN = "refresh_token"
+        private const val SCOPE = "nestresuju_mobile offline_access"
     }
 
     private var consentContinuation: Continuation<Boolean>? = null
@@ -29,7 +30,7 @@ class AuthRepository(
         val authResponse = authApiDefinition.login(
             clientId = CLIENT_ID,
             clientSecret = CLIENT_SECRET,
-            grantType = GRANT_TYPE,
+            grantType = GRANT_TYPE_PASSWORD,
             scope = SCOPE,
             username = username,
             password = password
@@ -46,6 +47,19 @@ class AuthRepository(
                 throw ConsentNotGivenException()
             }
         }
+    }
+
+    suspend fun loginWithRefreshToken(refreshToken: String): AuthResponse {
+        val authResponse = authApiDefinition.loginWithRefreshToken(
+            clientId = CLIENT_ID,
+            clientSecret = CLIENT_SECRET,
+            grantType = GRANT_TYPE_REFRESH_TOKEN,
+            scope = SCOPE,
+            refreshToken = refreshToken
+        )
+
+        onLoginCompleted(authResponse)
+        return authResponse
     }
 
     fun onConsentConfirmed(confirmed: Boolean) {

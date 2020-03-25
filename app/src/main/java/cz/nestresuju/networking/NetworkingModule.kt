@@ -3,10 +3,10 @@ package cz.nestresuju.networking
 import com.squareup.moshi.Moshi
 import cz.ackee.ackroutine.OAuthCallInterceptor
 import cz.ackee.ackroutine.OAuthManager
-import cz.ackee.ackroutine.core.OAuthCredentials
 import cz.ackee.retrofitadapter.AckroutineCallAdapterFactory
 import cz.nestresuju.BuildConfig
 import cz.nestresuju.common.Constants
+import cz.nestresuju.model.repositories.AuthRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -77,14 +77,7 @@ val networkingModule = module {
     single {
         OAuthManager(
             context = androidContext(),
-            refreshTokenAction = { refreshToken ->
-                // TODO: update when API returns refresh token
-                object : OAuthCredentials {
-                    override val accessToken = ""
-                    override val expiresIn: Long = 0
-                    override val refreshToken: String = ""
-                }
-            },
+            refreshTokenAction = { refreshToken -> get<AuthRepository>().loginWithRefreshToken(refreshToken) },
             onRefreshTokenFailed = { /* TODO: implement logout logic */ }
         )
     }

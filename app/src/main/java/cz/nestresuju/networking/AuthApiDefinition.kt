@@ -20,4 +20,14 @@ interface AuthApiDefinition {
         @Field("username") username: String,
         @Field("password") password: String
     ): AuthResponse
+
+    @FormUrlEncoded
+    @POST("connect/token")
+    suspend fun loginWithRefreshToken(
+        @Field("client_id") clientId: String,
+        @Field("client_secret") clientSecret: String,
+        @Field("grant_type") grantType: String,
+        @Field("scope") scope: String,
+        @Field("refresh_token") refreshToken: String
+    ): AuthResponse
 }
