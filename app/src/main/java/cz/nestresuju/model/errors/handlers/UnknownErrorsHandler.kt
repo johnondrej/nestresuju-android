@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import cz.nestresuju.R
 import cz.nestresuju.model.errors.UnknownException
+import timber.log.Timber
 
 /**
  * Handle unknown errors by showing snackbar (and logging it to crash reporting service).
@@ -16,6 +17,7 @@ class UnknownErrorsHandler : FragmentErrorHandler {
                 return when (error) {
                     is UnknownException -> {
                         // TODO: log to Crashlytics
+                        Timber.e(error)
                         Snackbar.make(it, R.string.error_unknown, Snackbar.LENGTH_LONG).show()
                         true
                     }

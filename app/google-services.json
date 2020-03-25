@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "189477995697",
+    "firebase_url": "https://nestresuju.firebaseio.com",
+    "project_id": "nestresuju",
+    "storage_bucket": "nestresuju.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189477995697:android:a24953f65e74905bcf8e90",
+        "android_client_info": {
+          "package_name": "cz.nestresuju"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189477995697-66viofv30p4q1ieutjn206fitie0e5pa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-24dJvUBfRguwPSKuTdtBLjnV3nsIZTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189477995697-66viofv30p4q1ieutjn206fitie0e5pa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189477995697:android:ef8f7892a14f0a3bcf8e90",
+        "android_client_info": {
+          "package_name": "cz.nestresuju.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189477995697-66viofv30p4q1ieutjn206fitie0e5pa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-24dJvUBfRguwPSKuTdtBLjnV3nsIZTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189477995697-66viofv30p4q1ieutjn206fitie0e5pa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
