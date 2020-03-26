@@ -7,6 +7,7 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithView
 import cz.nestresuju.databinding.ModelDiaryInputLargeBinding
 import cz.nestresuju.model.entities.domain.StressLevel
+import cz.nestresuju.screens.diary.DiaryChoiceInput
 import cz.nestresuju.views.diary.input.DiaryInputView
 
 /**
@@ -24,7 +25,7 @@ open class DiaryInputLargeModel : EpoxyModelWithView<DiaryInputView>() {
     @EpoxyAttribute
     var answer: String? = null
     @EpoxyAttribute
-    var input: Pair<StressLevel, String>? = null
+    var input: DiaryChoiceInput? = null
 
     override fun buildView(parent: ViewGroup): DiaryInputView {
         return ModelDiaryInputLargeBinding.inflate(LayoutInflater.from(parent.context), parent, false).diaryInput
@@ -36,8 +37,8 @@ open class DiaryInputLargeModel : EpoxyModelWithView<DiaryInputView>() {
             setOnStressLevelSelectedListener(onStressLevelSelected)
             setOnConfirmationListener(onInputConfirmed)
             setOnAnswerChangedListener(onAnswerChanged)
-            input?.let { select(stressLevel = it.first, question = it.second) }
-            answer?.let { setAnswer(it) }
+            setInput(input)
+            setAnswer(answer)
         }
     }
 }

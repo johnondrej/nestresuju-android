@@ -4,6 +4,7 @@ import com.airbnb.epoxy.EpoxyController
 import cz.nestresuju.common.extensions.adapterProperty
 import cz.nestresuju.model.entities.domain.DiaryEntry
 import cz.nestresuju.model.entities.domain.StressLevel
+import cz.nestresuju.screens.diary.DiaryChoiceInput
 import org.threeten.bp.LocalDate
 
 /**
@@ -20,12 +21,14 @@ class DiaryController(
 
     var showSmallInput by adapterProperty(false)
     var answer: String? by adapterProperty(null)
-    var input: Pair<StressLevel, String>? by adapterProperty(null)
+    var input: DiaryChoiceInput? by adapterProperty(null)
     var entries: List<DiaryEntry>? by adapterProperty(null)
 
     private var lastDay: LocalDate? = null
 
     override fun buildModels() {
+        lastDay = null
+
         entries?.let { diaryEntries ->
             if (showSmallInput) {
                 diaryInputSmall {

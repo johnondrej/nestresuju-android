@@ -45,8 +45,8 @@ class DiaryFragment : BaseFragment<ViewEpoxyListBinding>() {
         viewBinding.list.setController(controller)
         controller.requestModelBuild()
 
-        viewModel.stressLevelStream.observe(viewLifecycleOwner, Observer { stressLevel ->
-            controller.input = stressLevel to "Jak se cítíš?" // TODO: pass question from VM
+        viewModel.inputStream.observe(viewLifecycleOwner, Observer { input ->
+            controller.input = input
         })
 
         viewModel.clearAnswerEvent.observe(viewLifecycleOwner, Observer { controller.answer = null })

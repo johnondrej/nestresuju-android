@@ -35,11 +35,11 @@ class DiaryQuestionView(context: Context, attributes: AttributeSet) : Constraint
         binding.editAnswer.doAfterTextChanged { answer -> listener(answer.toString()) }
     }
 
-    fun setQuestion(question: String) {
+    fun setQuestion(question: String?) {
         binding.txtQuestion.text = question
     }
 
-    fun setAnswer(answer: String) {
+    fun setAnswer(answer: String?) {
         binding.editAnswer.setText(answer)
     }
 }

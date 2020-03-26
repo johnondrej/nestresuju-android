@@ -8,14 +8,16 @@ import cz.nestresuju.model.entities.domain.StressQuestion
 /**
  * Converter for converting API & DB & domain entities for diary.
  */
-interface DiaryEntitiesConverter {
+interface DiaryEntitiesConverter : StressLevelConverter {
 
     fun apiMoodQuestionToDomain(apiStressQuestion: MoodQuestionsResponse.ApiStressQuestion): StressQuestion
 
     fun apiDiaryEntryToDomain(apiDiaryEntry: ApiDiaryEntry, questions: List<StressQuestion>): DiaryEntry
 }
 
-class DiaryEntitiesConverterImpl(private val stressLevelConverter: StressLevelConverter) : DiaryEntitiesConverter {
+class DiaryEntitiesConverterImpl(
+    private val stressLevelConverter: StressLevelConverter
+) : DiaryEntitiesConverter, StressLevelConverter by stressLevelConverter {
 
     companion object {
 
@@ -38,14 +40,14 @@ class DiaryEntitiesConverterImpl(private val stressLevelConverter: StressLevelCo
                 stressLevel = stressLevelConverter.intToStressLevel(apiDiaryEntry.moodLevel!!),
                 question = questions.first { it.id == apiDiaryEntry.questionId!! },
                 answer = apiDiaryEntry.text,
-                dateCreated = apiDiaryEntry.dateCreated,
-                dateModified = apiDiaryEntry.dateModified
+                dateCreated = apiDiaryEntry.dateCreated.toLocalDateTime(),
+                dateModified = apiDiaryEntry.dateModified.toLocalDateTime()
             )
             ENTRY_TYPE_NOTE -> DiaryEntry.NoteEntry(
                 id = apiDiaryEntry.id,
                 text = apiDiaryEntry.text,
-                dateCreated = apiDiaryEntry.dateCreated,
-                dateModified = apiDiaryEntry.dateModified
+                dateCreated = apiDiaryEntry.dateCreated.toLocalDateTime(),
+                dateModified = apiDiaryEntry.dateModified.toLocalDateTime()
             )
             else -> throw IllegalArgumentException("Invalid diary entry type ${apiDiaryEntry.entryType}")
         }

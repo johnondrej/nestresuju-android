@@ -7,6 +7,7 @@ import cz.nestresuju.screens.home.HomeViewModel
 import cz.nestresuju.screens.library.LibraryViewModel
 import cz.nestresuju.screens.login.LoginViewModel
 import cz.nestresuju.screens.program.ProgramViewModel
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -22,7 +23,7 @@ val viewModelModule = module {
 
     viewModel { AboutAppViewModel() }
 
-    viewModel { DiaryViewModel(diaryRepository = get()) }
+    viewModel { DiaryViewModel(androidContext(), diaryRepository = get()) }
 
     viewModel { HomeViewModel() }
 
