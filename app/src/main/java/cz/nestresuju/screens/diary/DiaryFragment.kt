@@ -33,7 +33,10 @@ class DiaryFragment : BaseFragment<ViewEpoxyListBinding>() {
         controller = DiaryController(
             onStressLevelSelected = { stressLevel -> viewModel.onStressLevelSelected(stressLevel) },
             onInputConfirmed = { viewModel.onAnswerConfirmed() },
-            onAnswerChanged = { answer -> viewModel.answer = answer }
+            onAnswerChanged = { answer -> viewModel.answer = answer },
+            onStressLevelEditClicked = { entry -> /* TODO */ },
+            onNoteEditClicked = { entry -> /* TODO */ },
+            onNoteDeleteClicked = { entry -> /* TODO */ }
         ).apply {
             answer = viewModel.answer
         }
