@@ -4,6 +4,9 @@
     <!-- General -->
     <string name="general_next">Další</string>
     <string name="general_save">Uložit</string>
+    <string name="general_date_yesterday">Včera</string>
+    <string name="general_date_today">Dnes</string>
+    <string name="general_date_tomorrow">Zítra</string>
 
     <!-- Navigation -->
 

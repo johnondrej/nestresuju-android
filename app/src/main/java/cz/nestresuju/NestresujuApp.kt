@@ -1,6 +1,7 @@
 package cz.nestresuju
 
 import android.app.Application
+import com.jakewharton.threetenabp.AndroidThreeTen
 import cz.nestresuju.model.converters.converterModule
 import cz.nestresuju.model.repositories.repositoryModule
 import cz.nestresuju.networking.networkingModule
@@ -16,6 +17,8 @@ class NestresujuApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        AndroidThreeTen.init(this)
+
         startKoin {
             androidContext(this@NestresujuApp)
             modules(
