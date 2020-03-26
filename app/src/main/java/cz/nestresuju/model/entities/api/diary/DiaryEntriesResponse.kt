@@ -1,6 +1,7 @@
-package cz.nestresuju.model.entities.api
+package cz.nestresuju.model.entities.api.diary
 
 import com.squareup.moshi.JsonClass
+import cz.nestresuju.model.entities.api.TimestampedResponse
 
 /**
  * API response with diary entries.

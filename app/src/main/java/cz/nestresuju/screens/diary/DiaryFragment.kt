@@ -10,6 +10,7 @@ import cz.nestresuju.screens.base.BaseFragment
 import cz.nestresuju.screens.diary.epoxy.DiaryController
 import cz.nestresuju.screens.diary.errors.DiaryErrorHandler
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.threeten.bp.LocalDate
 
 class DiaryFragment : BaseFragment<ViewEpoxyListBinding>() {
 
@@ -51,7 +52,8 @@ class DiaryFragment : BaseFragment<ViewEpoxyListBinding>() {
         viewModel.clearAnswerEvent.observe(viewLifecycleOwner, Observer { controller.answer = null })
 
         viewModel.entriesStream.observe(viewLifecycleOwner, Observer { entries ->
-            // TODO: show entries
+            controller.entries = entries
+            controller.showSmallInput = entries.any { it.createdAt.toLocalDate() == LocalDate.now() }
         })
     }
 }

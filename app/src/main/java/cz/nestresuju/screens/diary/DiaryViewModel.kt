@@ -27,8 +27,10 @@ class DiaryViewModel(private val diaryRepository: DiaryRepository) : BaseViewMod
 
     fun fetchDiaryEntries() {
         viewModelScope.launchWithErrorHandling {
-            val entries = diaryRepository.fetchDiaryEntries()
-            _entriesLiveData.value = entries
+            val moodQuestions = diaryRepository.fetchMoodQuestions()
+            val diaryEntries = diaryRepository.fetchDiaryEntries(moodQuestions)
+
+            _entriesLiveData.value = diaryEntries
         }
     }
 

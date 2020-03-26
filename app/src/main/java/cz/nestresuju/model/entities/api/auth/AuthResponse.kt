@@ -1,4 +1,4 @@
-package cz.nestresuju.model.entities.api
+package cz.nestresuju.model.entities.api.auth
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

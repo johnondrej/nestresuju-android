@@ -1,7 +1,7 @@
 package cz.nestresuju.model.repositories
 
 import cz.ackee.ackroutine.OAuthManager
-import cz.nestresuju.model.entities.api.AuthResponse
+import cz.nestresuju.model.entities.api.auth.AuthResponse
 import cz.nestresuju.model.errors.ConsentNotGivenException
 import cz.nestresuju.networking.AuthApiDefinition
 import kotlin.coroutines.Continuation

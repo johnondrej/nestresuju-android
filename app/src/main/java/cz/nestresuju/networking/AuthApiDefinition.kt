@@ -1,6 +1,6 @@
 package cz.nestresuju.networking
 
-import cz.nestresuju.model.entities.api.AuthResponse
+import cz.nestresuju.model.entities.api.auth.AuthResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST

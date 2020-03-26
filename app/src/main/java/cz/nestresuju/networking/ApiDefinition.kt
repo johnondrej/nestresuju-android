@@ -1,7 +1,7 @@
 package cz.nestresuju.networking
 
-import cz.nestresuju.model.entities.api.DiaryEntriesResponse
-import cz.nestresuju.model.entities.api.MoodQuestionsResponse
+import cz.nestresuju.model.entities.api.diary.DiaryEntriesResponse
+import cz.nestresuju.model.entities.api.diary.MoodQuestionsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -10,7 +10,7 @@ import retrofit2.http.Query
  */
 interface ApiDefinition {
 
-    @GET("v1/diary/mood-questions")
+    @GET("v1/diary/questions")
     suspend fun getMoodQuestions(@Query("timestamp") timestamp: Long): MoodQuestionsResponse
 
     @GET("v1/diary/entries")

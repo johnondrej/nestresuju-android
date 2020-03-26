@@ -1,4 +1,4 @@
-package cz.nestresuju.model.entities.api
+package cz.nestresuju.model.entities.api.diary
 
 import com.squareup.moshi.JsonClass
 import org.threeten.bp.LocalDateTime

@@ -1,7 +1,7 @@
 package cz.nestresuju.model.converters
 
-import cz.nestresuju.model.entities.api.ApiDiaryEntry
-import cz.nestresuju.model.entities.api.MoodQuestionsResponse
+import cz.nestresuju.model.entities.api.diary.ApiDiaryEntry
+import cz.nestresuju.model.entities.api.diary.MoodQuestionsResponse
 import cz.nestresuju.model.entities.domain.DiaryEntry
 import cz.nestresuju.model.entities.domain.StressQuestion
 
@@ -12,7 +12,7 @@ interface DiaryEntitiesConverter {
 
     fun apiMoodQuestionToDomain(apiStressQuestion: MoodQuestionsResponse.ApiStressQuestion): StressQuestion
 
-    fun apiDiaryEntryToDomain(apiDiaryEntry: ApiDiaryEntry, questions: List<MoodQuestionsResponse.ApiStressQuestion>): DiaryEntry
+    fun apiDiaryEntryToDomain(apiDiaryEntry: ApiDiaryEntry, questions: List<StressQuestion>): DiaryEntry
 }
 
 class DiaryEntitiesConverterImpl(private val stressLevelConverter: StressLevelConverter) : DiaryEntitiesConverter {
@@ -31,12 +31,12 @@ class DiaryEntitiesConverterImpl(private val stressLevelConverter: StressLevelCo
         )
     }
 
-    override fun apiDiaryEntryToDomain(apiDiaryEntry: ApiDiaryEntry, questions: List<MoodQuestionsResponse.ApiStressQuestion>): DiaryEntry {
+    override fun apiDiaryEntryToDomain(apiDiaryEntry: ApiDiaryEntry, questions: List<StressQuestion>): DiaryEntry {
         return when (apiDiaryEntry.entryType) {
             ENTRY_TYPE_STRESS_LEVEL -> DiaryEntry.StressLevelEntry(
                 id = apiDiaryEntry.id,
                 stressLevel = stressLevelConverter.intToStressLevel(apiDiaryEntry.moodLevel!!),
-                question = apiMoodQuestionToDomain(questions.first { it.id == apiDiaryEntry.questionId!! }),
+                question = questions.first { it.id == apiDiaryEntry.questionId!! },
                 answer = apiDiaryEntry.text,
                 dateCreated = apiDiaryEntry.dateCreated,
                 dateModified = apiDiaryEntry.dateModified
