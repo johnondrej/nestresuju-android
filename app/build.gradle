@@ -43,7 +43,6 @@ android {
 
             firebaseAppDistribution {
                 groups = "Nestresuju"
-                releaseNotesFile = "${project.rootDir}/changelog.txt"
             }
         }
 
@@ -55,7 +54,6 @@ android {
 
             firebaseAppDistribution {
                 groups = "Nestresuju"
-                releaseNotesFile = "${project.rootDir}/changelog.txt"
             }
         }
     }
