@@ -49,6 +49,18 @@ class DiaryViewModel(
         answer = null
     }
 
+    fun onEditEntry(entryId: Long, modifiedText: String) {
+        viewModelScope.launchWithErrorHandling {
+            diaryRepository.editEntry(entryId, modifiedText)
+        }
+    }
+
+    fun onDeleteEntry(entry: DiaryEntry) {
+        viewModelScope.launchWithErrorHandling {
+            diaryRepository.deleteEntry(entry)
+        }
+    }
+
     fun onAnswerConfirmed() {
         answer?.takeIf { it.isNotBlank() }?.let { confirmedAnswer ->
             val diaryInput = _inputLiveData.value!!

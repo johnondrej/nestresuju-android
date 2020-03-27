@@ -52,7 +52,7 @@ class DiaryController(
 
             if (diaryEntries.isNotEmpty()) {
                 diaryEntries.forEach { entry ->
-                    val entryDate = entry.createdAt.toLocalDate()
+                    val entryDate = entry.dateCreated.toLocalDate()
                     if (entryDate != lastDay) {
                         diaryDayHeader {
                             id("day-${entryDate.toEpochDay()}")

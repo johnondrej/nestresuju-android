@@ -5,21 +5,29 @@ import org.threeten.bp.LocalDateTime
 /**
  * Diary entry (either note or stress level entry).
  */
-sealed class DiaryEntry(val createdAt: LocalDateTime) {
+sealed class DiaryEntry {
+
+    abstract val id: Long
+    abstract val text: String
+    abstract val dateCreated: LocalDateTime
 
     data class NoteEntry(
-        val id: Long,
-        val text: String,
-        val dateCreated: LocalDateTime,
+        override val id: Long,
+        override val text: String,
+        override val dateCreated: LocalDateTime,
         val dateModified: LocalDateTime
-    ) : DiaryEntry(dateCreated)
+    ) : DiaryEntry()
 
     data class StressLevelEntry(
-        val id: Long,
+        override val id: Long,
         val stressLevel: StressLevel,
         val question: StressQuestion,
         val answer: String,
-        val dateCreated: LocalDateTime,
+        override val dateCreated: LocalDateTime,
         val dateModified: LocalDateTime
-    ) : DiaryEntry(dateCreated)
+    ) : DiaryEntry() {
+
+        override val text: String
+            get() = answer
+    }
 }

@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import cz.nestresuju.databinding.ViewEpoxyListBinding
+import cz.nestresuju.model.entities.domain.DiaryEntry
 import cz.nestresuju.screens.base.BaseFragment
 import cz.nestresuju.screens.diary.epoxy.DiaryController
 import cz.nestresuju.screens.diary.errors.DiaryErrorHandler
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.threeten.bp.LocalDate
 
-class DiaryFragment : BaseFragment<ViewEpoxyListBinding>() {
+class DiaryFragment : BaseFragment<ViewEpoxyListBinding>(), DiaryEditNoteDialogFragment.OnEntryEditConfirmedListener {
 
     companion object {
 
@@ -35,9 +36,9 @@ class DiaryFragment : BaseFragment<ViewEpoxyListBinding>() {
             onStressLevelSelected = { stressLevel -> viewModel.onStressLevelSelected(stressLevel) },
             onInputConfirmed = { viewModel.onAnswerConfirmed() },
             onAnswerChanged = { answer -> viewModel.answer = answer },
-            onStressLevelEditClicked = { entry -> /* TODO */ },
-            onNoteEditClicked = { entry -> /* TODO */ },
-            onNoteDeleteClicked = { entry -> /* TODO */ }
+            onStressLevelEditClicked = { entry -> onShowEditEntryDialog(entry) },
+            onNoteEditClicked = { entry -> onShowEditEntryDialog(entry) },
+            onNoteDeleteClicked = { entry -> viewModel.onDeleteEntry(entry) }
         ).apply {
             answer = viewModel.answer
         }
@@ -53,7 +54,15 @@ class DiaryFragment : BaseFragment<ViewEpoxyListBinding>() {
 
         viewModel.entriesStream.observe(viewLifecycleOwner, Observer { entries ->
             controller.entries = entries
-            controller.showSmallInput = entries.any { it.createdAt.toLocalDate() == LocalDate.now() }
+            controller.showSmallInput = entries.any { it.dateCreated.toLocalDate() == LocalDate.now() }
         })
+    }
+
+    private fun onShowEditEntryDialog(entry: DiaryEntry) {
+        DiaryEditNoteDialogFragment.newInstance(entry.id, entry.text).show(childFragmentManager, TAG_EDIT_NOTE_DIALOG)
+    }
+
+    override fun onDiaryEntryEditConfirmed(entryId: Long, modifiedText: String) {
+        viewModel.onEditEntry(entryId, modifiedText)
     }
 }

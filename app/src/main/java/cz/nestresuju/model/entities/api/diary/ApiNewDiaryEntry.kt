@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
  */
 @JsonClass(generateAdapter = true)
 class ApiNewDiaryEntry(
-    val entryType: Int,
+    val entryType: Int? = null,
     val moodLevel: Int? = null,
     val questionId: Long? = null,
     val text: String

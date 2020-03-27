@@ -19,6 +19,10 @@ interface DiaryRepository {
     suspend fun createStressLevelEntry(stressLevel: StressLevel, question: StressQuestion, answer: String)
 
     suspend fun createNoteEntry(text: String)
+
+    suspend fun editEntry(entryId: Long, modifiedText: String)
+
+    suspend fun deleteEntry(entry: DiaryEntry)
 }
 
 class DiaryRepositoryImpl(
@@ -33,7 +37,7 @@ class DiaryRepositoryImpl(
     }
 
     override suspend fun fetchMoodQuestions(): List<StressQuestion> {
-        return apiDefinition.getMoodQuestions(0).items.map { diaryEntitiesConverter.apiMoodQuestionToDomain(it) }
+        return apiDefinition.getDiaryMoodQuestions(0).items.map { diaryEntitiesConverter.apiMoodQuestionToDomain(it) }
     }
 
     override suspend fun fetchDiaryEntries(moodQuestions: List<StressQuestion>): List<DiaryEntry> {
@@ -43,7 +47,7 @@ class DiaryRepositoryImpl(
     }
 
     override suspend fun createStressLevelEntry(stressLevel: StressLevel, question: StressQuestion, answer: String) {
-        return apiDefinition.createNewEntry(
+        return apiDefinition.createNewDiaryEntry(
             ApiNewDiaryEntry(
                 entryType = ENTRY_TYPE_STRESS_LEVEL,
                 moodLevel = diaryEntitiesConverter.stressLevelToInt(stressLevel),
@@ -54,11 +58,19 @@ class DiaryRepositoryImpl(
     }
 
     override suspend fun createNoteEntry(text: String) {
-        return apiDefinition.createNewEntry(
+        return apiDefinition.createNewDiaryEntry(
             ApiNewDiaryEntry(
                 entryType = ENTRY_TYPE_NOTE,
                 text = text
             )
         )
+    }
+
+    override suspend fun editEntry(entryId: Long, modifiedText: String) {
+        apiDefinition.editDiaryEntry(entryId, ApiNewDiaryEntry(text = modifiedText))
+    }
+
+    override suspend fun deleteEntry(entry: DiaryEntry) {
+        apiDefinition.deleteDiaryEntry(entry.id)
     }
 }
