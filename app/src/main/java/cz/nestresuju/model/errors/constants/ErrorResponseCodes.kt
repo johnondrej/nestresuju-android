@@ -5,7 +5,14 @@ package cz.nestresuju.model.errors.constants
  */
 object ErrorResponseCodes {
 
-    const val INVALID_DATA_FORMAT = 4001
-    const val RESOURCE_NOT_FOUND = 4003
-    const val RESOURCE_ALREADY_EXISTS = 4004
+    const val NOT_AUTHORIZED = 100
+    const val NOT_SECURE = 101
+    const val USER_DISABLED = 102
+    const val NOT_ACTIVATED = 103
+    const val SERVICE_DEACTIVATED = 200
+    const val ITEM_NOT_FOUND = 300
+    const val INVALID_DATA = 400
+    const val INVALID_VALUE = 401
+    const val MISSING_VALUE = 402
+    const val DUPLICIT_DATA = 403
 }

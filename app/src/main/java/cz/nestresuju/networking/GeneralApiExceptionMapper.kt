@@ -30,7 +30,7 @@ class GeneralApiExceptionMapper(private val moshi: Moshi) : ApiExceptionMapper {
             errorResponse?.let { error ->
                 val e = when (exception.code()) {
                     HttpErrorCodes.FORBIDDEN -> when (error.errorCode) {
-                        ErrorResponseCodes.RESOURCE_ALREADY_EXISTS -> ResourceAlreadyExistsException()
+                        ErrorResponseCodes.DUPLICIT_DATA -> ResourceAlreadyExistsException()
                         else -> null
                     }
                     else -> null
