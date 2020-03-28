@@ -1,7 +1,11 @@
 package cz.nestresuju.model.converters
 
+import cz.nestresuju.common.extensions.toZonedDateTime
 import cz.nestresuju.model.entities.api.diary.ApiDiaryEntry
 import cz.nestresuju.model.entities.api.diary.MoodQuestionsResponse
+import cz.nestresuju.model.entities.database.diary.DbDiaryEntry
+import cz.nestresuju.model.entities.database.diary.DbDiaryEntryWithQuestion
+import cz.nestresuju.model.entities.database.diary.DbStressQuestion
 import cz.nestresuju.model.entities.domain.diary.DiaryEntry
 import cz.nestresuju.model.entities.domain.diary.StressQuestion
 
@@ -10,9 +14,17 @@ import cz.nestresuju.model.entities.domain.diary.StressQuestion
  */
 interface DiaryEntitiesConverter : StressLevelConverter {
 
-    fun apiMoodQuestionToDomain(apiStressQuestion: MoodQuestionsResponse.ApiStressQuestion): StressQuestion
+    fun dbStressQuestionToDomain(dbStressQuestion: DbStressQuestion): StressQuestion
 
-    fun apiDiaryEntryToDomain(apiDiaryEntry: ApiDiaryEntry, questions: List<StressQuestion>): DiaryEntry
+    fun apiStressQuestionToDb(apiStressQuestion: MoodQuestionsResponse.ApiStressQuestion): DbStressQuestion
+
+    fun apiDiaryEntryToDb(apiDiaryEntry: ApiDiaryEntry): DbDiaryEntry
+
+    fun dbDiaryEntryToDomain(dbEntry: DbDiaryEntryWithQuestion): DiaryEntry
+
+    fun diaryEntryToDb(diaryEntry: DiaryEntry.StressLevelEntry): DbDiaryEntry
+
+    fun diaryEntryToDb(diaryEntry: DiaryEntry.NoteEntry): DbDiaryEntry
 }
 
 class DiaryEntitiesConverterImpl(
@@ -25,31 +37,75 @@ class DiaryEntitiesConverterImpl(
         private const val ENTRY_TYPE_NOTE = 2
     }
 
-    override fun apiMoodQuestionToDomain(apiStressQuestion: MoodQuestionsResponse.ApiStressQuestion): StressQuestion {
+    override fun dbStressQuestionToDomain(dbStressQuestion: DbStressQuestion): StressQuestion {
         return StressQuestion(
+            id = dbStressQuestion.id,
+            stressLevel = stressLevelConverter.intToStressLevel(dbStressQuestion.stressLevel),
+            text = dbStressQuestion.text
+        )
+    }
+
+    override fun apiStressQuestionToDb(apiStressQuestion: MoodQuestionsResponse.ApiStressQuestion): DbStressQuestion {
+        return DbStressQuestion(
             id = apiStressQuestion.id,
-            stressLevel = stressLevelConverter.intToStressLevel(apiStressQuestion.moodLevel),
+            stressLevel = apiStressQuestion.moodLevel,
             text = apiStressQuestion.text
         )
     }
 
-    override fun apiDiaryEntryToDomain(apiDiaryEntry: ApiDiaryEntry, questions: List<StressQuestion>): DiaryEntry {
-        return when (apiDiaryEntry.entryType) {
+    override fun apiDiaryEntryToDb(apiDiaryEntry: ApiDiaryEntry): DbDiaryEntry {
+        return DbDiaryEntry(
+            id = apiDiaryEntry.id,
+            entryType = apiDiaryEntry.entryType,
+            moodLevel = apiDiaryEntry.moodLevel,
+            questionId = apiDiaryEntry.questionId,
+            text = apiDiaryEntry.text,
+            dateCreated = apiDiaryEntry.dateCreated,
+            dateModified = apiDiaryEntry.dateModified
+        )
+    }
+
+    override fun dbDiaryEntryToDomain(dbEntry: DbDiaryEntryWithQuestion): DiaryEntry {
+        return when (dbEntry.diaryEntry.entryType) {
             ENTRY_TYPE_STRESS_LEVEL -> DiaryEntry.StressLevelEntry(
-                id = apiDiaryEntry.id,
-                stressLevel = stressLevelConverter.intToStressLevel(apiDiaryEntry.moodLevel!!),
-                question = questions.first { it.id == apiDiaryEntry.questionId!! },
-                answer = apiDiaryEntry.text,
-                dateCreated = apiDiaryEntry.dateCreated.toLocalDateTime(),
-                dateModified = apiDiaryEntry.dateModified.toLocalDateTime()
+                id = dbEntry.diaryEntry.id,
+                stressLevel = stressLevelConverter.intToStressLevel(dbEntry.diaryEntry.moodLevel!!),
+                question = dbStressQuestionToDomain(dbEntry.stressQuestion),
+                answer = dbEntry.diaryEntry.text,
+                dateCreated = dbEntry.diaryEntry.dateCreated.toLocalDateTime(),
+                dateModified = dbEntry.diaryEntry.dateModified.toLocalDateTime()
             )
             ENTRY_TYPE_NOTE -> DiaryEntry.NoteEntry(
-                id = apiDiaryEntry.id,
-                text = apiDiaryEntry.text,
-                dateCreated = apiDiaryEntry.dateCreated.toLocalDateTime(),
-                dateModified = apiDiaryEntry.dateModified.toLocalDateTime()
+                id = dbEntry.diaryEntry.id,
+                text = dbEntry.diaryEntry.text,
+                dateCreated = dbEntry.diaryEntry.dateCreated.toLocalDateTime(),
+                dateModified = dbEntry.diaryEntry.dateModified.toLocalDateTime()
             )
-            else -> throw IllegalArgumentException("Invalid diary entry type ${apiDiaryEntry.entryType}")
+            else -> throw IllegalArgumentException("Invalid diary entry type ${dbEntry.diaryEntry.entryType}")
         }
+    }
+
+    override fun diaryEntryToDb(diaryEntry: DiaryEntry.StressLevelEntry): DbDiaryEntry {
+        return DbDiaryEntry(
+            id = diaryEntry.id,
+            entryType = ENTRY_TYPE_STRESS_LEVEL,
+            moodLevel = stressLevelConverter.stressLevelToInt(diaryEntry.stressLevel),
+            questionId = diaryEntry.question.id,
+            text = diaryEntry.answer,
+            dateCreated = diaryEntry.dateCreated.toZonedDateTime(),
+            dateModified = diaryEntry.dateModified.toZonedDateTime()
+        )
+    }
+
+    override fun diaryEntryToDb(diaryEntry: DiaryEntry.NoteEntry): DbDiaryEntry {
+        return DbDiaryEntry(
+            id = diaryEntry.id,
+            entryType = ENTRY_TYPE_NOTE,
+            moodLevel = null,
+            questionId = null,
+            text = diaryEntry.text,
+            dateCreated = diaryEntry.dateCreated.toZonedDateTime(),
+            dateModified = diaryEntry.dateModified.toZonedDateTime()
+        )
     }
 }

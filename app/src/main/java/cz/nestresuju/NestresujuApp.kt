@@ -3,6 +3,7 @@ package cz.nestresuju
 import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen
 import cz.nestresuju.model.converters.converterModule
+import cz.nestresuju.model.database.databaseModule
 import cz.nestresuju.model.repositories.repositoryModule
 import cz.nestresuju.networking.networkingModule
 import cz.nestresuju.screens.viewModelModule
@@ -24,6 +25,7 @@ class NestresujuApp : Application() {
             modules(
                 networkingModule,
                 converterModule,
+                databaseModule,
                 repositoryModule,
                 viewModelModule
             )

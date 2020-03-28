@@ -35,10 +35,10 @@ class DiaryViewModel(
 
     fun fetchDiaryEntries() {
         viewModelScope.launchWithErrorHandling {
-            val moodQuestions = diaryRepository.fetchMoodQuestions()
-            val diaryEntries = diaryRepository.fetchDiaryEntries(moodQuestions)
+            val diaryEntries = diaryRepository.getDiaryEntries()
+            val stressQuestions = diaryRepository.getStressQuestions()
 
-            questionsGenerator = QuestionGenerator(applicationContext, moodQuestions)
+            questionsGenerator = QuestionGenerator(applicationContext, stressQuestions)
             _entriesLiveData.value = diaryEntries
         }
     }

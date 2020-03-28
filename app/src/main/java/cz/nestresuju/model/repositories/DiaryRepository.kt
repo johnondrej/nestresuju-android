@@ -1,6 +1,7 @@
 package cz.nestresuju.model.repositories
 
 import cz.nestresuju.model.converters.DiaryEntitiesConverter
+import cz.nestresuju.model.database.AppDatabase
 import cz.nestresuju.model.entities.api.diary.ApiNewDiaryEntry
 import cz.nestresuju.model.entities.domain.diary.DiaryEntry
 import cz.nestresuju.model.entities.domain.diary.StressLevel
@@ -12,9 +13,9 @@ import cz.nestresuju.networking.ApiDefinition
  */
 interface DiaryRepository {
 
-    suspend fun fetchMoodQuestions(): List<StressQuestion>
+    suspend fun getDiaryEntries(): List<DiaryEntry>
 
-    suspend fun fetchDiaryEntries(moodQuestions: List<StressQuestion>): List<DiaryEntry>
+    suspend fun getStressQuestions(): List<StressQuestion>
 
     suspend fun createStressLevelEntry(stressLevel: StressLevel, question: StressQuestion, answer: String)
 
@@ -27,6 +28,7 @@ interface DiaryRepository {
 
 class DiaryRepositoryImpl(
     private val apiDefinition: ApiDefinition,
+    private val database: AppDatabase,
     private val diaryEntitiesConverter: DiaryEntitiesConverter
 ) : DiaryRepository {
 
@@ -36,14 +38,19 @@ class DiaryRepositoryImpl(
         private const val ENTRY_TYPE_NOTE = 2
     }
 
-    override suspend fun fetchMoodQuestions(): List<StressQuestion> {
-        return apiDefinition.getDiaryMoodQuestions(0).items.map { diaryEntitiesConverter.apiMoodQuestionToDomain(it) }
+    override suspend fun getDiaryEntries(): List<DiaryEntry> {
+        val apiQuestions = apiDefinition.getDiaryMoodQuestions(0).items
+        val apiEntries = apiDefinition.getDiaryEntires(0).items
+
+        database.diaryDao().updateDiary(
+            diaryEntries = apiEntries.map { diaryEntitiesConverter.apiDiaryEntryToDb(it) },
+            stressQuestions = apiQuestions.map { diaryEntitiesConverter.apiStressQuestionToDb(it) }
+        )
+        return database.diaryDao().getEntries().map { diaryEntitiesConverter.dbDiaryEntryToDomain(it) }
     }
 
-    override suspend fun fetchDiaryEntries(moodQuestions: List<StressQuestion>): List<DiaryEntry> {
-        return apiDefinition.getDiaryEntires(0).items.map {
-            diaryEntitiesConverter.apiDiaryEntryToDomain(it, moodQuestions)
-        }
+    override suspend fun getStressQuestions(): List<StressQuestion> {
+        return database.diaryDao().getStressQuestions().map { diaryEntitiesConverter.dbStressQuestionToDomain(it) }
     }
 
     override suspend fun createStressLevelEntry(stressLevel: StressLevel, question: StressQuestion, answer: String) {
