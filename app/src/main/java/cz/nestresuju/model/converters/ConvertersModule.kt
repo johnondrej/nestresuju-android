@@ -8,6 +8,8 @@ import org.koin.dsl.module
 
 val converterModule = module {
 
+    factory<AuthEntitiesConverter> { AuthEntitiesConverterImpl() }
+
     factory<StressLevelConverter> { StressLevelConverterImpl() }
 
     factory<DiaryEntitiesConverter> { DiaryEntitiesConverterImpl(stressLevelConverter = get()) }

@@ -2,9 +2,9 @@ package cz.nestresuju.model.repositories
 
 import cz.nestresuju.model.converters.DiaryEntitiesConverter
 import cz.nestresuju.model.entities.api.diary.ApiNewDiaryEntry
-import cz.nestresuju.model.entities.domain.DiaryEntry
-import cz.nestresuju.model.entities.domain.StressLevel
-import cz.nestresuju.model.entities.domain.StressQuestion
+import cz.nestresuju.model.entities.domain.diary.DiaryEntry
+import cz.nestresuju.model.entities.domain.diary.StressLevel
+import cz.nestresuju.model.entities.domain.diary.StressQuestion
 import cz.nestresuju.networking.ApiDefinition
 
 /**

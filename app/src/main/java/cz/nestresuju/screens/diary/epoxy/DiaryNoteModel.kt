@@ -6,7 +6,7 @@ import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithView
 import cz.nestresuju.databinding.ModelDiaryNoteEntryBinding
-import cz.nestresuju.model.entities.domain.DiaryEntry
+import cz.nestresuju.model.entities.domain.diary.DiaryEntry
 import cz.nestresuju.views.diary.DiaryNoteView
 
 /**

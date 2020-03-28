@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.cardview.widget.CardView
 import cz.nestresuju.databinding.ViewDiaryNoteBinding
-import cz.nestresuju.model.entities.domain.DiaryEntry
+import cz.nestresuju.model.entities.domain.diary.DiaryEntry
 
 /**
  * View for showing diary note entry.

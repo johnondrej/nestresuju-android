@@ -1,6 +1,6 @@
 package cz.nestresuju.model.converters
 
-import cz.nestresuju.model.entities.domain.StressLevel
+import cz.nestresuju.model.entities.domain.diary.StressLevel
 
 /**
  * Converter for [StressLevel] enum

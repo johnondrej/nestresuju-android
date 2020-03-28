@@ -1,5 +1,6 @@
 package cz.nestresuju.networking
 
+import cz.nestresuju.model.entities.api.auth.LoginChecklistResponse
 import cz.nestresuju.model.entities.api.diary.ApiNewDiaryEntry
 import cz.nestresuju.model.entities.api.diary.DiaryEntriesResponse
 import cz.nestresuju.model.entities.api.diary.MoodQuestionsResponse
@@ -10,6 +11,12 @@ import retrofit2.http.*
  * Definition of API endpoints.
  */
 interface ApiDefinition {
+
+    @GET("v1/user-checklist")
+    suspend fun getLoginPrerequirements(): LoginChecklistResponse
+
+    @PUT("v1/user-consent/give")
+    suspend fun giveUserConsent(): Response<Unit>
 
     @GET("v1/diary/questions")
     suspend fun getDiaryMoodQuestions(@Query("timestamp") timestamp: Long): MoodQuestionsResponse

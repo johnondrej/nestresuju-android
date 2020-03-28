@@ -2,8 +2,8 @@ package cz.nestresuju.screens.diary.epoxy
 
 import com.airbnb.epoxy.EpoxyController
 import cz.nestresuju.common.extensions.adapterProperty
-import cz.nestresuju.model.entities.domain.DiaryEntry
-import cz.nestresuju.model.entities.domain.StressLevel
+import cz.nestresuju.model.entities.domain.diary.DiaryEntry
+import cz.nestresuju.model.entities.domain.diary.StressLevel
 import cz.nestresuju.screens.diary.DiaryChoiceInput
 import org.threeten.bp.LocalDate
 

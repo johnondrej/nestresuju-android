@@ -2,8 +2,8 @@ package cz.nestresuju.model.converters
 
 import cz.nestresuju.model.entities.api.diary.ApiDiaryEntry
 import cz.nestresuju.model.entities.api.diary.MoodQuestionsResponse
-import cz.nestresuju.model.entities.domain.DiaryEntry
-import cz.nestresuju.model.entities.domain.StressQuestion
+import cz.nestresuju.model.entities.domain.diary.DiaryEntry
+import cz.nestresuju.model.entities.domain.diary.StressQuestion
 
 /**
  * Converter for converting API & DB & domain entities for diary.

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import cz.nestresuju.databinding.ViewEpoxyListBinding
-import cz.nestresuju.model.entities.domain.DiaryEntry
+import cz.nestresuju.model.entities.domain.diary.DiaryEntry
 import cz.nestresuju.screens.base.BaseFragment
 import cz.nestresuju.screens.diary.epoxy.DiaryController
 import cz.nestresuju.screens.diary.errors.DiaryErrorHandler

@@ -1,4 +1,4 @@
-package cz.nestresuju.model.entities.domain
+package cz.nestresuju.model.entities.domain.diary
 
 /**
  * Enum representing all possible stress level input values.

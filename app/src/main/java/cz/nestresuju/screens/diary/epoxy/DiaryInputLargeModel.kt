@@ -6,7 +6,7 @@ import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithView
 import cz.nestresuju.databinding.ModelDiaryInputLargeBinding
-import cz.nestresuju.model.entities.domain.StressLevel
+import cz.nestresuju.model.entities.domain.diary.StressLevel
 import cz.nestresuju.screens.diary.DiaryChoiceInput
 import cz.nestresuju.views.diary.input.DiaryInputView
 

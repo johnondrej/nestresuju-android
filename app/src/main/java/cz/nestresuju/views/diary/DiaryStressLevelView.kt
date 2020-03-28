@@ -5,8 +5,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.cardview.widget.CardView
 import cz.nestresuju.databinding.ViewDiaryStressLevelBinding
-import cz.nestresuju.model.entities.domain.DiaryEntry
-import cz.nestresuju.model.entities.domain.StressLevel
+import cz.nestresuju.model.entities.domain.diary.DiaryEntry
+import cz.nestresuju.model.entities.domain.diary.StressLevel
 
 /**
  * View for showing stress level diary entry.

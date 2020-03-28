@@ -7,7 +7,7 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import androidx.cardview.widget.CardView
 import cz.nestresuju.R
 import cz.nestresuju.common.extensions.visible
-import cz.nestresuju.model.entities.domain.StressLevel
+import cz.nestresuju.model.entities.domain.diary.StressLevel
 import cz.nestresuju.screens.diary.DiaryChoiceInput
 
 /**

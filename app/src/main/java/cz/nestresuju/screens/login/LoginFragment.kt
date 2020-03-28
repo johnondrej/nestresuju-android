@@ -40,6 +40,16 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginConsentDialogFr
         viewModel.loginStream.observe(viewLifecycleOwner, Observer { state ->
             when (state) {
                 is State.Loaded -> {
+                    val checklist = state.data
+
+                    if (!checklist.inputTestSubmitted) {
+                        // TODO: route to input test
+                    } else if (!checklist.screeningTestSubmitted) {
+                        // TODO: route to screening test
+                    } else {
+                        // TODO: route to app here when routes above are implemented
+                    }
+
                     requireActivity().let {
                         MainActivity.launch(context = it)
                         it.finish()

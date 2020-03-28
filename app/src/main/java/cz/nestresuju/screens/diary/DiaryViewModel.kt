@@ -6,9 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.hadilq.liveevent.LiveEvent
 import cz.nestresuju.R
-import cz.nestresuju.model.entities.domain.DiaryEntry
-import cz.nestresuju.model.entities.domain.StressLevel
-import cz.nestresuju.model.entities.domain.StressQuestion
+import cz.nestresuju.model.entities.domain.diary.DiaryEntry
+import cz.nestresuju.model.entities.domain.diary.StressLevel
+import cz.nestresuju.model.entities.domain.diary.StressQuestion
 import cz.nestresuju.model.repositories.DiaryRepository
 import cz.nestresuju.screens.base.BaseViewModel
 import cz.nestresuju.screens.diary.errors.EmptyAnswerException
