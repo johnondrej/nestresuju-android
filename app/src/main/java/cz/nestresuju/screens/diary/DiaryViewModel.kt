@@ -3,6 +3,7 @@ package cz.nestresuju.screens.diary
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.hadilq.liveevent.LiveEvent
 import cz.nestresuju.R
@@ -21,8 +22,7 @@ class DiaryViewModel(
     private val _inputLiveData = MutableLiveData<DiaryChoiceInput>()
     val inputStream: LiveData<DiaryChoiceInput> = _inputLiveData
 
-    private val _entriesLiveData = MutableLiveData<List<DiaryEntry>>()
-    val entriesStream: LiveData<List<DiaryEntry>> = _entriesLiveData
+    val entriesStream: LiveData<List<DiaryEntry>> = diaryRepository.observeDiaryEntries().asLiveData()
 
     private lateinit var questionsGenerator: QuestionGenerator
 
@@ -33,13 +33,16 @@ class DiaryViewModel(
         fetchDiaryEntries()
     }
 
-    fun fetchDiaryEntries() {
+    private fun fetchDiaryEntries() {
         viewModelScope.launchWithErrorHandling {
-            val diaryEntries = diaryRepository.getDiaryEntries()
-            val stressQuestions = diaryRepository.getStressQuestions()
+            try {
+                diaryRepository.fetchDiaryEntries()
+            } catch (e: Exception) {
+                // silently ignore and just obtain data from the database
+            }
 
+            val stressQuestions = diaryRepository.getStressQuestions()
             questionsGenerator = QuestionGenerator(applicationContext, stressQuestions)
-            _entriesLiveData.value = diaryEntries
         }
     }
 
@@ -55,9 +58,9 @@ class DiaryViewModel(
         }
     }
 
-    fun onDeleteEntry(entry: DiaryEntry) {
+    fun onDeleteEntry(entryId: Long) {
         viewModelScope.launchWithErrorHandling {
-            diaryRepository.deleteEntry(entry)
+            diaryRepository.deleteEntry(entryId)
         }
     }
 

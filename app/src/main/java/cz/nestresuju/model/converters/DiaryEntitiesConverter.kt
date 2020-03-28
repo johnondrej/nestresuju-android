@@ -70,7 +70,7 @@ class DiaryEntitiesConverterImpl(
             ENTRY_TYPE_STRESS_LEVEL -> DiaryEntry.StressLevelEntry(
                 id = dbEntry.diaryEntry.id,
                 stressLevel = stressLevelConverter.intToStressLevel(dbEntry.diaryEntry.moodLevel!!),
-                question = dbStressQuestionToDomain(dbEntry.stressQuestion),
+                question = dbStressQuestionToDomain(dbEntry.stressQuestion!!),
                 answer = dbEntry.diaryEntry.text,
                 dateCreated = dbEntry.diaryEntry.dateCreated.toLocalDateTime(),
                 dateModified = dbEntry.diaryEntry.dateModified.toLocalDateTime()

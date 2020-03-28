@@ -3,17 +3,23 @@ package cz.nestresuju.model.repositories
 import cz.nestresuju.model.converters.DiaryEntitiesConverter
 import cz.nestresuju.model.database.AppDatabase
 import cz.nestresuju.model.entities.api.diary.ApiNewDiaryEntry
+import cz.nestresuju.model.entities.database.diary.DbDiaryEntry
 import cz.nestresuju.model.entities.domain.diary.DiaryEntry
 import cz.nestresuju.model.entities.domain.diary.StressLevel
 import cz.nestresuju.model.entities.domain.diary.StressQuestion
 import cz.nestresuju.networking.ApiDefinition
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 
 /**
  * Repository providing all data related to user's diary.
  */
 interface DiaryRepository {
 
-    suspend fun getDiaryEntries(): List<DiaryEntry>
+    fun observeDiaryEntries(): Flow<List<DiaryEntry>>
+
+    suspend fun fetchDiaryEntries()
 
     suspend fun getStressQuestions(): List<StressQuestion>
 
@@ -23,7 +29,7 @@ interface DiaryRepository {
 
     suspend fun editEntry(entryId: Long, modifiedText: String)
 
-    suspend fun deleteEntry(entry: DiaryEntry)
+    suspend fun deleteEntry(entryId: Long)
 }
 
 class DiaryRepositoryImpl(
@@ -38,7 +44,11 @@ class DiaryRepositoryImpl(
         private const val ENTRY_TYPE_NOTE = 2
     }
 
-    override suspend fun getDiaryEntries(): List<DiaryEntry> {
+    override fun observeDiaryEntries() = database.diaryDao().observeEntries().map { entries ->
+        entries.map { diaryEntitiesConverter.dbDiaryEntryToDomain(it) }
+    }.distinctUntilChanged()
+
+    override suspend fun fetchDiaryEntries() {
         val apiQuestions = apiDefinition.getDiaryMoodQuestions(0).items
         val apiEntries = apiDefinition.getDiaryEntires(0).items
 
@@ -46,7 +56,6 @@ class DiaryRepositoryImpl(
             diaryEntries = apiEntries.map { diaryEntitiesConverter.apiDiaryEntryToDb(it) },
             stressQuestions = apiQuestions.map { diaryEntitiesConverter.apiStressQuestionToDb(it) }
         )
-        return database.diaryDao().getEntries().map { diaryEntitiesConverter.dbDiaryEntryToDomain(it) }
     }
 
     override suspend fun getStressQuestions(): List<StressQuestion> {
@@ -54,7 +63,16 @@ class DiaryRepositoryImpl(
     }
 
     override suspend fun createStressLevelEntry(stressLevel: StressLevel, question: StressQuestion, answer: String) {
-        return apiDefinition.createNewDiaryEntry(
+        database.diaryDao().addEntry(
+            DbDiaryEntry(
+                entryType = ENTRY_TYPE_STRESS_LEVEL,
+                moodLevel = diaryEntitiesConverter.stressLevelToInt(stressLevel),
+                questionId = question.id,
+                text = answer
+            )
+        )
+
+        apiDefinition.createNewDiaryEntry(
             ApiNewDiaryEntry(
                 entryType = ENTRY_TYPE_STRESS_LEVEL,
                 moodLevel = diaryEntitiesConverter.stressLevelToInt(stressLevel),
@@ -65,7 +83,14 @@ class DiaryRepositoryImpl(
     }
 
     override suspend fun createNoteEntry(text: String) {
-        return apiDefinition.createNewDiaryEntry(
+        database.diaryDao().addEntry(
+            DbDiaryEntry(
+                entryType = ENTRY_TYPE_NOTE,
+                text = text
+            )
+        )
+
+        apiDefinition.createNewDiaryEntry(
             ApiNewDiaryEntry(
                 entryType = ENTRY_TYPE_NOTE,
                 text = text
@@ -74,10 +99,12 @@ class DiaryRepositoryImpl(
     }
 
     override suspend fun editEntry(entryId: Long, modifiedText: String) {
+        database.diaryDao().editEntry(entryId, modifiedText)
         apiDefinition.editDiaryEntry(entryId, ApiNewDiaryEntry(text = modifiedText))
     }
 
-    override suspend fun deleteEntry(entry: DiaryEntry) {
-        apiDefinition.deleteDiaryEntry(entry.id)
+    override suspend fun deleteEntry(entryId: Long) {
+        database.diaryDao().deleteEntry(entryId)
+        apiDefinition.deleteDiaryEntry(entryId)
     }
 }

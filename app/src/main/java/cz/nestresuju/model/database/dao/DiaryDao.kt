@@ -1,9 +1,13 @@
 package cz.nestresuju.model.database.dao
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Transaction
 import cz.nestresuju.model.entities.database.diary.DbDiaryEntry
 import cz.nestresuju.model.entities.database.diary.DbDiaryEntryWithQuestion
 import cz.nestresuju.model.entities.database.diary.DbStressQuestion
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Database DAO for storing diary entries.
@@ -12,8 +16,8 @@ import cz.nestresuju.model.entities.database.diary.DbStressQuestion
 abstract class DiaryDao {
 
     @Transaction
-    @Query("SELECT * FROM DiaryEntries")
-    abstract suspend fun getEntries(): List<DbDiaryEntryWithQuestion>
+    @Query("SELECT * FROM DiaryEntries ORDER BY date_created DESC")
+    abstract fun observeEntries(): Flow<List<DbDiaryEntryWithQuestion>>
 
     @Insert
     abstract suspend fun addEntry(diaryEntry: DbDiaryEntry)
@@ -21,8 +25,11 @@ abstract class DiaryDao {
     @Insert
     abstract suspend fun addEntries(diaryEntries: List<DbDiaryEntry>)
 
-    @Delete
-    abstract suspend fun deleteEntry(diaryEntry: DbDiaryEntry)
+    @Query("UPDATE DiaryEntries SET text = :text WHERE id = :entryId")
+    abstract suspend fun editEntry(entryId: Long, text: String)
+
+    @Query("DELETE FROM DiaryEntries WHERE id = :entryId")
+    abstract suspend fun deleteEntry(entryId: Long)
 
     @Query("DELETE FROM DiaryEntries")
     abstract suspend fun deleteEntries()

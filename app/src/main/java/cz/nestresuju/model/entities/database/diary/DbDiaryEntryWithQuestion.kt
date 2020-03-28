@@ -12,5 +12,5 @@ data class DbDiaryEntryWithQuestion(
         parentColumn = "question_id",
         entityColumn = "id"
     )
-    val stressQuestion: DbStressQuestion
+    val stressQuestion: DbStressQuestion?
 )

@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
  */
 @Entity(tableName = "StressQuestions")
 data class DbStressQuestion(
-    @PrimaryKey val id: Long,
+    @PrimaryKey(autoGenerate = true) val id: Long,
     @ColumnInfo(name = "stress_level") val stressLevel: Int,
     @ColumnInfo(name = "text") val text: String
 )

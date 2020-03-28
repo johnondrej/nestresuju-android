@@ -10,14 +10,14 @@ import cz.nestresuju.databinding.DialogEditNoteBinding
 /**
  * [DialogFragment] that allows user editing notes.
  */
-class DiaryEditNoteDialogFragment : DialogFragment() {
+class DiaryEditEntryDialogFragment : DialogFragment() {
 
     companion object {
 
         private const val KEY_DIARY_ENTRY_ID = "entry_id"
         private const val KEY_DIARY_ENTRY_TEXT = "entry_text"
 
-        fun newInstance(entryId: Long, entryText: String) = DiaryEditNoteDialogFragment().apply {
+        fun newInstance(entryId: Long, entryText: String) = DiaryEditEntryDialogFragment().apply {
             arguments = bundleOf(
                 KEY_DIARY_ENTRY_ID to entryId,
                 KEY_DIARY_ENTRY_TEXT to entryText
