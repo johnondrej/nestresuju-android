@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
  */
 @JsonClass(generateAdapter = true)
 class LoginChecklistResponse(
-    val constentGiven: Boolean,
+    val consentGiven: Boolean,
     val inputTestSubmitted: Boolean,
     val screeningTestSubmitted: Boolean
 )

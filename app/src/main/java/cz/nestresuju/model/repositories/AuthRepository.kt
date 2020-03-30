@@ -3,7 +3,6 @@ package cz.nestresuju.model.repositories
 import cz.ackee.ackroutine.OAuthManager
 import cz.nestresuju.model.converters.AuthEntitiesConverter
 import cz.nestresuju.model.entities.api.auth.AuthResponse
-import cz.nestresuju.model.entities.api.auth.LoginChecklistResponse
 import cz.nestresuju.model.entities.domain.auth.LoginChecklistCompletion
 import cz.nestresuju.model.errors.ConsentNotGivenException
 import cz.nestresuju.networking.ApiDefinition
@@ -42,20 +41,15 @@ class AuthRepository(
             password = password
         )
 
-        val apiLoginChecklist = LoginChecklistResponse(
-            constentGiven = false,
-            inputTestSubmitted = false,
-            screeningTestSubmitted = false
-        ) // TODO: pass real value from API and inline this variable when API sends the data
-        val loginChecklist = authEntitiesConverter.apiLoginChecklistToDomain(apiLoginChecklist)
+        saveAuthCredentials(authResponse)
+
+        val loginChecklist = authEntitiesConverter.apiLoginChecklistToDomain(apiDefinition.getLoginPrerequirements())
         if (loginChecklist.consentGiven) {
-            onLoginCompleted(authResponse)
             return loginChecklist
         } else {
             val confirmed = requestConsentConfirmation(onShowConsent)
             if (confirmed) {
                 giveConsent()
-                onLoginCompleted(authResponse)
                 return loginChecklist.copy(consentGiven = true)
             } else {
                 logout()
@@ -73,7 +67,7 @@ class AuthRepository(
             refreshToken = refreshToken
         )
 
-        onLoginCompleted(authResponse)
+        saveAuthCredentials(authResponse)
         return authResponse
     }
 
@@ -82,8 +76,7 @@ class AuthRepository(
     }
 
     private suspend fun giveConsent() {
-        // TODO: connect to API when ready
-        // apiDefinition.giveUserConsent()
+        apiDefinition.giveUserConsent()
     }
 
     private suspend fun requestConsentConfirmation(onShowConsent: () -> Unit) = suspendCoroutine<Boolean> {
@@ -91,11 +84,12 @@ class AuthRepository(
         onShowConsent()
     }
 
-    private fun onLoginCompleted(authResponse: AuthResponse) {
+    private fun saveAuthCredentials(authResponse: AuthResponse) {
         oAuthManager.saveCredentials(authResponse)
     }
 
     private fun logout() {
+        oAuthManager.clearCredentials()
         // TODO
     }
 }
