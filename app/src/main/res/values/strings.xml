@@ -34,11 +34,12 @@
     <string name="diary_stress_level_3">Minimálně</string>
     <string name="diary_stress_level_4">Vůbec</string>
     <string name="diary_note_title">Zadej text poznámky</string>
-    <string name="diary_empty_answer_error">Prosím vyplň odpověď na otázku</string>
     <string name="diary_edit_note_title">Upravit poznámku</string>
     <string name="diary_empty">Zatím tu nejsou žádné záznamy</string>
     <string name="diary_delete_note_title">Smazat poznámku</string>
     <string name="diary_delete_note_text">Opravdu chceš smazat tuto poznámku?</string>
+    <string name="diary_error_empty_answer">Prosím vyplň odpověď na otázku</string>
+    <string name="diary_error_input_disabled">Před prvním použitím deníčku se prosím připoj k Internetu.</string>
 
     <!-- General errors -->
 

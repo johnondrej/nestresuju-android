@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.Observer
-import cz.nestresuju.databinding.ViewEpoxyListBinding
+import cz.nestresuju.R
+import cz.nestresuju.databinding.FragmentCustomListBinding
 import cz.nestresuju.model.entities.domain.diary.DiaryEntry
 import cz.nestresuju.screens.base.BaseFragment
 import cz.nestresuju.screens.diary.epoxy.DiaryController
@@ -15,7 +16,7 @@ import cz.nestresuju.screens.diary.errors.DiaryErrorHandler
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.threeten.bp.LocalDate
 
-class DiaryFragment : BaseFragment<ViewEpoxyListBinding>(),
+class DiaryFragment : BaseFragment<FragmentCustomListBinding>(),
     DiaryEditEntryDialogFragment.OnEntryEditConfirmedListener,
     DiaryDeleteEntryDialogFragment.OnEntryDeleteConfirmedListener {
 
@@ -32,11 +33,13 @@ class DiaryFragment : BaseFragment<ViewEpoxyListBinding>(),
     override val errorHandlers = super.errorHandlers + DiaryErrorHandler()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return ViewEpoxyListBinding.inflate(inflater, container, false).also { _binding = it }.root
+        return FragmentCustomListBinding.inflate(inflater, container, false).also { _binding = it }.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewBinding.customList.showLoading()
+
         controller = DiaryController(
             onStressLevelSelected = { stressLevel -> viewModel.onStressLevelSelected(stressLevel) },
             onInputConfirmed = { viewModel.onAnswerConfirmed() },
@@ -48,8 +51,7 @@ class DiaryFragment : BaseFragment<ViewEpoxyListBinding>(),
             answer = viewModel.answer
         }
 
-        viewBinding.list.setController(controller)
-        controller.requestModelBuild()
+        viewBinding.customList.list.setController(controller)
 
         viewModel.inputStream.observe(viewLifecycleOwner, Observer { input ->
             controller.input = input
@@ -63,6 +65,14 @@ class DiaryFragment : BaseFragment<ViewEpoxyListBinding>(),
         viewModel.entriesStream.observe(viewLifecycleOwner, Observer { entries ->
             controller.entries = entries
             controller.showSmallInput = entries.any { it.dateCreated.toLocalDate() == LocalDate.now() }
+        })
+
+        viewModel.inputEnabledStream.observe(viewLifecycleOwner, Observer { inputEnabled ->
+            if (inputEnabled) {
+                viewBinding.customList.showContent()
+            } else {
+                viewBinding.customList.showEmptyText(R.string.diary_error_input_disabled)
+            }
         })
     }
 

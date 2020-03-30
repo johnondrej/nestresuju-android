@@ -16,6 +16,9 @@ class CustomListView(context: Context, attributes: AttributeSet) : FrameLayout(c
 
     private val binding = ViewCustomListBinding.inflate(LayoutInflater.from(context), this, true)
 
+    val list: EpoxyRecyclerView
+        get() = binding.list
+
     var contentVisible: Boolean
         get() = binding.list.visible
         set(value) {
@@ -58,6 +61,12 @@ class CustomListView(context: Context, attributes: AttributeSet) : FrameLayout(c
             binding.txtError.text = value
         }
 
+    var progressVisible: Boolean
+        get() = binding.progress.visible
+        set(value) {
+            binding.progress.visible = value
+        }
+
     init {
         val attrs = context.obtainStyledAttributes(attributes, R.styleable.CustomListView)
 
@@ -75,36 +84,48 @@ class CustomListView(context: Context, attributes: AttributeSet) : FrameLayout(c
     }
 
     fun showContent() {
+        progressVisible = false
         emptyTextVisible = false
         errorTextVisible = false
         contentVisible = true
     }
 
-    fun showEmptyText(text: CharSequence? = null) {
-        text?.let { emptyText = it }
+    fun showEmptyText(text: CharSequence) {
+        emptyText = text
+        progressVisible = false
         contentVisible = false
         errorTextVisible = false
         emptyTextVisible = true
     }
 
-    fun showEmptyText(textRes: Int? = null) {
-        textRes?.let { emptyTextResource = it }
+    fun showEmptyText(textRes: Int) {
+        progressVisible = false
+        emptyTextResource = textRes
         contentVisible = false
         errorTextVisible = false
         emptyTextVisible = true
     }
 
-    fun showErrorText(text: CharSequence? = null) {
-        text?.let { errorText = it }
+    fun showErrorText(text: CharSequence) {
+        errorText = text
+        progressVisible = false
         contentVisible = false
         emptyTextVisible = false
         errorTextVisible = true
     }
 
-    fun showErrorText(textRes: Int? = null) {
-        textRes?.let { errorTextResource = it }
+    fun showErrorText(textRes: Int) {
+        errorTextResource = textRes
+        progressVisible = false
         contentVisible = false
         emptyTextVisible = false
         errorTextVisible = true
+    }
+
+    fun showLoading() {
+        contentVisible = false
+        emptyTextVisible = false
+        errorTextVisible = false
+        progressVisible = true
     }
 }

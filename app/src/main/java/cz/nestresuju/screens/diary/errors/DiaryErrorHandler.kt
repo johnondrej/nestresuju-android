@@ -15,7 +15,7 @@ class DiaryErrorHandler : FragmentErrorHandler {
             view?.let {
                 return when (error) {
                     is EmptyAnswerException -> {
-                        Snackbar.make(it, R.string.diary_empty_answer_error, Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(it, R.string.diary_error_empty_answer, Snackbar.LENGTH_LONG).show()
                         true
                     }
                     else -> false

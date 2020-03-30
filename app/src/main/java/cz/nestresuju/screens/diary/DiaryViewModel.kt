@@ -19,6 +19,9 @@ class DiaryViewModel(
     private val diaryRepository: DiaryRepository
 ) : BaseViewModel() {
 
+    private val _inputEnabledLiveData = MutableLiveData<Boolean>()
+    val inputEnabledStream: LiveData<Boolean> = _inputEnabledLiveData
+
     private val _inputLiveData = MutableLiveData<DiaryChoiceInput>()
     val inputStream: LiveData<DiaryChoiceInput> = _inputLiveData
 
@@ -43,6 +46,7 @@ class DiaryViewModel(
 
             val stressQuestions = diaryRepository.getStressQuestions()
             questionsGenerator = QuestionGenerator(applicationContext, stressQuestions)
+            _inputEnabledLiveData.value = stressQuestions.isNotEmpty()
         }
     }
 

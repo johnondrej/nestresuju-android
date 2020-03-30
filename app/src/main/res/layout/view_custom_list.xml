@@ -5,7 +5,6 @@
 
     <com.airbnb.epoxy.EpoxyRecyclerView
         android:id="@+id/list"
-        android:background="#0099AA"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -14,8 +13,8 @@
         style="@style/TextAppearance.PrimaryText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
         android:gravity="center"
+        android:padding="16dp"
         android:visibility="gone" />
 
     <TextView
@@ -23,8 +22,16 @@
         style="@style/TextAppearance.Error"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
         android:gravity="center"
+        android:padding="16dp"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true"
         android:visibility="gone" />
 
 </FrameLayout>
