@@ -18,7 +18,7 @@ interface ApiDefinition {
     @PUT("v1/user-consent/give")
     suspend fun giveUserConsent(): Response<Unit>
 
-    @GET("v1/diary/questions")
+    @GET("v1/diary/mood-questions")
     suspend fun getDiaryMoodQuestions(@Query("timestamp") timestamp: Long): MoodQuestionsResponse
 
     @GET("v1/diary/entries")

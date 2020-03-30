@@ -2,11 +2,12 @@ package cz.nestresuju.model.repositories
 
 import cz.nestresuju.model.converters.DiaryEntitiesConverter
 import cz.nestresuju.model.database.AppDatabase
-import cz.nestresuju.model.entities.api.diary.ApiNewDiaryEntry
 import cz.nestresuju.model.entities.database.diary.DbDiaryEntry
+import cz.nestresuju.model.entities.database.diary.SynchronizerDbDiaryChange
 import cz.nestresuju.model.entities.domain.diary.DiaryEntry
 import cz.nestresuju.model.entities.domain.diary.StressLevel
 import cz.nestresuju.model.entities.domain.diary.StressQuestion
+import cz.nestresuju.model.synchronization.DataSynchronizer
 import cz.nestresuju.networking.ApiDefinition
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -15,7 +16,8 @@ import kotlinx.coroutines.flow.map
 /**
  * Repository providing all data related to user's diary.
  */
-interface DiaryRepository {
+interface
+DiaryRepository {
 
     fun observeDiaryEntries(): Flow<List<DiaryEntry>>
 
@@ -35,6 +37,7 @@ interface DiaryRepository {
 class DiaryRepositoryImpl(
     private val apiDefinition: ApiDefinition,
     private val database: AppDatabase,
+    private val dataSynchronizer: DataSynchronizer,
     private val diaryEntitiesConverter: DiaryEntitiesConverter
 ) : DiaryRepository {
 
@@ -72,10 +75,11 @@ class DiaryRepositoryImpl(
             )
         )
 
-        apiDefinition.createNewDiaryEntry(
-            ApiNewDiaryEntry(
+        dataSynchronizer.addDiarySynchronizationRequest(
+            SynchronizerDbDiaryChange(
+                changeRequestType = SynchronizerDbDiaryChange.CHANGE_ADD,
                 entryType = ENTRY_TYPE_STRESS_LEVEL,
-                moodLevel = diaryEntitiesConverter.stressLevelToInt(stressLevel),
+                stressLevel = diaryEntitiesConverter.stressLevelToInt(stressLevel),
                 questionId = question.id,
                 text = answer
             )
@@ -90,8 +94,9 @@ class DiaryRepositoryImpl(
             )
         )
 
-        apiDefinition.createNewDiaryEntry(
-            ApiNewDiaryEntry(
+        dataSynchronizer.addDiarySynchronizationRequest(
+            SynchronizerDbDiaryChange(
+                changeRequestType = SynchronizerDbDiaryChange.CHANGE_ADD,
                 entryType = ENTRY_TYPE_NOTE,
                 text = text
             )
@@ -100,11 +105,22 @@ class DiaryRepositoryImpl(
 
     override suspend fun editEntry(entryId: Long, modifiedText: String) {
         database.diaryDao().editEntry(entryId, modifiedText)
-        apiDefinition.editDiaryEntry(entryId, ApiNewDiaryEntry(text = modifiedText))
+        dataSynchronizer.addDiarySynchronizationRequest(
+            SynchronizerDbDiaryChange(
+                id = entryId,
+                changeRequestType = SynchronizerDbDiaryChange.CHANGE_EDIT,
+                text = modifiedText
+            )
+        )
     }
 
     override suspend fun deleteEntry(entryId: Long) {
         database.diaryDao().deleteEntry(entryId)
-        apiDefinition.deleteDiaryEntry(entryId)
+        dataSynchronizer.addDiarySynchronizationRequest(
+            SynchronizerDbDiaryChange(
+                id = entryId,
+                changeRequestType = SynchronizerDbDiaryChange.CHANGE_DELETE
+            )
+        )
     }
 }
