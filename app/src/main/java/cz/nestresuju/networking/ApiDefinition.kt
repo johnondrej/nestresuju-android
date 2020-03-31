@@ -22,7 +22,7 @@ interface ApiDefinition {
     suspend fun getDiaryMoodQuestions(@Query("timestamp") timestamp: Long): MoodQuestionsResponse
 
     @GET("v1/diary/entries")
-    suspend fun getDiaryEntires(@Query("timestamp") timestamp: Long): DiaryEntriesResponse
+    suspend fun getDiaryEntries(@Query("timestamp") timestamp: Long): DiaryEntriesResponse
 
     @POST("v1/diary/entries")
     suspend fun createNewDiaryEntry(@Body entry: ApiNewDiaryEntry)

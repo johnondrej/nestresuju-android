@@ -52,8 +52,9 @@ class DiaryRepositoryImpl(
     }.distinctUntilChanged()
 
     override suspend fun fetchDiaryEntries() {
+        dataSynchronizer.synchronizeDiary()
         val apiQuestions = apiDefinition.getDiaryMoodQuestions(0).items
-        val apiEntries = apiDefinition.getDiaryEntires(0).items
+        val apiEntries = apiDefinition.getDiaryEntries(0).items
 
         database.diaryDao().updateDiary(
             diaryEntries = apiEntries.map { diaryEntitiesConverter.apiDiaryEntryToDb(it) },
@@ -66,7 +67,7 @@ class DiaryRepositoryImpl(
     }
 
     override suspend fun createStressLevelEntry(stressLevel: StressLevel, question: StressQuestion, answer: String) {
-        database.diaryDao().addEntry(
+        val entryDbId = database.diaryDao().addEntry(
             DbDiaryEntry(
                 entryType = ENTRY_TYPE_STRESS_LEVEL,
                 moodLevel = diaryEntitiesConverter.stressLevelToInt(stressLevel),
@@ -77,6 +78,7 @@ class DiaryRepositoryImpl(
 
         dataSynchronizer.addDiarySynchronizationRequest(
             SynchronizerDbDiaryChange(
+                id = entryDbId,
                 changeRequestType = SynchronizerDbDiaryChange.CHANGE_ADD,
                 entryType = ENTRY_TYPE_STRESS_LEVEL,
                 stressLevel = diaryEntitiesConverter.stressLevelToInt(stressLevel),
@@ -87,7 +89,7 @@ class DiaryRepositoryImpl(
     }
 
     override suspend fun createNoteEntry(text: String) {
-        database.diaryDao().addEntry(
+        val entryDbId = database.diaryDao().addEntry(
             DbDiaryEntry(
                 entryType = ENTRY_TYPE_NOTE,
                 text = text
@@ -96,6 +98,7 @@ class DiaryRepositoryImpl(
 
         dataSynchronizer.addDiarySynchronizationRequest(
             SynchronizerDbDiaryChange(
+                id = entryDbId,
                 changeRequestType = SynchronizerDbDiaryChange.CHANGE_ADD,
                 entryType = ENTRY_TYPE_NOTE,
                 text = text

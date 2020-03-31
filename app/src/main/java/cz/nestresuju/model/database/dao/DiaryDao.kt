@@ -20,7 +20,7 @@ abstract class DiaryDao {
     abstract fun observeEntries(): Flow<List<DbDiaryEntryWithQuestion>>
 
     @Insert
-    abstract suspend fun addEntry(diaryEntry: DbDiaryEntry)
+    abstract suspend fun addEntry(diaryEntry: DbDiaryEntry): Long
 
     @Insert
     abstract suspend fun addEntries(diaryEntries: List<DbDiaryEntry>)
