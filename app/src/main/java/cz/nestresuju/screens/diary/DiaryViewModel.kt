@@ -19,6 +19,9 @@ class DiaryViewModel(
     private val diaryRepository: DiaryRepository
 ) : BaseViewModel() {
 
+    private val _initializationLiveData = MutableLiveData<Boolean>()
+    val initializationStream: LiveData<Boolean> = _initializationLiveData
+
     private val _refreshingStateLiveData = MutableLiveData<Boolean>()
     val refreshingStateStream: LiveData<Boolean> = _refreshingStateLiveData
 
@@ -51,6 +54,8 @@ class DiaryViewModel(
             val stressQuestions = diaryRepository.getStressQuestions()
             questionsGenerator = QuestionGenerator(applicationContext, stressQuestions)
             _inputEnabledLiveData.value = stressQuestions.isNotEmpty()
+
+            _initializationLiveData.value = true
             _refreshingStateLiveData.value = false
         }
     }

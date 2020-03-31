@@ -19,6 +19,7 @@ class DiaryController(
     private val onNoteDeleteClicked: (DiaryEntry.NoteEntry) -> Unit
 ) : EpoxyController() {
 
+    var isInitialized by adapterProperty(false)
     var showSmallInput by adapterProperty(false)
     var answer: String? by adapterProperty(null)
     var input: DiaryChoiceInput? by adapterProperty(null)
@@ -28,6 +29,9 @@ class DiaryController(
 
     override fun buildModels() {
         lastDay = null
+        if (!isInitialized) {
+            return
+        }
 
         entries?.let { diaryEntries ->
             if (showSmallInput) {

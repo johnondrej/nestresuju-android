@@ -77,6 +77,10 @@ class DiaryFragment : BaseFragment<FragmentCustomListBinding>(),
             viewBinding.customList.refreshLayout.isRefreshing = isRefreshing
         })
 
+        viewModel.initializationStream.observe(viewLifecycleOwner, Observer { isInitialized ->
+            controller.isInitialized = isInitialized
+        })
+
         viewBinding.customList.refreshLayout.setOnRefreshListener {
             viewModel.fetchDiaryEntries()
         }
