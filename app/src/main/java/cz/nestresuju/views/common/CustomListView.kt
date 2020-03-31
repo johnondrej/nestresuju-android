@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.airbnb.epoxy.EpoxyRecyclerView
 import cz.nestresuju.R
 import cz.nestresuju.common.extensions.visible
@@ -18,6 +19,9 @@ class CustomListView(context: Context, attributes: AttributeSet) : FrameLayout(c
 
     val list: EpoxyRecyclerView
         get() = binding.list
+
+    val refreshLayout: SwipeRefreshLayout
+        get() = binding.refreshLayout
 
     var contentVisible: Boolean
         get() = binding.list.visible

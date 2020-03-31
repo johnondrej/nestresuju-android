@@ -38,8 +38,6 @@ class DiaryFragment : BaseFragment<FragmentCustomListBinding>(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding.customList.showLoading()
-
         controller = DiaryController(
             onStressLevelSelected = { stressLevel -> viewModel.onStressLevelSelected(stressLevel) },
             onInputConfirmed = { viewModel.onAnswerConfirmed() },
@@ -74,6 +72,14 @@ class DiaryFragment : BaseFragment<FragmentCustomListBinding>(),
                 viewBinding.customList.showEmptyText(R.string.diary_error_input_disabled)
             }
         })
+
+        viewModel.refreshingStateStream.observe(viewLifecycleOwner, Observer { isRefreshing ->
+            viewBinding.customList.refreshLayout.isRefreshing = isRefreshing
+        })
+
+        viewBinding.customList.refreshLayout.setOnRefreshListener {
+            viewModel.fetchDiaryEntries()
+        }
     }
 
     override fun onDiaryEntryEditConfirmed(entryId: Long, modifiedText: String) {
