@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.Observer
 import cz.nestresuju.MainActivity
 import cz.nestresuju.common.extensions.visible
@@ -69,6 +70,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginConsentDialogFr
 
         viewBinding.btnLogin.setOnClickListener {
             viewModel.login(username = viewBinding.editEmail.text.toString(), password = viewBinding.editPassword.text.toString())
+        }
+
+        viewBinding.editPassword.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                viewBinding.btnLogin.performClick()
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
         }
     }
 
