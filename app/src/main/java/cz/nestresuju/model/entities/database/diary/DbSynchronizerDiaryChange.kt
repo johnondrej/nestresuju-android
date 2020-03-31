@@ -9,14 +9,14 @@ import androidx.room.PrimaryKey
  * Class representing special entity for synchronization of diary entry.
  */
 @Entity(
-    tableName = "SynchronizationDiary",
+    tableName = "SynchronizationDiaryChanges",
     foreignKeys = [ForeignKey(
         entity = DbStressQuestion::class,
         parentColumns = ["id"],
         childColumns = ["question_id"]
     )]
 )
-data class SynchronizerDbDiaryChange(
+data class DbSynchronizerDiaryChange(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     @ColumnInfo(name = "change_request_type") val changeRequestType: Int,
     @ColumnInfo(name = "entry_type") val entryType: Int? = null,

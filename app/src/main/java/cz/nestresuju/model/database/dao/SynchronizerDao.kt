@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import cz.nestresuju.model.entities.database.diary.SynchronizerDbDiaryChange
+import cz.nestresuju.model.entities.database.diary.DbSynchronizerDiaryChange
 
 /**
  * Database DAO for storing synchronization data.
@@ -12,21 +12,21 @@ import cz.nestresuju.model.entities.database.diary.SynchronizerDbDiaryChange
 @Dao
 abstract class SynchronizerDao {
 
-    @Query("SELECT * FROM SynchronizationDiary")
-    abstract suspend fun getAllDiaryChanges(): List<SynchronizerDbDiaryChange>
+    @Query("SELECT * FROM SynchronizationDiaryChanges")
+    abstract suspend fun getAllDiaryChanges(): List<DbSynchronizerDiaryChange>
 
-    @Query("SELECT * FROM SynchronizationDiary WHERE id = :diaryChangeId")
-    abstract suspend fun findDiaryChange(diaryChangeId: Long): SynchronizerDbDiaryChange?
+    @Query("SELECT * FROM SynchronizationDiaryChanges WHERE id = :diaryChangeId")
+    abstract suspend fun findDiaryChange(diaryChangeId: Long): DbSynchronizerDiaryChange?
 
     @Insert
-    abstract suspend fun addDiaryChange(diaryChange: SynchronizerDbDiaryChange)
+    abstract suspend fun addDiaryChange(diaryChange: DbSynchronizerDiaryChange)
 
     @Update
-    abstract suspend fun updateDiaryChange(diaryChange: SynchronizerDbDiaryChange)
+    abstract suspend fun updateDiaryChange(diaryChange: DbSynchronizerDiaryChange)
 
-    @Query("DELETE FROM SynchronizationDiary WHERE id = :diaryChangeId")
+    @Query("DELETE FROM SynchronizationDiaryChanges WHERE id = :diaryChangeId")
     abstract suspend fun deleteDiaryChange(diaryChangeId: Long)
 
-    @Query("DELETE FROM SynchronizationDiary")
+    @Query("DELETE FROM SynchronizationDiaryChanges")
     abstract suspend fun deleteDiaryChanges()
 }

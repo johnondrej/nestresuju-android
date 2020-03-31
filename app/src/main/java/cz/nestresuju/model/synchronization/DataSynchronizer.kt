@@ -2,7 +2,7 @@ package cz.nestresuju.model.synchronization
 
 import cz.nestresuju.model.database.AppDatabase
 import cz.nestresuju.model.entities.api.diary.ApiNewDiaryEntry
-import cz.nestresuju.model.entities.database.diary.SynchronizerDbDiaryChange
+import cz.nestresuju.model.entities.database.diary.DbSynchronizerDiaryChange
 import cz.nestresuju.networking.ApiDefinition
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -16,7 +16,7 @@ interface DataSynchronizer {
 
     suspend fun synchronizeDiary()
 
-    suspend fun addDiarySynchronizationRequest(request: SynchronizerDbDiaryChange)
+    suspend fun addDiarySynchronizationRequest(request: DbSynchronizerDiaryChange)
 }
 
 class DataSynchronizerImpl(
@@ -38,23 +38,23 @@ class DataSynchronizerImpl(
         }
     }
 
-    override suspend fun addDiarySynchronizationRequest(request: SynchronizerDbDiaryChange) {
+    override suspend fun addDiarySynchronizationRequest(request: DbSynchronizerDiaryChange) {
         val existingRequest = database.synchronizerDao().findDiaryChange(request.id)
         val resultRequest = if (existingRequest == null) {
             database.synchronizerDao().addDiaryChange(request)
             request
         } else {
             when (request.changeRequestType) {
-                SynchronizerDbDiaryChange.CHANGE_EDIT -> {
+                DbSynchronizerDiaryChange.CHANGE_EDIT -> {
                     existingRequest.copy(text = request.text!!).also { database.synchronizerDao().updateDiaryChange(it) }
                 }
-                SynchronizerDbDiaryChange.CHANGE_DELETE -> when (existingRequest.changeRequestType) {
-                    SynchronizerDbDiaryChange.CHANGE_ADD -> {
+                DbSynchronizerDiaryChange.CHANGE_DELETE -> when (existingRequest.changeRequestType) {
+                    DbSynchronizerDiaryChange.CHANGE_ADD -> {
                         database.synchronizerDao().deleteDiaryChange(diaryChangeId = existingRequest.id)
                         null
                     }
-                    SynchronizerDbDiaryChange.CHANGE_EDIT -> SynchronizerDbDiaryChange(
-                        id = existingRequest.id, changeRequestType = SynchronizerDbDiaryChange.CHANGE_DELETE
+                    DbSynchronizerDiaryChange.CHANGE_EDIT -> DbSynchronizerDiaryChange(
+                        id = existingRequest.id, changeRequestType = DbSynchronizerDiaryChange.CHANGE_DELETE
                     ).also { database.synchronizerDao().updateDiaryChange(it) }
                     else -> null
                 }
@@ -74,9 +74,9 @@ class DataSynchronizerImpl(
         }
     }
 
-    private suspend fun performDiarySynchronization(request: SynchronizerDbDiaryChange) {
+    private suspend fun performDiarySynchronization(request: DbSynchronizerDiaryChange) {
         when (request.changeRequestType) {
-            SynchronizerDbDiaryChange.CHANGE_ADD -> {
+            DbSynchronizerDiaryChange.CHANGE_ADD -> {
                 apiDefinition.createNewDiaryEntry(
                     ApiNewDiaryEntry(
                         entryType = request.entryType,
@@ -86,7 +86,7 @@ class DataSynchronizerImpl(
                     )
                 )
             }
-            SynchronizerDbDiaryChange.CHANGE_EDIT -> {
+            DbSynchronizerDiaryChange.CHANGE_EDIT -> {
                 apiDefinition.editDiaryEntry(
                     request.id, ApiNewDiaryEntry(
                         entryType = request.entryType,
@@ -94,7 +94,7 @@ class DataSynchronizerImpl(
                     )
                 )
             }
-            SynchronizerDbDiaryChange.CHANGE_DELETE -> {
+            DbSynchronizerDiaryChange.CHANGE_DELETE -> {
                 apiDefinition.deleteDiaryEntry(request.id)
             }
         }

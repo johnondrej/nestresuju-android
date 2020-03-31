@@ -8,13 +8,13 @@ import cz.nestresuju.model.database.dao.DiaryDao
 import cz.nestresuju.model.database.dao.SynchronizerDao
 import cz.nestresuju.model.entities.database.diary.DbDiaryEntry
 import cz.nestresuju.model.entities.database.diary.DbStressQuestion
-import cz.nestresuju.model.entities.database.diary.SynchronizerDbDiaryChange
+import cz.nestresuju.model.entities.database.diary.DbSynchronizerDiaryChange
 
 /**
  * Class representing app database.
  */
 @Database(
-    entities = [DbDiaryEntry::class, DbStressQuestion::class, SynchronizerDbDiaryChange::class],
+    entities = [DbDiaryEntry::class, DbStressQuestion::class, DbSynchronizerDiaryChange::class],
     version = 1
 )
 @TypeConverters(RoomTypeConverters::class)

@@ -3,7 +3,7 @@ package cz.nestresuju.model.repositories
 import cz.nestresuju.model.converters.DiaryEntitiesConverter
 import cz.nestresuju.model.database.AppDatabase
 import cz.nestresuju.model.entities.database.diary.DbDiaryEntry
-import cz.nestresuju.model.entities.database.diary.SynchronizerDbDiaryChange
+import cz.nestresuju.model.entities.database.diary.DbSynchronizerDiaryChange
 import cz.nestresuju.model.entities.domain.diary.DiaryEntry
 import cz.nestresuju.model.entities.domain.diary.StressLevel
 import cz.nestresuju.model.entities.domain.diary.StressQuestion
@@ -77,9 +77,9 @@ class DiaryRepositoryImpl(
         )
 
         dataSynchronizer.addDiarySynchronizationRequest(
-            SynchronizerDbDiaryChange(
+            DbSynchronizerDiaryChange(
                 id = entryDbId,
-                changeRequestType = SynchronizerDbDiaryChange.CHANGE_ADD,
+                changeRequestType = DbSynchronizerDiaryChange.CHANGE_ADD,
                 entryType = ENTRY_TYPE_STRESS_LEVEL,
                 stressLevel = diaryEntitiesConverter.stressLevelToInt(stressLevel),
                 questionId = question.id,
@@ -97,9 +97,9 @@ class DiaryRepositoryImpl(
         )
 
         dataSynchronizer.addDiarySynchronizationRequest(
-            SynchronizerDbDiaryChange(
+            DbSynchronizerDiaryChange(
                 id = entryDbId,
-                changeRequestType = SynchronizerDbDiaryChange.CHANGE_ADD,
+                changeRequestType = DbSynchronizerDiaryChange.CHANGE_ADD,
                 entryType = ENTRY_TYPE_NOTE,
                 text = text
             )
@@ -109,9 +109,9 @@ class DiaryRepositoryImpl(
     override suspend fun editEntry(entryId: Long, modifiedText: String) {
         database.diaryDao().editEntry(entryId, modifiedText)
         dataSynchronizer.addDiarySynchronizationRequest(
-            SynchronizerDbDiaryChange(
+            DbSynchronizerDiaryChange(
                 id = entryId,
-                changeRequestType = SynchronizerDbDiaryChange.CHANGE_EDIT,
+                changeRequestType = DbSynchronizerDiaryChange.CHANGE_EDIT,
                 text = modifiedText
             )
         )
@@ -120,9 +120,9 @@ class DiaryRepositoryImpl(
     override suspend fun deleteEntry(entryId: Long) {
         database.diaryDao().deleteEntry(entryId)
         dataSynchronizer.addDiarySynchronizationRequest(
-            SynchronizerDbDiaryChange(
+            DbSynchronizerDiaryChange(
                 id = entryId,
-                changeRequestType = SynchronizerDbDiaryChange.CHANGE_DELETE
+                changeRequestType = DbSynchronizerDiaryChange.CHANGE_DELETE
             )
         )
     }
