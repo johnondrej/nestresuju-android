@@ -15,6 +15,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  */
 class InputTestFragment : BaseFragment<FragmentInputTestBinding>() {
 
+    // TODO: remove UI mockup data and implement logic
+
     override val viewModel by viewModel<InputTestViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -23,8 +25,19 @@ class InputTestFragment : BaseFragment<FragmentInputTestBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding.txtInput.setOnClickListener {
-            findNavController().navigate(R.id.action_fragment_input_test_to_fragment_screening_test)
+        with(viewBinding) {
+            questionView.question = "1. Jak často jste byl v posledním měsíci rozrušený kvůli něčemu, co se stalo nečekaně?"
+            questionView.setOnAnswerSelectedListener { answer ->
+
+            }
+
+            btnContinue.setOnClickListener {
+                findNavController().navigate(R.id.action_fragment_input_test_to_fragment_screening_test)
+            }
+
+            btnBack.setOnClickListener {
+                activity?.onBackPressed()
+            }
         }
     }
 }
