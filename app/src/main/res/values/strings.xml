@@ -2,6 +2,7 @@
     <string name="app_name">Nestresuju</string>
 
     <!-- General -->
+    <string name="general_continue">Pokračovat</string>
     <string name="general_next">Další</string>
     <string name="general_save">Uložit</string>
     <string name="general_date_yesterday">Včera</string>
@@ -25,6 +26,13 @@
     <string name="login_consent_title">Informovaný souhlas</string>
     <string name="login_consent_text">Kliknutím na tlačítko „Další“ souhlasíte s účastí na výzkumu účinnosti a uživatelské zkušenosti s mobilní aplikací Nestresuju, který je prováděný v rámci diplomové práce Andrey Kretíkové na katedře psychologie na FF UK. Užíváním Nestresuju souhlasíte se zasíláním dat o Vaši aktivitě v této mobilní aplikaci na server, kam mají přístup pouze členové výzkumného týmu. Vaše data budou anonymizována a svůj souhlas s účastí můžete kdykoliv odvolat a deaktivovat svůj uživatelský účet přímo v Nestresuju.</string>
     <string name="login_consent_missing_error">Potvrďte souhlas s účastí na výzkumu pro pokračování do aplikace</string>
+
+    <!-- Input tests -->
+
+    <string name="input_test_intro_title">Vstupní test</string>
+    <string name="input_test_intro_headline">První dotazník</string>
+    <string name="input_test_intro_1">V rámci výzkumného šetření o účinnosti Nestresuju tě prosíme o vyplnění dvou krátkých dotazníků týkající se tvého prožívaného stresu. Jejich vyplňování ti zabere jen několik minut.</string>
+    <string name="input_test_intro_2">První dotazník obsahuje otázky zaměřeny na to, jak jsi se cítil/a a jak jsi uvažoval/a během posledního měsíce. Označ odpověď vystihující, jak často jsi se popsaným způsobem cítil/a nebo uvažoval/a. Dotazník obsahuje 10 otázek a vyplněný ho budeš mít do 5 minut.</string>
 
     <!-- Diary -->
 
