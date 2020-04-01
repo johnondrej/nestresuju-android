@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import cz.nestresuju.R
 import cz.nestresuju.databinding.FragmentInputTestIntroBinding
 
@@ -24,10 +24,8 @@ class InputTestIntroFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as? AppCompatActivity)?.supportActionBar?.title = getString(R.string.input_test_intro_title)
-
         viewBinding.btnContinue.setOnClickListener {
-            // TODO
+            findNavController().navigate(R.id.action_fragment_intro_to_fragment_input_test)
         }
     }
 }

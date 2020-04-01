@@ -4,6 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import cz.nestresuju.R
 
 /**
@@ -21,12 +24,16 @@ class InputTestsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_input_tests)
+        setContentView(R.layout.activity_nav_host)
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .add(R.id.container, InputTestIntroFragment())
-                .commit()
-        }
+        val navController = findNavController(R.id.nav_host_fragment)
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.fragment_input_test_intro,
+                R.id.fragment_input_test,
+                R.id.fragment_screening_test
+            )
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 }

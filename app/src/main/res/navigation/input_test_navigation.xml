@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/input_test_navigation"
+    app:startDestination="@id/fragment_input_test_intro">
+
+    <fragment
+        android:id="@+id/fragment_input_test_intro"
+        android:name="cz.nestresuju.screens.tests.input.InputTestIntroFragment"
+        android:label="@string/input_test_title"
+        tools:layout="@layout/fragment_input_test_intro">
+
+        <action
+            android:id="@+id/action_fragment_intro_to_fragment_input_test"
+            app:destination="@id/fragment_input_test"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_input_test"
+        android:name="cz.nestresuju.screens.tests.input.InputTestFragment"
+        android:label="@string/input_test_title"
+        tools:layout="@layout/fragment_input_test">
+
+        <action
+            android:id="@+id/action_fragment_input_test_to_fragment_screening_test"
+            app:destination="@+id/fragment_screening_test"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_screening_test"
+        android:name="cz.nestresuju.screens.tests.screening.ScreeningTestFragment"
+        android:label="@string/screening_test_title"
+        tools:layout="@layout/fragment_screening_test" />
+
+</navigation>

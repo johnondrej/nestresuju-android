@@ -29,10 +29,17 @@
 
     <!-- Input tests -->
 
-    <string name="input_test_intro_title">Vstupní test</string>
+    <string name="input_test_title">Vstupní test</string>
     <string name="input_test_intro_headline">První dotazník</string>
     <string name="input_test_intro_1">V rámci výzkumného šetření o účinnosti Nestresuju tě prosíme o vyplnění dvou krátkých dotazníků týkající se tvého prožívaného stresu. Jejich vyplňování ti zabere jen několik minut.</string>
     <string name="input_test_intro_2">První dotazník obsahuje otázky zaměřeny na to, jak jsi se cítil/a a jak jsi uvažoval/a během posledního měsíce. Označ odpověď vystihující, jak často jsi se popsaným způsobem cítil/a nebo uvažoval/a. Dotazník obsahuje 10 otázek a vyplněný ho budeš mít do 5 minut.</string>
+    <string name="input_test_instructions">Označ odpověď vystihující, jak často jsi se popsaným způsobem cítil/a nebo uvažoval/a během posledního měsíce.</string>
+    <string name="input_test_answer_0">Nikdy</string>
+    <string name="input_test_answer_1">Výjimečně</string>
+    <string name="input_test_answer_2">Občas</string>
+    <string name="input_test_answer_3">Čato</string>
+    <string name="input_test_answer_4">Velmi často</string>
+    <string name="screening_test_title">Screening</string>
 
     <!-- Diary -->
 
