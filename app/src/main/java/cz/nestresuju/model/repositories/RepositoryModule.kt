@@ -12,8 +12,10 @@ val repositoryModule = module {
 
     factory { AuthRepository(authApiDefinition = get(), apiDefinition = get(), authEntitiesConverter = get(), oAuthManager = get()) }
 
+    factory<InputTestsRepository> { InputTestsRepositoryImpl(apiDefinition = get(), entityConverter = get()) }
+
     factory<DiaryRepository> {
-        DiaryRepositoryImpl(apiDefinition = get(), database = get(), dataSynchronizer = get(), diaryEntitiesConverter = get())
+        DiaryRepositoryImpl(apiDefinition = get(), database = get(), dataSynchronizer = get(), entityConverter = get())
     }
 
     factory<DataSynchronizer> { DataSynchronizerImpl(apiDefinition = get(), database = get()) }

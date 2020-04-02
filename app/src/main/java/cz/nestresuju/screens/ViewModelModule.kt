@@ -23,7 +23,7 @@ val viewModelModule = module {
 
     viewModel { LoginViewModel(authRepository = get()) }
 
-    viewModel { InputTestViewModel() }
+    viewModel { InputTestViewModel(inputTestsRepository = get()) }
 
     viewModel { ScreeningTestViewModel() }
 

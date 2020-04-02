@@ -10,6 +10,8 @@ val converterModule = module {
 
     factory<AuthEntitiesConverter> { AuthEntitiesConverterImpl() }
 
+    factory<InputTestsConverter> { InputTestsConverterImpl() }
+
     factory<StressLevelConverter> { StressLevelConverterImpl() }
 
     factory<DiaryEntitiesConverter> { DiaryEntitiesConverterImpl(stressLevelConverter = get()) }

@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import cz.nestresuju.R
+import cz.nestresuju.common.interfaces.OnBackPressedListener
 
 /**
  * Activity containing both input test and screening test.
@@ -35,5 +36,18 @@ class InputTestsActivity : AppCompatActivity() {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
+    }
+
+    override fun onBackPressed() {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+        navHostFragment?.let { navFragment ->
+            navFragment.childFragmentManager.primaryNavigationFragment?.let { fragment ->
+                val handledByFragment = (fragment as? OnBackPressedListener)?.onBackPressed() ?: false
+                if (handledByFragment) {
+                    return
+                }
+            }
+        }
+        super.onBackPressed()
     }
 }

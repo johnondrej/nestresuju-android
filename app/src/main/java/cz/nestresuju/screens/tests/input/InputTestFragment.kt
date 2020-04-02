@@ -4,18 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import cz.nestresuju.R
+import cz.nestresuju.common.extensions.visible
+import cz.nestresuju.common.interfaces.OnBackPressedListener
 import cz.nestresuju.databinding.FragmentInputTestBinding
+import cz.nestresuju.model.common.State
 import cz.nestresuju.screens.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Fragment for showing input test after login.
  */
-class InputTestFragment : BaseFragment<FragmentInputTestBinding>() {
-
-    // TODO: remove UI mockup data and implement logic
+class InputTestFragment : BaseFragment<FragmentInputTestBinding>(), OnBackPressedListener {
 
     override val viewModel by viewModel<InputTestViewModel>()
 
@@ -26,18 +28,58 @@ class InputTestFragment : BaseFragment<FragmentInputTestBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(viewBinding) {
-            questionView.question = "1. Jak často jste byl v posledním měsíci rozrušený kvůli něčemu, co se stalo nečekaně?"
-            questionView.setOnAnswerSelectedListener { answer ->
+            viewModel.viewStateStream.observe(viewLifecycleOwner, Observer { state ->
+                layoutContent.visible = state is State.Loaded
+                progress.visible = state == State.Loading
 
-            }
+                if (state is State.Loaded) {
+                    val viewState = state.data
+                    questionsProgress.max = viewState.progress.totalQuestions
+                    questionsProgress.progress = viewState.progress.currentQuestion + 1
+                    questionView.question = viewState.question.text
+                    btnContinue.text = if (!viewState.progress.isLast) getString(R.string.general_continue) else getString(R.string.general_finish)
+                    btnContinue.isEnabled = viewState.answer != null
+                    btnBack.visible = !viewState.progress.isFirst
 
-            btnContinue.setOnClickListener {
+                    if (viewState.answer != null) {
+                        questionView.selectAnswer(viewState.answer)
+                    } else {
+                        questionView.unselectAll()
+                    }
+
+                    if (!viewState.progress.isLast) {
+                        btnContinue.setOnClickListener {
+                            viewModel.nextQuestion()
+                        }
+                    } else {
+                        btnContinue.setOnClickListener {
+                            viewModel.submitResults()
+                        }
+                    }
+                }
+            })
+
+            viewModel.completionEvent.observe(viewLifecycleOwner, Observer {
+                // TODO: show information dialog
                 findNavController().navigate(R.id.action_fragment_input_test_to_fragment_screening_test)
+            })
+
+            questionView.setOnAnswerSelectedListener { answer ->
+                viewModel.selectAnswer(answer)
             }
 
             btnBack.setOnClickListener {
                 activity?.onBackPressed()
             }
+        }
+    }
+
+    override fun onBackPressed(): Boolean {
+        if (!viewModel.firstQuestionSelected()) {
+            viewModel.previousQuestion()
+            return true
+        } else {
+            return false
         }
     }
 }

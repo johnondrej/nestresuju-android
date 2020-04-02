@@ -8,9 +8,10 @@
         android:id="@+id/txt_question"
         style="@style/TextAppearance.Headline3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="70dp" />
 
     <RadioGroup
+        android:id="@+id/radio_group_answers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
@@ -20,30 +21,35 @@
             android:id="@+id/radio_btn_answer_0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="-2dp"
             android:text="@string/input_test_answer_0" />
 
         <RadioButton
             android:id="@+id/radio_btn_answer_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="-2dp"
             android:text="@string/input_test_answer_1" />
 
         <RadioButton
             android:id="@+id/radio_btn_answer_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="-2dp"
             android:text="@string/input_test_answer_2" />
 
         <RadioButton
             android:id="@+id/radio_btn_answer_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="-2dp"
             android:text="@string/input_test_answer_3" />
 
         <RadioButton
             android:id="@+id/radio_btn_answer_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="-2dp"
             android:text="@string/input_test_answer_4" />
 
     </RadioGroup>

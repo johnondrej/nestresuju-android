@@ -16,8 +16,7 @@ import kotlinx.coroutines.flow.map
 /**
  * Repository providing all data related to user's diary.
  */
-interface
-DiaryRepository {
+interface DiaryRepository {
 
     fun observeDiaryEntries(): Flow<List<DiaryEntry>>
 
@@ -38,7 +37,7 @@ class DiaryRepositoryImpl(
     private val apiDefinition: ApiDefinition,
     private val database: AppDatabase,
     private val dataSynchronizer: DataSynchronizer,
-    private val diaryEntitiesConverter: DiaryEntitiesConverter
+    private val entityConverter: DiaryEntitiesConverter
 ) : DiaryRepository {
 
     private companion object {
@@ -48,7 +47,7 @@ class DiaryRepositoryImpl(
     }
 
     override fun observeDiaryEntries() = database.diaryDao().observeEntries().map { entries ->
-        entries.map { diaryEntitiesConverter.dbDiaryEntryToDomain(it) }
+        entries.map { entityConverter.dbDiaryEntryToDomain(it) }
     }.distinctUntilChanged()
 
     override suspend fun fetchDiaryEntries() {
@@ -57,20 +56,20 @@ class DiaryRepositoryImpl(
         val apiEntries = apiDefinition.getDiaryEntries(0).items
 
         database.diaryDao().updateDiary(
-            diaryEntries = apiEntries.map { diaryEntitiesConverter.apiDiaryEntryToDb(it) },
-            stressQuestions = apiQuestions.map { diaryEntitiesConverter.apiStressQuestionToDb(it) }
+            diaryEntries = apiEntries.map { entityConverter.apiDiaryEntryToDb(it) },
+            stressQuestions = apiQuestions.map { entityConverter.apiStressQuestionToDb(it) }
         )
     }
 
     override suspend fun getStressQuestions(): List<StressQuestion> {
-        return database.diaryDao().getStressQuestions().map { diaryEntitiesConverter.dbStressQuestionToDomain(it) }
+        return database.diaryDao().getStressQuestions().map { entityConverter.dbStressQuestionToDomain(it) }
     }
 
     override suspend fun createStressLevelEntry(stressLevel: StressLevel, question: StressQuestion, answer: String) {
         val entryDbId = database.diaryDao().addEntry(
             DbDiaryEntry(
                 entryType = ENTRY_TYPE_STRESS_LEVEL,
-                moodLevel = diaryEntitiesConverter.stressLevelToInt(stressLevel),
+                moodLevel = entityConverter.stressLevelToInt(stressLevel),
                 questionId = question.id,
                 text = answer
             )
@@ -81,7 +80,7 @@ class DiaryRepositoryImpl(
                 id = entryDbId,
                 changeRequestType = DbSynchronizerDiaryChange.CHANGE_ADD,
                 entryType = ENTRY_TYPE_STRESS_LEVEL,
-                stressLevel = diaryEntitiesConverter.stressLevelToInt(stressLevel),
+                stressLevel = entityConverter.stressLevelToInt(stressLevel),
                 questionId = question.id,
                 text = answer
             )
