@@ -37,8 +37,8 @@ class GeneralApiExceptionMapper(private val moshi: Moshi) : ApiExceptionMapper {
                     else -> null
                 }
 
-                e ?: ServerException(exception.code(), error.errorCode, error.text)
-            } ?: ServerException(exception.code(), errorCode = null, description = null)
+                e ?: ServerException(exception.code(), error.errorCode, error.text) as Throwable
+            } ?: ServerException(exception.code(), errorCode = null, description = null) as Throwable
         }
         else -> UnknownException(exception)
     }

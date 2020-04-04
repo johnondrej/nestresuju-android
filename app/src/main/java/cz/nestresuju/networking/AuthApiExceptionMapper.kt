@@ -37,8 +37,8 @@ class AuthApiExceptionMapper(
                         else -> null
                     }
                     else -> null
-                } ?: ServerException(exception.code(), errorCode = null, description = null)
-            } ?: ServerException(exception.code(), errorCode = null, description = null)
+                } ?: ServerException(exception.code(), errorCode = null, description = null) as Throwable
+            } ?: ServerException(exception.code(), errorCode = null, description = null) as Throwable
         }
         else -> UnknownException(exception)
     }
