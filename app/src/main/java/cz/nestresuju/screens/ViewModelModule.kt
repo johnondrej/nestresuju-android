@@ -19,13 +19,13 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
 
-    viewModel { RouterViewModel(oAuthManager = get()) }
+    viewModel { RouterViewModel(oAuthManager = get(), sharedPreferencesInteractor = get()) }
 
     viewModel { LoginViewModel(authRepository = get()) }
 
     viewModel { InputTestViewModel(inputTestsRepository = get()) }
 
-    viewModel { ScreeningTestViewModel() }
+    viewModel { ScreeningTestViewModel(inputTestsRepository = get()) }
 
     viewModel { AboutAppViewModel() }
 

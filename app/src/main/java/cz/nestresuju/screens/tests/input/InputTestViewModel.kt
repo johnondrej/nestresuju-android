@@ -110,7 +110,7 @@ class InputTestViewModel(
                         currentQuestion = 0,
                         totalQuestions = questions.size
                     )
-                )
+                ).also { latestViewState = it }
             )
         }
     }

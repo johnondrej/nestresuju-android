@@ -2,6 +2,7 @@ package cz.nestresuju.model.repositories
 
 import cz.ackee.ackroutine.OAuthManager
 import cz.nestresuju.model.converters.AuthEntitiesConverter
+import cz.nestresuju.model.database.sharedprefs.SharedPreferencesInteractor
 import cz.nestresuju.model.entities.api.auth.AuthResponse
 import cz.nestresuju.model.entities.domain.auth.LoginChecklistCompletion
 import cz.nestresuju.model.errors.ConsentNotGivenException
@@ -18,7 +19,8 @@ class AuthRepository(
     private val authApiDefinition: AuthApiDefinition,
     private val apiDefinition: ApiDefinition,
     private val authEntitiesConverter: AuthEntitiesConverter,
-    private val oAuthManager: OAuthManager
+    private val oAuthManager: OAuthManager,
+    private val sharedPreferencesInteractor: SharedPreferencesInteractor
 ) {
 
     companion object {
@@ -77,6 +79,7 @@ class AuthRepository(
 
     private suspend fun giveConsent() {
         apiDefinition.giveUserConsent()
+        sharedPreferencesInteractor.setConsentGiven()
     }
 
     private suspend fun requestConsentConfirmation(onShowConsent: () -> Unit) = suspendCoroutine<Boolean> {
@@ -90,6 +93,7 @@ class AuthRepository(
 
     private fun logout() {
         oAuthManager.clearCredentials()
+        sharedPreferencesInteractor.clearAllData()
         // TODO
     }
 }

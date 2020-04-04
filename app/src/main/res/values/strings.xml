@@ -6,6 +6,7 @@
     <string name="general_next">Další</string>
     <string name="general_save">Uložit</string>
     <string name="general_finish">Dokončit</string>
+    <string name="general_begin">Začít</string>
     <string name="general_try_again">Zkusit znovu</string>
     <string name="general_date_yesterday">Včera</string>
     <string name="general_date_today">Dnes</string>
@@ -41,8 +42,12 @@
     <string name="input_test_answer_2">Občas</string>
     <string name="input_test_answer_3">Často</string>
     <string name="input_test_answer_4">Velmi často</string>
+    <string name="input_test_confirm_dialog_title">Druhý dotazník</string>
+    <string name="input_test_confirm_dialog_text">Děkujeme za vyplnění prvního vstupního dotazníku. Nyní se ti zobrazí seznam životních událostí a označ prosím všechny, které se ti za posledních 12 měsíců staly. Vyplňování zabere méně než 5 minut.</string>
     <string name="screening_test_title">Screening</string>
     <string name="screening_test_instructions">Označ prosím všechny životní události, které se ti staly za posledních 12 měsíců.</string>
+    <string name="screening_test_confirm_dialog_text">Děkujeme za tvůj čas a tvé odpovědi. Nyní si můžeš prohlédnout Nestresuju v celé své kráse. V sekci Knihovna se můžeš dočíst více o stresu a stress managementu. Do Deníčku si můžeš pravidelně zaznamenávat úroveň svého stresu. V části Program se ti budou postupně otevírat úkoly a výzvy, které ti pomohou zvládat tvůj stres. Tak vzhůru do toho!</string>
+    <string name="screening_test_confirm_dialog_button">Přejít do aplikace</string>
 
     <!-- Diary -->
 

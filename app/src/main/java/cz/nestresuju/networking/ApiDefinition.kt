@@ -5,7 +5,9 @@ import cz.nestresuju.model.entities.api.diary.ApiNewDiaryEntry
 import cz.nestresuju.model.entities.api.diary.DiaryEntriesResponse
 import cz.nestresuju.model.entities.api.diary.MoodQuestionsResponse
 import cz.nestresuju.model.entities.api.tests.input.ApiInputTestResults
+import cz.nestresuju.model.entities.api.tests.input.ApiScreeningTestResults
 import cz.nestresuju.model.entities.api.tests.input.InputTestQuestionsResponse
+import cz.nestresuju.model.entities.api.tests.input.ScreeningTestOptionsResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -25,6 +27,12 @@ interface ApiDefinition {
 
     @POST("v1/input-test")
     suspend fun submitInputTestResults(@Body results: ApiInputTestResults): Response<Unit>
+
+    @GET("v1/screening-test/options")
+    suspend fun getScreeningTestOptions(): ScreeningTestOptionsResponse
+
+    @POST("v1/screening-test")
+    suspend fun submitScreeningTestResults(@Body results: ApiScreeningTestResults): Response<Unit>
 
     @GET("v1/diary/mood-questions")
     suspend fun getDiaryMoodQuestions(@Query("timestamp") timestamp: Long): MoodQuestionsResponse

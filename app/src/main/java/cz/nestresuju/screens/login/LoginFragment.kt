@@ -13,6 +13,7 @@ import cz.nestresuju.model.common.State
 import cz.nestresuju.model.errors.handlers.InternetErrorsHandler
 import cz.nestresuju.model.errors.handlers.UnknownErrorsHandler
 import cz.nestresuju.screens.base.BaseFragment
+import cz.nestresuju.screens.tests.input.InputTestsActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -43,17 +44,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginConsentDialogFr
                 is State.Loaded -> {
                     val checklist = state.data
 
-                    if (!checklist.inputTestSubmitted) {
-                        // TODO: route to input test
-                    } else if (!checklist.screeningTestSubmitted) {
-                        // TODO: route to screening test
-                    } else {
-                        // TODO: route to app here when routes above are implemented
-                    }
-
-                    requireActivity().let {
-                        MainActivity.launch(context = it)
-                        it.finish()
+                    requireActivity().let { fragmentActivity ->
+                        if (!checklist.inputTestSubmitted) {
+                            InputTestsActivity.launch(context = fragmentActivity, redirectToScreeningTest = false)
+                        } else if (!checklist.screeningTestSubmitted) {
+                            InputTestsActivity.launch(context = fragmentActivity, redirectToScreeningTest = true)
+                        } else {
+                            MainActivity.launch(context = fragmentActivity)
+                        }
+                        fragmentActivity.finish()
                     }
                 }
             }

@@ -17,11 +17,17 @@ class InputTestsActivity : AppCompatActivity() {
 
     companion object {
 
-        fun launch(context: Context) {
-            val intent = Intent(context, InputTestsActivity::class.java)
+        private const val KEY_START_FROM_SCREENING = "redirect_to_screening_test"
+
+        fun launch(context: Context, redirectToScreeningTest: Boolean = false) {
+            val intent = Intent(context, InputTestsActivity::class.java).apply {
+                putExtra(KEY_START_FROM_SCREENING, redirectToScreeningTest)
+            }
             context.startActivity(intent)
         }
     }
+
+    private val redirectToScreening: Boolean by lazy(LazyThreadSafetyMode.NONE) { intent.getBooleanExtra(KEY_START_FROM_SCREENING, false) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +42,12 @@ class InputTestsActivity : AppCompatActivity() {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        if (savedInstanceState == null) {
+            if (redirectToScreening) {
+                navController.navigate(R.id.fragment_screening_test)
+            }
+        }
     }
 
     override fun onBackPressed() {

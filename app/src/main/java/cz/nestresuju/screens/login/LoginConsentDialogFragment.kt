@@ -11,6 +11,11 @@ import cz.nestresuju.R
  */
 class LoginConsentDialogFragment : DialogFragment() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        isCancelable = false
+    }
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(requireContext())
             .setTitle(R.string.login_consent_title)
@@ -19,7 +24,8 @@ class LoginConsentDialogFragment : DialogFragment() {
                 (parentFragment as? OnConfirmedListener)?.onConsentConfirmed(confirmed = true)
             }.setNegativeButton(android.R.string.cancel) { _, _ ->
                 (parentFragment as? OnConfirmedListener)?.onConsentConfirmed(confirmed = false)
-            }.create()
+            }.setCancelable(false)
+            .create()
     }
 
     interface OnConfirmedListener {

@@ -20,7 +20,15 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 /**
  * Fragment for showing input test after login.
  */
-class InputTestFragment : BaseFragment<FragmentInputTestBinding>(), OnBackPressedListener {
+class InputTestFragment :
+    BaseFragment<FragmentInputTestBinding>(),
+    OnBackPressedListener,
+    InputTestConfirmationDialogFragment.OnTestConfirmedListener {
+
+    companion object {
+
+        private const val TAG_CONFIRMATION_DIALOG = "confirmation_dialog"
+    }
 
     override val viewModel by viewModel<InputTestViewModel>()
 
@@ -69,8 +77,7 @@ class InputTestFragment : BaseFragment<FragmentInputTestBinding>(), OnBackPresse
             })
 
             viewModel.completionEvent.observe(viewLifecycleOwner, Observer {
-                // TODO: show information dialog
-                findNavController().navigate(R.id.action_fragment_input_test_to_fragment_screening_test)
+                onTestSubmitted()
             })
 
             questionView.setOnAnswerSelectedListener { answer ->
@@ -87,12 +94,19 @@ class InputTestFragment : BaseFragment<FragmentInputTestBinding>(), OnBackPresse
         }
     }
 
+    override fun onTestConfirmed() {
+        findNavController().navigate(R.id.action_fragment_input_test_to_fragment_screening_test)
+    }
+
     override fun onBackPressed(): Boolean {
         if (!viewModel.firstQuestionSelected()) {
             viewModel.previousQuestion()
             return true
-        } else {
-            return false
         }
+        return false
+    }
+
+    private fun onTestSubmitted() {
+        InputTestConfirmationDialogFragment().show(childFragmentManager, TAG_CONFIRMATION_DIALOG)
     }
 }
