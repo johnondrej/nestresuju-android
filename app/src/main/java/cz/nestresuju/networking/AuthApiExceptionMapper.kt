@@ -16,7 +16,8 @@ class AuthApiExceptionMapper(
     private val moshi: Moshi
 ) : ApiExceptionMapper {
 
-    override fun mapException(exception: Throwable) = when (exception) {
+    override fun mapException(exception: Throwable): Throwable = when (exception) {
+        is DomainException -> exception // already mapped exception came from OAuth manager, do not map it again
         is UnknownHostException, is SocketTimeoutException -> InternetConnectionException()
         is HttpException -> {
             val errorResponse = try {
