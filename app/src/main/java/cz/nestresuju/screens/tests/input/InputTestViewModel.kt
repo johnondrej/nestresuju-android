@@ -23,18 +23,21 @@ class InputTestViewModel(
 
     private lateinit var questions: List<InputTestQuestion>
 
+    private var latestViewState: ViewState? = null
+
     private val answers = mutableMapOf<Int, InputTestAnswer>()
     private val viewState: ViewState
         get() = (viewStateStream.value as State.Loaded<ViewState>).data
-
 
     init {
         fetchInputQuestions()
     }
 
     fun selectAnswer(answer: InputTestAnswer) {
-        answers[viewState.progress.currentQuestion] = answer
-        viewState.update { currentState -> currentState.copy(answer = answer) }
+        if (viewStateStream.value is State.Loaded) {
+            answers[viewState.progress.currentQuestion] = answer
+            viewState.update { currentState -> currentState.copy(answer = answer) }
+        }
     }
 
     fun nextQuestion() {
@@ -74,15 +77,29 @@ class InputTestViewModel(
                 )
             }
 
-            inputTestsRepository.submitInputTestResults(results)
-            completionEvent.value = Unit
+            viewStateStream.loading()
+            try {
+                inputTestsRepository.submitInputTestResults(results)
+                completionEvent.value = Unit
+            } catch (e: Exception) {
+                viewStateStream.loaded(latestViewState!!)
+                throw e
+            }
+        }
+    }
+
+    fun tryAgain() {
+        if (!::questions.isInitialized) {
+            fetchInputQuestions()
+        } else {
+            submitResults()
         }
     }
 
     fun firstQuestionSelected() = (viewStateStream.value as? State.Loaded)?.data?.progress?.isFirst ?: true
 
     private fun fetchInputQuestions() {
-        viewModelScope.launchWithErrorHandling {
+        viewModelScope.launchWithErrorHandling(errorPropagationStreams = arrayOf(viewStateStream)) {
             viewStateStream.loading()
             questions = inputTestsRepository.fetchInputTestQuestions()
             viewStateStream.loaded(
@@ -99,7 +116,10 @@ class InputTestViewModel(
     }
 
     private fun ViewState.update(updater: (ViewState) -> ViewState) {
-        viewStateStream.loaded(updater(this))
+        val newViewState = updater(this)
+
+        viewStateStream.loaded(newViewState)
+        latestViewState = newViewState
     }
 
     data class ViewState(

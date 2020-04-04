@@ -11,6 +11,9 @@ import cz.nestresuju.common.extensions.visible
 import cz.nestresuju.common.interfaces.OnBackPressedListener
 import cz.nestresuju.databinding.FragmentInputTestBinding
 import cz.nestresuju.model.common.State
+import cz.nestresuju.model.errors.InternetConnectionException
+import cz.nestresuju.model.errors.handlers.InternetErrorsHandler
+import cz.nestresuju.model.errors.handlers.UnknownErrorsHandler
 import cz.nestresuju.screens.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -21,6 +24,11 @@ class InputTestFragment : BaseFragment<FragmentInputTestBinding>(), OnBackPresse
 
     override val viewModel by viewModel<InputTestViewModel>()
 
+    override val errorHandlers = arrayOf(
+        InternetErrorsHandler(),
+        UnknownErrorsHandler()
+    )
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return FragmentInputTestBinding.inflate(inflater, container, false).also { _binding = it }.root
     }
@@ -30,6 +38,7 @@ class InputTestFragment : BaseFragment<FragmentInputTestBinding>(), OnBackPresse
         with(viewBinding) {
             viewModel.viewStateStream.observe(viewLifecycleOwner, Observer { state ->
                 layoutContent.visible = state is State.Loaded
+                layoutInternetError.visible = (state as? State.Error)?.error is InternetConnectionException
                 progress.visible = state == State.Loading
 
                 if (state is State.Loaded) {
@@ -70,6 +79,10 @@ class InputTestFragment : BaseFragment<FragmentInputTestBinding>(), OnBackPresse
 
             btnBack.setOnClickListener {
                 activity?.onBackPressed()
+            }
+
+            btnTryAgain.setOnClickListener {
+                viewModel.tryAgain()
             }
         }
     }

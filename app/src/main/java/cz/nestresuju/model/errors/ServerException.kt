@@ -7,4 +7,4 @@ class ServerException(
     val httpCode: Int,
     val errorCode: Int?,
     val description: String?
-) : RuntimeException()
+) : RuntimeException(), DomainException
