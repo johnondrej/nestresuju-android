@@ -19,9 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".screens.login.LoginActivity"
             android:theme="@style/LoginTheme"

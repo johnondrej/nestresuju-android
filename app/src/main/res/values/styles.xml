@@ -60,6 +60,8 @@
 
     <style name="TextInputDefault" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox" />
 
+    <style name="TextInputFilled" parent="Widget.MaterialComponents.TextInputLayout.FilledBox" />
+
     <style name="TextInputLogin" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox" />
 
 </resources>

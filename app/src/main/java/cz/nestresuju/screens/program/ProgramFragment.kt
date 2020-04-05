@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import cz.nestresuju.R
 import cz.nestresuju.databinding.FragmentProgramBinding
 import cz.nestresuju.screens.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -21,6 +23,9 @@ class ProgramFragment : BaseFragment<FragmentProgramBinding>() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.text.observe(viewLifecycleOwner, Observer {
             viewBinding.textProgram.text = it
+            viewBinding.textProgram.setOnClickListener {
+                findNavController().navigate(R.id.action_fragment_program_overview_to_fragment_program_1_1)
+            }
         })
     }
 }

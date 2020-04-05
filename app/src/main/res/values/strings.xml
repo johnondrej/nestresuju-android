@@ -49,6 +49,17 @@
     <string name="screening_test_confirm_dialog_text">Děkujeme za tvůj čas a tvé odpovědi. Nyní si můžeš prohlédnout Nestresuju v celé své kráse. V sekci Knihovna se můžeš dočíst více o stresu a stress managementu. Do Deníčku si můžeš pravidelně zaznamenávat úroveň svého stresu. V části Program se ti budou postupně otevírat úkoly a výzvy, které ti pomohou zvládat tvůj stres. Tak vzhůru do toho!</string>
     <string name="screening_test_confirm_dialog_button">Přejít do aplikace</string>
 
+    <!-- Program 1 -->
+
+    <string name="program_1_title">Stanovování cílů</string>
+    <string name="program_1_question_1">Čeho přesně chceš dosáhnout? Co k tomu budeš potřebovat? Komu můžeš říct o pomoc?</string>
+    <string name="program_1_question_2">Jak poznáš, že se ti povedlo tvůj úkol splnit?</string>
+    <string name="program_1_question_3">Na této škále označ, jak moc si myslíš, že je tvůj cíl dosažitelný a že se ti povede ho splnit v následujících 6 dnech? (1 - absolutně nedosažitelný, 10 - naprosto dosažitelný)</string>
+    <string name="program_1_question_3_warning">Dobře definovaný cíl, který ti pomůže kontrolovat úroveň tvého stresu musí být reálně dosažitelný. Zamysli si, jak by šlo tvůj cíl pozměnit, aby si ho dokázal(a) splnit nebo si zkus vymyslet jiný cíl.</string>
+    <string name="program_1_question_4">Co ti splnění úkolu přinese? Proč má pro tebe tento cíl význam a smysl?</string>
+    <string name="program_1_question_5">Do kdy si myslíš, že se ti povede tvůj cíl splnit?</string>
+    <string name="program_1_question_hint">Zadej odpověď</string>
+
     <!-- Diary -->
 
     <string name="diary_input_title">Jak moc jsi dnes ve stresu?</string>

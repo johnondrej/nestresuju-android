@@ -7,6 +7,7 @@ import cz.nestresuju.screens.home.HomeViewModel
 import cz.nestresuju.screens.library.LibraryViewModel
 import cz.nestresuju.screens.login.LoginViewModel
 import cz.nestresuju.screens.program.ProgramViewModel
+import cz.nestresuju.screens.program.first.ProgramFirstQuestionViewModel
 import cz.nestresuju.screens.tests.input.InputTestViewModel
 import cz.nestresuju.screens.tests.screening.ScreeningTestViewModel
 import org.koin.android.ext.koin.androidContext
@@ -27,6 +28,10 @@ val viewModelModule = module {
 
     viewModel { ScreeningTestViewModel(inputTestsRepository = get()) }
 
+    viewModel { ProgramViewModel() }
+
+    viewModel { ProgramFirstQuestionViewModel() }
+
     viewModel { AboutAppViewModel() }
 
     viewModel { DiaryViewModel(androidContext(), diaryRepository = get()) }
@@ -35,5 +40,4 @@ val viewModelModule = module {
 
     viewModel { LibraryViewModel() }
 
-    viewModel { ProgramViewModel() }
 }

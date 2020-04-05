@@ -15,7 +15,39 @@
         android:id="@+id/navigation_program"
         android:name="cz.nestresuju.screens.program.ProgramFragment"
         android:label="@string/title_program"
-        tools:layout="@layout/fragment_program" />
+        tools:layout="@layout/fragment_program">
+
+        <action
+            android:id="@+id/action_fragment_program_overview_to_fragment_program_1_1"
+            app:destination="@id/fragment_program_1_1"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_program_1_1"
+        android:name="cz.nestresuju.screens.program.first.ProgramFirstPhase1Fragment"
+        android:label="@string/program_1_title"
+        tools:layout="@layout/fragment_program_1_question">
+
+        <action
+            android:id="@+id/action_fragment_program_1_1_to_fragment_program_1_2"
+            app:destination="@id/fragment_program_1_2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_program_1_2"
+        android:name="cz.nestresuju.screens.program.first.ProgramFirstPhase2Fragment"
+        android:label="@string/program_1_title"
+        tools:layout="@layout/fragment_program_1_question" />
 
     <fragment
         android:id="@+id/navigation_diary"
