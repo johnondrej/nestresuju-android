@@ -47,6 +47,16 @@ class AuthRepository(
 
         val loginChecklist = authEntitiesConverter.apiLoginChecklistToDomain(apiDefinition.getLoginPrerequirements())
         if (loginChecklist.consentGiven) {
+            sharedPreferencesInteractor.setConsentGiven()
+        }
+        if (loginChecklist.inputTestSubmitted) {
+            sharedPreferencesInteractor.setInputTestCompleted()
+        }
+        if (loginChecklist.screeningTestSubmitted) {
+            sharedPreferencesInteractor.setScreeningTestCompleted()
+        }
+
+        if (loginChecklist.consentGiven) {
             return loginChecklist
         } else {
             val confirmed = requestConsentConfirmation(onShowConsent)
