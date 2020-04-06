@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:padding="16dp">
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="6"
+            android:progress="6"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <cz.nestresuju.views.program.first.ProgramFirstSummaryAnswerView
+            android:id="@+id/summary_goal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progress"
+            app:summaryTitle="@string/program_1_overview_goal_title" />
+
+        <cz.nestresuju.views.program.first.ProgramFirstSummaryAnswerView
+            android:id="@+id/summary_completion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/summary_goal"
+            app:summaryTitle="@string/program_1_overview_completion_title" />
+
+        <TextView
+            android:id="@+id/txt_satisfiability_title"
+            style="@style/TextAppearance.Headline3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/program_1_overview_satisfiability_title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/summary_completion" />
+
+        <cz.nestresuju.views.common.DiscreteSeekBar
+            android:id="@+id/seek_satisfiability"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_satisfiability_title" />
+
+        <cz.nestresuju.views.program.first.ProgramFirstSummaryAnswerView
+            android:id="@+id/summary_meaning"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seek_satisfiability"
+            app:summaryTitle="@string/program_1_overview_meaning_title" />
+
+        <cz.nestresuju.views.program.first.ProgramFirstSummaryAnswerView
+            android:id="@+id/summary_deadline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/summary_meaning"
+            app:summaryTitle="@string/program_1_overview_deadline_title" />
+
+        <TextView
+            android:id="@+id/txt_summary_instructions"
+            style="@style/TextAppearance.PrimaryText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/program_1_overview_summarized_goal_instructions"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/summary_deadline" />
+
+        <EditText
+            android:id="@+id/edit_summary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/program_1_question_hint"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLength="70"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_summary_instructions" />
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toBottomOf="@id/btn_finish"
+            app:layout_constraintRight_toLeftOf="@id/btn_finish"
+            app:layout_constraintTop_toTopOf="@id/btn_finish" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_finish"
+            style="@style/PrimaryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/general_finish"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_summary" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

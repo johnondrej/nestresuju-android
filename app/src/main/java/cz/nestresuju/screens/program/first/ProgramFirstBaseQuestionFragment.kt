@@ -42,8 +42,11 @@ abstract class ProgramFirstBaseQuestionFragment : BaseFragment<FragmentProgram1Q
             editAnswer.setLines(10)
             editAnswer.setOnEditorActionListener { _, actionId, _ ->
                 if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    (context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as? InputMethodManager)?.hideSoftInputFromWindow(view.windowToken, 0)
-                    onContinueClicked()
+                    if (!editAnswer.text.isNullOrBlank()) {
+                        (context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as? InputMethodManager)
+                            ?.hideSoftInputFromWindow(view.windowToken, 0)
+                        onContinueClicked()
+                    }
                     return@setOnEditorActionListener true
                 }
                 return@setOnEditorActionListener false

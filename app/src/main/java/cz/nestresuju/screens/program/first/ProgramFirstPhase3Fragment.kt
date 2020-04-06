@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import cz.nestresuju.R
 import cz.nestresuju.common.extensions.visible
 import cz.nestresuju.databinding.FragmentProgram1ScaleBinding
@@ -30,7 +31,7 @@ class ProgramFirstPhase3Fragment : BaseFragment<FragmentProgram1ScaleBinding>() 
             btnContinue.setOnClickListener { onContinueClicked() }
             btnBack.setOnClickListener { activity?.onBackPressed() }
 
-            seekSatisfiability.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            seekSatisfiability.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 
                 override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                     viewModel.onScaleChanged(progress + 1)
@@ -50,6 +51,6 @@ class ProgramFirstPhase3Fragment : BaseFragment<FragmentProgram1ScaleBinding>() 
     }
 
     private fun onContinueClicked() {
-        // TODO
+        findNavController().navigate(R.id.action_fragment_program_1_3_to_fragment_program_1_4)
     }
 }

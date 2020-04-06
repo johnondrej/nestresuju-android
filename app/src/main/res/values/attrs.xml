@@ -19,4 +19,9 @@
         <attr name="emptyText" format="reference" />
         <attr name="errorText" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="ProgramFirstSummaryAnswerView">
+        <attr name="summaryTitle" format="reference" />
+        <attr name="summaryAnswer" format="reference" />
+    </declare-styleable>
 </resources>

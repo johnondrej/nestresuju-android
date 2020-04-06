@@ -59,6 +59,12 @@
     <string name="program_1_question_4">Co ti splnění úkolu přinese? Proč má pro tebe tento cíl význam a smysl?</string>
     <string name="program_1_question_5">Do kdy si myslíš, že se ti povede tvůj cíl splnit?</string>
     <string name="program_1_question_hint">Zadej odpověď</string>
+    <string name="program_1_overview_goal_title">1. Cíl</string>
+    <string name="program_1_overview_completion_title">2. Splnění</string>
+    <string name="program_1_overview_satisfiability_title">3. Splnitelnost</string>
+    <string name="program_1_overview_meaning_title">4. Význam</string>
+    <string name="program_1_overview_deadline_title">5. Do kdy</string>
+    <string name="program_1_overview_summarized_goal_instructions">Toto jsou tvé odpovědi na otázky ohledně tvého cíle. Nyní se pokus svůj cíl formulovat jasně a krátce. Nadefinuj si jej za použití jen několika slov. V jednoduchosti je krása!</string>
 
     <!-- Diary -->
 

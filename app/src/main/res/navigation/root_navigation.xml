@@ -62,6 +62,51 @@
         android:id="@+id/fragment_program_1_3"
         android:name="cz.nestresuju.screens.program.first.ProgramFirstPhase3Fragment"
         android:label="@string/program_1_title"
+        tools:layout="@layout/fragment_program_1_scale">
+
+        <action
+            android:id="@+id/action_fragment_program_1_3_to_fragment_program_1_4"
+            app:destination="@id/fragment_program_1_4"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_program_1_4"
+        android:name="cz.nestresuju.screens.program.first.ProgramFirstPhase4Fragment"
+        android:label="@string/program_1_title"
+        tools:layout="@layout/fragment_program_1_scale">
+
+        <action
+            android:id="@+id/action_fragment_program_1_4_to_fragment_program_1_5"
+            app:destination="@id/fragment_program_1_5"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_program_1_5"
+        android:name="cz.nestresuju.screens.program.first.ProgramFirstPhase5Fragment"
+        android:label="@string/program_1_title"
+        tools:layout="@layout/fragment_program_1_scale">
+
+        <action
+            android:id="@+id/action_fragment_program_1_5_to_fragment_program_1_6"
+            app:destination="@id/fragment_program_1_6"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_program_1_6"
+        android:name="cz.nestresuju.screens.program.first.ProgramFirstPhase6Fragment"
+        android:label="@string/program_1_title"
         tools:layout="@layout/fragment_program_1_scale" />
 
     <fragment
