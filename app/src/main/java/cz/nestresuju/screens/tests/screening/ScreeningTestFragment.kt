@@ -37,6 +37,7 @@ class ScreeningTestFragment :
     }
 
     private var ignoreIsCheckedListeners = false
+    private var currentOptions = emptyList<ScreeningTestOption>()
 
     override val viewModel by viewModel<ScreeningTestViewModel>()
 
@@ -64,10 +65,12 @@ class ScreeningTestFragment :
                     btnContinue.text = if (!viewState.progress.isLast) getString(R.string.general_continue) else getString(R.string.general_finish)
                     btnBack.visible = !viewState.progress.isFirst
 
-                    if (layoutOptions.childCount == 0) {
+                    if (currentOptions != viewState.options) {
+                        layoutOptions.removeAllViews()
                         viewState.options.forEach { option ->
                             layoutOptions.addOptionCheckbox(option, optionSelected = option.id in viewState.selectedOptionIds)
                         }
+                        currentOptions = viewState.options
                     }
 
                     if (!viewState.progress.isLast) {

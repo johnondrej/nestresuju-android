@@ -9,6 +9,7 @@ import cz.nestresuju.model.entities.domain.tests.screening.ScreeningTestOption
 import cz.nestresuju.model.repositories.InputTestsRepository
 import cz.nestresuju.screens.base.BaseViewModel
 import kotlin.math.ceil
+import kotlin.math.min
 
 /**
  * [ViewModel] for screening test.
@@ -20,7 +21,7 @@ class ScreeningTestViewModel(
     companion object {
 
         // How many options fit to a single page
-        private const val PAGE_SIZE = 8
+        private const val PAGE_SIZE = 6
     }
 
     val viewStateStream = StateLiveData<ViewState>()
@@ -60,7 +61,7 @@ class ScreeningTestViewModel(
 
             viewState.update { currentState ->
                 currentState.copy(
-                    options = options.subList(currentPage * PAGE_SIZE, minOf((currentPage + 1) * PAGE_SIZE, options.size)),
+                    options = options.subList(currentPage * PAGE_SIZE, min((currentPage + 1) * PAGE_SIZE, options.size)),
                     progress = Progress(
                         currentPage = currentPage,
                         totalPages = totalPages()
@@ -76,7 +77,7 @@ class ScreeningTestViewModel(
 
             viewState.update { currentState ->
                 currentState.copy(
-                    options = options.subList(currentPage * PAGE_SIZE, minOf((currentPage + 1) * PAGE_SIZE, options.size)),
+                    options = options.subList(currentPage * PAGE_SIZE, min((currentPage + 1) * PAGE_SIZE, options.size)),
                     progress = Progress(
                         currentPage = currentPage,
                         totalPages = totalPages()
@@ -115,7 +116,7 @@ class ScreeningTestViewModel(
             options = inputTestsRepository.fetchScreeningTestOptions()
             viewStateStream.loaded(
                 ViewState(
-                    options = options,
+                    options = options.subList(0, min(PAGE_SIZE, options.size)),
                     selectedOptionIds = emptySet(),
                     progress = Progress(
                         currentPage = 0,
