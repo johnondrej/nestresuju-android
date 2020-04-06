@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import cz.nestresuju.screens.base.BaseViewModel
 
 /**
- * ViewModel for phase 1 of first program.
+ * Common ViewModel for questions in first program.
  */
 class ProgramFirstQuestionViewModel : BaseViewModel() {
 

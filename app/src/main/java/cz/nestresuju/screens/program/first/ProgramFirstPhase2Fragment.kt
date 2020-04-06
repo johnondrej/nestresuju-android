@@ -1,13 +1,11 @@
 package cz.nestresuju.screens.program.first
 
-import android.os.Bundle
-import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import cz.nestresuju.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
- * Fragment with first part of first program.
+ * Fragment with second part of first program.
  */
 class ProgramFirstPhase2Fragment : ProgramFirstBaseQuestionFragment() {
 
@@ -16,15 +14,7 @@ class ProgramFirstPhase2Fragment : ProgramFirstBaseQuestionFragment() {
 
     override val viewModel by viewModel<ProgramFirstQuestionViewModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        requireActivity().onBackPressedDispatcher.addCallback(this) {
-            findNavController().popBackStack()
-            isEnabled = true
-        }
-    }
-
     override fun onContinueClicked() {
-        // TODO
+        findNavController().navigate(R.id.action_fragment_program_1_2_to_fragment_program_1_3)
     }
 }

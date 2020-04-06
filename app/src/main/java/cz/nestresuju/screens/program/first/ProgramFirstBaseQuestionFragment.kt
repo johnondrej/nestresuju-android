@@ -1,9 +1,12 @@
 package cz.nestresuju.screens.program.first
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import cz.nestresuju.databinding.FragmentProgram1QuestionBinding
@@ -35,6 +38,16 @@ abstract class ProgramFirstBaseQuestionFragment : BaseFragment<FragmentProgram1Q
             btnContinue.setOnClickListener { onContinueClicked() }
             btnBack.setOnClickListener { activity?.onBackPressed() }
 
+            editAnswer.setHorizontallyScrolling(false)
+            editAnswer.setLines(10)
+            editAnswer.setOnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    (context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as? InputMethodManager)?.hideSoftInputFromWindow(view.windowToken, 0)
+                    onContinueClicked()
+                    return@setOnEditorActionListener true
+                }
+                return@setOnEditorActionListener false
+            }
             editAnswer.doAfterTextChanged { answer ->
                 viewModel.onAnswerChanged(answer.toString())
             }
