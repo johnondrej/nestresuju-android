@@ -34,7 +34,9 @@ class ProgramFirstPhase3Fragment : BaseFragment<FragmentProgram1ScaleBinding>() 
             seekSatisfiability.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 
                 override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                    viewModel.onScaleChanged(progress + 1)
+                    if (fromUser) {
+                        viewModel.onScaleChanged(progress + 1)
+                    }
                 }
 
                 override fun onStartTrackingTouch(seekBar: SeekBar?) {}
@@ -44,6 +46,7 @@ class ProgramFirstPhase3Fragment : BaseFragment<FragmentProgram1ScaleBinding>() 
             viewModel.scaleStream.observe(viewLifecycleOwner, Observer { satisfiability ->
                 val satisfiabilityValid = satisfiability >= ProgramFirstSatisfiabilityViewModel.MIN_SATISFIABILITY_ALLOWED
 
+                seekSatisfiability.seekBar.progress = satisfiability - 1
                 btnContinue.isEnabled = satisfiabilityValid
                 txtScaleWarning?.visible = !satisfiabilityValid
             })

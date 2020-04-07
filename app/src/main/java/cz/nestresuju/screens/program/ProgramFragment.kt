@@ -21,11 +21,26 @@ class ProgramFragment : BaseFragment<FragmentProgramBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.text.observe(viewLifecycleOwner, Observer {
-            viewBinding.textProgram.text = it
-            viewBinding.textProgram.setOnClickListener {
-                findNavController().navigate(R.id.action_fragment_program_overview_to_fragment_program_1_1)
-            }
-        })
+        with(viewBinding) {
+            viewModel.text.observe(viewLifecycleOwner, Observer {
+                textProgram.text = it
+            })
+
+            viewModel.progressStream.observe(viewLifecycleOwner, Observer { progress ->
+                val programFirstProgress = progress.programFirstProgress
+
+                textProgram.setOnClickListener {
+                    val navController = findNavController()
+
+                    // Build navigation backstack
+                    navController.navigate(R.id.action_fragment_program_overview_to_fragment_program_1_1)
+                    if (programFirstProgress >= 2) navController.navigate(R.id.action_fragment_program_1_1_to_fragment_program_1_2)
+                    if (programFirstProgress >= 3) navController.navigate(R.id.action_fragment_program_1_2_to_fragment_program_1_3)
+                    if (programFirstProgress >= 4) navController.navigate(R.id.action_fragment_program_1_3_to_fragment_program_1_4)
+                    if (programFirstProgress >= 5) navController.navigate(R.id.action_fragment_program_1_4_to_fragment_program_1_5)
+                    if (programFirstProgress >= 6) navController.navigate(R.id.action_fragment_program_1_5_to_fragment_program_1_6)
+                }
+            })
+        }
     }
 }

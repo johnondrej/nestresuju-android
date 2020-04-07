@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <cz.nestresuju.views.program.first.ProgramFirstSummaryAnswerView
-            android:id="@+id/summary_goal"
+            android:id="@+id/summary_target"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -40,36 +40,27 @@
             android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/summary_goal"
+            app:layout_constraintTop_toBottomOf="@id/summary_target"
             app:summaryTitle="@string/program_1_overview_completion_title" />
 
-        <TextView
-            android:id="@+id/txt_satisfiability_title"
-            style="@style/TextAppearance.Headline3"
+        <cz.nestresuju.views.program.first.ProgramFirstSummaryAnswerView
+            android:id="@+id/summary_satisfiability"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/program_1_overview_satisfiability_title"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/summary_completion" />
-
-        <cz.nestresuju.views.common.DiscreteSeekBar
-            android:id="@+id/seek_satisfiability"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_satisfiability_title" />
+            app:layout_constraintTop_toBottomOf="@id/summary_completion"
+            app:summaryTitle="@string/program_1_overview_satisfiability_title" />
 
         <cz.nestresuju.views.program.first.ProgramFirstSummaryAnswerView
-            android:id="@+id/summary_meaning"
+            android:id="@+id/summary_reason"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/seek_satisfiability"
+            app:layout_constraintTop_toBottomOf="@id/summary_satisfiability"
             app:summaryTitle="@string/program_1_overview_meaning_title" />
 
         <cz.nestresuju.views.program.first.ProgramFirstSummaryAnswerView
@@ -79,7 +70,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/summary_meaning"
+            app:layout_constraintTop_toBottomOf="@id/summary_reason"
             app:summaryTitle="@string/program_1_overview_deadline_title" />
 
         <TextView

@@ -11,8 +11,8 @@ import org.threeten.bp.ZonedDateTime
 class RoomTypeConverters {
 
     @TypeConverter
-    fun toDbTimestamp(dateTime: ZonedDateTime): Long = dateTime.toInstant().toEpochMilli()
+    fun toDbTimestamp(dateTime: ZonedDateTime?): Long? = dateTime?.toInstant()?.toEpochMilli()
 
     @TypeConverter
-    fun fromDbTimestamp(timestamp: Long): ZonedDateTime = Instant.ofEpochMilli(timestamp).atZone(ZoneId.systemDefault())
+    fun fromDbTimestamp(timestamp: Long?): ZonedDateTime? = timestamp?.let { Instant.ofEpochMilli(it).atZone(ZoneId.systemDefault()) }
 }

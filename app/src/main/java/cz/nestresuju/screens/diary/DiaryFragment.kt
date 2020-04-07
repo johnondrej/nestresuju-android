@@ -1,13 +1,12 @@
 package cz.nestresuju.screens.diary
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.Observer
 import cz.nestresuju.R
+import cz.nestresuju.common.extensions.hideKeyboard
 import cz.nestresuju.databinding.FragmentCustomListBinding
 import cz.nestresuju.model.entities.domain.diary.DiaryEntry
 import cz.nestresuju.screens.base.BaseFragment
@@ -57,7 +56,7 @@ class DiaryFragment : BaseFragment<FragmentCustomListBinding>(),
 
         viewModel.clearAnswerEvent.observe(viewLifecycleOwner, Observer {
             controller.answer = null
-            (context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as? InputMethodManager)?.hideSoftInputFromWindow(view.windowToken, 0)
+            context?.hideKeyboard(view)
         })
 
         viewModel.entriesStream.observe(viewLifecycleOwner, Observer { entries ->

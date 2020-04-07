@@ -27,6 +27,8 @@ val repositoryModule = module {
 
     factory<InputTestsRepository> { InputTestsRepositoryImpl(apiDefinition = get(), entityConverter = get(), sharedPreferencesInteractor = get()) }
 
+    factory<ProgramFirstRepository> { ProgramFirstRepositoryImpl(apiDefinition = get(), entityConverter = get(), database = get()) }
+
     factory<DiaryRepository> {
         DiaryRepositoryImpl(apiDefinition = get(), database = get(), dataSynchronizer = get(), entityConverter = get())
     }

@@ -30,13 +30,13 @@ val viewModelModule = module {
 
     viewModel { ScreeningTestViewModel(inputTestsRepository = get()) }
 
-    viewModel { ProgramViewModel() }
+    viewModel { ProgramViewModel(programFirstRepository = get()) }
 
-    viewModel { ProgramFirstQuestionViewModel() }
+    viewModel { (progress: Int) -> ProgramFirstQuestionViewModel(programRepository = get(), progress = progress) }
 
-    viewModel { ProgramFirstSatisfiabilityViewModel() }
+    viewModel { ProgramFirstSatisfiabilityViewModel(programRepository = get()) }
 
-    viewModel { ProgramFirstOverviewViewModel() }
+    viewModel { ProgramFirstOverviewViewModel(programRepository = get()) }
 
     viewModel { AboutAppViewModel() }
 

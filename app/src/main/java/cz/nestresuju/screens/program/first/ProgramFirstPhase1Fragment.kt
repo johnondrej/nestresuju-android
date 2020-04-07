@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import cz.nestresuju.R
 import cz.nestresuju.common.extensions.visible
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 /**
  * Fragment with first part of first program.
@@ -14,7 +15,7 @@ class ProgramFirstPhase1Fragment : ProgramFirstBaseQuestionFragment() {
 
     override val questionRes = R.string.program_1_question_1
 
-    override val viewModel by viewModel<ProgramFirstQuestionViewModel>()
+    override val viewModel by viewModel<ProgramFirstQuestionViewModel> { parametersOf(1) }
     override val phaseProgress = 1
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

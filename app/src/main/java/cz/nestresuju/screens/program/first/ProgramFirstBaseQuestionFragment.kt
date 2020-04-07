@@ -1,14 +1,13 @@
 package cz.nestresuju.screens.program.first
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
+import cz.nestresuju.common.extensions.hideKeyboard
 import cz.nestresuju.databinding.FragmentProgram1QuestionBinding
 import cz.nestresuju.screens.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -38,24 +37,29 @@ abstract class ProgramFirstBaseQuestionFragment : BaseFragment<FragmentProgram1Q
             btnContinue.setOnClickListener { onContinueClicked() }
             btnBack.setOnClickListener { activity?.onBackPressed() }
 
-            editAnswer.setHorizontallyScrolling(false)
-            editAnswer.setLines(10)
-            editAnswer.setOnEditorActionListener { _, actionId, _ ->
-                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    if (!editAnswer.text.isNullOrBlank()) {
-                        (context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as? InputMethodManager)
-                            ?.hideSoftInputFromWindow(view.windowToken, 0)
-                        onContinueClicked()
+            with(editAnswer) {
+                setHorizontallyScrolling(false)
+                setLines(10)
+                setOnEditorActionListener { _, actionId, _ ->
+                    if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                        if (!editAnswer.text.isNullOrBlank()) {
+                            context?.hideKeyboard(view)
+                            onContinueClicked()
+                        }
+                        return@setOnEditorActionListener true
                     }
-                    return@setOnEditorActionListener true
+                    return@setOnEditorActionListener false
                 }
-                return@setOnEditorActionListener false
-            }
-            editAnswer.doAfterTextChanged { answer ->
-                viewModel.onAnswerChanged(answer.toString())
+                doAfterTextChanged { answer ->
+                    viewModel.onAnswerChanged(answer.toString())
+                }
             }
 
             viewModel.answerStream.observe(viewLifecycleOwner, Observer { answer ->
+                if (answer.isNotBlank() && editAnswer.text.isNullOrBlank()) {
+                    editAnswer.setText(answer)
+                }
+
                 btnContinue.isEnabled = answer.isNotBlank()
             })
         }
