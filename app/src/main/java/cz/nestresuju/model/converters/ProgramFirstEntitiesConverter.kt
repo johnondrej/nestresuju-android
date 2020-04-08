@@ -30,7 +30,8 @@ class ProgramFirstEntitiesConverterImpl : ProgramFirstEntitiesConverter {
             deadline = apiResults.deadline,
             summarizedTarget = apiResults.summarizedTarget,
             programCompleted = apiResults.programCompletedDate,
-            progress = 6
+            progress = 6,
+            synchronizedWithApi = true
         )
     }
 
@@ -68,7 +69,8 @@ class ProgramFirstEntitiesConverterImpl : ProgramFirstEntitiesConverter {
             deadline = results.deadline,
             summarizedTarget = results.summarizedTarget,
             programCompleted = results.programCompleted,
-            progress = results.progress
+            progress = results.progress,
+            synchronizedWithApi = false
         )
     }
 }

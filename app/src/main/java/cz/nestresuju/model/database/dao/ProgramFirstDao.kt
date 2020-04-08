@@ -1,7 +1,11 @@
 package cz.nestresuju.model.database.dao
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import cz.nestresuju.model.entities.database.program.first.DbProgramFirstResults
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Database DAO for storing results of first program.
@@ -9,20 +13,12 @@ import cz.nestresuju.model.entities.database.program.first.DbProgramFirstResults
 @Dao
 abstract class ProgramFirstDao {
 
-    @Transaction
-    open suspend fun getResults(): DbProgramFirstResults {
-        if (getResultsCount() < 1) {
-            updateResults(DbProgramFirstResults())
-        }
-        return getProgramResults()
-    }
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun updateResults(results: DbProgramFirstResults)
 
     @Query("SELECT * FROM ProgramFirstResults")
-    protected abstract suspend fun getProgramResults(): DbProgramFirstResults
+    abstract suspend fun getResults(): DbProgramFirstResults
 
-    @Query("SELECT COUNT(id) FROM ProgramFirstResults")
-    protected abstract suspend fun getResultsCount(): Int
+    @Query("SELECT * FROM ProgramFirstResults")
+    abstract fun observeResults(): Flow<DbProgramFirstResults>
 }

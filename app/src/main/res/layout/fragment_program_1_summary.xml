@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/TextAppearance.Headline2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/program_1_summary_title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <cz.nestresuju.views.program.first.ProgramFirstSummaryAnswerView
+            android:id="@+id/summary_target"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:summaryTitle="@string/program_1_overview_goal_title" />
+
+        <cz.nestresuju.views.program.first.ProgramFirstSummaryAnswerView
+            android:id="@+id/summary_completion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/summary_target"
+            app:summaryTitle="@string/program_1_overview_completion_title" />
+
+        <cz.nestresuju.views.program.first.ProgramFirstSummaryAnswerView
+            android:id="@+id/summary_satisfiability"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/summary_completion"
+            app:summaryTitle="@string/program_1_overview_satisfiability_title" />
+
+        <cz.nestresuju.views.program.first.ProgramFirstSummaryAnswerView
+            android:id="@+id/summary_reason"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/summary_satisfiability"
+            app:summaryTitle="@string/program_1_overview_meaning_title" />
+
+        <cz.nestresuju.views.program.first.ProgramFirstSummaryAnswerView
+            android:id="@+id/summary_deadline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/summary_reason"
+            app:summaryTitle="@string/program_1_overview_deadline_title" />
+
+        <cz.nestresuju.views.program.first.ProgramFirstSummaryAnswerView
+            android:id="@+id/summary_target_short"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/summary_deadline"
+            app:summaryTitle="@string/program_1_overview_summary_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

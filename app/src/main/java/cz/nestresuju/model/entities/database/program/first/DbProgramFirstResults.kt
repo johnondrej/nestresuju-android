@@ -18,5 +18,6 @@ data class DbProgramFirstResults(
     @ColumnInfo(name = "deadline") val deadline: String = "",
     @ColumnInfo(name = "summarizedTarget") val summarizedTarget: String = "",
     @ColumnInfo(name = "programCompleted") val programCompleted: ZonedDateTime? = null,
-    @ColumnInfo(name = "progress") val progress: Int = 1
+    @ColumnInfo(name = "progress") val progress: Int = 1,
+    @ColumnInfo(name = "synchronized") val synchronizedWithApi: Boolean = false
 )

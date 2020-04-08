@@ -10,6 +10,7 @@ import cz.nestresuju.screens.program.ProgramViewModel
 import cz.nestresuju.screens.program.first.ProgramFirstOverviewViewModel
 import cz.nestresuju.screens.program.first.ProgramFirstQuestionViewModel
 import cz.nestresuju.screens.program.first.ProgramFirstSatisfiabilityViewModel
+import cz.nestresuju.screens.program.first.ProgramFirstSummaryViewModel
 import cz.nestresuju.screens.tests.input.InputTestViewModel
 import cz.nestresuju.screens.tests.screening.ScreeningTestViewModel
 import org.koin.android.ext.koin.androidContext
@@ -37,6 +38,8 @@ val viewModelModule = module {
     viewModel { ProgramFirstSatisfiabilityViewModel(programRepository = get()) }
 
     viewModel { ProgramFirstOverviewViewModel(programRepository = get()) }
+
+    viewModel { ProgramFirstSummaryViewModel(programRepository = get()) }
 
     viewModel { AboutAppViewModel() }
 

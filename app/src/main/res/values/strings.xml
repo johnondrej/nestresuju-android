@@ -52,6 +52,7 @@
     <!-- Program 1 -->
 
     <string name="program_1_title">Stanovování cílů</string>
+    <string name="program_1_summary_title">Stanovování cílů - shrnutí</string>
     <string name="program_1_question_1">Čeho přesně chceš dosáhnout? Co k tomu budeš potřebovat? Komu můžeš říct o pomoc?</string>
     <string name="program_1_question_2">Jak poznáš, že se ti povedlo tvůj úkol splnit?</string>
     <string name="program_1_question_3">Na této škále označ, jak moc si myslíš, že je tvůj cíl dosažitelný a že se ti povede ho splnit v následujících 6 dnech? (1 - absolutně nedosažitelný, 10 - naprosto dosažitelný)</string>
@@ -64,7 +65,9 @@
     <string name="program_1_overview_satisfiability_title">3. Splnitelnost</string>
     <string name="program_1_overview_meaning_title">4. Význam</string>
     <string name="program_1_overview_deadline_title">5. Do kdy</string>
+    <string name="program_1_overview_summary_title">6. Shrnutí cíle</string>
     <string name="program_1_overview_summarized_goal_instructions">Toto jsou tvé odpovědi na otázky ohledně tvého cíle. Nyní se pokus svůj cíl formulovat jasně a krátce. Nadefinuj si jej za použití jen několika slov. V jednoduchosti je krása!</string>
+    <string name="program_1_submitted_dialog_text">Gratulujeme! Právě sis stanovil(a) svůj cíl do následujícího týdne: %s. Držíme palce s jeho plněním. Za 6 dní se ti otevře další část programu Nestresuju! Mezi tím nezapomínej zapisovat svou úroveň stresu do Deníku anebo si něco přečíst o stresu a jeho zvládání v Knihovně.</string>
 
     <!-- Diary -->
 

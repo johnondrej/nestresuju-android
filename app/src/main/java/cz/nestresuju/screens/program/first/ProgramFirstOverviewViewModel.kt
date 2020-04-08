@@ -8,7 +8,6 @@ import cz.nestresuju.model.repositories.ProgramFirstRepository
 import cz.nestresuju.screens.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 /**
  * ViewModel for last screen of program 1.
@@ -26,7 +25,7 @@ class ProgramFirstOverviewViewModel(
         get() = _summaryLiveData
 
     init {
-        viewModelScope.launch {
+        viewModelScope.launchWithErrorHandling {
             val results = programRepository.getProgramResults()
             _resultsLiveData.value = results
             _summaryLiveData.value = results.summarizedTarget
@@ -37,12 +36,18 @@ class ProgramFirstOverviewViewModel(
 
     fun onSummaryChanged(summary: String) {
         _summaryLiveData.value = summary
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launchWithErrorHandling(Dispatchers.IO) {
             // debounce
             delay(300)
             if (summaryStream.value == summary) {
                 programRepository.updateProgramResults { currentResults -> currentResults.copy(summarizedTarget = summary) }
             }
+        }
+    }
+
+    fun submitResults() {
+        viewModelScope.launchWithErrorHandling {
+            programRepository.submitResults()
         }
     }
 }

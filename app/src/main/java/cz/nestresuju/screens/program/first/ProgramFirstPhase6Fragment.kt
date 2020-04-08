@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import cz.nestresuju.R
 import cz.nestresuju.common.extensions.hideKeyboard
 import cz.nestresuju.databinding.FragmentProgram1OverviewBinding
 import cz.nestresuju.screens.base.BaseFragment
@@ -15,7 +17,14 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 /**
  * Fragment with sixth part of first program.
  */
-class ProgramFirstPhase6Fragment : BaseFragment<FragmentProgram1OverviewBinding>() {
+class ProgramFirstPhase6Fragment :
+    BaseFragment<FragmentProgram1OverviewBinding>(),
+    ProgramFirstSubmittedDialogFragment.OnFirstProgramSubmittedListener {
+
+    companion object {
+
+        private const val TAG_CONFIRMATION_DIALOG = "confirmation_dialog"
+    }
 
     override val viewModel by viewModel<ProgramFirstOverviewViewModel>()
 
@@ -31,7 +40,7 @@ class ProgramFirstPhase6Fragment : BaseFragment<FragmentProgram1OverviewBinding>
                     if (actionId == EditorInfo.IME_ACTION_DONE) {
                         if (!editSummary.text.isNullOrBlank()) {
                             context?.hideKeyboard(view)
-                            onSubmitClicked()
+                            onSubmitClicked(editSummary.text.toString())
                         }
                         return@setOnEditorActionListener true
                     }
@@ -56,6 +65,7 @@ class ProgramFirstPhase6Fragment : BaseFragment<FragmentProgram1OverviewBinding>
                 }
 
                 btnFinish.isEnabled = summary.isNotBlank()
+                btnFinish.setOnClickListener { onSubmitClicked(summary) }
             })
 
             btnBack.setOnClickListener {
@@ -64,7 +74,13 @@ class ProgramFirstPhase6Fragment : BaseFragment<FragmentProgram1OverviewBinding>
         }
     }
 
-    private fun onSubmitClicked() {
-        // TODO
+    override fun onFirstProgramSubmitted() {
+        findNavController().popBackStack(R.id.navigation_program, false)
+    }
+
+    private fun onSubmitClicked(summary: String) {
+        viewModel.submitResults()
+
+        ProgramFirstSubmittedDialogFragment.newInstance(summary).show(childFragmentManager, TAG_CONFIRMATION_DIALOG)
     }
 }

@@ -1,5 +1,6 @@
 package cz.nestresuju.model.synchronization
 
+import cz.nestresuju.model.converters.ProgramFirstEntitiesConverter
 import cz.nestresuju.model.database.AppDatabase
 import cz.nestresuju.model.entities.api.diary.ApiNewDiaryEntry
 import cz.nestresuju.model.entities.database.diary.DbSynchronizerDiaryChange
@@ -14,6 +15,8 @@ interface DataSynchronizer {
 
     suspend fun synchronizeAll()
 
+    suspend fun synchronizeProgram()
+
     suspend fun synchronizeDiary()
 
     suspend fun addDiarySynchronizationRequest(request: DbSynchronizerDiaryChange)
@@ -21,11 +24,28 @@ interface DataSynchronizer {
 
 class DataSynchronizerImpl(
     private val apiDefinition: ApiDefinition,
-    private val database: AppDatabase
+    private val database: AppDatabase,
+    private val programFirstEntitiesConverter: ProgramFirstEntitiesConverter
 ) : DataSynchronizer {
 
     override suspend fun synchronizeAll() {
+        synchronizeProgram()
         synchronizeDiary()
+    }
+
+    override suspend fun synchronizeProgram() {
+        val programFirstDao = database.programFirstDao()
+        val programFirstResults = programFirstDao.getResults()
+
+        try {
+            if (!programFirstResults.synchronizedWithApi && programFirstResults.programCompleted != null) {
+                // TODO: uncomment below when API is ready
+                // apiDefinition.submitFirstProgramResults(programFirstEntitiesConverter.dbProgramFirstResultsToApi(programFirstResults))
+                programFirstDao.updateResults(programFirstResults.copy(synchronizedWithApi = true))
+            }
+        } catch (e: Exception) {
+            // silent fail, synchronization will be performed next time
+        }
     }
 
     override suspend fun synchronizeDiary() {
