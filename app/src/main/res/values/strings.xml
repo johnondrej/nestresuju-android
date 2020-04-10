@@ -5,6 +5,8 @@
     <string name="general_continue">Pokračovat</string>
     <string name="general_next">Další</string>
     <string name="general_save">Uložit</string>
+    <string name="general_lets_go">Jdeme na to</string>
+    <string name="general_not_now">Teď ne</string>
     <string name="general_finish">Dokončit</string>
     <string name="general_begin">Začít</string>
     <string name="general_try_again">Zkusit znovu</string>
@@ -92,6 +94,20 @@
     <string name="program_1_overview_summary_title">6. Shrnutí cíle</string>
     <string name="program_1_overview_summarized_goal_instructions">Toto jsou tvé odpovědi na otázky ohledně tvého cíle. Nyní se pokus svůj cíl formulovat jasně a krátce. Nadefinuj si jej za použití jen několika slov. V jednoduchosti je krása!</string>
     <string name="program_1_submitted_dialog_text">Gratulujeme! Právě sis stanovil(a) svůj cíl do následujícího týdne: %s. Držíme palce s jeho plněním. Za 6 dní se ti otevře další část programu Nestresuju! Mezi tím nezapomínej zapisovat svou úroveň stresu do Deníku anebo si něco přečíst o stresu a jeho zvládání v Knihovně.</string>
+
+    <!-- Program 2 -->
+
+    <string name="program_2_title">Relaxace</string>
+    <string name="program_2_intro_1">A nyní už tě čeká nová část programu Nestresuju, která je zaměřená na relaxaci. Když se nám začnou hromadit starosti a povinnosti, je jednoduché se jimi nechat strhnout a neustále na ně myslet. Takové ustavičné prožívání stresu je velmi vysilující.\n\nUž sis vyzkoušel(a) jak si stanovit dobrý cíl a díky tomu předcházet stresu a lépe kontrolovat stresové události ve svém životě. Nyní budeš pracovat na své schopnosti relaxace, která ti dopomůže lépe orientovat svou pozornost na své emoce a díky tomu je lépe zvládat. Zvýšení povědomí o vlastních emocích usnadňuje jejich lepší zpracování a může dokonce snížit negativní emoční reakce spojované se stresem.\n\nSchopnost relaxace ti pomůže se vyrovnávat se stresovými situacemi, kterým nelze předejít nebo je kontrolovat díky dobrému stanovení cíle. Jak taková relaxace vypadá a jak dlouho vlastně trvá?</string>
+    <string name="program_2_intro_2">Základem relaxace je nalezení vhodného místa, kde se můžeš uvolnit a pohodlně se usadit. Je důležité, aby tě při relaxaci nikdo nerušil, dobré je ztišit si zvuky na mobilním telefonu.\n\nSamotná relaxace trvá tak dlouho, jak budeš cítit, že je potřeba. Zavřeš oči, budeš se soustředit na svůj dech a snažit se uvolnit. Nejprve se zhluboka nadechneš a při dlouhém výdechu si představuj, jak tě stres a napětí opouští a svaly se ti uvolňují. Výdech by měl být delší než nádech a pokus se vydechnout všechen vzduch z plic. Opakuj nádechy a výdechy několikrát až budeš cítit, že ti je lépe. Když ti utečou myšlenky někam jinam než k relaxaci, vrať svou pozornost zpět k dýchání.\n\nMáš chuť si to teď vyzkoušet?</string>
+    <string name="program_2_instructions_1">Nejprve si najdi vhodné místo, kde se budeš moci na chvíli nerušeně posadit a relaxovat. Ztiš si zvuky na mobilu.</string>
+    <string name="program_2_instructions_2">Posaď se. Uvolni se.</string>
+    <string name="program_2_instructions_3">hluboka se nadechni.</string>
+    <string name="program_2_instructions_4">A teď dlouze vydechni všechen vzduch z plic.</string>
+    <string name="program_2_instructions_5">Všimni si, jak se ti postupně uvolňují svaly. A pokračuj v dýchání.</string>
+    <string name="program_2_instructions_6">Snaž se soustředit jen na dýchání a na svou relaxaci.</string>
+    <string name="program_2_instructions_7">A teď si to můžeš vyzkoušet! Až budeš mít pocit, že už ti relaxace stačí, vrať se zpátky do aplikace Nestresuju.\n\nTeď se zhluboka nadechni, zavři oči a užij si svou relaxaci.</string>
+    <string name="program_2_submitted_dialog_text">Výborně! Cvičení dělá mistra, a proto se v následujících 6-ti dnech pokus alespoň jednou vrátit k relaxaci. Najdi si chvíli času, zastav se a vyčisti svou mysl a uvolni napětí. Určitě se budeš cítit lépe. Za 6 dní se ti otevře další část programu Nestresuju! Mezi tím nezapomínej zapisovat svou úroveň stresu do Deníku anebo si počíst o stresu a jeho zvládání v Knihovně. Hodně štěstí!</string>
 
     <!-- Diary -->
 
