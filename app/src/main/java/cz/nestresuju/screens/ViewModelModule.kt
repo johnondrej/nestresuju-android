@@ -1,18 +1,18 @@
 package cz.nestresuju.screens
 
+import cz.nestresuju.model.entities.domain.program.ProgramId
 import cz.nestresuju.router.RouterViewModel
 import cz.nestresuju.screens.about.AboutAppViewModel
 import cz.nestresuju.screens.diary.DiaryViewModel
 import cz.nestresuju.screens.home.HomeViewModel
 import cz.nestresuju.screens.library.LibraryViewModel
 import cz.nestresuju.screens.login.LoginViewModel
-import cz.nestresuju.screens.program.ProgramId
-import cz.nestresuju.screens.program.ProgramViewModel
 import cz.nestresuju.screens.program.evaluation.ProgramEvaluationViewModel
 import cz.nestresuju.screens.program.first.ProgramFirstOverviewViewModel
 import cz.nestresuju.screens.program.first.ProgramFirstQuestionViewModel
 import cz.nestresuju.screens.program.first.ProgramFirstSatisfiabilityViewModel
 import cz.nestresuju.screens.program.first.ProgramFirstSummaryViewModel
+import cz.nestresuju.screens.program.overview.ProgramViewModel
 import cz.nestresuju.screens.tests.input.InputTestViewModel
 import cz.nestresuju.screens.tests.screening.ScreeningTestViewModel
 import org.koin.android.ext.koin.androidContext

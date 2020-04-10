@@ -6,10 +6,10 @@ import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.viewModelScope
 import com.hadilq.liveevent.LiveEvent
 import cz.nestresuju.R
+import cz.nestresuju.model.entities.domain.program.ProgramId
 import cz.nestresuju.model.entities.domain.program.evaluation.ProgramEvaluation
 import cz.nestresuju.model.repositories.ProgramEvaluationRepository
 import cz.nestresuju.screens.base.BaseViewModel
-import cz.nestresuju.screens.program.ProgramId
 import org.threeten.bp.ZonedDateTime
 
 /**

@@ -49,6 +49,14 @@
     <string name="screening_test_confirm_dialog_text">Děkujeme za tvůj čas a tvé odpovědi. Nyní si můžeš prohlédnout Nestresuju v celé své kráse. V sekci Knihovna se můžeš dočíst více o stresu a stress managementu. Do Deníčku si můžeš pravidelně zaznamenávat úroveň svého stresu. V části Program se ti budou postupně otevírat úkoly a výzvy, které ti pomohou zvládat tvůj stres. Tak vzhůru do toho!</string>
     <string name="screening_test_confirm_dialog_button">Přejít do aplikace</string>
 
+    <!-- Programs overview -->
+
+    <string name="program_state_open">Otevřeno</string>
+    <string name="program_state_opens_at">Otevře se %s</string>
+    <string name="program_state_closed_complete_previous">Nejdříve splň předchozí část programu</string>
+    <string name="program_state_completed">Splněno</string>
+    <string name="program_message_closed">Program je zatím uzavřený!</string>
+
     <!-- Program evaluation -->
 
     <string name="program_evaluation_title">Program - rekapitulace</string>

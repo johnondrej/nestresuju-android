@@ -1,4 +1,4 @@
-package cz.nestresuju.screens.program
+package cz.nestresuju.model.entities.domain.program
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_program"
-        android:name="cz.nestresuju.screens.program.ProgramFragment"
+        android:name="cz.nestresuju.screens.program.overview.ProgramFragment"
         android:label="@string/title_program"
-        tools:layout="@layout/fragment_program">
+        tools:layout="@layout/fragment_custom_list">
 
         <action
             android:id="@+id/action_fragment_program_overview_to_fragment_program_1_1"
