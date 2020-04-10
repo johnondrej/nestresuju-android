@@ -96,9 +96,9 @@
     <!-- Diary -->
 
     <string name="diary_input_title">Jak moc jsi dnes ve stresu?</string>
-    <string name="diary_stress_level_1">Strašně</string>
+    <string name="diary_stress_level_1">Extrémně</string>
     <string name="diary_stress_level_2">Hodně</string>
-    <string name="diary_stress_level_3">Minimálně</string>
+    <string name="diary_stress_level_3">Málo</string>
     <string name="diary_stress_level_4">Vůbec</string>
     <string name="diary_note_title">Zadej text poznámky</string>
     <string name="diary_edit_note_title">Upravit poznámku</string>
