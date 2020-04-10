@@ -9,13 +9,13 @@ import cz.nestresuju.R
 import cz.nestresuju.common.extensions.hideKeyboard
 import cz.nestresuju.databinding.FragmentCustomListBinding
 import cz.nestresuju.model.entities.domain.diary.DiaryEntry
-import cz.nestresuju.screens.base.BaseFragment
+import cz.nestresuju.screens.base.BaseArchFragment
 import cz.nestresuju.screens.diary.epoxy.DiaryController
 import cz.nestresuju.screens.diary.errors.DiaryErrorHandler
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.threeten.bp.LocalDate
 
-class DiaryFragment : BaseFragment<FragmentCustomListBinding>(),
+class DiaryFragment : BaseArchFragment<FragmentCustomListBinding>(),
     DiaryEditEntryDialogFragment.OnEntryEditConfirmedListener,
     DiaryDeleteEntryDialogFragment.OnEntryDeleteConfirmedListener {
 

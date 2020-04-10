@@ -14,14 +14,14 @@ import cz.nestresuju.model.common.State
 import cz.nestresuju.model.errors.InternetConnectionException
 import cz.nestresuju.model.errors.handlers.InternetErrorsHandler
 import cz.nestresuju.model.errors.handlers.UnknownErrorsHandler
-import cz.nestresuju.screens.base.BaseFragment
+import cz.nestresuju.screens.base.BaseArchFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Fragment for showing input test after login.
  */
 class InputTestFragment :
-    BaseFragment<FragmentInputTestBinding>(),
+    BaseArchFragment<FragmentInputTestBinding>(),
     OnBackPressedListener,
     InputTestConfirmationDialogFragment.OnTestConfirmedListener {
 

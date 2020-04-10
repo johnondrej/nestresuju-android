@@ -7,7 +7,9 @@ import androidx.lifecycle.viewModelScope
 import cz.nestresuju.model.repositories.ProgramFirstRepository
 import cz.nestresuju.screens.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 /**
  * ViewModel for last screen of program 1.
@@ -45,7 +47,7 @@ class ProgramFirstOverviewViewModel(
     }
 
     fun submitResults() {
-        viewModelScope.launchWithErrorHandling {
+        GlobalScope.launch {
             programRepository.submitResults()
         }
     }

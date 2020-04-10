@@ -34,6 +34,22 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
         <action
+            android:id="@+id/action_fragment_program_overview_to_fragment_program_2_intro_1"
+            app:destination="@id/fragment_program_2_intro_1"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
+            android:id="@+id/action_fragment_program_overview_to_fragment_program_2_1"
+            app:destination="@id/fragment_program_2_1"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
             android:id="@+id/action_fragment_program_overview_to_fragment_evaluation"
             app:destination="@id/fragment_program_evaluation"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -175,9 +191,142 @@
         tools:layout="@layout/fragment_program_1_summary" />
 
     <fragment
+        android:id="@+id/fragment_program_2_intro_1"
+        android:name="cz.nestresuju.screens.program.second.ProgramSecondIntro1Fragment"
+        android:label="@string/program_2_title">
+
+        <action
+            android:id="@+id/action_fragment_program_2_intro_1_to_fragment_program_2_intro_2"
+            app:destination="@id/fragment_program_2_intro_2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/navigation_program" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_program_2_intro_2"
+        android:name="cz.nestresuju.screens.program.second.ProgramSecondIntro2Fragment"
+        android:label="@string/program_2_title">
+
+        <action
+            android:id="@+id/action_fragment_program_2_intro_2_to_fragment_program_2_1"
+            app:destination="@id/fragment_program_2_1"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/navigation_program" />
+
+    </fragment>
+
+    <fragment
         android:id="@+id/fragment_program_2_1"
         android:name="cz.nestresuju.screens.program.second.ProgramSecondPhase1Fragment"
-        android:label="TODO" />
+        android:label="@string/program_2_title">
+
+        <action
+            android:id="@+id/action_fragment_program_2_1_to_fragment_program_2_2"
+            app:destination="@id/fragment_program_2_2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_program_2_2"
+        android:name="cz.nestresuju.screens.program.second.ProgramSecondPhase2Fragment"
+        android:label="@string/program_2_title">
+
+        <action
+            android:id="@+id/action_fragment_program_2_2_to_fragment_program_2_3"
+            app:destination="@id/fragment_program_2_3"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_program_2_3"
+        android:name="cz.nestresuju.screens.program.second.ProgramSecondPhase3Fragment"
+        android:label="@string/program_2_title">
+
+        <action
+            android:id="@+id/action_fragment_program_2_3_to_fragment_program_2_4"
+            app:destination="@id/fragment_program_2_4"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_program_2_4"
+        android:name="cz.nestresuju.screens.program.second.ProgramSecondPhase4Fragment"
+        android:label="@string/program_2_title">
+
+        <action
+            android:id="@+id/action_fragment_program_2_4_to_fragment_program_2_5"
+            app:destination="@id/fragment_program_2_5"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_program_2_5"
+        android:name="cz.nestresuju.screens.program.second.ProgramSecondPhase5Fragment"
+        android:label="@string/program_2_title">
+
+        <action
+            android:id="@+id/action_fragment_program_2_5_to_fragment_program_2_6"
+            app:destination="@id/fragment_program_2_6"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_program_2_6"
+        android:name="cz.nestresuju.screens.program.second.ProgramSecondPhase6Fragment"
+        android:label="@string/program_2_title">
+
+        <action
+            android:id="@+id/action_fragment_program_2_6_to_fragment_program_2_7"
+            app:destination="@id/fragment_program_2_7"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/navigation_program" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_program_2_7"
+        android:name="cz.nestresuju.screens.program.second.ProgramSecondPhase7Fragment"
+        android:label="@string/program_2_title">
+
+        <action
+            android:id="@+id/action_fragment_program_2_7_to_fragment_program_overview"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/navigation_program" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_program_3_1"

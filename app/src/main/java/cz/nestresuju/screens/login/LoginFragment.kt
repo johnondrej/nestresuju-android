@@ -12,14 +12,14 @@ import cz.nestresuju.databinding.FragmentLoginBinding
 import cz.nestresuju.model.common.State
 import cz.nestresuju.model.errors.handlers.InternetErrorsHandler
 import cz.nestresuju.model.errors.handlers.UnknownErrorsHandler
-import cz.nestresuju.screens.base.BaseFragment
+import cz.nestresuju.screens.base.BaseArchFragment
 import cz.nestresuju.screens.tests.input.InputTestsActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Fragment for login screen.
  */
-class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginConsentDialogFragment.OnConfirmedListener {
+class LoginFragment : BaseArchFragment<FragmentLoginBinding>(), LoginConsentDialogFragment.OnConfirmedListener {
 
     companion object {
 

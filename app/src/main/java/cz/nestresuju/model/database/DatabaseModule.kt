@@ -4,6 +4,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import cz.nestresuju.model.entities.database.program.first.DbProgramFirstResults
+import cz.nestresuju.model.entities.database.program.second.DbProgramSecondResults
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.koin.android.ext.koin.androidContext
@@ -21,7 +22,10 @@ val databaseModule = module {
                 override fun onCreate(db: SupportSQLiteDatabase) {
                     super.onCreate(db)
                     GlobalScope.launch {
-                        get<AppDatabase>().programFirstDao().updateResults(DbProgramFirstResults())
+                        val database = get<AppDatabase>()
+
+                        database.programFirstDao().updateResults(DbProgramFirstResults())
+                        database.programSecondDao().updateResults(DbProgramSecondResults())
                     }
                 }
             })

@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import cz.nestresuju.databinding.FragmentProgram1SummaryBinding
-import cz.nestresuju.screens.base.BaseFragment
+import cz.nestresuju.screens.base.BaseArchFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Fragment with summary of first program.
  */
-class ProgramFirstSummaryFragment : BaseFragment<FragmentProgram1SummaryBinding>() {
+class ProgramFirstSummaryFragment : BaseArchFragment<FragmentProgram1SummaryBinding>() {
 
     override val viewModel by viewModel<ProgramFirstSummaryViewModel>()
 

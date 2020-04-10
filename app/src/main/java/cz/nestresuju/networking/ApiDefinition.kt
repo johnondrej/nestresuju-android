@@ -6,6 +6,7 @@ import cz.nestresuju.model.entities.api.diary.DiaryEntriesResponse
 import cz.nestresuju.model.entities.api.diary.MoodQuestionsResponse
 import cz.nestresuju.model.entities.api.program.evaluation.ApiProgramEvaluation
 import cz.nestresuju.model.entities.api.program.first.ApiProgramFirstResults
+import cz.nestresuju.model.entities.api.program.second.ApiProgramSecondResults
 import cz.nestresuju.model.entities.api.tests.input.ApiInputTestResults
 import cz.nestresuju.model.entities.api.tests.input.ApiScreeningTestResults
 import cz.nestresuju.model.entities.api.tests.input.InputTestQuestionsResponse
@@ -44,6 +45,12 @@ interface ApiDefinition {
 
     @POST("v1/program/goal")
     suspend fun submitFirstProgramResults(@Body results: ApiProgramFirstResults): Response<Unit>
+
+    @GET("v1/program/relaxation")
+    suspend fun getSecondProgramResults(): ApiProgramSecondResults
+
+    @POST("v1/program/relaxation")
+    suspend fun submitSecondProgramResults(@Body results: ApiProgramSecondResults): Response<Unit>
 
     @GET("v1/diary/mood-questions")
     suspend fun getDiaryMoodQuestions(@Query("timestamp") timestamp: Long): MoodQuestionsResponse

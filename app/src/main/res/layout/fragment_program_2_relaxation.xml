@@ -25,13 +25,13 @@
         android:layout_marginHorizontal="24dp"
         android:gravity="center"
         android:text="@string/program_2_instructions_7"
-        app:layout_constraintBottom_toTopOf="@id/btn_continue"
+        app:layout_constraintBottom_toTopOf="@id/btn_finish"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/progress" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_continue"
+        android:id="@+id/btn_finish"
         style="@style/PrimaryButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

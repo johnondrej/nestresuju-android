@@ -13,6 +13,8 @@ import cz.nestresuju.screens.program.first.ProgramFirstQuestionViewModel
 import cz.nestresuju.screens.program.first.ProgramFirstSatisfiabilityViewModel
 import cz.nestresuju.screens.program.first.ProgramFirstSummaryViewModel
 import cz.nestresuju.screens.program.overview.ProgramViewModel
+import cz.nestresuju.screens.program.second.ProgramSecondInstructionsViewModel
+import cz.nestresuju.screens.program.second.ProgramSecondRelaxationViewModel
 import cz.nestresuju.screens.tests.input.InputTestViewModel
 import cz.nestresuju.screens.tests.screening.ScreeningTestViewModel
 import org.koin.android.ext.koin.androidContext
@@ -33,17 +35,21 @@ val viewModelModule = module {
 
     viewModel { ScreeningTestViewModel(inputTestsRepository = get()) }
 
-    viewModel { ProgramViewModel(programFirstRepository = get()) }
+    viewModel { ProgramViewModel(programFirstRepository = get(), programSecondRepository = get()) }
 
     viewModel { (programId: ProgramId) -> ProgramEvaluationViewModel(programId, programEvaluationRepository = get()) }
 
-    viewModel { (progress: Int) -> ProgramFirstQuestionViewModel(programRepository = get(), progress = progress) }
+    viewModel { (progress: Int) -> ProgramFirstQuestionViewModel(progress, programRepository = get()) }
 
     viewModel { ProgramFirstSatisfiabilityViewModel(programRepository = get()) }
 
     viewModel { ProgramFirstOverviewViewModel(programRepository = get()) }
 
     viewModel { ProgramFirstSummaryViewModel(programRepository = get()) }
+
+    viewModel { (progress: Int) -> ProgramSecondInstructionsViewModel(progress, programRepository = get()) }
+
+    viewModel { ProgramSecondRelaxationViewModel(programRepository = get()) }
 
     viewModel { AboutAppViewModel() }
 

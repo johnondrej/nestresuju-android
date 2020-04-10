@@ -1,23 +1,17 @@
 package cz.nestresuju.screens.program.second
 
-import android.os.Bundle
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import cz.nestresuju.R
 
 /**
  * Fragment with first part of second program.
  */
-class ProgramSecondPhase1Fragment : Fragment() {
+class ProgramSecondPhase1Fragment : ProgramSecondBaseInstructionsFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return TextView(requireContext()).apply {
-            layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-            gravity = Gravity.CENTER
-            text = "Program 2"
-        }
+    override val instructionsRes = R.string.program_2_instructions_1
+    override val phaseProgress = 1
+
+    override fun onContinueClicked() {
+        findNavController().navigate(R.id.action_fragment_program_2_1_to_fragment_program_2_2)
     }
 }

@@ -10,11 +10,12 @@ import com.google.android.material.snackbar.Snackbar
 import cz.nestresuju.R
 import cz.nestresuju.databinding.FragmentCustomListBinding
 import cz.nestresuju.model.entities.domain.program.first.ProgramFirstResults
-import cz.nestresuju.screens.base.BaseFragment
+import cz.nestresuju.model.entities.domain.program.second.ProgramSecondResults
+import cz.nestresuju.screens.base.BaseArchFragment
 import cz.nestresuju.screens.program.overview.epoxy.ProgramController
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ProgramFragment : BaseFragment<FragmentCustomListBinding>() {
+class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
 
     private lateinit var controller: ProgramController
 
@@ -32,7 +33,7 @@ class ProgramFragment : BaseFragment<FragmentCustomListBinding>() {
             viewModel.screenStateStream.observe(viewLifecycleOwner, Observer { state ->
                 controller = ProgramController(
                     onFirstProgramSelected = { onFirstProgramSelected(state.programFirstResults) },
-                    onSecondProgramSelected = { onSecondProgramSelected() },
+                    onSecondProgramSelected = { onSecondProgramSelected(state.programSecondResults) },
                     onThirdProgramSelected = { onThirdProgramSelected() },
                     onFourthProgramSelected = { onFourthProgramSelected() }
                 ).also {
@@ -59,9 +60,14 @@ class ProgramFragment : BaseFragment<FragmentCustomListBinding>() {
         }
     }
 
-    private fun onSecondProgramSelected() {
-        // TODO
-        view?.let { Snackbar.make(it, "Program 2", Snackbar.LENGTH_LONG).show() }
+    private fun onSecondProgramSelected(results: ProgramSecondResults) {
+        val navController = findNavController()
+
+        if (results.progress < 1) {
+            navController.navigate(R.id.action_fragment_program_overview_to_fragment_program_2_intro_1)
+        } else {
+            navController.navigate(R.id.action_fragment_program_overview_to_fragment_program_2_1)
+        }
     }
 
     private fun onThirdProgramSelected() {

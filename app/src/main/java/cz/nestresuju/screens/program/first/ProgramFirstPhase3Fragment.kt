@@ -10,13 +10,13 @@ import androidx.navigation.fragment.findNavController
 import cz.nestresuju.R
 import cz.nestresuju.common.extensions.visible
 import cz.nestresuju.databinding.FragmentProgram1ScaleBinding
-import cz.nestresuju.screens.base.BaseFragment
+import cz.nestresuju.screens.base.BaseArchFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Fragment with third part of first program.
  */
-class ProgramFirstPhase3Fragment : BaseFragment<FragmentProgram1ScaleBinding>() {
+class ProgramFirstPhase3Fragment : BaseArchFragment<FragmentProgram1ScaleBinding>() {
 
     override val viewModel by viewModel<ProgramFirstSatisfiabilityViewModel>()
 

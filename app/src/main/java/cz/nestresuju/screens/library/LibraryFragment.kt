@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import cz.nestresuju.databinding.FragmentLibraryBinding
-import cz.nestresuju.screens.base.BaseFragment
+import cz.nestresuju.screens.base.BaseArchFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LibraryFragment : BaseFragment<FragmentLibraryBinding>() {
+class LibraryFragment : BaseArchFragment<FragmentLibraryBinding>() {
 
     override val viewModel by viewModel<LibraryViewModel>()
 

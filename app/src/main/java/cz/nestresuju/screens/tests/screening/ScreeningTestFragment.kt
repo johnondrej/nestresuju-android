@@ -20,14 +20,14 @@ import cz.nestresuju.model.entities.domain.tests.screening.ScreeningTestOption
 import cz.nestresuju.model.errors.InternetConnectionException
 import cz.nestresuju.model.errors.handlers.InternetErrorsHandler
 import cz.nestresuju.model.errors.handlers.UnknownErrorsHandler
-import cz.nestresuju.screens.base.BaseFragment
+import cz.nestresuju.screens.base.BaseArchFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Fragment for showing screening test after login.
  */
 class ScreeningTestFragment :
-    BaseFragment<FragmentScreeningTestBinding>(),
+    BaseArchFragment<FragmentScreeningTestBinding>(),
     OnBackPressedListener,
     ScreeningTestConfirmationDialogFragment.OnTestConfirmedListener {
 

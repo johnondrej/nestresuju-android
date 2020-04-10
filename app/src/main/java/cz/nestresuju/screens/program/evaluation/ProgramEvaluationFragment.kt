@@ -13,14 +13,14 @@ import cz.nestresuju.R
 import cz.nestresuju.common.extensions.hideKeyboard
 import cz.nestresuju.databinding.FragmentProgramEvaluationBinding
 import cz.nestresuju.model.entities.domain.program.ProgramId
-import cz.nestresuju.screens.base.BaseFragment
+import cz.nestresuju.screens.base.BaseArchFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 /**
  * Fragment for screen with program evaluation.
  */
-class ProgramEvaluationFragment : BaseFragment<FragmentProgramEvaluationBinding>() {
+class ProgramEvaluationFragment : BaseArchFragment<FragmentProgramEvaluationBinding>() {
 
     companion object {
 

@@ -11,14 +11,14 @@ import androidx.navigation.fragment.findNavController
 import cz.nestresuju.R
 import cz.nestresuju.common.extensions.hideKeyboard
 import cz.nestresuju.databinding.FragmentProgram1OverviewBinding
-import cz.nestresuju.screens.base.BaseFragment
+import cz.nestresuju.screens.base.BaseArchFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Fragment with sixth part of first program.
  */
 class ProgramFirstPhase6Fragment :
-    BaseFragment<FragmentProgram1OverviewBinding>(),
+    BaseArchFragment<FragmentProgram1OverviewBinding>(),
     ProgramFirstSubmittedDialogFragment.OnFirstProgramSubmittedListener {
 
     companion object {

@@ -9,13 +9,13 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import cz.nestresuju.common.extensions.hideKeyboard
 import cz.nestresuju.databinding.FragmentProgram1QuestionBinding
-import cz.nestresuju.screens.base.BaseFragment
+import cz.nestresuju.screens.base.BaseArchFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Base fragment with text question in first program's phase.
  */
-abstract class ProgramFirstBaseQuestionFragment : BaseFragment<FragmentProgram1QuestionBinding>() {
+abstract class ProgramFirstBaseQuestionFragment : BaseArchFragment<FragmentProgram1QuestionBinding>() {
 
     protected abstract val questionRes: Int
     protected abstract val phaseProgress: Int

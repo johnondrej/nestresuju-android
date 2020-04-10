@@ -3,6 +3,7 @@ package cz.nestresuju.model.converters
 import cz.nestresuju.model.entities.api.program.first.ApiProgramFirstResults
 import cz.nestresuju.model.entities.database.program.first.DbProgramFirstResults
 import cz.nestresuju.model.entities.domain.program.first.ProgramFirstResults
+import cz.nestresuju.screens.program.first.ProgramFirstConstants
 import org.threeten.bp.ZonedDateTime
 
 /**
@@ -30,7 +31,7 @@ class ProgramFirstConverterImpl : ProgramFirstConverter {
             deadline = apiResults.deadline,
             summarizedTarget = apiResults.summarizedTarget,
             programCompleted = apiResults.programCompletedDate,
-            progress = 6,
+            progress = ProgramFirstConstants.PHASES,
             synchronizedWithApi = true
         )
     }
