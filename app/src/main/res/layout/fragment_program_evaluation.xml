@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/txt_instructions"
+            style="@style/TextAppearance.PrimaryText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_question_1"
+            style="@style/TextAppearance.Headline3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/program_evaluation_question_1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_instructions" />
+
+        <RadioGroup
+            android:id="@+id/radio_group_question_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_question_1">
+
+            <RadioButton
+                android:id="@+id/radio_btn_1_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="-6dp"
+                android:text="@string/program_evaluation_question_1_answer_1" />
+
+            <RadioButton
+                android:id="@+id/radio_btn_1_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="-6dp"
+                android:text="@string/program_evaluation_question_1_answer_2" />
+
+            <RadioButton
+                android:id="@+id/radio_btn_1_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="-6dp"
+                android:text="@string/program_evaluation_question_1_answer_3" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txt_question_2"
+            style="@style/TextAppearance.Headline3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/program_evaluation_question_2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/radio_group_question_1" />
+
+        <RadioGroup
+            android:id="@+id/radio_group_question_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_question_2">
+
+            <RadioButton
+                android:id="@+id/radio_btn_2_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="-6dp"
+                android:text="@string/program_evaluation_question_2_answer_1" />
+
+            <RadioButton
+                android:id="@+id/radio_btn_2_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="-6dp"
+                android:text="@string/program_evaluation_question_2_answer_2" />
+
+            <RadioButton
+                android:id="@+id/radio_btn_2_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="-6dp"
+                android:text="@string/program_evaluation_question_2_answer_3" />
+
+            <RadioButton
+                android:id="@+id/radio_btn_2_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="-6dp"
+                android:text="@string/program_evaluation_question_2_answer_4" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txt_question_3"
+            style="@style/TextAppearance.Headline3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/program_evaluation_question_3"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/radio_group_question_2" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_answer"
+            style="@style/TextInputFilled"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/program_1_question_hint"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_question_3">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_advice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:imeOptions="actionDone"
+                android:inputType="textCapSentences" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_submit"
+            style="@style/PrimaryButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/program_evaluation_submit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_answer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

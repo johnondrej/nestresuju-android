@@ -49,6 +49,22 @@
     <string name="screening_test_confirm_dialog_text">Děkujeme za tvůj čas a tvé odpovědi. Nyní si můžeš prohlédnout Nestresuju v celé své kráse. V sekci Knihovna se můžeš dočíst více o stresu a stress managementu. Do Deníčku si můžeš pravidelně zaznamenávat úroveň svého stresu. V části Program se ti budou postupně otevírat úkoly a výzvy, které ti pomohou zvládat tvůj stres. Tak vzhůru do toho!</string>
     <string name="screening_test_confirm_dialog_button">Přejít do aplikace</string>
 
+    <!-- Program evaluation -->
+
+    <string name="program_evaluation_title">Program - rekapitulace</string>
+    <string name="program_evaluation_instructions">Než se vrhneš na další část programu Nestresuju, ještě vrať k předchozímu úkolu: %s.</string>
+    <string name="program_evaluation_question_1">Povedlo se ti splnit tvůj cíl?</string>
+    <string name="program_evaluation_question_2">Jak náročné pro tebe bylo splnit cíl?</string>
+    <string name="program_evaluation_question_3">Jakou radu bys dal(a) svému kamarádovi nebo kamarádce, kteří by chtěli dosáhnout stejného cíle jako ty?</string>
+    <string name="program_evaluation_question_1_answer_1">Ano</string>
+    <string name="program_evaluation_question_1_answer_2">Částečně</string>
+    <string name="program_evaluation_question_1_answer_3">Ne</string>
+    <string name="program_evaluation_question_2_answer_1">Velmi náročné</string>
+    <string name="program_evaluation_question_2_answer_2">Náročné</string>
+    <string name="program_evaluation_question_2_answer_3">Jednoduché</string>
+    <string name="program_evaluation_question_2_answer_4">Velmi jednoduché</string>
+    <string name="program_evaluation_submit">Začít další část</string>
+
     <!-- Program 1 -->
 
     <string name="program_1_title">Stanovování cílů</string>

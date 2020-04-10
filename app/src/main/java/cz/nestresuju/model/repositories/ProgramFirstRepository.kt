@@ -1,6 +1,6 @@
 package cz.nestresuju.model.repositories
 
-import cz.nestresuju.model.converters.ProgramFirstEntitiesConverter
+import cz.nestresuju.model.converters.ProgramFirstConverter
 import cz.nestresuju.model.database.AppDatabase
 import cz.nestresuju.model.entities.domain.program.first.ProgramFirstResults
 import cz.nestresuju.model.synchronization.DataSynchronizer
@@ -18,7 +18,7 @@ class ProgramFirstRepositoryImpl(
     private val apiDefinition: ApiDefinition,
     private val database: AppDatabase,
     private val dataSynchronizer: DataSynchronizer,
-    private val entityConverter: ProgramFirstEntitiesConverter
+    private val entityConverter: ProgramFirstConverter
 ) : ProgramFirstRepository {
 
     override suspend fun fetchProgramResults() {

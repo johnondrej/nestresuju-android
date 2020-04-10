@@ -8,7 +8,7 @@ import org.threeten.bp.ZonedDateTime
 /**
  * Converter for entities related to program 1.
  */
-interface ProgramFirstEntitiesConverter {
+interface ProgramFirstConverter {
 
     fun apiProgramFirstResultsToDb(apiResults: ApiProgramFirstResults): DbProgramFirstResults
 
@@ -19,7 +19,7 @@ interface ProgramFirstEntitiesConverter {
     fun programFirstResultsToDb(results: ProgramFirstResults): DbProgramFirstResults
 }
 
-class ProgramFirstEntitiesConverterImpl : ProgramFirstEntitiesConverter {
+class ProgramFirstConverterImpl : ProgramFirstConverter {
 
     override fun apiProgramFirstResultsToDb(apiResults: ApiProgramFirstResults): DbProgramFirstResults {
         return DbProgramFirstResults(

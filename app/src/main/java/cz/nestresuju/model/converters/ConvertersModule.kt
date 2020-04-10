@@ -12,7 +12,9 @@ val converterModule = module {
 
     factory<InputTestsConverter> { InputTestsConverterImpl() }
 
-    factory<ProgramFirstEntitiesConverter> { ProgramFirstEntitiesConverterImpl() }
+    factory<ProgramEvaluationConverter> { ProgramEvaluationConverterImpl() }
+
+    factory<ProgramFirstConverter> { ProgramFirstConverterImpl() }
 
     factory<StressLevelConverter> { StressLevelConverterImpl() }
 

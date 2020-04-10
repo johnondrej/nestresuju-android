@@ -6,7 +6,9 @@ import cz.nestresuju.screens.diary.DiaryViewModel
 import cz.nestresuju.screens.home.HomeViewModel
 import cz.nestresuju.screens.library.LibraryViewModel
 import cz.nestresuju.screens.login.LoginViewModel
+import cz.nestresuju.screens.program.ProgramId
 import cz.nestresuju.screens.program.ProgramViewModel
+import cz.nestresuju.screens.program.evaluation.ProgramEvaluationViewModel
 import cz.nestresuju.screens.program.first.ProgramFirstOverviewViewModel
 import cz.nestresuju.screens.program.first.ProgramFirstQuestionViewModel
 import cz.nestresuju.screens.program.first.ProgramFirstSatisfiabilityViewModel
@@ -32,6 +34,8 @@ val viewModelModule = module {
     viewModel { ScreeningTestViewModel(inputTestsRepository = get()) }
 
     viewModel { ProgramViewModel(programFirstRepository = get()) }
+
+    viewModel { (programId: ProgramId) -> ProgramEvaluationViewModel(programId, programEvaluationRepository = get()) }
 
     viewModel { (progress: Int) -> ProgramFirstQuestionViewModel(programRepository = get(), progress = progress) }
 

@@ -1,9 +1,11 @@
 package cz.nestresuju.model.synchronization
 
-import cz.nestresuju.model.converters.ProgramFirstEntitiesConverter
+import cz.nestresuju.model.converters.ProgramEvaluationConverter
+import cz.nestresuju.model.converters.ProgramFirstConverter
 import cz.nestresuju.model.database.AppDatabase
 import cz.nestresuju.model.entities.api.diary.ApiNewDiaryEntry
 import cz.nestresuju.model.entities.database.diary.DbSynchronizerDiaryChange
+import cz.nestresuju.model.entities.domain.program.evaluation.ProgramEvaluation
 import cz.nestresuju.networking.ApiDefinition
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -19,13 +21,16 @@ interface DataSynchronizer {
 
     suspend fun synchronizeDiary()
 
+    suspend fun addProgramEvaluationRequest(request: ProgramEvaluation)
+
     suspend fun addDiarySynchronizationRequest(request: DbSynchronizerDiaryChange)
 }
 
 class DataSynchronizerImpl(
     private val apiDefinition: ApiDefinition,
     private val database: AppDatabase,
-    private val programFirstEntitiesConverter: ProgramFirstEntitiesConverter
+    private val programEvaluationConverter: ProgramEvaluationConverter,
+    private val programFirstConverter: ProgramFirstConverter
 ) : DataSynchronizer {
 
     override suspend fun synchronizeAll() {
@@ -55,6 +60,15 @@ class DataSynchronizerImpl(
             } catch (e: Exception) {
                 // silent fail, synchronization will be performed next time
             }
+        }
+    }
+
+    override suspend fun addProgramEvaluationRequest(request: ProgramEvaluation) {
+        database.programEvaluationDao().addProgramEvaluation(programEvaluationConverter.programEvaluationToDb(request))
+
+        GlobalScope.launch {
+            // GlobalScope is used because we do not want to stop uploading entry to server when user goes to another screen
+            performProgramEvaluationsSynchronization()
         }
     }
 
@@ -119,5 +133,20 @@ class DataSynchronizerImpl(
             }
         }
         database.synchronizerDao().deleteDiaryChange(request.id)
+    }
+
+    private suspend fun performProgramEvaluationsSynchronization() {
+        val evaluationDao = database.programEvaluationDao()
+        val evaluations = evaluationDao.getAllEvaluations()
+
+        evaluations.forEach { evaluation ->
+            try {
+                // TODO: uncomment below when API is ready
+                // apiDefinition.submitProgramEvaluation(evaluation.programId, programEvaluationConverter.dbProgramEvaluationToApi(evaluation))
+                // evaluationDao.deleteProgramEvaluation(evaluation.programId)
+            } catch (e: Exception) {
+                // silent fail, synchronization will be performed next time
+            }
+        }
     }
 }

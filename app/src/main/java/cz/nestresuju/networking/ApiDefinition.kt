@@ -4,6 +4,7 @@ import cz.nestresuju.model.entities.api.auth.LoginChecklistResponse
 import cz.nestresuju.model.entities.api.diary.ApiNewDiaryEntry
 import cz.nestresuju.model.entities.api.diary.DiaryEntriesResponse
 import cz.nestresuju.model.entities.api.diary.MoodQuestionsResponse
+import cz.nestresuju.model.entities.api.program.evaluation.ApiProgramEvaluation
 import cz.nestresuju.model.entities.api.program.first.ApiProgramFirstResults
 import cz.nestresuju.model.entities.api.tests.input.ApiInputTestResults
 import cz.nestresuju.model.entities.api.tests.input.ApiScreeningTestResults
@@ -34,6 +35,9 @@ interface ApiDefinition {
 
     @POST("v1/screening-test")
     suspend fun submitScreeningTestResults(@Body results: ApiScreeningTestResults): Response<Unit>
+
+    @POST("v1/program/evaluation")
+    suspend fun submitProgramEvaluation(@Query("programTitle") programId: String, @Body evaluation: ApiProgramEvaluation)
 
     @GET("v1/program/goal")
     suspend fun getFirstProgramResults(): ApiProgramFirstResults
