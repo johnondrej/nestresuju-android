@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import cz.nestresuju.R
 import cz.nestresuju.databinding.ViewInputTestQuestionBinding
 import cz.nestresuju.model.entities.domain.tests.input.InputTestAnswer
 
@@ -23,29 +24,18 @@ class InputTestQuestionView(context: Context, attributes: AttributeSet) : Linear
 
     fun setOnAnswerSelectedListener(onAnswerSelectedListener: (InputTestAnswer) -> Unit) {
         with(binding) {
-            radioBtnAnswer0.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked && !ignoreIsCheckedListeners) {
-                    onAnswerSelectedListener(InputTestAnswer.ANSWER_0)
+            radioGroupAnswers.setOnCheckedChangeListener { _, checkedId ->
+                val checkedAnswer = when (checkedId) {
+                    R.id.radio_btn_answer_0 -> InputTestAnswer.ANSWER_0
+                    R.id.radio_btn_answer_1 -> InputTestAnswer.ANSWER_1
+                    R.id.radio_btn_answer_2 -> InputTestAnswer.ANSWER_2
+                    R.id.radio_btn_answer_3 -> InputTestAnswer.ANSWER_3
+                    R.id.radio_btn_answer_4 -> InputTestAnswer.ANSWER_4
+                    else -> return@setOnCheckedChangeListener
                 }
-            }
-            radioBtnAnswer1.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked && !ignoreIsCheckedListeners) {
-                    onAnswerSelectedListener(InputTestAnswer.ANSWER_1)
-                }
-            }
-            radioBtnAnswer2.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked && !ignoreIsCheckedListeners) {
-                    onAnswerSelectedListener(InputTestAnswer.ANSWER_2)
-                }
-            }
-            radioBtnAnswer3.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked && !ignoreIsCheckedListeners) {
-                    onAnswerSelectedListener(InputTestAnswer.ANSWER_3)
-                }
-            }
-            radioBtnAnswer4.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked && !ignoreIsCheckedListeners) {
-                    onAnswerSelectedListener(InputTestAnswer.ANSWER_4)
+
+                if (!ignoreIsCheckedListeners) {
+                    onAnswerSelectedListener(checkedAnswer)
                 }
             }
         }

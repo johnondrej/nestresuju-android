@@ -15,7 +15,8 @@ class RouterViewModel(
 ) : ViewModel() {
 
     private val _routeLiveData = MutableLiveData<InitialRoute>()
-    val routeStream: LiveData<InitialRoute> = _routeLiveData
+    val routeStream: LiveData<InitialRoute>
+        get() = _routeLiveData
 
     init {
         _routeLiveData.value = when {

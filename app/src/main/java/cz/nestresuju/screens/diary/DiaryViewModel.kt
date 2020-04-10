@@ -20,16 +20,20 @@ class DiaryViewModel(
 ) : BaseViewModel() {
 
     private val _initializationLiveData = MutableLiveData<Boolean>()
-    val initializationStream: LiveData<Boolean> = _initializationLiveData
+    val initializationStream: LiveData<Boolean>
+        get() = _initializationLiveData
 
     private val _refreshingStateLiveData = MutableLiveData<Boolean>()
-    val refreshingStateStream: LiveData<Boolean> = _refreshingStateLiveData
+    val refreshingStateStream: LiveData<Boolean>
+        get() = _refreshingStateLiveData
 
     private val _inputEnabledLiveData = MutableLiveData<Boolean>()
-    val inputEnabledStream: LiveData<Boolean> = _inputEnabledLiveData
+    val inputEnabledStream: LiveData<Boolean>
+        get() = _inputEnabledLiveData
 
     private val _inputLiveData = MutableLiveData<DiaryChoiceInput>()
-    val inputStream: LiveData<DiaryChoiceInput> = _inputLiveData
+    val inputStream: LiveData<DiaryChoiceInput>
+        get() = _inputLiveData
 
     val entriesStream: LiveData<List<DiaryEntry>> = diaryRepository.observeDiaryEntries().asLiveData()
 
