@@ -25,7 +25,7 @@ class DiaryStressLevelChoiceView(context: Context, attributes: AttributeSet) : L
         }
 
         imgSmiley = findViewById(R.id.img_smiley)
-        txtDescription = if (mode == 0) findViewById(R.id.txt_smiley) else null
+        txtDescription = if (mode == 0) findViewById<TextView>(R.id.txt_smiley) else null
 
         imgSmiley.setImageResource(attrs.getResourceId(R.styleable.DiaryStressLevelChoiceView_image, R.drawable.ic_diary_smiley_1))
         txtDescription?.setText(attrs.getResourceId(R.styleable.DiaryStressLevelChoiceView_txt, R.string.diary_stress_level_1))
