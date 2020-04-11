@@ -1,7 +1,10 @@
 package cz.nestresuju.screens.diary
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.DialogFragment
@@ -31,11 +34,6 @@ class DiaryEditEntryDialogFragment : DialogFragment() {
 
     private val entryId: Long by lazy(LazyThreadSafetyMode.NONE) { arguments!!.getLong(KEY_DIARY_ENTRY_ID) }
     private val entryText: String by lazy(LazyThreadSafetyMode.NONE) { arguments!!.getString(KEY_DIARY_ENTRY_TEXT)!! }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return DialogEditNoteBinding.inflate(inflater, container, false).also { _binding = it }.root

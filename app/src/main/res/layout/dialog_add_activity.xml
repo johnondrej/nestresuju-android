@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/txt_title"
+        style="@style/TextAppearance.Headline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/program_3_activities_add_dialog_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_activity_name"
+        style="@style/TextAppearance.Headline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/program_3_activities_add_dialog_name"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_title" />
+
+    <EditText
+        android:id="@+id/edit_activity_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:inputType="textCapSentences"
+        android:maxLines="1"
+        app:layout_constraintLeft_toRightOf="@id/txt_activity_name"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_title" />
+
+    <TextView
+        android:id="@+id/txt_activity_duration"
+        style="@style/TextAppearance.Headline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/program_3_activities_add_dialog_duration"
+        app:layout_constraintBottom_toBottomOf="@id/picker_minutes"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/picker_minutes" />
+
+    <NumberPicker
+        android:id="@+id/picker_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="@id/edit_activity_name"
+        app:layout_constraintRight_toLeftOf="@id/txt_hours"
+        app:layout_constraintTop_toBottomOf="@id/edit_activity_name" />
+
+    <TextView
+        android:id="@+id/txt_hours"
+        style="@style/TextAppearance.PrimaryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:text="@string/program_3_activities_hours"
+        app:layout_constraintBottom_toBottomOf="@id/picker_hours"
+        app:layout_constraintLeft_toRightOf="@id/picker_hours"
+        app:layout_constraintRight_toLeftOf="@id/picker_minutes"
+        app:layout_constraintTop_toTopOf="@id/picker_hours" />
+
+    <NumberPicker
+        android:id="@+id/picker_minutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        app:layout_constraintLeft_toRightOf="@id/txt_hours"
+        app:layout_constraintRight_toLeftOf="@id/txt_minutes"
+        app:layout_constraintTop_toTopOf="@id/picker_hours" />
+
+    <TextView
+        android:id="@+id/txt_minutes"
+        style="@style/TextAppearance.PrimaryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:text="@string/program_3_activities_minutes"
+        app:layout_constraintBottom_toBottomOf="@id/picker_minutes"
+        app:layout_constraintLeft_toRightOf="@id/picker_minutes"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/picker_minutes" />
+
+    <TextView
+        android:id="@+id/btn_cancel"
+        style="@style/SecondaryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:text="@android:string/cancel"
+        app:layout_constraintRight_toLeftOf="@id/btn_add"
+        app:layout_constraintTop_toTopOf="@id/btn_add" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_add"
+        style="@style/PrimaryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/general_add"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/picker_hours" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

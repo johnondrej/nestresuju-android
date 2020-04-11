@@ -10,6 +10,7 @@
     <string name="general_finish">Dokončit</string>
     <string name="general_begin">Začít</string>
     <string name="general_try_again">Zkusit znovu</string>
+    <string name="general_add">Přidat</string>
     <string name="general_choose">Vybrat</string>
     <string name="general_understand">Rozumím</string>
     <string name="general_date_yesterday">Včera</string>
@@ -136,6 +137,7 @@
     <string name="program_3_activities_instructions">Kolik času strávíš ve svém běžném dni těmito aktivitami?</string>
     <string name="program_3_activities_hours">h</string>
     <string name="program_3_activities_minutes">min</string>
+    <string name="program_3_activities_duration_format">%1$d h %2$d min</string>
     <string name="program_3_activities_hygiene">Hygiena</string>
     <string name="program_3_activities_study">Studium</string>
     <string name="program_3_activities_sport">Sport</string>
@@ -146,10 +148,11 @@
     <string name="program_3_activities_family_time">Čas s rodinou</string>
     <string name="program_3_activities_friends_time">Čas s přáteli</string>
     <string name="program_3_activities_partner_time">Čas s partnerem (partnerkou)</string>
-    <string name="program_3_activities_add_next">Přidat další</string>
+    <string name="program_3_activities_change_duration_dialog_title">Upravit trvání aktivity</string>
+    <string name="program_3_activities_add_next">Přidat další aktivitu</string>
     <string name="program_3_activities_add_dialog_title">Přidat novou aktivitu</string>
     <string name="program_3_activities_add_dialog_name">Název:</string>
-    <string name="program_3_activities_add_dialog_length">Délka:</string>
+    <string name="program_3_activities_add_dialog_duration">Délka:</string>
     <string name="program_3_activities_summary_intro">Podívej se na shrnutí aktivit během tvého běžného dne, kdy zažíváš průměrnou úroveň stresu. Máš svůj čas a energii rozloženou mezi tyto aktivity tak, jak by sis přál(a)? Existuje nějaká možnost zlepšení tak, aby si se cítil(a) lépe a lépe zvládal(a) stres? Co bys změnil(a)? Vyber si jednu aktivitu, u které by sis přál(a) změnu. Můžeš si přát trávit méně nebo naopak více času s nějakou aktivitou. Nebo si přeješ změnit čas, kdy ji vykonáváš? Je to na tobě!</string>
     <string name="program_3_activities_summary_percent">%d %</string>
     <string name="program_3_goal_intro">Pojďme využít toho, že už si umíš díky první části programu dobře stanovit krátkodobý cíl. Měj na mysli změnu v denní aktivitě v tvém běžném dni a za pomocí známých otázek si nadefinuj cíl, který ti k takové změně pomůže. Jdeme na to!</string>

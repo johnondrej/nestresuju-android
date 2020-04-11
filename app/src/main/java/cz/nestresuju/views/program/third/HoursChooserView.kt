@@ -5,12 +5,13 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import cz.nestresuju.R
+import cz.nestresuju.common.extensions.visible
 import cz.nestresuju.databinding.ViewHoursChooserBinding
 
 /**
  * View for assigning time to a certain activity.
  */
-class HoursChooserView(context: Context, attributes: AttributeSet) : LinearLayout(context, attributes) {
+class HoursChooserView(context: Context, attributes: AttributeSet? = null) : LinearLayout(context, attributes) {
 
     private val binding = ViewHoursChooserBinding.inflate(LayoutInflater.from(context), this, true)
 
@@ -26,16 +27,28 @@ class HoursChooserView(context: Context, attributes: AttributeSet) : LinearLayou
         }
         get() = binding.btnChoose.text.toString()
 
+    var removeEnabled: Boolean
+        get() = binding.btnRemove.visible
+        set(value) {
+            binding.btnRemove.visible = value
+        }
+
     init {
-        val attrs = context.obtainStyledAttributes(attributes, R.styleable.HoursChooserView)
-        val text = attrs.getString(R.styleable.HoursChooserView_txt)
+        if (attributes != null) {
+            val attrs = context.obtainStyledAttributes(attributes, R.styleable.HoursChooserView)
+            val text = attrs.getString(R.styleable.HoursChooserView_txt)
 
-        activityText = text
+            activityText = text
 
-        attrs.recycle()
+            attrs.recycle()
+        }
     }
 
     fun setOnChooseButtonClickedListener(onChoose: () -> Unit) {
         binding.btnChoose.setOnClickListener { onChoose() }
+    }
+
+    fun setOnRemoveButtonClickedListener(onRemove: () -> Unit) {
+        binding.btnRemove.setOnClickListener { onRemove() }
     }
 }
