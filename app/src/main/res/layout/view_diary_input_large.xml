@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 app:diaryInputMode="large"
                 app:image="@drawable/ic_diary_smiley_1"
-                app:text="@string/diary_stress_level_1" />
+                app:txt="@string/diary_stress_level_1" />
 
             <cz.nestresuju.views.diary.input.DiaryStressLevelChoiceView
                 android:id="@+id/smiley_2"
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 app:diaryInputMode="large"
                 app:image="@drawable/ic_diary_smiley_2"
-                app:text="@string/diary_stress_level_2" />
+                app:txt="@string/diary_stress_level_2" />
 
             <cz.nestresuju.views.diary.input.DiaryStressLevelChoiceView
                 android:id="@+id/smiley_3"
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 app:diaryInputMode="large"
                 app:image="@drawable/ic_diary_smiley_3"
-                app:text="@string/diary_stress_level_3" />
+                app:txt="@string/diary_stress_level_3" />
 
             <cz.nestresuju.views.diary.input.DiaryStressLevelChoiceView
                 android:id="@+id/smiley_4"
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 app:diaryInputMode="large"
                 app:image="@drawable/ic_diary_smiley_4"
-                app:text="@string/diary_stress_level_4" />
+                app:txt="@string/diary_stress_level_4" />
 
         </LinearLayout>
 

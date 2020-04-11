@@ -5,13 +5,15 @@
         <enum name="small" value="1" />
     </attr>
 
+    <attr name="txt" format="reference" />
+
     <declare-styleable name="DiaryInputView">
         <attr name="diaryInputMode" />
     </declare-styleable>
 
     <declare-styleable name="DiaryStressLevelChoiceView">
         <attr name="image" format="reference" />
-        <attr name="text" format="reference" />
+        <attr name="txt" />
         <attr name="diaryInputMode" />
     </declare-styleable>
 
@@ -23,5 +25,9 @@
     <declare-styleable name="ProgramFirstSummaryAnswerView">
         <attr name="summaryTitle" format="reference" />
         <attr name="summaryAnswer" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="HoursChooserView">
+        <attr name="txt" />
     </declare-styleable>
 </resources>

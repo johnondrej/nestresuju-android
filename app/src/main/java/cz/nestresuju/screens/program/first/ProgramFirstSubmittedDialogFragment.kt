@@ -34,7 +34,7 @@ class ProgramFirstSubmittedDialogFragment : DialogFragment() {
             .setPositiveButton(R.string.general_continue) { _, _ ->
                 (parentFragment as? OnFirstProgramSubmittedListener)?.onFirstProgramSubmitted()
             }.setCancelable(false)
-            .show()
+            .create()
     }
 
     interface OnFirstProgramSubmittedListener {

@@ -30,7 +30,7 @@ class DiaryDeleteEntryDialogFragment : DialogFragment() {
             .setPositiveButton(android.R.string.yes) { _, _ ->
                 (parentFragment as? OnEntryDeleteConfirmedListener)?.onDiaryEntryDeleteConfirmed(entryId)
             }.setNegativeButton(android.R.string.cancel) { _, _ -> }
-            .show()
+            .create()
     }
 
     interface OnEntryDeleteConfirmedListener {

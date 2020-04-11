@@ -57,6 +57,14 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
+        <action
+            android:id="@+id/action_fragment_program_overview_to_fragment_program_3_1"
+            app:destination="@id/fragment_program_3_1"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
     </fragment>
 
     <fragment
@@ -331,7 +339,7 @@
     <fragment
         android:id="@+id/fragment_program_3_1"
         android:name="cz.nestresuju.screens.program.third.ProgramThirdPhase1Fragment"
-        android:label="TODO" />
+        android:label="@string/program_3_title" />
 
     <fragment
         android:id="@+id/fragment_program_4_1"

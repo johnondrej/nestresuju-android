@@ -10,6 +10,8 @@
     <string name="general_finish">Dokončit</string>
     <string name="general_begin">Začít</string>
     <string name="general_try_again">Zkusit znovu</string>
+    <string name="general_choose">Vybrat</string>
+    <string name="general_understand">Rozumím</string>
     <string name="general_date_yesterday">Včera</string>
     <string name="general_date_today">Dnes</string>
     <string name="general_date_tomorrow">Zítra</string>
@@ -108,6 +110,56 @@
     <string name="program_2_instructions_6">Snaž se soustředit jen na dýchání a na svou relaxaci.</string>
     <string name="program_2_instructions_7">A teď si to můžeš vyzkoušet! Až budeš mít pocit, že už ti relaxace stačí, vrať se zpátky do aplikace Nestresuju.\n\nTeď se zhluboka nadechni, zavři oči a užij si svou relaxaci.</string>
     <string name="program_2_submitted_dialog_text">Výborně! Cvičení dělá mistra, a proto se v následujících 6-ti dnech pokus alespoň jednou vrátit k relaxaci. Najdi si chvíli času, zastav se a vyčisti svou mysl a uvolni napětí. Určitě se budeš cítit lépe. Za 6 dní se ti otevře další část programu Nestresuju! Mezi tím nezapomínej zapisovat svou úroveň stresu do Deníku anebo si počíst o stresu a jeho zvládání v Knihovně. Hodně štěstí!</string>
+
+    <!-- Program 3 -->
+
+    <string name="program_3_title">Řízení času</string>
+    <string name="program_3_hours_intro">Dokázat si naplánovat čas, určit si priority a čemu se chceme věnovat je další z řady důležitých schopností, které pomáhají zvládat stres a stresové události. Čemu věnuješ nejvíce času ty?</string>
+    <string name="program_3_hours_instructions">Představ si svůj průměrný den, kdy pociťuješ průměrnou dávku stresu. Nejsi ani extrémně vytížený(á), ale ani nejsi naprosto bez zátěže. Vybav si běžný pracovní den a zamysli si nad tím, jak takový den probíhá.</string>
+    <string name="program_3_hours_getting_up">V kolik hodin vstáváš?</string>
+    <string name="program_3_hours_breakfast">V kolik hodin snídáš?</string>
+    <string name="program_3_hours_lunch">V kolik hodin obědváš?</string>
+    <string name="program_3_hours_dinner">V kolik hodin se navečeříš?</string>
+    <string name="program_3_hours_going_sleep">V kolik hodin si jdeš lehnout?</string>
+    <string name="program_3_hours_sleeping">V kolik hodin usneš?</string>
+    <string name="program_3_hours_no_breakfast">Nesnídám</string>
+    <string name="program_3_hours_no_lunch">Neobědvám</string>
+    <string name="program_3_hours_no_dinner">Nevečeřím</string>
+    <string name="program_3_hours_choose_dialog_breakfast_title">Snídaně</string>
+    <string name="program_3_hours_choose_dialog_lunch_title">Oběd</string>
+    <string name="program_3_hours_choose_dialog_dinner_title">Večeře</string>
+    <string name="program_3_hours_choose_dialog_breakfast_text">Vyber čas v kolik snídáš, nebo možnost "Nesnídám" v případě, že snídani ze svého jídelníčku vynecháváš.</string>
+    <string name="program_3_hours_choose_dialog_lunch_text">Vyber čas v kolik snídáš, nebo možnost "Neobědvám" v případě, že oběd ze svého jídelníčku vynecháváš.</string>
+    <string name="program_3_hours_choose_dialog_dinner_text">Vyber čas v kolik snídáš, nebo možnost "Nevečeřím" v případě, že večeři ze svého jídelníčku vynecháváš.</string>
+    <string name="program_3_hours_choose_dialog_choose_time">Vybrat čas</string>
+    <string name="program_3_hours_warning_dialog_text">Pro zdravý životní styl a lepší zvládání stresu je pravidelné a zdravé stravování velmi důležité. Nevynechávej jídlo ze svého dne. Vyhraď si čas na doplnění energie a živin pro své tělo a lepší fungování! </string>
+    <string name="program_3_activities_instructions">Kolik času strávíš ve svém běžném dni těmito aktivitami?</string>
+    <string name="program_3_activities_hours">h</string>
+    <string name="program_3_activities_minutes">min</string>
+    <string name="program_3_activities_hygiene">Hygiena</string>
+    <string name="program_3_activities_study">Studium</string>
+    <string name="program_3_activities_sport">Sport</string>
+    <string name="program_3_activities_work">Práce</string>
+    <string name="program_3_activities_household_care">Hygiena</string>
+    <string name="program_3_activities_culture">Kultura</string>
+    <string name="program_3_activities_food">Jídlo</string>
+    <string name="program_3_activities_family_time">Čas s rodinou</string>
+    <string name="program_3_activities_friends_time">Čas s přáteli</string>
+    <string name="program_3_activities_partner_time">Čas s partnerem (partnerkou)</string>
+    <string name="program_3_activities_add_next">Přidat další</string>
+    <string name="program_3_activities_add_dialog_title">Přidat novou aktivitu</string>
+    <string name="program_3_activities_add_dialog_name">Název:</string>
+    <string name="program_3_activities_add_dialog_length">Délka:</string>
+    <string name="program_3_activities_summary_intro">Podívej se na shrnutí aktivit během tvého běžného dne, kdy zažíváš průměrnou úroveň stresu. Máš svůj čas a energii rozloženou mezi tyto aktivity tak, jak by sis přál(a)? Existuje nějaká možnost zlepšení tak, aby si se cítil(a) lépe a lépe zvládal(a) stres? Co bys změnil(a)? Vyber si jednu aktivitu, u které by sis přál(a) změnu. Můžeš si přát trávit méně nebo naopak více času s nějakou aktivitou. Nebo si přeješ změnit čas, kdy ji vykonáváš? Je to na tobě!</string>
+    <string name="program_3_activities_summary_percent">%d %</string>
+    <string name="program_3_goal_intro">Pojďme využít toho, že už si umíš díky první části programu dobře stanovit krátkodobý cíl. Měj na mysli změnu v denní aktivitě v tvém běžném dni a za pomocí známých otázek si nadefinuj cíl, který ti k takové změně pomůže. Jdeme na to!</string>
+    <string name="program_3_goal_question_1">Čeho přesně chceš dosáhnout? Co k tomu budeš potřebovat? Komu můžeš říct o pomoc?</string>
+    <string name="program_3_goal_question_2">Jak poznáš, že se ti povedlo tvůj úkol splnit?</string>
+    <string name="program_3_goal_question_3">Na této škále označ, jak moc si myslíš, že je tvůj cíl dosažitelný a že se ti povede ho splnit v následujících 6 dnech? (1-absolutně nedosažitelný, 10-naprosto dosažitelný)</string>
+    <string name="program_3_goal_question_4">Co ti splnění úkolu přinese? Proč má pro tebe změna právě této denní aktivity smysl?</string>
+    <string name="program_3_goal_question_5">Do kdy si myslíš, že se ti povede tvůj cíl splnit?</string>
+    <string name="program_3_goal_instructions">Toto jsou tvé odpovědi na otázky ohledně tvého cíle na změnu tvé denní aktivity. Nyní se pokus svůj cíl formulovat jasně a krátce. Nadefinuj si jej za použití jen několika slov, stejně jako v první části programu před dvěma týdny.</string>
+    <string name="program_3_goal_submitted_dialog_text">Gratulujeme! Právě sis stanovil(a) svůj cíl do následujícího týdne: %s. Hodně štěstí s jeho plněním! Za 6 dní se ti otevře poslední část programu Nestresuju. Mezi tím nezapomínej zapisovat svou úroveň stresu do Deníku. Nevynechej ani Knihovnu, kde si můžeš přečíst zajímavé informace o stresu a jeho zvládání.</string>
 
     <!-- Diary -->
 

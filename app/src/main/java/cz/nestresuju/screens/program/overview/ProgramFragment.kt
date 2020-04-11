@@ -71,8 +71,9 @@ class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
     }
 
     private fun onThirdProgramSelected() {
-        // TODO
-        view?.let { Snackbar.make(it, "Program 3", Snackbar.LENGTH_LONG).show() }
+        val navController = findNavController()
+
+        navController.navigate(R.id.action_fragment_program_overview_to_fragment_program_3_1)
     }
 
     private fun onFourthProgramSelected() {
