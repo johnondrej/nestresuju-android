@@ -11,7 +11,7 @@ import cz.nestresuju.databinding.ViewHoursChooserBinding
 /**
  * View for assigning time to a certain activity.
  */
-class HoursChooserView(context: Context, attributes: AttributeSet? = null) : LinearLayout(context, attributes) {
+class ProgramThirdHoursChooserView(context: Context, attributes: AttributeSet? = null) : LinearLayout(context, attributes) {
 
     private val binding = ViewHoursChooserBinding.inflate(LayoutInflater.from(context), this, true)
 
@@ -35,8 +35,8 @@ class HoursChooserView(context: Context, attributes: AttributeSet? = null) : Lin
 
     init {
         if (attributes != null) {
-            val attrs = context.obtainStyledAttributes(attributes, R.styleable.HoursChooserView)
-            val text = attrs.getString(R.styleable.HoursChooserView_txt)
+            val attrs = context.obtainStyledAttributes(attributes, R.styleable.ProgramThirdHoursChooserView)
+            val text = attrs.getString(R.styleable.ProgramThirdHoursChooserView_txt)
 
             activityText = text
 

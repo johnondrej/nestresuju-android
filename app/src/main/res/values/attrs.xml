@@ -27,7 +27,7 @@
         <attr name="summaryAnswer" format="reference" />
     </declare-styleable>
 
-    <declare-styleable name="HoursChooserView">
+    <declare-styleable name="ProgramThirdHoursChooserView">
         <attr name="txt" />
     </declare-styleable>
 </resources>
