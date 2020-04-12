@@ -3,7 +3,6 @@ package cz.nestresuju.views.diary.input
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import androidx.cardview.widget.CardView
 import cz.nestresuju.R
 import cz.nestresuju.common.extensions.visible
@@ -67,10 +66,6 @@ class DiaryInputView(context: Context, attributes: AttributeSet) : CardView(cont
         with(questionView) {
             val shouldShow = input != null
             visible = shouldShow
-            layoutParams = layoutParams.apply {
-                // Workaround to fix Android bug that causes view to still occupy space even if visibility is set to GONE
-                height = if (shouldShow) WRAP_CONTENT else 0
-            }
             setQuestion(input?.question?.text)
         }
     }
