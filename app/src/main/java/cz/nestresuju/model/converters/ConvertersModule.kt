@@ -18,6 +18,8 @@ val converterModule = module {
 
     factory<ProgramSecondConverter> { ProgramSecondConverterImpl() }
 
+    factory<ProgramThirdConverter> { ProgramThirdConverterImpl() }
+
     factory<StressLevelConverter> { StressLevelConverterImpl() }
 
     factory<DiaryEntitiesConverter> { DiaryEntitiesConverterImpl(stressLevelConverter = get()) }

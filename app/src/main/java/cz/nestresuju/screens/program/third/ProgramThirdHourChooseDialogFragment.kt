@@ -68,9 +68,9 @@ class ProgramThirdHourChooseDialogFragment : DialogFragment() {
 
     interface OnActivityTimeSelectedListener {
 
-        fun onActivityNotInDay(activity: ProgramThirdHourActivity)
-
         fun onTimeSelectRequested(activity: ProgramThirdHourActivity)
+
+        fun onActivityNotInDay(activity: ProgramThirdHourActivity)
 
         fun onTimeSet(activity: ProgramThirdHourActivity, hourOfDay: Int, minute: Int)
     }

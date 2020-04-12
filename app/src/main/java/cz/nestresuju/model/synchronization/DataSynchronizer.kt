@@ -3,6 +3,7 @@ package cz.nestresuju.model.synchronization
 import cz.nestresuju.model.converters.ProgramEvaluationConverter
 import cz.nestresuju.model.converters.ProgramFirstConverter
 import cz.nestresuju.model.converters.ProgramSecondConverter
+import cz.nestresuju.model.converters.ProgramThirdConverter
 import cz.nestresuju.model.database.AppDatabase
 import cz.nestresuju.model.entities.api.diary.ApiNewDiaryEntry
 import cz.nestresuju.model.entities.database.diary.DbSynchronizerDiaryChange
@@ -32,7 +33,8 @@ class DataSynchronizerImpl(
     private val database: AppDatabase,
     private val programEvaluationConverter: ProgramEvaluationConverter,
     private val programFirstConverter: ProgramFirstConverter,
-    private val programSecondConverter: ProgramSecondConverter
+    private val programSecondConverter: ProgramSecondConverter,
+    private val programThirdConverter: ProgramThirdConverter
 ) : DataSynchronizer {
 
     override suspend fun synchronizeAll() {
@@ -41,13 +43,10 @@ class DataSynchronizerImpl(
     }
 
     override suspend fun synchronizeProgram() {
-        val programFirstDao = database.programFirstDao()
-        val programSecondDao = database.programSecondDao()
-
-        val programFirstResults = programFirstDao.getResults()
-        val programSecondResults = programSecondDao.getResults()
-
         try {
+            val programFirstDao = database.programFirstDao()
+            val programFirstResults = programFirstDao.getResults()
+
             if (!programFirstResults.synchronizedWithApi && programFirstResults.programCompleted != null) {
                 // TODO: uncomment below when API is ready
                 // apiDefinition.submitFirstProgramResults(programFirstConverter.dbProgramFirstResultsToApi(programFirstResults))
@@ -58,10 +57,26 @@ class DataSynchronizerImpl(
         }
 
         try {
+            val programSecondDao = database.programSecondDao()
+            val programSecondResults = programSecondDao.getResults()
+
             if (!programSecondResults.synchronizedWithApi && programSecondResults.programCompleted != null) {
                 // TODO: uncomment below when API is ready
                 // apiDefinition.submitSecondProgramResults(programSecondConverter.dbProgramSecondResultsToApi(programSecondResults))
                 programSecondDao.updateResults(programSecondResults.copy(synchronizedWithApi = true))
+            }
+        } catch (e: Exception) {
+            // silent fail, synchronization will be performed next time
+        }
+
+        try {
+            val programThirdDao = database.programThirdDao()
+            val programThirdResults = programThirdDao.getFullResults()
+
+            if (!programThirdResults.results.synchronizedWithApi && programThirdResults.results.programCompleted != null) {
+                // TODO: uncomment below when API is ready
+                // apiDefinition.submitThirdProgramResults(programThirdConverter.dbProgramThirdResultsToApi(programThirdResults))
+                programThirdDao.updateResults(programThirdResults.copy(results = programThirdResults.results.copy(synchronizedWithApi = true)))
             }
         } catch (e: Exception) {
             // silent fail, synchronization will be performed next time

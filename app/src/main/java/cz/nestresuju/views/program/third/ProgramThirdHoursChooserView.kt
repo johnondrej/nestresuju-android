@@ -23,9 +23,9 @@ class ProgramThirdHoursChooserView(context: Context, attributes: AttributeSet? =
 
     var btnText: String?
         set(value) {
-            binding.btnChoose.text = value
+            binding.btnChoose.text = value ?: context.getString(R.string.general_choose)
         }
-        get() = binding.btnChoose.text.toString()
+        get() = binding.btnChoose.text?.toString()
 
     var removeEnabled: Boolean
         get() = binding.btnRemove.visible

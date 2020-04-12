@@ -4,7 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Relation
 
 /**
- * Databse class representing diary entry with full question details.
+ * Database class representing diary entry with full question details.
  */
 data class DbDiaryEntryWithQuestion(
     @Embedded val diaryEntry: DbDiaryEntry,

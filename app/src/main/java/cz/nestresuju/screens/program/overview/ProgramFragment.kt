@@ -11,6 +11,7 @@ import cz.nestresuju.R
 import cz.nestresuju.databinding.FragmentCustomListBinding
 import cz.nestresuju.model.entities.domain.program.first.ProgramFirstResults
 import cz.nestresuju.model.entities.domain.program.second.ProgramSecondResults
+import cz.nestresuju.model.entities.domain.program.third.ProgramThirdResults
 import cz.nestresuju.screens.base.BaseArchFragment
 import cz.nestresuju.screens.program.overview.epoxy.ProgramController
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -34,7 +35,7 @@ class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
                 controller = ProgramController(
                     onFirstProgramSelected = { onFirstProgramSelected(state.programFirstResults) },
                     onSecondProgramSelected = { onSecondProgramSelected(state.programSecondResults) },
-                    onThirdProgramSelected = { onThirdProgramSelected() },
+                    onThirdProgramSelected = { onThirdProgramSelected(state.programThirdResults) },
                     onFourthProgramSelected = { onFourthProgramSelected() }
                 ).also {
                     it.requestModelBuild()
@@ -70,10 +71,18 @@ class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
         }
     }
 
-    private fun onThirdProgramSelected() {
+    private fun onThirdProgramSelected(results: ProgramThirdResults) {
         val navController = findNavController()
 
-        navController.navigate(R.id.action_fragment_program_overview_to_fragment_program_3_1)
+        if (results.progress < 1) {
+            navController.navigate(R.id.action_fragment_program_overview_to_fragment_program_3_intro)
+        } else {
+            // Build navigation backstack
+            navController.navigate(R.id.fragment_program_3_1)
+            if (results.progress >= 2) navController.navigate(R.id.action_fragment_program_3_1_to_fragment_program_3_2)
+            if (results.progress >= 3) navController.navigate(R.id.action_fragment_program_3_2_to_fragment_program_3_3)
+            if (results.progress >= 4) navController.navigate(R.id.action_fragment_program_3_3_to_fragment_program_3_4)
+        }
     }
 
     private fun onFourthProgramSelected() {

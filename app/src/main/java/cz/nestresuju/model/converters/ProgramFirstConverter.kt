@@ -44,7 +44,7 @@ class ProgramFirstConverterImpl : ProgramFirstConverter {
             reason = dbResults.reason,
             deadline = dbResults.deadline,
             summarizedTarget = dbResults.summarizedTarget,
-            programCompletedDate = ZonedDateTime.now()
+            programCompletedDate = dbResults.programCompleted ?: ZonedDateTime.now()
         )
     }
 
