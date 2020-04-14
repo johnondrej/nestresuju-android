@@ -28,6 +28,12 @@ class ProgramThirdConverterImpl : ProgramThirdConverter {
     override fun apiProgramThirdResultsToDb(apiResults: ApiProgramThirdResults): DbProgramThirdResultsWithActivities {
         return DbProgramThirdResultsWithActivities(
             results = DbProgramThirdResults(
+                target = apiResults.target,
+                completion = apiResults.completion,
+                satisfiability = apiResults.satisfiability,
+                reason = apiResults.reason,
+                deadline = apiResults.deadline,
+                summarizedTarget = apiResults.summarizedTarget,
                 programCompleted = apiResults.programCompletedDate,
                 progress = ProgramThirdConstants.PHASES,
                 synchronizedWithApi = true
@@ -69,7 +75,12 @@ class ProgramThirdConverterImpl : ProgramThirdConverter {
                     name = dbActivity.name,
                     duration = duration.toString()
                 )
-            },
+            }, target = dbResults.results.target,
+            completion = dbResults.results.completion,
+            satisfiability = dbResults.results.satisfiability,
+            reason = dbResults.results.reason,
+            deadline = dbResults.results.deadline,
+            summarizedTarget = dbResults.results.summarizedTarget,
             programCompletedDate = dbResults.results.programCompleted ?: ZonedDateTime.now()
         )
     }
@@ -92,7 +103,13 @@ class ProgramThirdConverterImpl : ProgramThirdConverter {
                     minutes = dbActivity.minutes,
                     userDefined = dbActivity.userDefined
                 )
-            }, programCompleted = dbResults.results.programCompleted,
+            }, completion = dbResults.results.completion,
+            target = dbResults.results.target,
+            satisfiability = dbResults.results.satisfiability,
+            reason = dbResults.results.reason,
+            deadline = dbResults.results.deadline,
+            summarizedTarget = dbResults.results.summarizedTarget,
+            programCompleted = dbResults.results.programCompleted,
             progress = dbResults.results.progress
         )
     }
@@ -100,6 +117,12 @@ class ProgramThirdConverterImpl : ProgramThirdConverter {
     override fun programThirdResultsToDb(results: ProgramThirdResults): DbProgramThirdResultsWithActivities {
         return DbProgramThirdResultsWithActivities(
             results = DbProgramThirdResults(
+                target = results.target,
+                completion = results.completion,
+                satisfiability = results.satisfiability,
+                reason = results.reason,
+                deadline = results.deadline,
+                summarizedTarget = results.summarizedTarget,
                 programCompleted = results.programCompleted,
                 progress = results.progress,
                 synchronizedWithApi = false

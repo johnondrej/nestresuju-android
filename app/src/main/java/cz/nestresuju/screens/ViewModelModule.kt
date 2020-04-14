@@ -15,10 +15,7 @@ import cz.nestresuju.screens.program.first.ProgramFirstSummaryViewModel
 import cz.nestresuju.screens.program.overview.ProgramViewModel
 import cz.nestresuju.screens.program.second.ProgramSecondInstructionsViewModel
 import cz.nestresuju.screens.program.second.ProgramSecondRelaxationViewModel
-import cz.nestresuju.screens.program.third.ProgramThirdActivitiesSummaryIntroViewModel
-import cz.nestresuju.screens.program.third.ProgramThirdActivitiesSummaryViewModel
-import cz.nestresuju.screens.program.third.ProgramThirdActivitiesViewModel
-import cz.nestresuju.screens.program.third.ProgramThirdTimetableViewModel
+import cz.nestresuju.screens.program.third.*
 import cz.nestresuju.screens.tests.input.InputTestViewModel
 import cz.nestresuju.screens.tests.screening.ScreeningTestViewModel
 import org.koin.android.ext.koin.androidContext
@@ -62,6 +59,14 @@ val viewModelModule = module {
     viewModel { ProgramThirdActivitiesSummaryIntroViewModel(programRepository = get()) }
 
     viewModel { ProgramThirdActivitiesSummaryViewModel(programRepository = get()) }
+
+    viewModel { (progress: Int) -> ProgramThirdGoalQuestionViewModel(progress, programRepository = get()) }
+
+    viewModel { ProgramThirdGoalSatisfiabilityViewModel(programRepository = get()) }
+
+    viewModel { ProgramThirdOverviewViewModel(programRepository = get()) }
+
+    viewModel { ProgramThirdSummaryViewModel(programRepository = get()) }
 
     viewModel { AboutAppViewModel() }
 

@@ -74,14 +74,24 @@ class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
     private fun onThirdProgramSelected(results: ProgramThirdResults) {
         val navController = findNavController()
 
-        if (results.progress < 1) {
-            navController.navigate(R.id.action_fragment_program_overview_to_fragment_program_3_intro)
+        if (results.programCompleted == null) {
+            if (results.progress < 1) {
+                navController.navigate(R.id.action_fragment_program_overview_to_fragment_program_3_intro)
+            } else {
+                // Build navigation backstack
+                navController.navigate(R.id.fragment_program_3_1)
+                if (results.progress >= 2) navController.navigate(R.id.action_fragment_program_3_1_to_fragment_program_3_2)
+                if (results.progress >= 3) navController.navigate(R.id.action_fragment_program_3_2_to_fragment_program_3_3)
+                if (results.progress >= 4) navController.navigate(R.id.action_fragment_program_3_3_to_fragment_program_3_4)
+                if (results.progress >= 5) navController.navigate(R.id.action_fragment_program_3_4_to_fragment_program_3_5)
+                if (results.progress >= 6) navController.navigate(R.id.action_fragment_program_3_5_to_fragment_program_3_6)
+                if (results.progress >= 7) navController.navigate(R.id.action_fragment_program_3_6_to_fragment_program_3_7)
+                if (results.progress >= 8) navController.navigate(R.id.action_fragment_program_3_7_to_fragment_program_3_8)
+                if (results.progress >= 9) navController.navigate(R.id.action_fragment_program_3_8_to_fragment_program_3_9)
+                if (results.progress >= 10) navController.navigate(R.id.action_fragment_program_3_9_to_fragment_program_3_10)
+            }
         } else {
-            // Build navigation backstack
-            navController.navigate(R.id.fragment_program_3_1)
-            if (results.progress >= 2) navController.navigate(R.id.action_fragment_program_3_1_to_fragment_program_3_2)
-            if (results.progress >= 3) navController.navigate(R.id.action_fragment_program_3_2_to_fragment_program_3_3)
-            if (results.progress >= 4) navController.navigate(R.id.action_fragment_program_3_3_to_fragment_program_3_4)
+            navController.navigate(R.id.action_fragment_program_overview_to_fragment_program_3_summary)
         }
     }
 

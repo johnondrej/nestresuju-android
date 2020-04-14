@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import cz.nestresuju.R
 import cz.nestresuju.databinding.FragmentProgram3ActivitiesSummaryBinding
 import cz.nestresuju.screens.base.BaseArchFragment
@@ -45,6 +46,10 @@ class ProgramThirdPhase4Fragment : BaseArchFragment<FragmentProgram3ActivitiesSu
                     )
                 }
             })
+
+            btnContinue.setOnClickListener {
+                findNavController().navigate(R.id.action_fragment_program_3_4_to_fragment_program_3_5)
+            }
 
             btnBack.setOnClickListener {
                 activity?.onBackPressed()

@@ -115,6 +115,7 @@
     <!-- Program 3 -->
 
     <string name="program_3_title">Řízení času</string>
+    <string name="program_3_summary_title">Řízení času - shrnutí</string>
     <string name="program_3_hours_intro">Dokázat si naplánovat čas, určit si priority a čemu se chceme věnovat je další z řady důležitých schopností, které pomáhají zvládat stres a stresové události. Čemu věnuješ nejvíce času ty?</string>
     <string name="program_3_hours_instructions">Představ si svůj průměrný den, kdy pociťuješ průměrnou dávku stresu. Nejsi ani extrémně vytížený(á), ale ani nejsi naprosto bez zátěže. Vybav si běžný pracovní den a zamysli si nad tím, jak takový den probíhá.</string>
     <string name="program_3_hours_getting_up">V kolik hodin vstáváš?</string>
@@ -161,7 +162,7 @@
     <string name="program_3_goal_question_3">Na této škále označ, jak moc si myslíš, že je tvůj cíl dosažitelný a že se ti povede ho splnit v následujících 6 dnech? (1-absolutně nedosažitelný, 10-naprosto dosažitelný)</string>
     <string name="program_3_goal_question_4">Co ti splnění úkolu přinese? Proč má pro tebe změna právě této denní aktivity smysl?</string>
     <string name="program_3_goal_question_5">Do kdy si myslíš, že se ti povede tvůj cíl splnit?</string>
-    <string name="program_3_goal_instructions">Toto jsou tvé odpovědi na otázky ohledně tvého cíle na změnu tvé denní aktivity. Nyní se pokus svůj cíl formulovat jasně a krátce. Nadefinuj si jej za použití jen několika slov, stejně jako v první části programu před dvěma týdny.</string>
+    <string name="program_3_goal_summarized_instructions">Toto jsou tvé odpovědi na otázky ohledně tvého cíle na změnu tvé denní aktivity. Nyní se pokus svůj cíl formulovat jasně a krátce. Nadefinuj si jej za použití jen několika slov, stejně jako v první části programu před dvěma týdny.</string>
     <string name="program_3_goal_submitted_dialog_text">Gratulujeme! Právě sis stanovil(a) svůj cíl do následujícího týdne: %s. Hodně štěstí s jeho plněním! Za 6 dní se ti otevře poslední část programu Nestresuju. Mezi tím nezapomínej zapisovat svou úroveň stresu do Deníku. Nevynechej ani Knihovnu, kde si můžeš přečíst zajímavé informace o stresu a jeho zvládání.</string>
 
     <!-- Diary -->

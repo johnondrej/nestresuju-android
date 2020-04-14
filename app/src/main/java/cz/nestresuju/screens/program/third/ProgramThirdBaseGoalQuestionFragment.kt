@@ -1,4 +1,4 @@
-package cz.nestresuju.screens.program.first
+package cz.nestresuju.screens.program.third
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,14 +12,14 @@ import cz.nestresuju.databinding.FragmentProgram1QuestionBinding
 import cz.nestresuju.screens.base.BaseArchFragment
 
 /**
- * Base fragment with text question in first program's phase.
+ * Base fragment with text question in third program's phase.
  */
-abstract class ProgramFirstBaseQuestionFragment : BaseArchFragment<FragmentProgram1QuestionBinding>() {
+abstract class ProgramThirdBaseGoalQuestionFragment : BaseArchFragment<FragmentProgram1QuestionBinding>() {
 
     protected abstract val questionRes: Int
     protected abstract val phaseProgress: Int
 
-    abstract override val viewModel: ProgramFirstQuestionViewModel
+    abstract override val viewModel: ProgramThirdGoalQuestionViewModel
 
     protected abstract fun onContinueClicked()
 
@@ -30,7 +30,7 @@ abstract class ProgramFirstBaseQuestionFragment : BaseArchFragment<FragmentProgr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(viewBinding) {
-            progress.max = ProgramFirstConstants.PHASES
+            progress.max = ProgramThirdConstants.PHASES
             progress.progress = phaseProgress
             txtQuestion.text = getString(questionRes)
             btnContinue.setOnClickListener { onContinueClicked() }

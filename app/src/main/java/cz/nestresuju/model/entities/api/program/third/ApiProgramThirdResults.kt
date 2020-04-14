@@ -10,6 +10,12 @@ import org.threeten.bp.ZonedDateTime
 class ApiProgramThirdResults(
     val timetable: List<ApiHourEntry>,
     val activities: List<ApiActivityEntry>,
+    val target: String,
+    val completion: String,
+    val satisfiability: Int,
+    val reason: String,
+    val deadline: String,
+    val summarizedTarget: String,
     val programCompletedDate: ZonedDateTime
 ) {
 

@@ -5,5 +5,5 @@ package cz.nestresuju.screens.program.third
  */
 object ProgramThirdConstants {
 
-    const val PHASES = 4
+    const val PHASES = 10
 }

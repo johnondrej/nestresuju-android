@@ -8,6 +8,12 @@ import org.threeten.bp.ZonedDateTime
 data class ProgramThirdResults(
     val timetable: List<HourEntry>,
     val activities: List<ActivityEntry>,
+    val target: String,
+    val completion: String,
+    val satisfiability: Int,
+    val reason: String,
+    val deadline: String,
+    val summarizedTarget: String,
     val programCompleted: ZonedDateTime?,
     val progress: Int
 ) {
