@@ -12,7 +12,7 @@ import org.threeten.bp.ZonedDateTime
 data class DbProgramSecondResults(
     @PrimaryKey val id: Long = 0,
     @ColumnInfo(name = "duration") val relaxationDuration: Long = -1,
-    @ColumnInfo(name = "programCompleted") val programCompleted: ZonedDateTime? = null,
+    @ColumnInfo(name = "program_completed") val programCompleted: ZonedDateTime? = null,
     @ColumnInfo(name = "progress") val progress: Int = 0,
     @ColumnInfo(name = "synchronized") val synchronizedWithApi: Boolean = false
 )

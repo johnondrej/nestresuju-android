@@ -16,8 +16,8 @@ data class DbProgramThirdResults(
     @ColumnInfo(name = "satisfiability") val satisfiability: Int = 0,
     @ColumnInfo(name = "reason") val reason: String = "",
     @ColumnInfo(name = "deadline") val deadline: String = "",
-    @ColumnInfo(name = "summarizedTarget") val summarizedTarget: String = "",
-    @ColumnInfo(name = "programCompleted") val programCompleted: ZonedDateTime? = null,
+    @ColumnInfo(name = "summarized_target") val summarizedTarget: String = "",
+    @ColumnInfo(name = "program_completed") val programCompleted: ZonedDateTime? = null,
     @ColumnInfo(name = "progress") val progress: Int = 0,
     @ColumnInfo(name = "synchronized") val synchronizedWithApi: Boolean = false
 )
