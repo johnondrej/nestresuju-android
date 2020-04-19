@@ -1,23 +1,29 @@
 package cz.nestresuju.screens.program.fourth
 
 import android.os.Bundle
-import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import cz.nestresuju.R
+import cz.nestresuju.common.extensions.visible
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 /**
  * Fragment with first part of fourth program.
  */
-class ProgramFourthPhase1Fragment : Fragment() {
+class ProgramFourthPhase1Fragment : ProgramFourthBaseTextQuestionFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return TextView(requireContext()).apply {
-            layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-            gravity = Gravity.CENTER
-            text = "Program 4"
-        }
+    override val questionRes = R.string.program_4_stress_event_question
+
+    override val viewModel by viewModel<ProgramFourthTextQuestionViewModel> { parametersOf(1) }
+    override val phaseProgress = 1
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewBinding.btnBack.visible = false
+    }
+
+    override fun onContinueClicked() {
+        findNavController().navigate(R.id.action_fragment_program_4_1_to_fragment_program_4_2)
     }
 }

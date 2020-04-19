@@ -1,12 +1,14 @@
 package cz.nestresuju.model.entities.database.program.fourth
 
 import androidx.room.ColumnInfo
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 import org.threeten.bp.ZonedDateTime
 
 /**
  * Database class representing results of fourth program.
  */
+@Entity(tableName = "ProgramFourthResults")
 data class DbProgramFourthResults(
     @PrimaryKey val id: Long = 0,
     @ColumnInfo(name = "stress_event") val stressEvent: String = "",

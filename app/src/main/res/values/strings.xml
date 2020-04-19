@@ -165,6 +165,25 @@
     <string name="program_3_goal_summarized_instructions">Toto jsou tvé odpovědi na otázky ohledně tvého cíle na změnu tvé denní aktivity. Nyní se pokus svůj cíl formulovat jasně a krátce. Nadefinuj si jej za použití jen několika slov, stejně jako v první části programu před dvěma týdny.</string>
     <string name="program_3_goal_submitted_dialog_text">Gratulujeme! Právě sis stanovil(a) svůj cíl do následujícího týdne: %s. Hodně štěstí s jeho plněním! Za 6 dní se ti otevře poslední část programu Nestresuju. Mezi tím nezapomínej zapisovat svou úroveň stresu do Deníku. Nevynechej ani Knihovnu, kde si můžeš přečíst zajímavé informace o stresu a jeho zvládání.</string>
 
+    <!-- Program 4 -->
+
+    <string name="program_4_title">Hledání smyslu</string>
+    <string name="program_4_stress_event_question">Zamysli si nad nedávnou situací, která v tobě vyvolala negativní emoce a stres. Vyber si průměrně stresující událost a vzpomeň si, kdy si cítil(a) zátěž, ale ta nebyla ani extrémně vysoká ale ani velmi nízká. Jaká to bylo situace? Co ti konkrétně vyvolávalo stres?</string>
+    <string name="program_4_positives_question">Říká se, že vše zlé je pro něco dobré. I stresující situace a náročné životní události mohou kromě negativ mít i svá pozitiva. Zkus se zamyslet, co ti přinesla nedávná situace, kterou jsi si vybral(a) pro toto cvičení. V čem ti vystavení tomu stresu pomohlo? Zlepšil se tvůj život v něčem díky té situaci?</string>
+    <string name="program_4_questions_intro">Podobné cvičení můžeš provádět pravidelně jako prevenci vůči chronickému stresu. Můžeš se snažit hledat pozitiva v situacích, které se na první pohled zdají pouze negativní a zátěžové. Možná ale v sobě skrývají hlubší význam pro tebe a pro tvé ambice a životní plány. V závěru této části i celého programu Nestresuju si můžeš vyplnit krátký dotazník zaměřující se na hledání smyslu života.\n\nNyní se ti zobrazí 15 otázek. Zamysli se prosím nad tím, co je pro tebe v životě důležité a významné a vyber si jednu ze 7 nabízených možností odpovědi.</string>
+    <string name="program_4_question_answer_1">Naprosto nepravdivé</string>
+    <string name="program_4_question_answer_2">Hodně nepravdivé</string>
+    <string name="program_4_question_answer_3">Spíš nepravdivé</string>
+    <string name="program_4_question_answer_4">Těžko říct</string>
+    <string name="program_4_question_answer_5">Spíš pravdivé</string>
+    <string name="program_4_question_answer_6">Hodně pravdivé</string>
+    <string name="program_4_question_answer_7">Naprosto pravdivé</string>
+    <string name="program_4_submitted_dialog_text">Tím jsi se dostal(a) na samý konec nejen této části ale i celého programu Nestresuju. Nyní se ti otevřela závěrečná část aplikace, kde na tebe čeká nejen shrnutí naší společné cesty, ale také dva krátké závěrečné dotazníky. Prosíme o jejich vyplnění. Děkujeme!</string>
+    <string name="program_4_evaluation_above_above">Cítíš, že tvůj život má smysl. Aktivně jej prozkoumáváš a je to pro tebe dlouhodobý a prohlubující se proces. Láká tě otázka: „Jaký význam může můj život mít?“.\n\nPravděpodobně jsi spokojen(a) se svým životem, jsi optimista a máš zdravou úroveň sebevědomí.</string>
+    <string name="program_4_evaluation_above_below">Cítíš, že tvůj život má smysl a význam, ale aktivně nehledáš cesty a způsoby, jak je více poznávat a rozvíjet. Máš představu o smyslu svého života a čemu se v něm chceš věnovat. Jsi spokojen(a) se svým životem, máš spíše optimistický pohled na svět a máš zdravou úroveň sebevědomí.</string>
+    <string name="program_4_evaluation_below_above">Zřejmě necítíš, že by měl tvůj život jasný smysl a význam, ale aktivně hledáš něco nebo někoho, kdo by tvému životu smysl dal. Můžeš se cítit ztracen(a) a ne příliš spokojen(a) se svým životem. Na své cestě za hledáním smyslu tvého života nepolevuj a nenech se od své cesty poznání odradit.</string>
+    <string name="program_4_evaluation_below_below">Zřejmě necítíš, že by měl tvůj život jasný smysl a význam, a ani aktivně nehledáš něco nebo někoho, kdo by tvému životu smysl dal. Možná ti představa hledání významu života nepřipadá zajímavá a důležitá. Pokud ovšem nejsi spokojen(a) se svým životem, možná nastal čas svůj postoj k hledání smyslu života přehodnotit.</string>
+
     <!-- Diary -->
 
     <string name="diary_input_title">Jak moc jsi dnes ve stresu?</string>

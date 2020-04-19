@@ -9,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import cz.nestresuju.common.interfaces.OnBackPressedListener
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,5 +45,18 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+        navHostFragment?.let { navFragment ->
+            navFragment.childFragmentManager.primaryNavigationFragment?.let { fragment ->
+                val handledByFragment = (fragment as? OnBackPressedListener)?.onBackPressed() ?: false
+                if (handledByFragment) {
+                    return
+                }
+            }
+        }
+        super.onBackPressed()
     }
 }

@@ -1,9 +1,6 @@
 package cz.nestresuju.model.synchronization
 
-import cz.nestresuju.model.converters.ProgramEvaluationConverter
-import cz.nestresuju.model.converters.ProgramFirstConverter
-import cz.nestresuju.model.converters.ProgramSecondConverter
-import cz.nestresuju.model.converters.ProgramThirdConverter
+import cz.nestresuju.model.converters.*
 import cz.nestresuju.model.database.AppDatabase
 import cz.nestresuju.model.entities.api.diary.ApiNewDiaryEntry
 import cz.nestresuju.model.entities.database.diary.DbSynchronizerDiaryChange
@@ -34,7 +31,8 @@ class DataSynchronizerImpl(
     private val programEvaluationConverter: ProgramEvaluationConverter,
     private val programFirstConverter: ProgramFirstConverter,
     private val programSecondConverter: ProgramSecondConverter,
-    private val programThirdConverter: ProgramThirdConverter
+    private val programThirdConverter: ProgramThirdConverter,
+    private val programFourthConverter: ProgramFourthConverter
 ) : DataSynchronizer {
 
     override suspend fun synchronizeAll() {
@@ -77,6 +75,19 @@ class DataSynchronizerImpl(
                 // TODO: uncomment below when API is ready
                 // apiDefinition.submitThirdProgramResults(programThirdConverter.dbProgramThirdResultsToApi(programThirdResults))
                 programThirdDao.updateResults(programThirdResults.copy(results = programThirdResults.results.copy(synchronizedWithApi = true)))
+            }
+        } catch (e: Exception) {
+            // silent fail, synchronization will be performed next time
+        }
+
+        try {
+            val programFourthDao = database.programFourthDao()
+            val programFourthResults = programFourthDao.getResults()
+
+            if (!programFourthResults.results.synchronizedWithApi && programFourthResults.results.programCompleted != null) {
+                // TODO: uncomment below when API is ready
+                // apiDefinition.submitFourthProgramResults(programFourthConverter.dbProgramFourthToApi(programFourthResults))
+                programFourthDao.updateResults(results = programFourthResults.results.copy(synchronizedWithApi = true))
             }
         } catch (e: Exception) {
             // silent fail, synchronization will be performed next time

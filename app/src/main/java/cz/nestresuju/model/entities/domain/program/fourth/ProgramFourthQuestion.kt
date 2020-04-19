@@ -8,7 +8,7 @@ data class ProgramFourthQuestion(
     val order: Int,
     val type: QuestionType,
     val text: String,
-    val answer: Int
+    val answer: ProgramFourthAnswer?
 ) {
 
     enum class QuestionType {

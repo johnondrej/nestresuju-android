@@ -81,6 +81,22 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
+        <action
+            android:id="@+id/action_fragment_program_overview_to_fragment_program_4_1"
+            app:destination="@id/fragment_program_4_1"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
+            android:id="@+id/action_fragment_program_overview_to_fragment_program_4_summary"
+            app:destination="@id/fragment_program_4_summary"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
     </fragment>
 
     <fragment
@@ -515,7 +531,68 @@
     <fragment
         android:id="@+id/fragment_program_4_1"
         android:name="cz.nestresuju.screens.program.fourth.ProgramFourthPhase1Fragment"
-        android:label="TODO" />
+        android:label="@string/program_4_title">
+
+        <action
+            android:id="@+id/action_fragment_program_4_1_to_fragment_program_4_2"
+            app:destination="@id/fragment_program_4_2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_program_4_2"
+        android:name="cz.nestresuju.screens.program.fourth.ProgramFourthPhase2Fragment"
+        android:label="@string/program_4_title">
+
+        <action
+            android:id="@+id/action_fragment_program_4_2_to_fragment_program_4_question_intro"
+            app:destination="@id/fragment_program_4_question_intro"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_program_4_question_intro"
+        android:name="cz.nestresuju.screens.program.fourth.ProgramFourthQuestionsIntroFragment"
+        android:label="@string/program_4_title">
+
+        <action
+            android:id="@+id/action_fragment_program_4_question_intro_to_fragment_program_4_question"
+            app:destination="@id/fragment_program_4_question"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_program_4_question"
+        android:name="cz.nestresuju.screens.program.fourth.ProgramFourthQuestionFragment"
+        android:label="@string/program_4_title">
+
+        <action
+            android:id="@+id/action_fragment_program_4_question_to_fragment_program_4_summary"
+            app:destination="@id/fragment_program_4_summary"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/navigation_program" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_program_4_summary"
+        android:name="cz.nestresuju.screens.program.fourth.ProgramFourthSummaryFragment"
+        android:label="@string/program_4_title" />
 
     <fragment
         android:id="@+id/navigation_diary"

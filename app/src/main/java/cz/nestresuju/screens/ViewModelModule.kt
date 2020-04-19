@@ -12,6 +12,10 @@ import cz.nestresuju.screens.program.first.ProgramFirstOverviewViewModel
 import cz.nestresuju.screens.program.first.ProgramFirstQuestionViewModel
 import cz.nestresuju.screens.program.first.ProgramFirstSatisfiabilityViewModel
 import cz.nestresuju.screens.program.first.ProgramFirstSummaryViewModel
+import cz.nestresuju.screens.program.fourth.ProgramFourthQuestionViewModel
+import cz.nestresuju.screens.program.fourth.ProgramFourthQuestionsIntroViewModel
+import cz.nestresuju.screens.program.fourth.ProgramFourthSummaryViewModel
+import cz.nestresuju.screens.program.fourth.ProgramFourthTextQuestionViewModel
 import cz.nestresuju.screens.program.overview.ProgramViewModel
 import cz.nestresuju.screens.program.second.ProgramSecondInstructionsViewModel
 import cz.nestresuju.screens.program.second.ProgramSecondRelaxationViewModel
@@ -36,7 +40,14 @@ val viewModelModule = module {
 
     viewModel { ScreeningTestViewModel(inputTestsRepository = get()) }
 
-    viewModel { ProgramViewModel(programFirstRepository = get(), programSecondRepository = get(), programThirdRepository = get()) }
+    viewModel {
+        ProgramViewModel(
+            programFirstRepository = get(),
+            programSecondRepository = get(),
+            programThirdRepository = get(),
+            programFourthRepository = get()
+        )
+    }
 
     viewModel { (programId: ProgramId) -> ProgramEvaluationViewModel(programId, programEvaluationRepository = get()) }
 
@@ -67,6 +78,14 @@ val viewModelModule = module {
     viewModel { ProgramThirdOverviewViewModel(programRepository = get()) }
 
     viewModel { ProgramThirdSummaryViewModel(programRepository = get()) }
+
+    viewModel { (progress: Int) -> ProgramFourthTextQuestionViewModel(progress, programRepository = get()) }
+
+    viewModel { ProgramFourthQuestionsIntroViewModel(programRepository = get()) }
+
+    viewModel { ProgramFourthQuestionViewModel(programRepository = get()) }
+
+    viewModel { ProgramFourthSummaryViewModel(programRepository = get()) }
 
     viewModel { AboutAppViewModel() }
 

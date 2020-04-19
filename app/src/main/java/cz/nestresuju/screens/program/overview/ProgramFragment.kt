@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import cz.nestresuju.R
 import cz.nestresuju.databinding.FragmentCustomListBinding
 import cz.nestresuju.model.entities.domain.program.first.ProgramFirstResults
+import cz.nestresuju.model.entities.domain.program.fourth.ProgramFourthResults
 import cz.nestresuju.model.entities.domain.program.second.ProgramSecondResults
 import cz.nestresuju.model.entities.domain.program.third.ProgramThirdResults
 import cz.nestresuju.screens.base.BaseArchFragment
@@ -36,7 +36,7 @@ class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
                     onFirstProgramSelected = { onFirstProgramSelected(state.programFirstResults) },
                     onSecondProgramSelected = { onSecondProgramSelected(state.programSecondResults) },
                     onThirdProgramSelected = { onThirdProgramSelected(state.programThirdResults) },
-                    onFourthProgramSelected = { onFourthProgramSelected() }
+                    onFourthProgramSelected = { onFourthProgramSelected(state.programFourthResults) }
                 ).also {
                     it.requestModelBuild()
                     customList.list.setController(it)
@@ -79,7 +79,7 @@ class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
                 navController.navigate(R.id.action_fragment_program_overview_to_fragment_program_3_intro)
             } else {
                 // Build navigation backstack
-                navController.navigate(R.id.fragment_program_3_1)
+                navController.navigate(R.id.action_fragment_program_overview_to_fragment_program_3_1)
                 if (results.progress >= 2) navController.navigate(R.id.action_fragment_program_3_1_to_fragment_program_3_2)
                 if (results.progress >= 3) navController.navigate(R.id.action_fragment_program_3_2_to_fragment_program_3_3)
                 if (results.progress >= 4) navController.navigate(R.id.action_fragment_program_3_3_to_fragment_program_3_4)
@@ -95,8 +95,17 @@ class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
         }
     }
 
-    private fun onFourthProgramSelected() {
-        // TODO
-        view?.let { Snackbar.make(it, "Program 4", Snackbar.LENGTH_LONG).show() }
+    private fun onFourthProgramSelected(results: ProgramFourthResults) {
+        val navController = findNavController()
+
+        if (results.programCompleted == null) {
+            // Build navigation backstack
+            navController.navigate(R.id.action_fragment_program_overview_to_fragment_program_4_1)
+            if (results.progress >= 2) navController.navigate(R.id.action_fragment_program_4_1_to_fragment_program_4_2)
+            if (results.progress >= 3) navController.navigate(R.id.action_fragment_program_4_2_to_fragment_program_4_question_intro)
+            if (results.progress >= 4) navController.navigate(R.id.action_fragment_program_4_question_intro_to_fragment_program_4_question)
+        } else {
+            navController.navigate(R.id.action_fragment_program_overview_to_fragment_program_4_summary)
+        }
     }
 }

@@ -66,6 +66,15 @@ val repositoryModule = module {
         )
     }
 
+    factory<ProgramFourthRepository> {
+        ProgramFourthRepositoryImpl(
+            apiDefinition = get(),
+            entityConverter = get(),
+            dataSynchronizer = get(),
+            database = get()
+        )
+    }
+
     factory<DiaryRepository> {
         DiaryRepositoryImpl(
             apiDefinition = get(),
@@ -82,7 +91,8 @@ val repositoryModule = module {
             programEvaluationConverter = get(),
             programFirstConverter = get(),
             programSecondConverter = get(),
-            programThirdConverter = get()
+            programThirdConverter = get(),
+            programFourthConverter = get()
         )
     }
 

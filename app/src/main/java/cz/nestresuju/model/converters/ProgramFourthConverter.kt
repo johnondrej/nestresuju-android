@@ -5,6 +5,7 @@ import cz.nestresuju.model.entities.api.program.fourth.ApiProgramFourthResults
 import cz.nestresuju.model.entities.database.program.fourth.DbProgramFourthQuestion
 import cz.nestresuju.model.entities.database.program.fourth.DbProgramFourthResults
 import cz.nestresuju.model.entities.database.program.fourth.DbProgramFourthResultsWithQuestions
+import cz.nestresuju.model.entities.domain.program.fourth.ProgramFourthAnswer
 import cz.nestresuju.model.entities.domain.program.fourth.ProgramFourthQuestion
 import cz.nestresuju.model.entities.domain.program.fourth.ProgramFourthResults
 import org.threeten.bp.ZonedDateTime
@@ -70,7 +71,7 @@ class ProgramFourthConverterImpl : ProgramFourthConverter {
                 ApiProgramFourthResults.ApiProgramFourthAnswer(
                     questionId = dbQuestion.id,
                     type = dbQuestion.type,
-                    answer = dbQuestion.answer
+                    answer = dbQuestion.answer!!
                 )
             },
             programCompletedDate = dbResults.results.programCompleted ?: ZonedDateTime.now()
@@ -93,7 +94,7 @@ class ProgramFourthConverterImpl : ProgramFourthConverter {
                         3 -> ProgramFourthQuestion.QuestionType.NOT_SCORED
                         else -> throw IllegalArgumentException("Invalid question type ${dbQuestion.type}")
                     }, text = dbQuestion.text,
-                    answer = dbQuestion.answer
+                    answer = dbQuestion.answer?.toProgramAnswer()
                 )
             },
             programCompleted = dbResults.results.programCompleted,
@@ -120,9 +121,13 @@ class ProgramFourthConverterImpl : ProgramFourthConverter {
                         ProgramFourthQuestion.QuestionType.SEARCHING -> 2
                         ProgramFourthQuestion.QuestionType.NOT_SCORED -> 3
                     }, text = question.text,
-                    answer = question.answer
+                    answer = question.answer?.intValue
                 )
             }
         )
+    }
+
+    private fun Int.toProgramAnswer(): ProgramFourthAnswer? {
+        return enumValues<ProgramFourthAnswer>().find { it.intValue == this }
     }
 }

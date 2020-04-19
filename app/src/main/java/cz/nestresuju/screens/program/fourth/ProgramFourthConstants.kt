@@ -5,5 +5,8 @@ package cz.nestresuju.screens.program.fourth
  */
 object ProgramFourthConstants {
 
-    const val PHASES = 5
+    const val PHASES = 18 // 2 text questions, questionnare intro, 15 questions
+
+    const val PRESENT_EVALUATION_THRESHOLD = 24
+    const val SEARCHING_EVALUATION_THRESHOLD = 24
 }

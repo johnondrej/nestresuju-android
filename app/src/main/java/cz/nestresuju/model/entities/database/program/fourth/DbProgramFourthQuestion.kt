@@ -16,11 +16,11 @@ import androidx.room.PrimaryKey
         childColumns = ["results_id"]
     )]
 )
-class DbProgramFourthQuestion(
+data class DbProgramFourthQuestion(
     @PrimaryKey val id: Long,
     @ColumnInfo(name = "results_id") val resultsId: Long = 0,
     @ColumnInfo(name = "order") val order: Int,
     @ColumnInfo(name = "type") val type: Int,
     @ColumnInfo(name = "text") val text: String,
-    @ColumnInfo(name = "answer") val answer: Int
+    @ColumnInfo(name = "answer") val answer: Int?
 )

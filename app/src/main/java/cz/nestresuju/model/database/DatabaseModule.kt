@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import cz.nestresuju.R
 import cz.nestresuju.model.entities.database.program.first.DbProgramFirstResults
+import cz.nestresuju.model.entities.database.program.fourth.DbProgramFourthResults
 import cz.nestresuju.model.entities.database.program.second.DbProgramSecondResults
 import cz.nestresuju.model.entities.database.program.third.DbProgramThirdActivity
 import cz.nestresuju.model.entities.database.program.third.DbProgramThirdResults
@@ -32,6 +33,7 @@ val databaseModule = module {
                         database.programFirstDao().updateResults(DbProgramFirstResults())
                         database.programSecondDao().updateResults(DbProgramSecondResults())
                         database.programThirdDao().updateResults(DbProgramThirdResults())
+                        database.programFourthDao().updateResults(DbProgramFourthResults())
                         addDefaultActivities(androidContext(), database = get())
                     }
                 }
