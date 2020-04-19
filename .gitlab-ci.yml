@@ -30,5 +30,6 @@ assembleAndDeployDebug:
   script:
     - ./gradlew assembleDebug appDistributionUploadDebug
   artifacts:
+    expire_in: 1 day
     paths:
       - app/build/outputs/
