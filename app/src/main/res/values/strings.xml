@@ -201,6 +201,7 @@
 
     <!-- About app - contacts -->
 
+    <string name="about_contacts_title">Kontakty</string>
     <string name="about_contacts_email">E-mail</string>
     <string name="about_contacts_phone">Telefon</string>
 

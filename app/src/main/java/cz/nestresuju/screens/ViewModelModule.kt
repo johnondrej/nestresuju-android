@@ -3,6 +3,7 @@ package cz.nestresuju.screens
 import cz.nestresuju.model.entities.domain.program.ProgramId
 import cz.nestresuju.router.RouterViewModel
 import cz.nestresuju.screens.about.AboutAppViewModel
+import cz.nestresuju.screens.about.ContactsViewModel
 import cz.nestresuju.screens.diary.DiaryViewModel
 import cz.nestresuju.screens.home.HomeViewModel
 import cz.nestresuju.screens.library.LibraryViewModel
@@ -87,9 +88,11 @@ val viewModelModule = module {
 
     viewModel { ProgramFourthSummaryViewModel(programRepository = get()) }
 
+    viewModel { DiaryViewModel(androidContext(), diaryRepository = get()) }
+
     viewModel { AboutAppViewModel() }
 
-    viewModel { DiaryViewModel(androidContext(), diaryRepository = get()) }
+    viewModel { ContactsViewModel() }
 
     viewModel { HomeViewModel() }
 

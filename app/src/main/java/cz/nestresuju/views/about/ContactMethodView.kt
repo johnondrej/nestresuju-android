@@ -15,13 +15,13 @@ class ContactMethodView(context: Context, attributes: AttributeSet) : Constraint
 
     private val binding = ViewContactMethodBinding.inflate(LayoutInflater.from(context), this, true)
 
-    var contactText: String
+    var contactText: String?
         get() = binding.txtContact.text.toString()
         set(value) {
             binding.txtContact.text = value
         }
 
-    var contactDescriptionText: String
+    var contactDescriptionText: String?
         get() = binding.txtContactDescription.text.toString()
         set(value) {
             binding.txtContactDescription.text = value

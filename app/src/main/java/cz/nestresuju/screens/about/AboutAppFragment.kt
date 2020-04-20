@@ -4,23 +4,28 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import cz.nestresuju.databinding.FragmentAboutBinding
+import androidx.navigation.findNavController
+import cz.nestresuju.R
+import cz.nestresuju.databinding.FragmentCustomListBinding
+import cz.nestresuju.screens.about.epoxy.AboutAppController
 import cz.nestresuju.screens.base.BaseArchFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AboutAppFragment : BaseArchFragment<FragmentAboutBinding>() {
+class AboutAppFragment : BaseArchFragment<FragmentCustomListBinding>() {
 
     override val viewModel by viewModel<AboutAppViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return FragmentAboutBinding.inflate(inflater, container, false).also { _binding = it }.root
+        return FragmentCustomListBinding.inflate(inflater, container, false).also { _binding = it }.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.text.observe(viewLifecycleOwner, Observer {
-            viewBinding.textAbout.text = it
-        })
+        with(viewBinding.customList) {
+            list.setController(AboutAppController(
+                onContactsClicked = { findNavController().navigate(R.id.action_fragment_about_app_to_fragment_about_app_contacts) }
+            ))
+            list.requestModelBuild()
+        }
     }
 }
