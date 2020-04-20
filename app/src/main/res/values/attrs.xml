@@ -30,4 +30,10 @@
     <declare-styleable name="ProgramThirdHoursChooserView">
         <attr name="txt" />
     </declare-styleable>
+
+    <declare-styleable name="ContactMethodView">
+        <attr name="contactIcon" format="reference" />
+        <attr name="secondaryContactIcon" format="reference" />
+        <attr name="contactDescription" format="reference" />
+    </declare-styleable>
 </resources>

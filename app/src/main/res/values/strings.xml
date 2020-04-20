@@ -199,6 +199,11 @@
     <string name="diary_error_empty_answer">Prosím vyplň odpověď na otázku</string>
     <string name="diary_error_input_disabled">Před prvním použitím deníčku se prosím připoj k Internetu.</string>
 
+    <!-- About app - contacts -->
+
+    <string name="about_contacts_email">E-mail</string>
+    <string name="about_contacts_phone">Telefon</string>
+
     <!-- General errors -->
 
     <string name="error_unknown">Neznámá chyba</string>
