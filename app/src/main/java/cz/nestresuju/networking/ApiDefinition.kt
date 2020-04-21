@@ -1,5 +1,7 @@
 package cz.nestresuju.networking
 
+import cz.nestresuju.model.entities.api.about.ContactsResponse
+import cz.nestresuju.model.entities.api.about.ResearchResponse
 import cz.nestresuju.model.entities.api.auth.LoginChecklistResponse
 import cz.nestresuju.model.entities.api.diary.ApiNewDiaryEntry
 import cz.nestresuju.model.entities.api.diary.DiaryEntriesResponse
@@ -84,4 +86,10 @@ interface ApiDefinition {
 
     @DELETE("v1/diary/entries/{entryId}")
     suspend fun deleteDiaryEntry(@Path("entryId") entryId: Long): Response<Unit>
+
+    @GET("v1/about/team")
+    suspend fun getContacts(): ContactsResponse
+
+    @GET("v1/about/research")
+    suspend fun getResearchInfo(): ResearchResponse
 }

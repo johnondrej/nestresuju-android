@@ -84,6 +84,14 @@ val repositoryModule = module {
         )
     }
 
+    factory<AboutAppRepository> {
+        AboutAppRepositoryImpl(
+            apiDefinition = get(),
+            database = get(),
+            entityConverter = get()
+        )
+    }
+
     factory<DataSynchronizer> {
         DataSynchronizerImpl(
             apiDefinition = get(),

@@ -205,10 +205,12 @@
     <string name="about_contacts_title">Náš tým</string>
     <string name="about_contacts_email">E-mail</string>
     <string name="about_contacts_phone">Telefon</string>
+    <string name="about_contacts_empty">Žádné kontakty tu nejsou. Jsi připojen k Internetu?</string>
 
     <!-- About app - research -->
 
     <string name="about_research_title">Náš výzkum</string>
+    <string name="about_research_empty">Žádné informace tu nejsou. Jsi připojen k Internetu?</string>
 
     <!-- About app - feedback -->
 

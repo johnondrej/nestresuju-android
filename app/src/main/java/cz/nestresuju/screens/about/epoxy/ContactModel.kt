@@ -54,13 +54,14 @@ open class ContactModel : EpoxyModelWithView<ContactInfoView>() {
                 transformations(CircleCropTransformation())
             }
             txtName.text = name
+            txtDescription.visible = !description.isNullOrBlank()
             txtDescription.text = description
             contactEmail.visible = email != null
             email?.let {
                 contactEmail.contactText = it
                 contactEmail.setOnContactClickedListener { onEmailClicked(it) }
             }
-            dividerEmailPhone.visible = phone != null
+            dividerEmailPhone.visible = phone != null && email != null
             contactPhone.visible = phone != null
             phone?.let {
                 contactPhone.contactText = it

@@ -5,6 +5,9 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import cz.nestresuju.model.database.converters.RoomTypeConverters
 import cz.nestresuju.model.database.dao.*
+import cz.nestresuju.model.entities.database.about.DbContact
+import cz.nestresuju.model.entities.database.about.DbContactsCategory
+import cz.nestresuju.model.entities.database.about.DbResearchSubsection
 import cz.nestresuju.model.entities.database.diary.DbDiaryEntry
 import cz.nestresuju.model.entities.database.diary.DbStressQuestion
 import cz.nestresuju.model.entities.database.diary.DbSynchronizerDiaryChange
@@ -32,7 +35,10 @@ import cz.nestresuju.model.entities.database.program.third.DbProgramThirdResults
         DbDiaryEntry::class,
         DbStressQuestion::class,
         DbSynchronizerDiaryChange::class,
-        DbProgramEvaluation::class
+        DbProgramEvaluation::class,
+        DbContact::class,
+        DbContactsCategory::class,
+        DbResearchSubsection::class
     ],
     version = 1
 )
@@ -55,6 +61,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun programFourthDao(): ProgramFourthDao
 
     abstract fun diaryDao(): DiaryDao
+
+    abstract fun aboutAppDao(): AboutAppDao
 
     abstract fun synchronizerDao(): SynchronizerDao
 }
