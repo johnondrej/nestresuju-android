@@ -7,7 +7,8 @@ import cz.nestresuju.R
  * Epoxy controller for navigation between "About app" sections.
  */
 class AboutAppController(
-    private val onContactsClicked: () -> Unit
+    private val onContactsClicked: () -> Unit,
+    private val onResearchClicked: () -> Unit
 ) : EpoxyController() {
 
     override fun buildModels() {
@@ -16,6 +17,13 @@ class AboutAppController(
             title(R.string.about_contacts_title)
             icon(R.drawable.ic_contacts)
             onSectionClicked(onContactsClicked)
+        }
+
+        aboutAppSection {
+            id("research")
+            title(R.string.about_research_title)
+            icon(R.drawable.ic_research)
+            onSectionClicked(onResearchClicked)
         }
     }
 }

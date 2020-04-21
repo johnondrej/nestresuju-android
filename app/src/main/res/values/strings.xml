@@ -201,9 +201,13 @@
 
     <!-- About app - contacts -->
 
-    <string name="about_contacts_title">Kontakty</string>
+    <string name="about_contacts_title">Náš tým</string>
     <string name="about_contacts_email">E-mail</string>
     <string name="about_contacts_phone">Telefon</string>
+
+    <!-- About app - research -->
+
+    <string name="about_research_title">Náš výzkum</string>
 
     <!-- General errors -->
 
