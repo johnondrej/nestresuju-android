@@ -5,7 +5,6 @@ import cz.ackee.ackroutine.OAuthCallInterceptor
 import cz.ackee.ackroutine.OAuthManager
 import cz.ackee.retrofitadapter.AckroutineCallAdapterFactory
 import cz.nestresuju.BuildConfig
-import cz.nestresuju.common.Constants
 import cz.nestresuju.model.repositories.AuthRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -43,7 +42,7 @@ val networkingModule = module {
 
     single {
         Retrofit.Builder()
-            .baseUrl(Constants.API_BASE_URL)
+            .baseUrl(NetworkingConstants.API_BASE_URL)
             .addCallAdapterFactory(
                 AckroutineCallAdapterFactory(
                     OAuthCallInterceptor(oAuthManager = get()),
@@ -57,7 +56,7 @@ val networkingModule = module {
 
     single(named(AUTH_RETROFIT)) {
         Retrofit.Builder()
-            .baseUrl(Constants.API_AUTH_BASE_URL)
+            .baseUrl(NetworkingConstants.API_AUTH_BASE_URL)
             .addCallAdapterFactory(
                 AckroutineCallAdapterFactory(
                     ErrorMappingInterceptor(exceptionMapper = get(named(AUTH_EXCEPTION_MAPPER)))

@@ -58,6 +58,21 @@ android {
         }
     }
 
+    flavorDimensions "api"
+
+    productFlavors {
+
+        prodApi {
+            dimension "api"
+        }
+
+        stageApi {
+            dimension "api"
+            applicationIdSuffix ".stage"
+            versionNameSuffix "-stage"
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

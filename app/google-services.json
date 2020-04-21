@@ -63,6 +63,64 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189477995697:android:8f2c7c3ad05c4cc8cf8e90",
+        "android_client_info": {
+          "package_name": "cz.nestresuju.stage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189477995697-66viofv30p4q1ieutjn206fitie0e5pa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-24dJvUBfRguwPSKuTdtBLjnV3nsIZTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189477995697-66viofv30p4q1ieutjn206fitie0e5pa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189477995697:android:63cef9638e00b8e0cf8e90",
+        "android_client_info": {
+          "package_name": "cz.nestresuju.stage.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189477995697-66viofv30p4q1ieutjn206fitie0e5pa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-24dJvUBfRguwPSKuTdtBLjnV3nsIZTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189477995697-66viofv30p4q1ieutjn206fitie0e5pa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

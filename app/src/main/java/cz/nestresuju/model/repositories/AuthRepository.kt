@@ -8,6 +8,11 @@ import cz.nestresuju.model.entities.domain.auth.LoginChecklistCompletion
 import cz.nestresuju.model.errors.ConsentNotGivenException
 import cz.nestresuju.networking.ApiDefinition
 import cz.nestresuju.networking.AuthApiDefinition
+import cz.nestresuju.networking.NetworkingConstants.AUTH_CLIENT_ID
+import cz.nestresuju.networking.NetworkingConstants.AUTH_CLIENT_SECRET
+import cz.nestresuju.networking.NetworkingConstants.AUTH_GRANT_TYPE_PASSWORD
+import cz.nestresuju.networking.NetworkingConstants.AUTH_GRANT_TYPE_REFRESH_TOKEN
+import cz.nestresuju.networking.NetworkingConstants.AUTH_SCOPE
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -23,22 +28,14 @@ class AuthRepository(
     private val sharedPreferencesInteractor: SharedPreferencesInteractor
 ) {
 
-    companion object {
-        private const val CLIENT_ID = "client.mobile"
-        private const val CLIENT_SECRET = "mobile_secret"
-        private const val GRANT_TYPE_PASSWORD = "password"
-        private const val GRANT_TYPE_REFRESH_TOKEN = "refresh_token"
-        private const val SCOPE = "nestresuju_mobile offline_access"
-    }
-
     private var consentContinuation: Continuation<Boolean>? = null
 
     suspend fun login(username: String, password: String, onShowConsent: () -> Unit): LoginChecklistCompletion {
         val authResponse = authApiDefinition.login(
-            clientId = CLIENT_ID,
-            clientSecret = CLIENT_SECRET,
-            grantType = GRANT_TYPE_PASSWORD,
-            scope = SCOPE,
+            clientId = AUTH_CLIENT_ID,
+            clientSecret = AUTH_CLIENT_SECRET,
+            grantType = AUTH_GRANT_TYPE_PASSWORD,
+            scope = AUTH_SCOPE,
             username = username,
             password = password
         )
@@ -72,10 +69,10 @@ class AuthRepository(
 
     suspend fun loginWithRefreshToken(refreshToken: String): AuthResponse {
         val authResponse = authApiDefinition.loginWithRefreshToken(
-            clientId = CLIENT_ID,
-            clientSecret = CLIENT_SECRET,
-            grantType = GRANT_TYPE_REFRESH_TOKEN,
-            scope = SCOPE,
+            clientId = AUTH_CLIENT_ID,
+            clientSecret = AUTH_CLIENT_SECRET,
+            grantType = AUTH_GRANT_TYPE_REFRESH_TOKEN,
+            scope = AUTH_SCOPE,
             refreshToken = refreshToken
         )
 
