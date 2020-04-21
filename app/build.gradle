@@ -38,7 +38,10 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix ".debug"
-            manifestPlaceholders = [crashlyticsCollectionEnabled: "false"]
+            manifestPlaceholders = [
+                    crashlyticsCollectionEnabled: "false",
+                    analyticsDisabled           : "true"
+            ]
             ext.enableCrashlytics = false
 
             firebaseAppDistribution {
@@ -49,7 +52,10 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = [crashlyticsCollectionEnabled: "true"]
+            manifestPlaceholders = [
+                    crashlyticsCollectionEnabled: "true",
+                    analyticsDisabled           : "false"
+            ]
             signingConfig signingConfigs.release
 
             firebaseAppDistribution {
