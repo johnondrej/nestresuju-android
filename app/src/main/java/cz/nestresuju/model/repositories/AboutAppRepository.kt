@@ -2,9 +2,7 @@ package cz.nestresuju.model.repositories
 
 import cz.nestresuju.model.converters.AboutAppConverter
 import cz.nestresuju.model.database.AppDatabase
-import cz.nestresuju.model.entities.api.about.ApiContact
-import cz.nestresuju.model.entities.api.about.ApiContactsCategory
-import cz.nestresuju.model.entities.api.about.ContactsResponse
+import cz.nestresuju.model.entities.api.about.*
 import cz.nestresuju.model.entities.database.about.DbResearchSubsection
 import cz.nestresuju.model.entities.domain.domain.ContactsCategory
 import cz.nestresuju.model.entities.domain.domain.ResearchInfo
@@ -47,7 +45,9 @@ class AboutAppRepositoryImpl(
         database.aboutAppDao().getContacts().map { dbCategory -> entityConverter.dbContactsCategoryToDomain(dbCategory) }
 
     override suspend fun fetchResearchInfo() {
-        val apiResearch = apiDefinition.getResearchInfo()
+        // TODO: remove testing data when API is ready
+        // val apiResearch = apiDefinition.getResearchInfo()
+        val apiResearch = testingApiResearch()
         val textSubsection = DbResearchSubsection(order = 0, name = null, text = apiResearch.text)
 
         database.aboutAppDao().updateResearchSubsection(apiResearch.subsections.mapIndexed { index, apiSubsection ->
@@ -58,7 +58,9 @@ class AboutAppRepositoryImpl(
     override suspend fun getResearchInfo(): ResearchInfo {
         val dbSubsections = database.aboutAppDao().getResearchSubsections()
         val introText = dbSubsections.find { it.name == null }?.text ?: ""
-        val subsections = dbSubsections.map { dbSubsection -> entityConverter.dbResearchSubsectionsToDomain(dbSubsection) }
+        val subsections = dbSubsections
+            .filter { it.name != null }
+            .map { dbSubsection -> entityConverter.dbResearchSubsectionsToDomain(dbSubsection) }
 
         return ResearchInfo(
             text = introText,
@@ -98,6 +100,19 @@ class AboutAppRepositoryImpl(
                         phone = "+420 777 123 456"
                     )
                 )
+            )
+        )
+    )
+
+    private fun testingApiResearch() = ResearchResponse(
+        text = "Hypersport z Molsheimu patří mezi nejdražší auta světa a i ojeté kusy se s cenou pohybují nad hranicí 1 milionu Eur. Aktuální nabídka tak působí lákavě, i když je na prodej jen neúplná karoserie.",
+        subsections = listOf(
+            ApiResearchSubsection(
+                name = "Bugatti za desetinu",
+                text = "Přiznejme si na rovinu, že Bugatti Veyron je poněkud obézně vypadajícím vozem, který nemá mnoho šancí na vítězství v soutěži krásy. Přesto ale nejspíše neexistuje jediný člověk, jenž by netoužil po jeho vlastnictví. Dáno je to skutečností, že jen málokteré auto lze považovat za výkladní skříň technologií jednadvacátého století. Veyron se ale díky zarputilosti někdejšího šéfa koncernu VW Group Ferdinanda Piëcha vyšplhal na vrchol potravinového řetězce tak moc, že vedle něj neexceluje ani novější Chiron. Ten je totiž jeho pouhou evolucí."
+            ), ApiResearchSubsection(
+                name = "Aerolinky",
+                text = "Opatření přijatá proti šíření nejskloňovanější nemoci historie poslala cestovní ruch do kolen. Pokud vám silnice a showroomy přijdou prázdné, podívejte se na letiště a do letadel."
             )
         )
     )
