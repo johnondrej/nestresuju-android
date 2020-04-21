@@ -216,6 +216,12 @@
     <string name="about_feedback_instructions">Líbí se ti aplikace, nebo máš nápad na zlepšení? Dej nám vědět!</string>
     <string name="about_feedback_discard_warning">Máš rozepsanou zprávu, chceš ji zahodit?</string>
 
+    <!-- About app - technical info -->
+
+    <string name="about_app_technical_info_title">Technické informace</string>
+    <string name="about_app_technical_info_author">Ondřej John, 2020</string>
+    <string name="about_app_technical_info_description">Tato aplikace je zveřejněná pod licencí <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>. Zdrojový kód je dostupný na <a href="https://github.com/ondrej-john/nestresuju-android">GitHubu</a>.</string>
+
     <!-- General errors -->
 
     <string name="error_unknown">Neznámá chyba</string>
