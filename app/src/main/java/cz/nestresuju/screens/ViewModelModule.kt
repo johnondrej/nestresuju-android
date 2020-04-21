@@ -4,6 +4,7 @@ import cz.nestresuju.model.entities.domain.program.ProgramId
 import cz.nestresuju.router.RouterViewModel
 import cz.nestresuju.screens.about.AboutAppViewModel
 import cz.nestresuju.screens.about.ContactsViewModel
+import cz.nestresuju.screens.about.FeedbackViewModel
 import cz.nestresuju.screens.about.ResearchViewModel
 import cz.nestresuju.screens.diary.DiaryViewModel
 import cz.nestresuju.screens.home.HomeViewModel
@@ -96,6 +97,8 @@ val viewModelModule = module {
     viewModel { ContactsViewModel() }
 
     viewModel { ResearchViewModel() }
+
+    viewModel { FeedbackViewModel() }
 
     viewModel { HomeViewModel() }
 

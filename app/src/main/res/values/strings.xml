@@ -8,6 +8,7 @@
     <string name="general_lets_go">Jdeme na to</string>
     <string name="general_not_now">Teď ne</string>
     <string name="general_finish">Dokončit</string>
+    <string name="general_send">Odeslat</string>
     <string name="general_begin">Začít</string>
     <string name="general_try_again">Zkusit znovu</string>
     <string name="general_add">Přidat</string>
@@ -208,6 +209,12 @@
     <!-- About app - research -->
 
     <string name="about_research_title">Náš výzkum</string>
+
+    <!-- About app - feedback -->
+
+    <string name="about_feedback_title">Zpětná vazba</string>
+    <string name="about_feedback_instructions">Líbí se ti aplikace, nebo máš nápad na zlepšení? Dej nám vědět!</string>
+    <string name="about_feedback_discard_warning">Máš rozepsanou zprávu, chceš ji zahodit?</string>
 
     <!-- General errors -->
 

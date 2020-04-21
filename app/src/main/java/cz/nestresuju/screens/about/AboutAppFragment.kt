@@ -24,7 +24,8 @@ class AboutAppFragment : BaseArchFragment<FragmentCustomListBinding>() {
         with(viewBinding.customList) {
             list.setController(AboutAppController(
                 onContactsClicked = { findNavController().navigate(R.id.action_fragment_about_app_to_fragment_about_app_contacts) },
-                onResearchClicked = { findNavController().navigate(R.id.action_fragment_about_app_to_fragment_about_app_research) }
+                onResearchClicked = { findNavController().navigate(R.id.action_fragment_about_app_to_fragment_about_app_research) },
+                onFeedbackClicked = { findNavController().navigate(R.id.action_fragment_about_app_to_fragment_about_app_feedback) }
             ))
             list.requestModelBuild()
         }
