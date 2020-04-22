@@ -9,15 +9,15 @@ import cz.nestresuju.model.entities.domain.library.LibrarySection
  */
 interface LibraryConverter {
 
-    fun dbLibrarySectionsToDomain(dbSections: List<DbLibrarySection>, rootSection: DbLibrarySection? = null): LibrarySection
+    fun dbLibrarySectionsToDomain(dbSections: List<DbLibrarySection>, rootSection: DbLibrarySection? = null): LibrarySection?
 
     fun apiLibrarySectionToDb(apiSection: ApiLibrarySection, parentId: Long? = null, order: Int = 0, root: Boolean): List<DbLibrarySection>
 }
 
 class LibraryConverterImpl : LibraryConverter {
 
-    override fun dbLibrarySectionsToDomain(dbSections: List<DbLibrarySection>, rootSection: DbLibrarySection?): LibrarySection {
-        val root = rootSection ?: dbSections.find { it.root } ?: throw IllegalStateException("No root section found")
+    override fun dbLibrarySectionsToDomain(dbSections: List<DbLibrarySection>, rootSection: DbLibrarySection?): LibrarySection? {
+        val root = rootSection ?: dbSections.find { it.root } ?: return null
         val subsections = dbSections.filter { it.parentSectionId == root.id }
 
         return LibrarySection(
@@ -28,7 +28,7 @@ class LibraryConverterImpl : LibraryConverter {
                 dbLibrarySectionsToDomain(
                     dbSections = dbSections,
                     rootSection = subsection
-                )
+                )!!
             }
         )
     }

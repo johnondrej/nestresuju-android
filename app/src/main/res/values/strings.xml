@@ -200,6 +200,10 @@
     <string name="diary_error_empty_answer">Prosím vyplň odpověď na otázku</string>
     <string name="diary_error_input_disabled">Před prvním použitím deníčku se prosím připoj k Internetu.</string>
 
+    <!-- Library -->
+
+    <string name="library_empty">Žádné informace tu nejsou. Jsi připojen k Internetu?</string>
+
     <!-- About app - contacts -->
 
     <string name="about_contacts_title">Náš tým</string>

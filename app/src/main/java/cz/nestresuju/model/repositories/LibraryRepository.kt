@@ -13,7 +13,7 @@ interface LibraryRepository {
 
     suspend fun fetchLibraryContent()
 
-    suspend fun getLibraryContent(): LibrarySection
+    suspend fun getLibraryContent(): LibrarySection?
 }
 
 class LibraryRepositoryImpl(
@@ -27,15 +27,58 @@ class LibraryRepositoryImpl(
         // val libraryContent = apiDefinition.getLibraryContent()
         val libraryContent = testingLibraryContent()
 
-        database.libraryDao().updateSections(entityConverter.apiLibrarySectionToDb(libraryContent, root = true))
+        database.libraryDao().updateSections(
+            libraryContent?.let { entityConverter.apiLibrarySectionToDb(libraryContent, root = true) } ?: emptyList()
+        )
     }
 
     override suspend fun getLibraryContent() = entityConverter.dbLibrarySectionsToDomain(database.libraryDao().getSections())
 
-    private fun testingLibraryContent() = ApiLibrarySection(
-        id = 1,
-        name = "Stres",
-        text = "Info o stresu",
-        sections = emptyList()
+    private fun testingLibraryContent(): ApiLibrarySection? = ApiLibrarySection(
+        id = 0,
+        name = null,
+        text = "Úvodní text knihovny",
+        sections = listOf(
+            ApiLibrarySection(
+                id = 1,
+                name = "Stres",
+                text = null,
+                sections = listOf(
+                    ApiLibrarySection(
+                        id = 2,
+                        name = "Co je to stres?",
+                        text = "Obsah subsekce",
+                        sections = emptyList()
+                    ),
+                    ApiLibrarySection(
+                        id = 3,
+                        name = "Je to normální?",
+                        text = "Obsah subsekce 2",
+                        sections = listOf(
+                            ApiLibrarySection(
+                                id = 4,
+                                name = "Třetí vnořená podsekce",
+                                text = "Obsah třetí podsekce!",
+                                sections = emptyList()
+                            )
+                        )
+                    )
+                )
+            ),
+            ApiLibrarySection(
+                id = 5,
+                name = "Řízení stresu",
+                text = "Úvodní text k řízení stresu",
+                sections = listOf(
+                    ApiLibrarySection(
+                        id = 6,
+                        name = "Stress management",
+                        text = "Něco o stress managementu",
+                        sections = emptyList()
+                    )
+                )
+            )
+        )
     )
+
 }

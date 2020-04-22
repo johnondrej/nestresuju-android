@@ -92,6 +92,8 @@ val viewModelModule = module {
 
     viewModel { DiaryViewModel(androidContext(), diaryRepository = get()) }
 
+    viewModel { LibraryViewModel(libraryRepository = get()) }
+
     viewModel { AboutAppViewModel() }
 
     viewModel { ContactsViewModel(aboutAppRepository = get()) }
@@ -101,7 +103,4 @@ val viewModelModule = module {
     viewModel { FeedbackViewModel() }
 
     viewModel { HomeViewModel() }
-
-    viewModel { LibraryViewModel() }
-
 }

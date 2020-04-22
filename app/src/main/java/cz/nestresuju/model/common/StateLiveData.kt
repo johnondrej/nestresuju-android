@@ -20,6 +20,10 @@ open class StateLiveData<T>(defaultValue: State<T> = State.Idle) : LiveData<Stat
         value = State.Loaded(data)
     }
 
+    fun empty() {
+        value = State.Empty
+    }
+
     fun error(error: Throwable) {
         value = State.Error(error)
     }
