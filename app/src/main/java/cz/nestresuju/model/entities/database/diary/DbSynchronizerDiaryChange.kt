@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import org.threeten.bp.ZonedDateTime
 
 /**
  * Class representing special entity for synchronization of diary entry.
@@ -22,7 +23,8 @@ data class DbSynchronizerDiaryChange(
     @ColumnInfo(name = "entry_type") val entryType: Int? = null,
     @ColumnInfo(name = "stress_level") val stressLevel: Int? = null,
     @ColumnInfo(name = "question_id") val questionId: Long? = null,
-    @ColumnInfo(name = "text") val text: String? = null
+    @ColumnInfo(name = "text") val text: String? = null,
+    @ColumnInfo(name = "created_at") val createdAt: ZonedDateTime = ZonedDateTime.now()
 ) {
 
     companion object {

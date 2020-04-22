@@ -20,7 +20,7 @@ object Rfc3339ZonedDateTimeJsonAdapter {
     @ToJson
     fun toJson(value: ZonedDateTime?): String? {
         return value?.let {
-            DateTimeFormatter.ISO_ZONED_DATE_TIME.format(it)
+            DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(it)
         }
     }
 }

@@ -157,7 +157,8 @@ class DataSynchronizerImpl(
                         entryType = request.entryType,
                         moodLevel = request.stressLevel,
                         questionId = request.questionId,
-                        text = request.text!!
+                        text = request.text!!,
+                        dateCreated = request.createdAt
                     )
                 )
             }
@@ -165,7 +166,8 @@ class DataSynchronizerImpl(
                 apiDefinition.editDiaryEntry(
                     request.id, ApiNewDiaryEntry(
                         entryType = request.entryType,
-                        text = request.text!!
+                        text = request.text!!,
+                        dateModified = request.createdAt
                     )
                 )
             }

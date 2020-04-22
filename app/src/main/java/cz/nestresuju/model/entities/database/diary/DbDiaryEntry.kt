@@ -24,5 +24,5 @@ data class DbDiaryEntry(
     @ColumnInfo(name = "question_id") val questionId: Long? = null,
     @ColumnInfo(name = "text") val text: String,
     @ColumnInfo(name = "date_created") val dateCreated: ZonedDateTime = ZonedDateTime.now(),
-    @ColumnInfo(name = "date_modified") val dateModified: ZonedDateTime = ZonedDateTime.now()
+    @ColumnInfo(name = "date_modified") val dateModified: ZonedDateTime? = null
 )

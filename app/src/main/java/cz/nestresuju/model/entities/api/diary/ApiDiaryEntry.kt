@@ -14,6 +14,6 @@ class ApiDiaryEntry(
     val moodLevel: Int?,
     @Json(name = "diaryMoodQuestionId") val questionId: Long?,
     val text: String,
-    val dateCreated: ZonedDateTime = ZonedDateTime.now(),
-    val dateModified: ZonedDateTime = ZonedDateTime.now()
+    @Json(name = "created") val dateCreated: ZonedDateTime,
+    @Json(name = "modified") val dateModified: ZonedDateTime?
 ) // TODO: remove @Json annotations and fake defaults when API sends data in correct format

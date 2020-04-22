@@ -73,13 +73,13 @@ class DiaryEntitiesConverterImpl(
                 question = dbStressQuestionToDomain(dbEntry.stressQuestion!!),
                 answer = dbEntry.diaryEntry.text,
                 dateCreated = dbEntry.diaryEntry.dateCreated.toLocalDateTime(),
-                dateModified = dbEntry.diaryEntry.dateModified.toLocalDateTime()
+                dateModified = dbEntry.diaryEntry.dateModified?.toLocalDateTime()
             )
             ENTRY_TYPE_NOTE -> DiaryEntry.NoteEntry(
                 id = dbEntry.diaryEntry.id,
                 text = dbEntry.diaryEntry.text,
                 dateCreated = dbEntry.diaryEntry.dateCreated.toLocalDateTime(),
-                dateModified = dbEntry.diaryEntry.dateModified.toLocalDateTime()
+                dateModified = dbEntry.diaryEntry.dateModified?.toLocalDateTime()
             )
             else -> throw IllegalArgumentException("Invalid diary entry type ${dbEntry.diaryEntry.entryType}")
         }
@@ -93,7 +93,7 @@ class DiaryEntitiesConverterImpl(
             questionId = diaryEntry.question.id,
             text = diaryEntry.answer,
             dateCreated = diaryEntry.dateCreated.toZonedDateTime(),
-            dateModified = diaryEntry.dateModified.toZonedDateTime()
+            dateModified = diaryEntry.dateModified?.toZonedDateTime()
         )
     }
 
@@ -105,7 +105,7 @@ class DiaryEntitiesConverterImpl(
             questionId = null,
             text = diaryEntry.text,
             dateCreated = diaryEntry.dateCreated.toZonedDateTime(),
-            dateModified = diaryEntry.dateModified.toZonedDateTime()
+            dateModified = diaryEntry.dateModified?.toZonedDateTime()
         )
     }
 }

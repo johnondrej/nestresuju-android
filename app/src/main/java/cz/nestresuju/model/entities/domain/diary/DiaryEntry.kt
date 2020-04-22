@@ -15,7 +15,7 @@ sealed class DiaryEntry {
         override val id: Long,
         override val text: String,
         override val dateCreated: LocalDateTime,
-        val dateModified: LocalDateTime
+        val dateModified: LocalDateTime?
     ) : DiaryEntry()
 
     data class StressLevelEntry(
@@ -24,7 +24,7 @@ sealed class DiaryEntry {
         val question: StressQuestion,
         val answer: String,
         override val dateCreated: LocalDateTime,
-        val dateModified: LocalDateTime
+        val dateModified: LocalDateTime?
     ) : DiaryEntry() {
 
         override val text: String
