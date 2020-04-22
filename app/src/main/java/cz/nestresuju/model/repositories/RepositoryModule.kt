@@ -84,6 +84,14 @@ val repositoryModule = module {
         )
     }
 
+    factory<LibraryRepository> {
+        LibraryRepositoryImpl(
+            apiDefinition = get(),
+            database = get(),
+            entityConverter = get()
+        )
+    }
+
     factory<AboutAppRepository> {
         AboutAppRepositoryImpl(
             apiDefinition = get(),

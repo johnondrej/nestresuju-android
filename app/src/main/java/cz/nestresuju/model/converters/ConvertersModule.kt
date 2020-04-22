@@ -26,5 +26,7 @@ val converterModule = module {
 
     factory<DiaryEntitiesConverter> { DiaryEntitiesConverterImpl(stressLevelConverter = get()) }
 
+    factory<LibraryConverter> { LibraryConverterImpl() }
+
     factory<AboutAppConverter> { AboutAppConverterImpl() }
 }

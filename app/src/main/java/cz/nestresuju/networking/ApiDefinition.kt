@@ -6,6 +6,7 @@ import cz.nestresuju.model.entities.api.auth.LoginChecklistResponse
 import cz.nestresuju.model.entities.api.diary.ApiNewDiaryEntry
 import cz.nestresuju.model.entities.api.diary.DiaryEntriesResponse
 import cz.nestresuju.model.entities.api.diary.MoodQuestionsResponse
+import cz.nestresuju.model.entities.api.library.ApiLibrarySection
 import cz.nestresuju.model.entities.api.program.evaluation.ApiProgramEvaluation
 import cz.nestresuju.model.entities.api.program.first.ApiProgramFirstResults
 import cz.nestresuju.model.entities.api.program.fourth.ApiProgramFourthResults
@@ -86,6 +87,9 @@ interface ApiDefinition {
 
     @DELETE("v1/diary/entries/{entryId}")
     suspend fun deleteDiaryEntry(@Path("entryId") entryId: Long): Response<Unit>
+
+    @GET("v1/library")
+    suspend fun getLibraryContent(): ApiLibrarySection
 
     @GET("v1/about/team")
     suspend fun getContacts(): ContactsResponse

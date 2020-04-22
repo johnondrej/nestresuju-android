@@ -11,6 +11,7 @@ import cz.nestresuju.model.entities.database.about.DbResearchSubsection
 import cz.nestresuju.model.entities.database.diary.DbDiaryEntry
 import cz.nestresuju.model.entities.database.diary.DbStressQuestion
 import cz.nestresuju.model.entities.database.diary.DbSynchronizerDiaryChange
+import cz.nestresuju.model.entities.database.library.DbLibrarySection
 import cz.nestresuju.model.entities.database.program.evaluation.DbProgramEvaluation
 import cz.nestresuju.model.entities.database.program.first.DbProgramFirstResults
 import cz.nestresuju.model.entities.database.program.fourth.DbProgramFourthQuestion
@@ -36,6 +37,7 @@ import cz.nestresuju.model.entities.database.program.third.DbProgramThirdResults
         DbStressQuestion::class,
         DbSynchronizerDiaryChange::class,
         DbProgramEvaluation::class,
+        DbLibrarySection::class,
         DbContact::class,
         DbContactsCategory::class,
         DbResearchSubsection::class
@@ -61,6 +63,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun programFourthDao(): ProgramFourthDao
 
     abstract fun diaryDao(): DiaryDao
+
+    abstract fun libraryDao(): LibraryDao
 
     abstract fun aboutAppDao(): AboutAppDao
 
