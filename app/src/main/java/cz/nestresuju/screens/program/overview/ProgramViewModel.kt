@@ -25,12 +25,47 @@ class ProgramViewModel(
 
     init {
         screenStateStream.loading()
-        viewModelScope.launch {
+        viewModelScope.launchWithErrorHandling {
             try {
                 programOverviewRepository.fetchOverview()
             } catch (e: Exception) {
                 // do nothing, data will be updated next time
             }
+
+            val programFirstResultsJob = viewModelScope.launch {
+                try {
+                    programFirstRepository.fetchProgramResults()
+                } catch (e: Exception) {
+                    // do nothing, data will be updated next time
+                }
+            }
+            val programSecondResultsJob = viewModelScope.launch {
+                try {
+                    programSecondRepository.fetchProgramResults()
+                } catch (e: Exception) {
+                    // do nothing, data will be updated next time
+                }
+            }
+            val programThirdResultsJob = viewModelScope.launch {
+                try {
+                    // TODO: verify that this is working correctly when missing attributes from API for program 3 are fixed
+                    programThirdRepository.fetchProgramResults()
+                } catch (e: Exception) {
+                    // do nothing, data will be updated next time
+                }
+            }
+            val programFourthResultsJob = viewModelScope.launch {
+                try {
+                    programFourthRepository.fetchProgramResults()
+                } catch (e: Exception) {
+                    // do nothing, data will be updated next time
+                }
+            }
+
+            programFirstResultsJob.join()
+            programSecondResultsJob.join()
+            programThirdResultsJob.join()
+            programFourthResultsJob.join()
 
             val programOverviewFlow = programOverviewRepository.observeOverview()
             val programFirstFlow = programFirstRepository.observeProgramResults()
