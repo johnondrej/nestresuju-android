@@ -33,6 +33,14 @@ val repositoryModule = module {
         )
     }
 
+    factory<ProgramOverviewRepository> {
+        ProgramOverviewRepositoryImpl(
+            apiDefinition = get(),
+            database = get(),
+            entityConverter = get()
+        )
+    }
+
     factory<ProgramEvaluationRepository> {
         ProgramEvaluationRepositoryImpl(
             dataSynchronizer = get()

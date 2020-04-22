@@ -11,6 +11,7 @@ import cz.nestresuju.model.entities.api.program.evaluation.ApiProgramEvaluation
 import cz.nestresuju.model.entities.api.program.first.ApiProgramFirstResults
 import cz.nestresuju.model.entities.api.program.fourth.ApiProgramFourthResults
 import cz.nestresuju.model.entities.api.program.fourth.ProgramFourthQuestionsResponse
+import cz.nestresuju.model.entities.api.program.overview.ProgramOverviewResponse
 import cz.nestresuju.model.entities.api.program.second.ApiProgramSecondResults
 import cz.nestresuju.model.entities.api.program.third.ApiProgramThirdResults
 import cz.nestresuju.model.entities.api.tests.input.ApiInputTestResults
@@ -43,8 +44,11 @@ interface ApiDefinition {
     @POST("v1/screening-test")
     suspend fun submitScreeningTestResults(@Body results: ApiScreeningTestResults): Response<Unit>
 
-    @POST("v1/program/evaluation")
-    suspend fun submitProgramEvaluation(@Query("programTitle") programId: String, @Body evaluation: ApiProgramEvaluation)
+    @POST("v1/program/evaluate")
+    suspend fun submitProgramEvaluation(@Body evaluation: ApiProgramEvaluation)
+
+    @GET("v1/program/state")
+    suspend fun getProgramOverview(): ProgramOverviewResponse
 
     @GET("v1/program/goal")
     suspend fun getFirstProgramResults(): ApiProgramFirstResults
@@ -64,13 +68,15 @@ interface ApiDefinition {
     @POST("v1/program/time-management")
     suspend fun submitThirdProgramResults(@Body results: ApiProgramThirdResults): Response<Unit>
 
-    @GET("v1/program/sarching-for-meaning/questions")
+    @GET("v1/program/searching-for-meaning/questions")
     suspend fun getFourthProgramQuestions(@Query("timestamp") timestamp: Long): ProgramFourthQuestionsResponse
 
-    @GET("v1/program/searching-for-meaning")
+    // TODO: update to correct ID when API is fixed
+    @GET("v1/program/search-for-meaning")
     suspend fun getFourthProgramResults(): ApiProgramFourthResults
 
-    @POST("v1/program/searching-for-meaning")
+    // TODO: update to correct ID when API is fixed
+    @POST("v1/program/search-for-meaning")
     suspend fun submitFourthProgramResults(@Body results: ApiProgramFourthResults): Response<Unit>
 
     @GET("v1/diary/mood-questions")

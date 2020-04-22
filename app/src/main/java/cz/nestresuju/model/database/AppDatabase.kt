@@ -16,6 +16,7 @@ import cz.nestresuju.model.entities.database.program.evaluation.DbProgramEvaluat
 import cz.nestresuju.model.entities.database.program.first.DbProgramFirstResults
 import cz.nestresuju.model.entities.database.program.fourth.DbProgramFourthQuestion
 import cz.nestresuju.model.entities.database.program.fourth.DbProgramFourthResults
+import cz.nestresuju.model.entities.database.program.overview.DbProgramOverview
 import cz.nestresuju.model.entities.database.program.second.DbProgramSecondResults
 import cz.nestresuju.model.entities.database.program.third.DbProgramThirdActivity
 import cz.nestresuju.model.entities.database.program.third.DbProgramThirdHours
@@ -26,6 +27,7 @@ import cz.nestresuju.model.entities.database.program.third.DbProgramThirdResults
  */
 @Database(
     entities = [
+        DbProgramOverview::class,
         DbProgramFirstResults::class,
         DbProgramSecondResults::class,
         DbProgramThirdResults::class,
@@ -51,6 +53,8 @@ abstract class AppDatabase : RoomDatabase() {
 
         const val NAME = "nestresuju_db"
     }
+
+    abstract fun programOverviewDao(): ProgramOverviewDao
 
     abstract fun programEvaluationDao(): ProgramEvaluationDao
 

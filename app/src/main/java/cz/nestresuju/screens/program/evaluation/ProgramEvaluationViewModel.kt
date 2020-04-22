@@ -9,6 +9,7 @@ import cz.nestresuju.R
 import cz.nestresuju.model.entities.domain.program.ProgramId
 import cz.nestresuju.model.entities.domain.program.evaluation.ProgramEvaluation
 import cz.nestresuju.model.repositories.ProgramEvaluationRepository
+import cz.nestresuju.model.repositories.ProgramOverviewRepository
 import cz.nestresuju.screens.base.BaseViewModel
 import org.threeten.bp.ZonedDateTime
 
@@ -17,7 +18,8 @@ import org.threeten.bp.ZonedDateTime
  */
 class ProgramEvaluationViewModel(
     private val programId: ProgramId,
-    private val programEvaluationRepository: ProgramEvaluationRepository
+    private val programEvaluationRepository: ProgramEvaluationRepository,
+    private val programOverviewRepository: ProgramOverviewRepository
 ) : BaseViewModel() {
 
     private val _inputValidLiveData = MutableLiveData(false)
@@ -57,9 +59,11 @@ class ProgramEvaluationViewModel(
 
         viewModelScope.launchWithErrorHandling {
             programEvaluationRepository.submitProgramEvaluation(evaluation)
+            programOverviewRepository.updateProgramEvaluationState(programId)
+
             val navigation = when (programId) {
-                ProgramId.PROGRAM_FIRST_ID -> R.id.action_fragment_program_evaluation_to_fragment_program_2_1
-                ProgramId.PROGRAM_SECOND_ID -> R.id.action_fragment_program_evaluation_to_fragment_program_3_1
+                ProgramId.PROGRAM_FIRST_ID -> R.id.action_fragment_program_evaluation_to_fragment_program_2_intro_1
+                ProgramId.PROGRAM_SECOND_ID -> R.id.action_fragment_program_evaluation_to_fragment_program_3_intro
                 ProgramId.PROGRAM_THIRD_ID -> R.id.action_fragment_program_evaluation_to_fragment_program_4_1
                 ProgramId.PROGRAM_FOURTH_ID -> R.id.action_fragment_program_evaluation_to_fragment_program_overview
             }

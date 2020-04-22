@@ -25,16 +25,13 @@ class ProgramEvaluationFragment : BaseArchFragment<FragmentProgramEvaluationBind
     companion object {
 
         private const val KEY_PROGRAM_ID = "program_id"
-        private const val KEY_PROGRAM_NAME = "program_name"
 
-        fun arguments(programId: ProgramId, programName: String) = bundleOf(
-            KEY_PROGRAM_ID to programId,
-            KEY_PROGRAM_NAME to programName
+        fun arguments(programId: ProgramId) = bundleOf(
+            KEY_PROGRAM_ID to programId
         )
     }
 
-    private val programId: ProgramId by lazy(LazyThreadSafetyMode.NONE) { arguments!!.getParcelable<ProgramId>(KEY_PROGRAM_ID)!! }
-    private val programName: String by lazy(LazyThreadSafetyMode.NONE) { arguments!!.getString(KEY_PROGRAM_NAME)!! }
+    private val programId: ProgramId by lazy(LazyThreadSafetyMode.NONE) { requireArguments().getParcelable<ProgramId>(KEY_PROGRAM_ID)!! }
 
     override val viewModel by viewModel<ProgramEvaluationViewModel> { parametersOf(programId) }
 
@@ -45,6 +42,13 @@ class ProgramEvaluationFragment : BaseArchFragment<FragmentProgramEvaluationBind
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(viewBinding) {
+            val programName = when (programId) {
+                ProgramId.PROGRAM_FIRST_ID -> getString(R.string.program_1_title)
+                ProgramId.PROGRAM_SECOND_ID -> getString(R.string.program_2_title)
+                ProgramId.PROGRAM_THIRD_ID -> getString(R.string.program_3_title)
+                ProgramId.PROGRAM_FOURTH_ID -> getString(R.string.program_4_title)
+            }
+
             txtInstructions.text = getString(R.string.program_evaluation_instructions, programName)
 
             viewModel.inputValidStream.observe(viewLifecycleOwner, Observer { inputValid ->

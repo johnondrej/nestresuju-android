@@ -12,6 +12,8 @@ val converterModule = module {
 
     factory<InputTestsConverter> { InputTestsConverterImpl() }
 
+    factory<ProgramOverviewConverter> { ProgramOverviewConverterImpl() }
+
     factory<ProgramEvaluationConverter> { ProgramEvaluationConverterImpl() }
 
     factory<ProgramFirstConverter> { ProgramFirstConverterImpl() }

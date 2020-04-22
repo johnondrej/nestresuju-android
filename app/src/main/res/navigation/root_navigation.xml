@@ -106,8 +106,8 @@
         tools:layout="@layout/fragment_program_evaluation">
 
         <action
-            android:id="@+id/action_fragment_program_evaluation_to_fragment_program_2_1"
-            app:destination="@+id/fragment_program_2_1"
+            android:id="@+id/action_fragment_program_evaluation_to_fragment_program_2_intro_1"
+            app:destination="@+id/fragment_program_2_intro_1"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -115,8 +115,8 @@
             app:popUpTo="@id/navigation_program" />
 
         <action
-            android:id="@+id/action_fragment_program_evaluation_to_fragment_program_3_1"
-            app:destination="@+id/fragment_program_3_1"
+            android:id="@+id/action_fragment_program_evaluation_to_fragment_program_3_intro"
+            app:destination="@+id/fragment_program_3_intro"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"

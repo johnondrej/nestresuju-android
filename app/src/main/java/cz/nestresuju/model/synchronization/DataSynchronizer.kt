@@ -46,8 +46,7 @@ class DataSynchronizerImpl(
             val programFirstResults = programFirstDao.getResults()
 
             if (!programFirstResults.synchronizedWithApi && programFirstResults.programCompleted != null) {
-                // TODO: uncomment below when API is ready
-                // apiDefinition.submitFirstProgramResults(programFirstConverter.dbProgramFirstResultsToApi(programFirstResults))
+                apiDefinition.submitFirstProgramResults(programFirstConverter.dbProgramFirstResultsToApi(programFirstResults))
                 programFirstDao.updateResults(programFirstResults.copy(synchronizedWithApi = true))
             }
         } catch (e: Exception) {
@@ -59,8 +58,7 @@ class DataSynchronizerImpl(
             val programSecondResults = programSecondDao.getResults()
 
             if (!programSecondResults.synchronizedWithApi && programSecondResults.programCompleted != null) {
-                // TODO: uncomment below when API is ready
-                // apiDefinition.submitSecondProgramResults(programSecondConverter.dbProgramSecondResultsToApi(programSecondResults))
+                apiDefinition.submitSecondProgramResults(programSecondConverter.dbProgramSecondResultsToApi(programSecondResults))
                 programSecondDao.updateResults(programSecondResults.copy(synchronizedWithApi = true))
             }
         } catch (e: Exception) {
@@ -72,8 +70,7 @@ class DataSynchronizerImpl(
             val programThirdResults = programThirdDao.getFullResults()
 
             if (!programThirdResults.results.synchronizedWithApi && programThirdResults.results.programCompleted != null) {
-                // TODO: uncomment below when API is ready
-                // apiDefinition.submitThirdProgramResults(programThirdConverter.dbProgramThirdResultsToApi(programThirdResults))
+                apiDefinition.submitThirdProgramResults(programThirdConverter.dbProgramThirdResultsToApi(programThirdResults))
                 programThirdDao.updateResults(programThirdResults.copy(results = programThirdResults.results.copy(synchronizedWithApi = true)))
             }
         } catch (e: Exception) {
@@ -85,8 +82,7 @@ class DataSynchronizerImpl(
             val programFourthResults = programFourthDao.getResults()
 
             if (!programFourthResults.results.synchronizedWithApi && programFourthResults.results.programCompleted != null) {
-                // TODO: uncomment below when API is ready
-                // apiDefinition.submitFourthProgramResults(programFourthConverter.dbProgramFourthToApi(programFourthResults))
+                apiDefinition.submitFourthProgramResults(programFourthConverter.dbProgramFourthToApi(programFourthResults))
                 programFourthDao.updateResults(results = programFourthResults.results.copy(synchronizedWithApi = true))
             }
         } catch (e: Exception) {
@@ -184,9 +180,8 @@ class DataSynchronizerImpl(
 
         evaluations.forEach { evaluation ->
             try {
-                // TODO: uncomment below when API is ready
-                // apiDefinition.submitProgramEvaluation(evaluation.programId, programEvaluationConverter.dbProgramEvaluationToApi(evaluation))
-                // evaluationDao.deleteProgramEvaluation(evaluation.programId)
+                apiDefinition.submitProgramEvaluation(programEvaluationConverter.dbProgramEvaluationToApi(evaluation))
+                evaluationDao.deleteProgramEvaluation(evaluation.programId)
             } catch (e: Exception) {
                 // silent fail, synchronization will be performed next time
             }

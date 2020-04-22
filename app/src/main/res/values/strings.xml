@@ -62,6 +62,7 @@
     <string name="program_state_closed_complete_previous">Nejdříve splň předchozí část programu</string>
     <string name="program_state_completed">Splněno</string>
     <string name="program_message_closed">Program je zatím uzavřený!</string>
+    <string name="program_empty_error">Před prvním použitím programu se prosím připoj k Internetu.</string>
 
     <!-- Program evaluation -->
 
@@ -70,13 +71,13 @@
     <string name="program_evaluation_question_1">Povedlo se ti splnit tvůj cíl?</string>
     <string name="program_evaluation_question_2">Jak náročné pro tebe bylo splnit cíl?</string>
     <string name="program_evaluation_question_3">Jakou radu bys dal(a) svému kamarádovi nebo kamarádce, kteří by chtěli dosáhnout stejného cíle jako ty?</string>
-    <string name="program_evaluation_question_1_answer_1">Ano</string>
+    <string name="program_evaluation_question_1_answer_1">Ne</string>
     <string name="program_evaluation_question_1_answer_2">Částečně</string>
-    <string name="program_evaluation_question_1_answer_3">Ne</string>
-    <string name="program_evaluation_question_2_answer_1">Velmi náročné</string>
-    <string name="program_evaluation_question_2_answer_2">Náročné</string>
-    <string name="program_evaluation_question_2_answer_3">Jednoduché</string>
-    <string name="program_evaluation_question_2_answer_4">Velmi jednoduché</string>
+    <string name="program_evaluation_question_1_answer_3">Ano</string>
+    <string name="program_evaluation_question_2_answer_1">Velmi jednoduché</string>
+    <string name="program_evaluation_question_2_answer_2">Jednoduché</string>
+    <string name="program_evaluation_question_2_answer_3">Náročné</string>
+    <string name="program_evaluation_question_2_answer_4">Velmi náročné</string>
     <string name="program_evaluation_submit">Začít další část</string>
 
     <!-- Program 1 -->

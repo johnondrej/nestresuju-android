@@ -11,6 +11,7 @@ import cz.nestresuju.common.extensions.visible
 import cz.nestresuju.databinding.FragmentProgram4IntroQuestionsBinding
 import cz.nestresuju.model.common.State
 import cz.nestresuju.model.errors.InternetConnectionException
+import cz.nestresuju.model.errors.ServerException
 import cz.nestresuju.model.errors.handlers.InternetErrorsHandler
 import cz.nestresuju.model.errors.handlers.UnknownErrorsHandler
 import cz.nestresuju.screens.base.BaseArchFragment
@@ -39,8 +40,10 @@ class ProgramFourthQuestionsIntroFragment : BaseArchFragment<FragmentProgram4Int
             progress.max = ProgramFourthConstants.PHASES
 
             viewModel.loadingStateStream.observe(viewLifecycleOwner, Observer { state ->
+                val error = (state as? State.Error)?.error
+
                 layoutContent.visible = state is State.Loaded
-                layoutInternetError.visible = (state as? State.Error)?.error is InternetConnectionException
+                layoutInternetError.visible = error is InternetConnectionException || error is ServerException
                 loadingProgress.visible = state == State.Loading
             })
 

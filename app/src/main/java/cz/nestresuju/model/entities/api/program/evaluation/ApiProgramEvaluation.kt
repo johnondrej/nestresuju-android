@@ -8,6 +8,7 @@ import org.threeten.bp.ZonedDateTime
  */
 @JsonClass(generateAdapter = true)
 class ApiProgramEvaluation(
+    val programTitle: String,
     val fulfillment: Int,
     val difficulty: Int,
     val message: String,

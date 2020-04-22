@@ -45,6 +45,7 @@ val viewModelModule = module {
 
     viewModel {
         ProgramViewModel(
+            programOverviewRepository = get(),
             programFirstRepository = get(),
             programSecondRepository = get(),
             programThirdRepository = get(),
@@ -52,7 +53,13 @@ val viewModelModule = module {
         )
     }
 
-    viewModel { (programId: ProgramId) -> ProgramEvaluationViewModel(programId, programEvaluationRepository = get()) }
+    viewModel { (programId: ProgramId) ->
+        ProgramEvaluationViewModel(
+            programId,
+            programEvaluationRepository = get(),
+            programOverviewRepository = get()
+        )
+    }
 
     viewModel { (progress: Int) -> ProgramFirstQuestionViewModel(progress, programRepository = get()) }
 

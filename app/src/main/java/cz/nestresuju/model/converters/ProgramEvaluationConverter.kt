@@ -28,6 +28,7 @@ class ProgramEvaluationConverterImpl : ProgramEvaluationConverter {
 
     override fun dbProgramEvaluationToApi(dbEvaluation: DbProgramEvaluation): ApiProgramEvaluation {
         return ApiProgramEvaluation(
+            programTitle = dbEvaluation.programId,
             fulfillment = dbEvaluation.fulfillment,
             difficulty = dbEvaluation.difficulty,
             message = dbEvaluation.message,

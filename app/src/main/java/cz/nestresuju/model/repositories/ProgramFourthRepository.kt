@@ -2,7 +2,6 @@ package cz.nestresuju.model.repositories
 
 import cz.nestresuju.model.converters.ProgramFourthConverter
 import cz.nestresuju.model.database.AppDatabase
-import cz.nestresuju.model.entities.api.program.fourth.ApiProgramFourthQuestion
 import cz.nestresuju.model.entities.domain.program.fourth.ProgramFourthQuestion
 import cz.nestresuju.model.entities.domain.program.fourth.ProgramFourthResults
 import cz.nestresuju.model.synchronization.DataSynchronizer
@@ -29,22 +28,7 @@ class ProgramFourthRepositoryImpl(
 ) : ProgramFourthRepository {
 
     override suspend fun fetchQuestions() {
-        // TODO: remove mock data when API is ready
-        val apiQuestions = List(15) { index ->
-            val type = when {
-                index + 1 > 10 -> 3
-                (index + 1).rem(2) == 0 -> 1
-                (index + 1).rem(2) == 1 -> 2
-                else -> 3
-            }
-
-            ApiProgramFourthQuestion(
-                id = index.toLong(),
-                type = type,
-                text = "Otázka dotazníku ${index + 1} (typ $type)"
-            )
-        }
-        // val apiQuestions = apiDefinition.getFourthProgramQuestions(0).questions
+        val apiQuestions = apiDefinition.getFourthProgramQuestions(0).questions
         val questionsOrder = (1..(apiQuestions.size)).shuffled()
 
         database.programFourthDao().updateQuestions(apiQuestions.mapIndexed { index, apiQuestion ->
