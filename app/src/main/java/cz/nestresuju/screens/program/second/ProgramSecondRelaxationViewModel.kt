@@ -25,6 +25,11 @@ class ProgramSecondRelaxationViewModel(
 
     fun submitRelaxationDuration() {
         GlobalScope.launch {
+            if (programRepository.getProgramResults().programCompleted != null) {
+                // program already submitted, skip
+                return@launch
+            }
+
             val now = LocalDateTime.now()
             programRepository.updateProgramResults { currentResults ->
                 currentResults.copy(relaxationDuration = Duration.between(startTime, now).seconds)
