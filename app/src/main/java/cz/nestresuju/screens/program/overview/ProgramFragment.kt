@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import cz.nestresuju.R
+import cz.nestresuju.common.extensions.bottomPadding
+import cz.nestresuju.common.extensions.dp
 import cz.nestresuju.databinding.FragmentCustomListBinding
 import cz.nestresuju.model.common.State
 import cz.nestresuju.model.entities.domain.program.ProgramId
@@ -33,6 +35,7 @@ class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(viewBinding) {
+            customList.list.bottomPadding = requireContext().dp(8)
             customList.emptyTextResource = R.string.program_empty_error
             customList.refreshLayout.isEnabled = false
 
