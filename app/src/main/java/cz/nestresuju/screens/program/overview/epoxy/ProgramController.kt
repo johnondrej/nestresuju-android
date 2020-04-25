@@ -3,6 +3,8 @@ package cz.nestresuju.screens.program.overview.epoxy
 import android.content.Context
 import com.airbnb.epoxy.EpoxyController
 import cz.nestresuju.R
+import cz.nestresuju.common.extensions.formatDayMonth
+import cz.nestresuju.model.entities.domain.program.overview.ProgramOverview
 import cz.nestresuju.views.common.epoxy.navigationCard
 
 /**
@@ -10,41 +12,45 @@ import cz.nestresuju.views.common.epoxy.navigationCard
  */
 class ProgramController(
     private val applicationContext: Context,
-    private val onFirstProgramSelected: () -> Unit,
-    private val onSecondProgramSelected: () -> Unit,
-    private val onThirdProgramSelected: () -> Unit,
-    private val onFourthProgramSelected: () -> Unit
+    private val overview: List<ProgramOverview>,
+    private val onProgramSelected: (ProgramOverview) -> Unit,
+    private val onClosedProgramSelected: () -> Unit
 ) : EpoxyController() {
 
     override fun buildModels() {
-        // TODO: pass real states of programs when implemented
+        overview
+            .sortedBy { it.order }
+            .forEach { program ->
+                val programOpened = program.isOpened
+                val stateText = when (programOpened) {
+                    true -> when (program.completed) {
+                        true -> applicationContext.getString(R.string.program_state_completed)
+                        false -> applicationContext.getString(R.string.program_state_open)
+                    }
+                    false -> applicationContext.getString(R.string.program_state_closed)
+                }
+                val stateDescriptionText = when (programOpened) {
+                    true -> null
+                    false -> when (program.startDate) {
+                        null -> applicationContext.getString(R.string.program_state_closed_complete_previous)
+                        else -> applicationContext.getString(
+                            R.string.program_state_opens_at,
+                            program.startDate.toLocalDate().formatDayMonth()
+                        )
+                    }
+                }
 
-        navigationCard {
-            id("program-1")
-            title("Stanovování cílů")
-            stateText(applicationContext.getString(R.string.program_state_open))
-            onItemClicked(onFirstProgramSelected)
-        }
-
-        navigationCard {
-            id("program-2")
-            title("Relaxace")
-            stateText(applicationContext.getString(R.string.program_state_open))
-            onItemClicked(onSecondProgramSelected)
-        }
-
-        navigationCard {
-            id("program-3")
-            title("Řízení času")
-            stateText(applicationContext.getString(R.string.program_state_open))
-            onItemClicked(onThirdProgramSelected)
-        }
-
-        navigationCard {
-            id("program-4")
-            title("Hledání smyslu a pozitiv")
-            stateText(applicationContext.getString(R.string.program_state_open))
-            onItemClicked(onFourthProgramSelected)
-        }
+                navigationCard {
+                    id(program.id)
+                    title(program.name)
+                    stateText(stateText)
+                    stateDescriptionText(stateDescriptionText ?: "")
+                    if (programOpened) {
+                        onItemClicked { onProgramSelected(program) }
+                    } else {
+                        onItemClicked { onClosedProgramSelected() }
+                    }
+                }
+            }
     }
 }

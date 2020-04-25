@@ -18,11 +18,17 @@ import cz.nestresuju.model.entities.domain.program.overview.ProgramOverview
 import cz.nestresuju.model.entities.domain.program.second.ProgramSecondResults
 import cz.nestresuju.model.entities.domain.program.third.ProgramThirdResults
 import cz.nestresuju.screens.base.BaseArchFragment
+import cz.nestresuju.screens.program.ProgramClosedDialogFragment
 import cz.nestresuju.screens.program.evaluation.ProgramEvaluationFragment
 import cz.nestresuju.screens.program.overview.epoxy.ProgramController
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
+
+    companion object {
+
+        private const val TAG_PROGRAM_CLOSED_DIALOG = "program_closed_dialog"
+    }
 
     private lateinit var controller: ProgramController
 
@@ -50,10 +56,9 @@ class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
                 if (state is State.Loaded && overview != null && overview.isNotEmpty()) {
                     controller = ProgramController(
                         applicationContext = requireContext().applicationContext,
-                        onFirstProgramSelected = { onFirstProgramSelected(state.data.programFirstResults) },
-                        onSecondProgramSelected = { onSecondProgramSelected(state.data.programSecondResults, overview) },
-                        onThirdProgramSelected = { onThirdProgramSelected(state.data.programThirdResults, overview) },
-                        onFourthProgramSelected = { onFourthProgramSelected(state.data.programFourthResults, overview) }
+                        overview = state.data.overview,
+                        onProgramSelected = { program -> onProgramSelected(program.id, state.data) },
+                        onClosedProgramSelected = { onClosedProgramSelected() }
                     ).also {
                         it.requestModelBuild()
                         customList.list.setController(it)
@@ -61,6 +66,20 @@ class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
                 }
             })
         }
+    }
+
+    private fun onProgramSelected(programId: String, screenState: ProgramViewModel.ScreenState) {
+        // TODO: remove replace function when API sends correct ID for program 4
+        when (programId.replace("search-for-meaning", "searching-for-meaning")) {
+            ProgramId.PROGRAM_FIRST_ID.txtId -> onFirstProgramSelected(screenState.programFirstResults)
+            ProgramId.PROGRAM_SECOND_ID.txtId -> onSecondProgramSelected(screenState.programSecondResults, screenState.overview)
+            ProgramId.PROGRAM_THIRD_ID.txtId -> onThirdProgramSelected(screenState.programThirdResults, screenState.overview)
+            ProgramId.PROGRAM_FOURTH_ID.txtId -> onFourthProgramSelected(screenState.programFourthResults, screenState.overview)
+        }
+    }
+
+    private fun onClosedProgramSelected() {
+        ProgramClosedDialogFragment().show(childFragmentManager, TAG_PROGRAM_CLOSED_DIALOG)
     }
 
     private fun onFirstProgramSelected(results: ProgramFirstResults) {

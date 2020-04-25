@@ -3,6 +3,13 @@ package cz.nestresuju.screens.home
 import androidx.lifecycle.viewModelScope
 import cz.nestresuju.R
 import cz.nestresuju.model.common.StateLiveData
+import cz.nestresuju.model.entities.domain.diary.DiaryEntry
+import cz.nestresuju.model.entities.domain.program.ProgramId
+import cz.nestresuju.model.entities.domain.program.first.ProgramFirstResults
+import cz.nestresuju.model.entities.domain.program.fourth.ProgramFourthResults
+import cz.nestresuju.model.entities.domain.program.overview.ProgramOverview
+import cz.nestresuju.model.entities.domain.program.second.ProgramSecondResults
+import cz.nestresuju.model.entities.domain.program.third.ProgramThirdResults
 import cz.nestresuju.model.repositories.*
 import cz.nestresuju.model.synchronization.DataSynchronizer
 import cz.nestresuju.screens.base.BaseViewModel
@@ -11,6 +18,7 @@ import kotlinx.coroutines.flow.combine
 import org.threeten.bp.LocalDate
 
 class HomeViewModel(
+    private val programOverviewRepository: ProgramOverviewRepository,
     private val programFirstRepository: ProgramFirstRepository,
     private val programSecondRepository: ProgramSecondRepository,
     private val programThirdRepository: ProgramThirdRepository,
@@ -26,6 +34,7 @@ class HomeViewModel(
         viewModelScope.launchWithErrorHandling {
             dataSynchronizer.synchronizeAll()
 
+            val programOverviewFlow = programOverviewRepository.observeOverview()
             val programFirstFlow = programFirstRepository.observeProgramResults()
             val programSecondFlow = programSecondRepository.observeProgramResults()
             val programThirdFlow = programThirdRepository.observeProgramResults()
@@ -33,17 +42,25 @@ class HomeViewModel(
             val diaryFlow = diaryRepository.observeDiaryEntries()
 
             combine(
+                programOverviewFlow,
                 programFirstFlow,
                 programSecondFlow,
                 programThirdFlow,
                 programFourthFlow,
                 diaryFlow
-            ) { firstResults, secondResults, thirdResults, fourthResults, diaryEntries ->
-                // TODO: check if program is opened
+            ) { flows ->
+                val overview = flows[0] as List<ProgramOverview>
+                val firstResults = flows[1] as ProgramFirstResults
+                val secondResults = flows[2] as ProgramSecondResults
+                val thirdResults = flows[3] as ProgramThirdResults
+                val fourthResults = flows[4] as ProgramFourthResults
+                val diaryEntries = flows[5] as List<DiaryEntry>
                 val homeItems = mutableListOf<HomeItem>()
 
-                if (firstResults.programCompleted == null || secondResults.programCompleted == null
-                    || thirdResults.programCompleted == null || fourthResults.programCompleted == null
+                if (firstResults.programCompleted == null ||
+                    (secondResults.programCompleted == null && overview.find { it.id == ProgramId.PROGRAM_SECOND_ID.txtId }?.isOpened == true) ||
+                    (thirdResults.programCompleted == null && overview.find { it.id == ProgramId.PROGRAM_THIRD_ID.txtId }?.isOpened == true) ||
+                    (fourthResults.programCompleted == null && overview.find { it.id == ProgramId.PROGRAM_FOURTH_ID.txtId }?.isOpened == true)
                 ) {
                     homeItems += HomeItem(
                         destination = Destination.PROGRAM,

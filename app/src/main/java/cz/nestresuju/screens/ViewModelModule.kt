@@ -45,6 +45,7 @@ val viewModelModule = module {
 
     viewModel {
         HomeViewModel(
+            programOverviewRepository = get(),
             programFirstRepository = get(),
             programSecondRepository = get(),
             programThirdRepository = get(),

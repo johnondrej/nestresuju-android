@@ -70,9 +70,11 @@
 
     <string name="program_state_open">Otevřeno</string>
     <string name="program_state_opens_at">Otevře se %s</string>
+    <string name="program_state_closed">Uzavřeno</string>
     <string name="program_state_closed_complete_previous">Nejdříve splň předchozí část programu</string>
     <string name="program_state_completed">Splněno</string>
-    <string name="program_message_closed">Program je zatím uzavřený!</string>
+    <string name="program_closed_dialog_title">Program je uzavřený</string>
+    <string name="program_closed_dialog_text">Program je zatím uzavřený! Pro jeho otevření musíš splnit předchozí části programu a počkat 6 dní od dokončení poslední části.</string>
     <string name="program_empty_error">Před prvním použitím programu se prosím připoj k Internetu.</string>
 
     <!-- Program evaluation -->
