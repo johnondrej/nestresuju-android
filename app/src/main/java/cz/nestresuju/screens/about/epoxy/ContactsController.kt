@@ -1,7 +1,7 @@
 package cz.nestresuju.screens.about.epoxy
 
 import com.airbnb.epoxy.EpoxyController
-import cz.nestresuju.common.extensions.adapterProperty
+import cz.nestresuju.common.extensions.controllerProperty
 import cz.nestresuju.model.entities.domain.domain.ContactsCategory
 
 /**
@@ -13,7 +13,7 @@ class ContactsController(
     private val onMessageClicked: (String) -> Unit
 ) : EpoxyController() {
 
-    var contacts by adapterProperty(emptyList<ContactsCategory>())
+    var contacts by controllerProperty(emptyList<ContactsCategory>())
 
     override fun buildModels() {
         contacts.forEach { category ->

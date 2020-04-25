@@ -8,6 +8,7 @@ import cz.nestresuju.model.entities.domain.program.overview.ProgramOverview
 import cz.nestresuju.model.entities.domain.program.second.ProgramSecondResults
 import cz.nestresuju.model.entities.domain.program.third.ProgramThirdResults
 import cz.nestresuju.model.repositories.*
+import cz.nestresuju.model.synchronization.DataSynchronizer
 import cz.nestresuju.screens.base.BaseViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
@@ -18,7 +19,8 @@ class ProgramViewModel(
     private val programFirstRepository: ProgramFirstRepository,
     private val programSecondRepository: ProgramSecondRepository,
     private val programThirdRepository: ProgramThirdRepository,
-    private val programFourthRepository: ProgramFourthRepository
+    private val programFourthRepository: ProgramFourthRepository,
+    private val dataSynchronizer: DataSynchronizer
 ) : BaseViewModel() {
 
     val screenStateStream = StateLiveData<ScreenState>()
@@ -26,6 +28,8 @@ class ProgramViewModel(
     init {
         screenStateStream.loading()
         viewModelScope.launchWithErrorHandling {
+            dataSynchronizer.synchronizeProgram()
+
             try {
                 programOverviewRepository.fetchOverview()
             } catch (e: Exception) {

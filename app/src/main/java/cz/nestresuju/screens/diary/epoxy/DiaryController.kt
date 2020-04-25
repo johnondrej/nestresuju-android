@@ -1,7 +1,7 @@
 package cz.nestresuju.screens.diary.epoxy
 
 import com.airbnb.epoxy.EpoxyController
-import cz.nestresuju.common.extensions.adapterProperty
+import cz.nestresuju.common.extensions.controllerProperty
 import cz.nestresuju.model.entities.domain.diary.DiaryEntry
 import cz.nestresuju.model.entities.domain.diary.StressLevel
 import cz.nestresuju.screens.diary.DiaryChoiceInput
@@ -19,11 +19,11 @@ class DiaryController(
     private val onNoteDeleteClicked: (DiaryEntry.NoteEntry) -> Unit
 ) : EpoxyController() {
 
-    var isInitialized by adapterProperty(false)
-    var showSmallInput by adapterProperty(false)
-    var answer: String? by adapterProperty(null)
-    var input: DiaryChoiceInput? by adapterProperty(null)
-    var entries: List<DiaryEntry>? by adapterProperty(null)
+    var isInitialized by controllerProperty(false)
+    var showSmallInput by controllerProperty(false)
+    var answer: String? by controllerProperty(null)
+    var input: DiaryChoiceInput? by controllerProperty(null)
+    var entries: List<DiaryEntry>? by controllerProperty(null)
 
     private var lastDay: LocalDate? = null
 

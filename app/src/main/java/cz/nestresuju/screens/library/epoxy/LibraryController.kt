@@ -1,7 +1,7 @@
 package cz.nestresuju.screens.library.epoxy
 
 import com.airbnb.epoxy.EpoxyController
-import cz.nestresuju.common.extensions.adapterProperty
+import cz.nestresuju.common.extensions.controllerProperty
 import cz.nestresuju.model.entities.domain.library.LibrarySection
 
 /**
@@ -11,7 +11,7 @@ class LibraryController(
     private val onSubsectionClicked: (LibrarySection) -> Unit
 ) : EpoxyController() {
 
-    var librarySection: LibrarySection? by adapterProperty(null)
+    var librarySection: LibrarySection? by controllerProperty(null)
 
     override fun buildModels() {
         librarySection?.let { section ->

@@ -55,6 +55,17 @@
     <string name="screening_test_confirm_dialog_text">Děkujeme za tvůj čas a tvé odpovědi. Nyní si můžeš prohlédnout Nestresuju v celé své kráse. V sekci Knihovna se můžeš dočíst více o stresu a stress managementu. Do Deníčku si můžeš pravidelně zaznamenávat úroveň svého stresu. V části Program se ti budou postupně otevírat úkoly a výzvy, které ti pomohou zvládat tvůj stres. Tak vzhůru do toho!</string>
     <string name="screening_test_confirm_dialog_button">Přejít do aplikace</string>
 
+    <!-- Home screen -->
+
+    <string name="home_unfinished_program_title">Máš otevřenou další část programu</string>
+    <string name="home_unfinished_program_description">Čeká na tebe další část programu, kterou jsi ještě nevyplnil. Tak vzhůru do toho!</string>
+    <string name="home_diary_mood_title">Vyplň úroveň stresu pro dnešní den</string>
+    <string name="home_diary_mood_description">Pro dnešní den jsi ještě nevyplnil úroveň stresu, běž to napravit.</string>
+    <string name="home_diary_note_title">Přidej si záznam do deníčku</string>
+    <string name="home_diary_note_description">Můžeš si zapisovat i jednoduché pozámky, tak jako do papírového deníčku.</string>
+    <string name="home_library_title">Přečti si informace o stresu v Knihovně</string>
+    <string name="home_library_description">V Knihovně na tebe čeká spousta informací o stresu a jeho zvládání.</string>
+
     <!-- Programs overview -->
 
     <string name="program_state_open">Otevřeno</string>

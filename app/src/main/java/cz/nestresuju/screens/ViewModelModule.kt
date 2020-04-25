@@ -44,12 +44,24 @@ val viewModelModule = module {
     viewModel { ScreeningTestViewModel(inputTestsRepository = get()) }
 
     viewModel {
+        HomeViewModel(
+            programFirstRepository = get(),
+            programSecondRepository = get(),
+            programThirdRepository = get(),
+            programFourthRepository = get(),
+            diaryRepository = get(),
+            dataSynchronizer = get()
+        )
+    }
+
+    viewModel {
         ProgramViewModel(
             programOverviewRepository = get(),
             programFirstRepository = get(),
             programSecondRepository = get(),
             programThirdRepository = get(),
-            programFourthRepository = get()
+            programFourthRepository = get(),
+            dataSynchronizer = get()
         )
     }
 
@@ -108,6 +120,4 @@ val viewModelModule = module {
     viewModel { ResearchViewModel(aboutAppRepository = get()) }
 
     viewModel { FeedbackViewModel() }
-
-    viewModel { HomeViewModel() }
 }

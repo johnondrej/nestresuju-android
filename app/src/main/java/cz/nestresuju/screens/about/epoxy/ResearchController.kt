@@ -1,7 +1,7 @@
 package cz.nestresuju.screens.about.epoxy
 
 import com.airbnb.epoxy.EpoxyController
-import cz.nestresuju.common.extensions.adapterProperty
+import cz.nestresuju.common.extensions.controllerProperty
 import cz.nestresuju.model.entities.domain.domain.ResearchInfo
 
 /**
@@ -9,7 +9,7 @@ import cz.nestresuju.model.entities.domain.domain.ResearchInfo
  */
 class ResearchController : EpoxyController() {
 
-    var researchInfo: ResearchInfo? by adapterProperty(null)
+    var researchInfo: ResearchInfo? by controllerProperty(null)
 
     override fun buildModels() {
         researchInfo?.let { info ->

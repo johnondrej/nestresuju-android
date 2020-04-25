@@ -49,6 +49,7 @@ class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
 
                 if (state is State.Loaded && overview != null && overview.isNotEmpty()) {
                     controller = ProgramController(
+                        applicationContext = requireContext().applicationContext,
                         onFirstProgramSelected = { onFirstProgramSelected(state.data.programFirstResults) },
                         onSecondProgramSelected = { onSecondProgramSelected(state.data.programSecondResults, overview) },
                         onThirdProgramSelected = { onThirdProgramSelected(state.data.programThirdResults, overview) },
