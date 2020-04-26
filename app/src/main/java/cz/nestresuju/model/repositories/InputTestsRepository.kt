@@ -19,6 +19,10 @@ interface InputTestsRepository {
 
     suspend fun submitInputTestResults(results: List<InputTestQuestionAnswer>)
 
+    suspend fun fetchOutputTestQuestions(): List<InputTestQuestion>
+
+    suspend fun submitOutputTestResults(results: List<InputTestQuestionAnswer>)
+
     suspend fun fetchScreeningTestOptions(): List<ScreeningTestOption>
 
     suspend fun submitScreeningTestResults(results: List<Long>)
@@ -49,6 +53,27 @@ class InputTestsRepositoryImpl(
             // do nothing, test was already successfully submitted earlier
         }
         sharedPreferencesInteractor.setInputTestCompleted()
+    }
+
+    override suspend fun fetchOutputTestQuestions(): List<InputTestQuestion> {
+        return apiDefinition.getOutputTestQuestions().items
+            .sortedBy { it.order }
+            .map { apiQuestion -> entityConverter.apiInputTestQuestionToDomain(apiQuestion) }
+    }
+
+    override suspend fun submitOutputTestResults(results: List<InputTestQuestionAnswer>) {
+        try {
+            apiDefinition.submitOutputTestResults(
+                ApiInputTestResults(
+                    results = results.map { answer ->
+                        entityConverter.inputTestQuestionAnswerToApi(answer)
+                    }
+                )
+            )
+        } catch (e: DuplicitDataException) {
+            // do nothing, test was already successfully submitted earlier
+        }
+        sharedPreferencesInteractor.setOutputTestCompleted()
     }
 
     override suspend fun fetchScreeningTestOptions(): List<ScreeningTestOption> {

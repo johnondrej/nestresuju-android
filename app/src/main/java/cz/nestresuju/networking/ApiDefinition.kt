@@ -38,6 +38,12 @@ interface ApiDefinition {
     @POST("v1/input-test")
     suspend fun submitInputTestResults(@Body results: ApiInputTestResults): Response<Unit>
 
+    @GET("v1/final-test/questions")
+    suspend fun getOutputTestQuestions(): InputTestQuestionsResponse
+
+    @POST("v1/final-test")
+    suspend fun submitOutputTestResults(@Body results: ApiInputTestResults): Response<Unit>
+
     @GET("v1/screening-test/options")
     suspend fun getScreeningTestOptions(): ScreeningTestOptionsResponse
 
@@ -71,12 +77,10 @@ interface ApiDefinition {
     @GET("v1/program/searching-for-meaning/questions")
     suspend fun getFourthProgramQuestions(@Query("timestamp") timestamp: Long): ProgramFourthQuestionsResponse
 
-    // TODO: update to correct ID when API is fixed
-    @GET("v1/program/search-for-meaning")
+    @GET("v1/program/searching-for-meaning")
     suspend fun getFourthProgramResults(): ApiProgramFourthResults
 
-    // TODO: update to correct ID when API is fixed
-    @POST("v1/program/search-for-meaning")
+    @POST("v1/program/searching-for-meaning")
     suspend fun submitFourthProgramResults(@Body results: ApiProgramFourthResults): Response<Unit>
 
     @GET("v1/diary/mood-questions")

@@ -1,31 +1,19 @@
 package cz.nestresuju.screens.tests.input
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import cz.nestresuju.R
-import cz.nestresuju.databinding.FragmentInputTestIntroBinding
+import cz.nestresuju.screens.tests.BaseTestIntroFragment
 
 /**
  * Fragment for screen with info about input test.
  */
-class InputTestIntroFragment : Fragment() {
+class InputTestIntroFragment : BaseTestIntroFragment() {
 
-    private var _binding: FragmentInputTestIntroBinding? = null
-    private val viewBinding: FragmentInputTestIntroBinding
-        get() = _binding!!
+    override val headlineTextRes = R.string.input_test_intro_headline
+    override val intro1TextRes = R.string.input_test_intro_1
+    override val intro2TextRes = R.string.input_test_intro_2
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return FragmentInputTestIntroBinding.inflate(inflater, container, false).also { _binding = it }.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewBinding.btnContinue.setOnClickListener {
-            findNavController().navigate(R.id.action_fragment_intro_to_fragment_input_test)
-        }
+    override fun onContinueClicked() {
+        findNavController().navigate(R.id.action_fragment_intro_to_fragment_input_test)
     }
 }

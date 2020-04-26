@@ -58,7 +58,8 @@ class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
                         applicationContext = requireContext().applicationContext,
                         overview = state.data.overview,
                         onProgramSelected = { program -> onProgramSelected(program.id, state.data) },
-                        onClosedProgramSelected = { onClosedProgramSelected() }
+                        onClosedProgramSelected = { onClosedProgramSelected() },
+                        onOutputTestSelected = { onOutputTestSelected() }
                     ).also {
                         it.requestModelBuild()
                         customList.list.setController(it)
@@ -69,8 +70,7 @@ class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
     }
 
     private fun onProgramSelected(programId: String, screenState: ProgramViewModel.ScreenState) {
-        // TODO: remove replace function when API sends correct ID for program 4
-        when (programId.replace("search-for-meaning", "searching-for-meaning")) {
+        when (programId) {
             ProgramId.PROGRAM_FIRST_ID.txtId -> onFirstProgramSelected(screenState.programFirstResults)
             ProgramId.PROGRAM_SECOND_ID.txtId -> onSecondProgramSelected(screenState.programSecondResults, screenState.overview)
             ProgramId.PROGRAM_THIRD_ID.txtId -> onThirdProgramSelected(screenState.programThirdResults, screenState.overview)
@@ -171,4 +171,7 @@ class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
     }
 
     // TODO: add final retest ("fifth" program) with evaluation of program 4
+    private fun onOutputTestSelected() {
+        findNavController().navigate(R.id.action_fragment_program_overview_to_fragment_output_test_intro)
+    }
 }

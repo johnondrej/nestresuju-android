@@ -22,7 +22,7 @@ class ProgramSubmittedDialogFragment : DialogFragment() {
         }
     }
 
-    private val textRes: Int by lazy(LazyThreadSafetyMode.NONE) { arguments!!.getInt(KEY_TEXT_RES) }
+    private val textRes: Int by lazy(LazyThreadSafetyMode.NONE) { requireArguments().getInt(KEY_TEXT_RES) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -41,8 +41,8 @@
     <string name="input_test_title">Vstupní test</string>
     <string name="input_test_intro_headline">První dotazník</string>
     <string name="input_test_intro_1">V rámci výzkumného šetření o účinnosti Nestresuju tě prosíme o vyplnění dvou krátkých dotazníků týkající se tvého prožívaného stresu. Jejich vyplňování ti zabere jen několik minut.</string>
-    <string name="input_test_intro_2">První dotazník obsahuje otázky zaměřeny na to, jak jsi se cítil/a a jak jsi uvažoval/a během posledního měsíce. Označ odpověď vystihující, jak často jsi se popsaným způsobem cítil/a nebo uvažoval/a. Dotazník obsahuje 10 otázek a vyplněný ho budeš mít do 5 minut.</string>
-    <string name="input_test_instructions">Označ odpověď vystihující, jak často jsi se popsaným způsobem cítil/a nebo uvažoval/a během posledního měsíce.</string>
+    <string name="input_test_intro_2">První dotazník obsahuje otázky zaměřeny na to, jak ses cítil/a a jak jsi uvažoval/a během posledního měsíce. Označ odpověď vystihující, jak často ses popsaným způsobem cítil/a nebo uvažoval/a. Dotazník obsahuje 10 otázek a vyplněný ho budeš mít do 5 minut.</string>
+    <string name="input_test_instructions">Označ odpověď vystihující, jak často ses popsaným způsobem cítil/a nebo uvažoval/a během posledního měsíce.</string>
     <string name="input_test_answer_0">Nikdy</string>
     <string name="input_test_answer_1">Výjimečně</string>
     <string name="input_test_answer_2">Občas</string>
@@ -193,11 +193,18 @@
     <string name="program_4_question_answer_5">Spíš pravdivé</string>
     <string name="program_4_question_answer_6">Hodně pravdivé</string>
     <string name="program_4_question_answer_7">Naprosto pravdivé</string>
-    <string name="program_4_submitted_dialog_text">Tím jsi se dostal(a) na samý konec nejen této části ale i celého programu Nestresuju. Nyní se ti otevřela závěrečná část aplikace, kde na tebe čeká nejen shrnutí naší společné cesty, ale také dva krátké závěrečné dotazníky. Prosíme o jejich vyplnění. Děkujeme!</string>
+    <string name="program_4_submitted_dialog_text">Tím ses dostal(a) na samý konec nejen této části ale i celého programu Nestresuju. Nyní se ti otevřela závěrečná část aplikace, kde na tebe čeká nejen shrnutí naší společné cesty, ale také dva krátké závěrečné dotazníky. Prosíme o jejich vyplnění. Děkujeme!</string>
     <string name="program_4_evaluation_above_above">Cítíš, že tvůj život má smysl. Aktivně jej prozkoumáváš a je to pro tebe dlouhodobý a prohlubující se proces. Láká tě otázka: „Jaký význam může můj život mít?“.\n\nPravděpodobně jsi spokojen(a) se svým životem, jsi optimista a máš zdravou úroveň sebevědomí.</string>
     <string name="program_4_evaluation_above_below">Cítíš, že tvůj život má smysl a význam, ale aktivně nehledáš cesty a způsoby, jak je více poznávat a rozvíjet. Máš představu o smyslu svého života a čemu se v něm chceš věnovat. Jsi spokojen(a) se svým životem, máš spíše optimistický pohled na svět a máš zdravou úroveň sebevědomí.</string>
     <string name="program_4_evaluation_below_above">Zřejmě necítíš, že by měl tvůj život jasný smysl a význam, ale aktivně hledáš něco nebo někoho, kdo by tvému životu smysl dal. Můžeš se cítit ztracen(a) a ne příliš spokojen(a) se svým životem. Na své cestě za hledáním smyslu tvého života nepolevuj a nenech se od své cesty poznání odradit.</string>
     <string name="program_4_evaluation_below_below">Zřejmě necítíš, že by měl tvůj život jasný smysl a význam, a ani aktivně nehledáš něco nebo někoho, kdo by tvému životu smysl dal. Možná ti představa hledání významu života nepřipadá zajímavá a důležitá. Pokud ovšem nejsi spokojen(a) se svým životem, možná nastal čas svůj postoj k hledání smyslu života přehodnotit.</string>
+
+    <!-- Output test -->
+
+    <string name="output_test_title">Výstupní test</string>
+    <string name="output_test_intro_1">V rámci výzkumného šetření o účinnosti Nestresuju tě prosíme o vyplnění dvou krátkých dotazníků týkající se tvého prožívaného stresu. Jejich vyplňování ti zabere jen několik minut.</string>
+    <string name="output_test_intro_2">První dotazník obsahuje otázky zaměřeny na to, jak ses cítil/a a jak jsi uvažoval/a během posledního měsíce. Označ odpověď vystihující, jak často ses popsaným způsobem cítil/a nebo uvažoval/a (0=nikdy, 4=velmi často). Dotazník obsahuje 10 otázek a vyplněný ho budeš mít do 5 minut.</string>
+    <string name="output_test_confirmation_dialog_text">Děkujeme za vyplnění prvního dotazníku. Nyní se ti zobrazí závěrečných 5 otázek týkající se zhodnocení tvého pokroku s aplikací a tvé ohodnocení Nestresuju.</string>
 
     <!-- Diary -->
 

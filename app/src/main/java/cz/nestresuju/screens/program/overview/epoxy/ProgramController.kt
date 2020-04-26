@@ -14,7 +14,8 @@ class ProgramController(
     private val applicationContext: Context,
     private val overview: List<ProgramOverview>,
     private val onProgramSelected: (ProgramOverview) -> Unit,
-    private val onClosedProgramSelected: () -> Unit
+    private val onClosedProgramSelected: () -> Unit,
+    private val onOutputTestSelected: () -> Unit
 ) : EpoxyController() {
 
     override fun buildModels() {
@@ -52,5 +53,13 @@ class ProgramController(
                     }
                 }
             }
+
+        // TODO: show only when program 4 is completed
+        navigationCard {
+            id("output-test")
+            title(applicationContext.getString(R.string.output_test_title))
+            stateText(applicationContext.getString(R.string.program_state_open))
+            onItemClicked(onOutputTestSelected)
+        }
     }
 }
