@@ -2,6 +2,7 @@ package cz.nestresuju.screens.library
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
@@ -42,7 +43,10 @@ class LibraryFragment : BaseArchFragment<FragmentCustomListBinding>(), OnBackPre
                     val librarySection = state.data
 
                     controller.librarySection = librarySection
-                    (activity as? AppCompatActivity)?.supportActionBar?.title = librarySection.name ?: getString(R.string.title_library)
+                    (activity as? AppCompatActivity)?.supportActionBar?.let { actionBar ->
+                        actionBar.title = librarySection.name ?: getString(R.string.title_library)
+                        actionBar.setDisplayHomeAsUpEnabled(librarySection.name != null)
+                    }
                 }
             })
 
@@ -50,6 +54,16 @@ class LibraryFragment : BaseArchFragment<FragmentCustomListBinding>(), OnBackPre
                 viewModel.fetchLibraryContent()
             }
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return false
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onBackPressed(): Boolean {
