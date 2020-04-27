@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import cz.nestresuju.R
 import cz.nestresuju.common.interfaces.OnBackPressedListener
@@ -38,7 +39,10 @@ class LibraryFragment : BaseArchFragment<FragmentCustomListBinding>(), OnBackPre
                 emptyTextVisible = state is State.Empty
 
                 if (state is State.Loaded) {
-                    controller.librarySection = state.data
+                    val librarySection = state.data
+
+                    controller.librarySection = librarySection
+                    (activity as? AppCompatActivity)?.supportActionBar?.title = librarySection.name ?: getString(R.string.title_library)
                 }
             })
 

@@ -671,9 +671,7 @@
 
     <fragment
         android:id="@+id/navigation_library"
-        android:name="cz.nestresuju.screens.library.LibraryFragment"
-        android:label="@string/title_library"
-        tools:layout="@layout/fragment_library" />
+        android:name="cz.nestresuju.screens.library.LibraryFragment" />
 
     <fragment
         android:id="@+id/navigation_about_app"

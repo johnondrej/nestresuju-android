@@ -15,13 +15,6 @@ class LibraryController(
 
     override fun buildModels() {
         librarySection?.let { section ->
-            section.name?.let { sectionTitle ->
-                librarySectionTitle {
-                    id("title")
-                    title(sectionTitle)
-                }
-            }
-
             section.text?.let { sectionText ->
                 libraryContent {
                     id("content")
