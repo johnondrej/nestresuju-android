@@ -3,6 +3,8 @@ package cz.nestresuju.screens.about.epoxy
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.HtmlCompat
+import androidx.core.text.HtmlCompat.FROM_HTML_MODE_COMPACT
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithView
@@ -28,7 +30,7 @@ open class ResearchSubsectionModel : EpoxyModelWithView<View>() {
         super.bind(view)
         with(ModelAboutResearchSubsectionBinding.bind(view)) {
             txtHeadline.text = headlineText
-            text.text = contentText
+            text.text = HtmlCompat.fromHtml(contentText, FROM_HTML_MODE_COMPACT)
         }
     }
 }
