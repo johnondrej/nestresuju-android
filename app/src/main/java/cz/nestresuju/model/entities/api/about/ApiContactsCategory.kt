@@ -8,5 +8,5 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 class ApiContactsCategory(
     val name: String,
-    val items: List<ApiContact>
+    val members: List<ApiContact>
 )
