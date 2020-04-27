@@ -8,8 +8,8 @@
         android:id="@+id/img_photo"
         android:layout_width="64dp"
         android:layout_height="64dp"
+        android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -17,42 +17,33 @@
         style="@style/TextAppearance.Headline2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center_horizontal"
         android:paddingHorizontal="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/txt_description"
+        app:layout_constraintLeft_toRightOf="@id/img_photo"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/img_photo" />
+        app:layout_constraintTop_toTopOf="@id/img_photo"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/txt_description"
         style="@style/TextAppearance.PrimaryText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:gravity="center_horizontal"
         android:paddingHorizontal="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/img_photo"
+        app:layout_constraintLeft_toRightOf="@id/img_photo"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_name" />
-
-    <Space
-        android:id="@+id/spacer"
-        android:layout_width="wrap_content"
-        android:layout_height="4dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_description" />
 
     <cz.nestresuju.views.about.ContactMethodView
         android:id="@+id/contact_email"
         android:layout_width="0dp"
         android:layout_height="64dp"
-        android:layout_marginTop="8dp"
         app:contactDescription="@string/about_contacts_email"
         app:contactIcon="@drawable/ic_email"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spacer" />
+        app:layout_constraintTop_toBottomOf="@id/img_photo" />
 
     <View
         android:id="@+id/divider_email_phone"
