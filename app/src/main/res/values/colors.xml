@@ -16,4 +16,5 @@
     <!-- Other -->
 
     <color name="divider">#cdcdcd</color>
+    <color name="cardDisabled">#cdcdcd</color>
 </resources>

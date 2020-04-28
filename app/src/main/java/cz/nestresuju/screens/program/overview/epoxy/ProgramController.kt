@@ -46,6 +46,7 @@ class ProgramController(
                     title(program.name)
                     stateText(stateText)
                     stateDescriptionText(stateDescriptionText ?: "")
+                    active(programOpened)
                     if (programOpened) {
                         onItemClicked { onProgramSelected(program) }
                     } else {

@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithView
+import cz.nestresuju.R
 import cz.nestresuju.common.extensions.visible
 import cz.nestresuju.databinding.ModelNavigationCardBinding
 
@@ -24,6 +25,9 @@ open class NavigationCardModel : EpoxyModelWithView<CardView>() {
     @EpoxyAttribute
     var stateDescriptionText: String = ""
 
+    @EpoxyAttribute
+    var active: Boolean = true
+
     @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
     lateinit var onItemClicked: () -> Unit
 
@@ -39,6 +43,14 @@ open class NavigationCardModel : EpoxyModelWithView<CardView>() {
             txtStateDescription.visible = stateDescriptionText.isNotBlank()
             txtStateDescription.text = stateDescriptionText
             card.setOnClickListener { onItemClicked() }
+
+            if (active) {
+                txtTitle.setTextColor(view.context.getColor(R.color.accent))
+                card.setCardBackgroundColor(view.context.getColor(android.R.color.white))
+            } else {
+                txtTitle.setTextColor(view.context.getColor(R.color.textPrimary))
+                card.setBackgroundColor(view.context.getColor(R.color.cardDisabled))
+            }
         }
     }
 }
