@@ -24,7 +24,7 @@ class HomeFragment : BaseArchFragment<FragmentCustomListBinding>() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         controller = HomeController(
             applicationContext = requireContext().applicationContext,
-            onItemClicked = { homeItem -> findNavController().navigate(homeItem.destination.navAction) }
+            onItemClicked = { destination -> findNavController().navigate(destination.navAction) }
         )
         return FragmentCustomListBinding.inflate(inflater, container, false).also { _binding = it }.root
     }

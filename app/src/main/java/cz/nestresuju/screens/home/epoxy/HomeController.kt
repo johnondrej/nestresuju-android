@@ -12,25 +12,34 @@ import cz.nestresuju.views.common.epoxy.navigationCard
  */
 class HomeController(
     private val applicationContext: Context,
-    private val onItemClicked: (HomeViewModel.HomeItem) -> Unit
+    private val onItemClicked: (HomeViewModel.Destination) -> Unit
 ) : EpoxyController() {
 
     var items: List<HomeViewModel.HomeItem> by controllerProperty(emptyList())
 
     override fun buildModels() {
         items.forEach { homeItem ->
-            if (homeItem.destination == HomeViewModel.Destination.DIARY && homeItem.textRes == 0) {
-                homeDiarySmileys {
-                    id("item-diary-stresslevel")
-                    onItemClicked { onItemClicked(homeItem) }
+            when (homeItem) {
+                is HomeViewModel.HomeItem.CardItem -> {
+                    navigationCard {
+                        id("item-${homeItem.destination.ordinal}-${homeItem.textRes}")
+                        title(getTitleForDestination(homeItem.destination))
+                        stateText(applicationContext.getString(homeItem.textRes))
+                        stateDescriptionText(applicationContext.getString(homeItem.descriptionRes))
+                        onItemClicked { onItemClicked(homeItem.destination) }
+                    }
                 }
-            } else {
-                navigationCard {
-                    id("item-${homeItem.destination.ordinal}-${homeItem.textRes}")
-                    title(getTitleForDestination(homeItem.destination))
-                    stateText(applicationContext.getString(homeItem.textRes))
-                    stateDescriptionText(applicationContext.getString(homeItem.descriptionRes))
-                    onItemClicked { onItemClicked(homeItem) }
+                is HomeViewModel.HomeItem.DiaryItem -> {
+                    homeDiarySmileys {
+                        id("item-diary-stresslevel")
+                        onItemClicked { onItemClicked(homeItem.destination) }
+                    }
+                }
+                is HomeViewModel.HomeItem.DeadlineItem -> {
+                    homeProgramDeadline {
+                        id("item-deadline")
+                        daysUntilDeadline(homeItem.deadlineInDays)
+                    }
                 }
             }
         }

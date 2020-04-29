@@ -37,6 +37,7 @@ val repositoryModule = module {
         ProgramOverviewRepositoryImpl(
             apiDefinition = get(),
             database = get(),
+            sharedPreferencesInteractor = get(),
             entityConverter = get()
         )
     }

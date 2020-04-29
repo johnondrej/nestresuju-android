@@ -3,6 +3,7 @@ package cz.nestresuju.networking
 import cz.nestresuju.model.entities.api.about.ContactsResponse
 import cz.nestresuju.model.entities.api.about.ResearchResponse
 import cz.nestresuju.model.entities.api.auth.LoginChecklistResponse
+import cz.nestresuju.model.entities.api.deadline.ProgramDeadlineResponse
 import cz.nestresuju.model.entities.api.diary.ApiNewDiaryEntry
 import cz.nestresuju.model.entities.api.diary.DiaryEntriesResponse
 import cz.nestresuju.model.entities.api.diary.MoodQuestionsResponse
@@ -106,4 +107,7 @@ interface ApiDefinition {
 
     @GET("v1/about/research")
     suspend fun getResearchInfo(): ResearchResponse
+
+    @GET("v1/program-deadline")
+    suspend fun getProgramDeadline(): ProgramDeadlineResponse
 }

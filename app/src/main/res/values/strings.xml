@@ -74,6 +74,11 @@
     <string name="program_closed_dialog_title">Program je uzavřený</string>
     <string name="program_closed_dialog_text">Program je zatím uzavřený! Pro jeho otevření musíš splnit předchozí části programu a počkat 6 dní od dokončení poslední části.</string>
     <string name="program_empty_error">Před prvním použitím programu se prosím připoj k Internetu.</string>
+    <plurals name="program_deadline_format">
+        <item quantity="one">Konec celého programu za %d den!</item>
+        <item quantity="few">Konec celého programu za %d dny!</item>
+        <item quantity="other">Konec celého programu za %d dní!</item>
+    </plurals>
 
     <!-- Program evaluation -->
 

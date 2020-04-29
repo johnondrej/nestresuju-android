@@ -16,6 +16,7 @@ import cz.nestresuju.screens.base.BaseViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
 import org.threeten.bp.LocalDate
+import org.threeten.bp.temporal.ChronoUnit
 
 class HomeViewModel(
     private val programOverviewRepository: ProgramOverviewRepository,
@@ -33,7 +34,13 @@ class HomeViewModel(
         screenStateStream.loading()
         viewModelScope.launchWithErrorHandling {
             dataSynchronizer.synchronizeAll()
+            try {
+                programOverviewRepository.fetchProgramDeadline()
+            } catch (e: Exception) {
+                // do nothing, value will be fetched next time
+            }
 
+            val programDeadline = programOverviewRepository.getProgramDeadline()
             val programOverviewFlow = programOverviewRepository.observeOverview()
             val programFirstFlow = programFirstRepository.observeProgramResults()
             val programSecondFlow = programSecondRepository.observeProgramResults()
@@ -59,13 +66,11 @@ class HomeViewModel(
 
                 val today = LocalDate.now()
                 homeItems += if (diaryEntries.none { diaryEntry -> diaryEntry.dateCreated.toLocalDate() == today }) {
-                    HomeItem(
-                        destination = Destination.DIARY,
-                        textRes = 0,
-                        descriptionRes = 0
+                    HomeItem.DiaryItem(
+                        destination = Destination.DIARY
                     )
                 } else {
-                    HomeItem(
+                    HomeItem.CardItem(
                         destination = Destination.DIARY,
                         textRes = R.string.home_diary_note_title,
                         descriptionRes = R.string.home_diary_note_description
@@ -77,18 +82,26 @@ class HomeViewModel(
                     (thirdResults.programCompleted == null && overview.find { it.id == ProgramId.PROGRAM_THIRD_ID.txtId }?.isOpened == true) ||
                     (fourthResults.programCompleted == null && overview.find { it.id == ProgramId.PROGRAM_FOURTH_ID.txtId }?.isOpened == true)
                 ) {
-                    homeItems += HomeItem(
+                    homeItems += HomeItem.CardItem(
                         destination = Destination.PROGRAM,
                         textRes = R.string.home_unfinished_program_title,
                         descriptionRes = R.string.home_unfinished_program_description
                     )
                 }
 
-                homeItems += HomeItem(
+                homeItems += HomeItem.CardItem(
                     destination = Destination.LIBRARY,
                     textRes = R.string.home_library_title,
                     descriptionRes = R.string.home_library_description
                 )
+
+                val deadlineInDays = programDeadline?.let { ChronoUnit.DAYS.between(LocalDate.now(), it) }
+
+                if (deadlineInDays != null && deadlineInDays > 0) {
+                    homeItems += HomeItem.DeadlineItem(
+                        deadlineInDays = deadlineInDays.toInt()
+                    )
+                }
 
                 homeItems
             }.collect { homeItems ->
@@ -97,11 +110,12 @@ class HomeViewModel(
         }
     }
 
-    data class HomeItem(
-        val destination: Destination,
-        val textRes: Int,
-        val descriptionRes: Int
-    )
+    sealed class HomeItem {
+
+        data class CardItem(val destination: Destination, val textRes: Int, val descriptionRes: Int) : HomeItem()
+        data class DiaryItem(val destination: Destination) : HomeItem()
+        data class DeadlineItem(val deadlineInDays: Int) : HomeItem()
+    }
 
     enum class Destination {
         PROGRAM,
