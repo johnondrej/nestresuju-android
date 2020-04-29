@@ -19,12 +19,19 @@ class HomeController(
 
     override fun buildModels() {
         items.forEach { homeItem ->
-            navigationCard {
-                id("item-${homeItem.destination.ordinal}-${homeItem.textRes}")
-                title(getTitleForDestination(homeItem.destination))
-                stateText(applicationContext.getString(homeItem.textRes))
-                stateDescriptionText(applicationContext.getString(homeItem.descriptionRes))
-                onItemClicked { onItemClicked(homeItem) }
+            if (homeItem.destination == HomeViewModel.Destination.DIARY && homeItem.textRes == 0) {
+                homeDiarySmileys {
+                    id("item-diary-stresslevel")
+                    onItemClicked { onItemClicked(homeItem) }
+                }
+            } else {
+                navigationCard {
+                    id("item-${homeItem.destination.ordinal}-${homeItem.textRes}")
+                    title(getTitleForDestination(homeItem.destination))
+                    stateText(applicationContext.getString(homeItem.textRes))
+                    stateDescriptionText(applicationContext.getString(homeItem.descriptionRes))
+                    onItemClicked { onItemClicked(homeItem) }
+                }
             }
         }
     }

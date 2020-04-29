@@ -59,8 +59,6 @@
 
     <string name="home_unfinished_program_title">Máš otevřenou další část programu</string>
     <string name="home_unfinished_program_description">Čeká na tebe další část programu, kterou jsi ještě nevyplnil. Tak vzhůru do toho!</string>
-    <string name="home_diary_mood_title">Vyplň úroveň stresu pro dnešní den</string>
-    <string name="home_diary_mood_description">Pro dnešní den jsi ještě nevyplnil úroveň stresu, běž to napravit.</string>
     <string name="home_diary_note_title">Přidej si záznam do deníčku</string>
     <string name="home_diary_note_description">Můžeš si zapisovat i jednoduché pozámky, tak jako do papírového deníčku.</string>
     <string name="home_library_title">Přečti si informace o stresu v Knihovně</string>

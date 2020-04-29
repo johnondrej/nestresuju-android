@@ -57,6 +57,21 @@ class HomeViewModel(
                 val diaryEntries = flows[5] as List<DiaryEntry>
                 val homeItems = mutableListOf<HomeItem>()
 
+                val today = LocalDate.now()
+                homeItems += if (diaryEntries.none { diaryEntry -> diaryEntry.dateCreated.toLocalDate() == today }) {
+                    HomeItem(
+                        destination = Destination.DIARY,
+                        textRes = 0,
+                        descriptionRes = 0
+                    )
+                } else {
+                    HomeItem(
+                        destination = Destination.DIARY,
+                        textRes = R.string.home_diary_note_title,
+                        descriptionRes = R.string.home_diary_note_description
+                    )
+                }
+
                 if (firstResults.programCompleted == null ||
                     (secondResults.programCompleted == null && overview.find { it.id == ProgramId.PROGRAM_SECOND_ID.txtId }?.isOpened == true) ||
                     (thirdResults.programCompleted == null && overview.find { it.id == ProgramId.PROGRAM_THIRD_ID.txtId }?.isOpened == true) ||
@@ -66,21 +81,6 @@ class HomeViewModel(
                         destination = Destination.PROGRAM,
                         textRes = R.string.home_unfinished_program_title,
                         descriptionRes = R.string.home_unfinished_program_description
-                    )
-                }
-
-                val today = LocalDate.now()
-                homeItems += if (diaryEntries.none { diaryEntry -> diaryEntry.dateCreated.toLocalDate() == today }) {
-                    HomeItem(
-                        destination = Destination.DIARY,
-                        textRes = R.string.home_diary_mood_title,
-                        descriptionRes = R.string.home_diary_mood_description
-                    )
-                } else {
-                    HomeItem(
-                        destination = Destination.DIARY,
-                        textRes = R.string.home_diary_note_title,
-                        descriptionRes = R.string.home_diary_note_description
                     )
                 }
 
