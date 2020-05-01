@@ -49,7 +49,7 @@ open class NavigationCardModel : EpoxyModelWithView<CardView>() {
                 card.setCardBackgroundColor(view.context.getColor(android.R.color.white))
             } else {
                 txtTitle.setTextColor(view.context.getColor(R.color.textPrimary))
-                card.setBackgroundColor(view.context.getColor(R.color.cardDisabled))
+                card.setCardBackgroundColor(view.context.getColor(R.color.cardDisabled))
             }
         }
     }
