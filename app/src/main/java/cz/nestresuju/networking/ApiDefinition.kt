@@ -114,4 +114,7 @@ interface ApiDefinition {
 
     @POST("v1/about/feedback")
     suspend fun sendEmailFeedback(@Body feedback: ApiFeedbackRequest): Response<Unit>
+
+    @DELETE("v1/remove-user")
+    suspend fun cancelUserAccount(): Response<Unit>
 }

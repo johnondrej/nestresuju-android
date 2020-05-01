@@ -241,6 +241,9 @@
 
     <string name="about_research_title">Náš výzkum</string>
     <string name="about_research_empty">Žádné informace tu nejsou. Jsi připojen k Internetu?</string>
+    <string name="about_research_cancel_account">Zrušení účtu</string>
+    <string name="about_research_cancel_account_dialog_text">Opravdu chceš deaktivovat svůj účet a smazat svoje data? Již nebude možné se zpět do aplikace vrátit!</string>
+    <string name="about_research_cancel_account_button">Deaktivovat</string>
 
     <!-- About app - feedback -->
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import cz.nestresuju.R
 import cz.nestresuju.databinding.FragmentCustomListBinding
 import cz.nestresuju.model.common.State
@@ -15,14 +16,21 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 /**
  * Fragment with information about research.
  */
-class ResearchFragment : BaseArchFragment<FragmentCustomListBinding>() {
+class ResearchFragment : BaseArchFragment<FragmentCustomListBinding>(), ResearchAccountCancelConfirmationDialog.OnConfirmedListener {
+
+    companion object {
+
+        private const val TAG_ACCOUNT_CANCEL_DIALOG = "account_cancel_dialog"
+    }
 
     override val viewModel by viewModel<ResearchViewModel>()
 
     private lateinit var controller: ResearchController
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        controller = ResearchController()
+        controller = ResearchController(
+            onCancelAccountButtonClicked = { onCancelAccountButtonClicked() }
+        )
         return FragmentCustomListBinding.inflate(inflater, container, false).also { _binding = it }.root
     }
 
@@ -32,15 +40,20 @@ class ResearchFragment : BaseArchFragment<FragmentCustomListBinding>() {
             list.setController(controller)
             emptyTextResource = R.string.about_research_empty
 
-            viewModel.researchInfoStream.observe(viewLifecycleOwner, Observer { state ->
-                val data = (state as? State.Loaded)?.data
+            viewModel.screenStateStream.observe(viewLifecycleOwner, Observer { screenState ->
+                val data = (screenState.researchInfoState as? State.Loaded)?.data
 
-                contentVisible = state is State.Loaded
-                refreshLayout.isRefreshing = state is State.Loading
-                emptyTextVisible = data?.text?.isEmpty() == true && data.subsections.isEmpty() == true
+                contentVisible = screenState.researchInfoState is State.Loaded && screenState.cancelAccountState != State.Loading
+                refreshLayout.isRefreshing = screenState.researchInfoState == State.Loading || screenState.cancelAccountState == State.Loading
+                emptyTextVisible = data?.text?.isEmpty() == true && screenState.cancelAccountState != State.Loading
 
-                if (state is State.Loaded) {
-                    controller.researchInfo = state.data
+                if (screenState.researchInfoState is State.Loaded) {
+                    controller.researchInfo = screenState.researchInfoState.data
+                }
+
+                if (screenState.cancelAccountState is State.Loaded) {
+                    Snackbar.make(requireView(), "Účet zrušen!", Snackbar.LENGTH_LONG).show()
+                    // TODO: logout
                 }
             })
 
@@ -48,5 +61,13 @@ class ResearchFragment : BaseArchFragment<FragmentCustomListBinding>() {
                 viewModel.fetchResearchInfo()
             }
         }
+    }
+
+    private fun onCancelAccountButtonClicked() {
+        ResearchAccountCancelConfirmationDialog().show(childFragmentManager, TAG_ACCOUNT_CANCEL_DIALOG)
+    }
+
+    override fun onAccountCancelConfirmedListener() {
+        viewModel.cancelAccount()
     }
 }

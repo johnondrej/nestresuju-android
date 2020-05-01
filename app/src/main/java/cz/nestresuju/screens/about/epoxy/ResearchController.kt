@@ -7,7 +7,9 @@ import cz.nestresuju.model.entities.domain.domain.ResearchInfo
 /**
  * Epoxy controller for displaying research info.
  */
-class ResearchController : EpoxyController() {
+class ResearchController(
+    private val onCancelAccountButtonClicked: () -> Unit
+) : EpoxyController() {
 
     var researchInfo: ResearchInfo? by controllerProperty(null)
 
@@ -24,6 +26,11 @@ class ResearchController : EpoxyController() {
                     headlineText(subsection.name)
                     contentText(subsection.text)
                 }
+            }
+
+            researchAccountCancelButton {
+                id("button-cancel-account")
+                onButtonClicked(onCancelAccountButtonClicked)
             }
         }
     }
