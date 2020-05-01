@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import cz.nestresuju.R
+import cz.nestresuju.common.extensions.changeStyle
 import cz.nestresuju.databinding.FragmentCustomListBinding
 import cz.nestresuju.screens.about.epoxy.AboutAppController
 import cz.nestresuju.screens.base.BaseArchFragment
@@ -14,6 +15,18 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class AboutAppFragment : BaseArchFragment<FragmentCustomListBinding>() {
 
     override val viewModel by viewModel<AboutAppViewModel>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            requireActivity().changeStyle(
+                style = R.style.AboutStyle,
+                primaryColor = R.color.aboutPrimary,
+                primaryDarkColor = R.color.aboutPrimaryDark,
+                accentColor = R.color.aboutAccent
+            )
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return FragmentCustomListBinding.inflate(inflater, container, false).also { _binding = it }.root

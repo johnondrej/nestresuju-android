@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import cz.nestresuju.R
+import cz.nestresuju.common.extensions.changeStyle
 import cz.nestresuju.common.extensions.hideKeyboard
 import cz.nestresuju.databinding.FragmentCustomListBinding
 import cz.nestresuju.model.entities.domain.diary.DiaryEntry
@@ -30,6 +31,18 @@ class DiaryFragment : BaseArchFragment<FragmentCustomListBinding>(),
     override val viewModel by viewModel<DiaryViewModel>()
 
     override val errorHandlers = super.errorHandlers + DiaryErrorHandler()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            requireActivity().changeStyle(
+                style = R.style.DiaryStyle,
+                primaryColor = R.color.diaryPrimary,
+                primaryDarkColor = R.color.diaryPrimaryDark,
+                accentColor = R.color.diaryAccent
+            )
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return FragmentCustomListBinding.inflate(inflater, container, false).also { _binding = it }.root

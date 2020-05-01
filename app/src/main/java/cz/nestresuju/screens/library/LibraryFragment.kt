@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import cz.nestresuju.R
+import cz.nestresuju.common.extensions.changeStyle
 import cz.nestresuju.common.interfaces.OnBackPressedListener
 import cz.nestresuju.databinding.FragmentCustomListBinding
 import cz.nestresuju.model.common.State
@@ -20,6 +21,18 @@ class LibraryFragment : BaseArchFragment<FragmentCustomListBinding>(), OnBackPre
     override val viewModel by viewModel<LibraryViewModel>()
 
     private lateinit var controller: LibraryController
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            requireActivity().changeStyle(
+                style = R.style.LibraryStyle,
+                primaryColor = R.color.libraryPrimary,
+                primaryDarkColor = R.color.libraryPrimaryDark,
+                accentColor = R.color.libraryAccent
+            )
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         controller = LibraryController(

@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import cz.nestresuju.R
 import cz.nestresuju.common.extensions.bottomPadding
+import cz.nestresuju.common.extensions.changeStyle
 import cz.nestresuju.common.extensions.dp
 import cz.nestresuju.databinding.FragmentCustomListBinding
 import cz.nestresuju.model.common.State
@@ -20,6 +21,18 @@ class HomeFragment : BaseArchFragment<FragmentCustomListBinding>() {
     private lateinit var controller: HomeController
 
     override val viewModel by viewModel<HomeViewModel>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            requireActivity().changeStyle(
+                style = R.style.HomeStyle,
+                primaryColor = R.color.primary,
+                primaryDarkColor = R.color.primaryDark,
+                accentColor = R.color.accent
+            )
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         controller = HomeController(
