@@ -3,7 +3,7 @@ package cz.nestresuju.screens.program.overview.epoxy
 import android.content.Context
 import com.airbnb.epoxy.EpoxyController
 import cz.nestresuju.R
-import cz.nestresuju.common.extensions.formatDayMonth
+import cz.nestresuju.common.extensions.formatDateTime
 import cz.nestresuju.model.entities.domain.program.overview.ProgramOverview
 import cz.nestresuju.screens.home.epoxy.homeProgramDeadline
 import cz.nestresuju.views.common.epoxy.navigationCard
@@ -38,7 +38,7 @@ class ProgramController(
                         null -> applicationContext.getString(R.string.program_state_closed_complete_previous)
                         else -> applicationContext.getString(
                             R.string.program_state_opens_at,
-                            program.startDate.toLocalDate().formatDayMonth()
+                            program.startDate.toLocalDateTime().formatDateTime()
                         )
                     }
                 }

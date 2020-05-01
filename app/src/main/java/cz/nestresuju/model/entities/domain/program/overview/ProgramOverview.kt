@@ -1,6 +1,6 @@
 package cz.nestresuju.model.entities.domain.program.overview
 
-import org.threeten.bp.LocalDate
+import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZonedDateTime
 
 /**
@@ -15,5 +15,5 @@ data class ProgramOverview(
     val order: Int
 ) {
 
-    val isOpened: Boolean = startDate?.toLocalDate()?.let { !LocalDate.now().isBefore(it) } ?: false
+    val isOpened: Boolean = startDate?.toLocalDateTime()?.let { !LocalDateTime.now().isBefore(it) } ?: false
 }

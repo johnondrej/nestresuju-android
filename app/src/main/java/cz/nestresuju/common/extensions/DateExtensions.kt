@@ -2,7 +2,7 @@ package cz.nestresuju.common.extensions
 
 import android.content.Context
 import cz.nestresuju.R
-import cz.nestresuju.common.extensions.DateTimeFormatPatterns.DAY_MONTH
+import cz.nestresuju.common.extensions.DateTimeFormatPatterns.DAY_MONTH_HOUR_MINUTE
 import cz.nestresuju.common.extensions.DateTimeFormatPatterns.DAY_WITH_WEEKDAY_AND_YEAR
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
@@ -17,7 +17,7 @@ import org.threeten.bp.format.DateTimeFormatter
 object DateTimeFormatPatterns {
 
     const val DAY_WITH_WEEKDAY_AND_YEAR = "EEEE d. M. YYYY"
-    const val DAY_MONTH = "d. MMMM"
+    const val DAY_MONTH_HOUR_MINUTE = "d. MMMM HH:mm"
 }
 
 fun LocalDateTime.toZonedDateTime(zoneId: ZoneId = ZoneId.systemDefault()): ZonedDateTime = this.atZone(zoneId)
@@ -29,4 +29,4 @@ fun LocalDate.formatDay(context: Context): String = when {
     else -> format(DateTimeFormatter.ofPattern(DAY_WITH_WEEKDAY_AND_YEAR))
 }
 
-fun LocalDate.formatDayMonth(): String = format(DateTimeFormatter.ofPattern(DAY_MONTH))
+fun LocalDateTime.formatDateTime(): String = format(DateTimeFormatter.ofPattern(DAY_MONTH_HOUR_MINUTE))
