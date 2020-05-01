@@ -43,7 +43,7 @@ class ResearchFragment : BaseArchFragment<FragmentCustomListBinding>(), Research
             viewModel.screenStateStream.observe(viewLifecycleOwner, Observer { screenState ->
                 val data = (screenState.researchInfoState as? State.Loaded)?.data
 
-                contentVisible = screenState.researchInfoState is State.Loaded && screenState.cancelAccountState != State.Loading
+                contentVisible = data?.text?.isNotEmpty() == true && screenState.cancelAccountState != State.Loading
                 refreshLayout.isRefreshing = screenState.researchInfoState == State.Loading || screenState.cancelAccountState == State.Loading
                 emptyTextVisible = data?.text?.isEmpty() == true && screenState.cancelAccountState != State.Loading
 
