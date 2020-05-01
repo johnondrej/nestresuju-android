@@ -13,6 +13,8 @@ import cz.nestresuju.screens.base.BaseViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
+import org.threeten.bp.LocalDate
+import org.threeten.bp.temporal.ChronoUnit
 
 class ProgramViewModel(
     private val programOverviewRepository: ProgramOverviewRepository,
@@ -77,6 +79,9 @@ class ProgramViewModel(
             val programThirdFlow = programThirdRepository.observeProgramResults()
             val programFourthFlow = programFourthRepository.observeProgramResults()
 
+            val deadline = programOverviewRepository.getProgramDeadline()
+            val deadlineInDays = deadline?.let { ChronoUnit.DAYS.between(LocalDate.now(), it) }
+
             combine(
                 programOverviewFlow,
                 programFirstFlow,
@@ -84,7 +89,7 @@ class ProgramViewModel(
                 programThirdFlow,
                 programFourthFlow
             ) { overview, firstResults, secondResults, thirdResults, fourthResults ->
-                ScreenState(overview, firstResults, secondResults, thirdResults, fourthResults)
+                ScreenState(overview, firstResults, secondResults, thirdResults, fourthResults, deadlineInDays?.takeIf { it > 0 }?.toInt())
             }.collect { screenState ->
                 screenStateStream.loaded(screenState)
             }
@@ -96,6 +101,7 @@ class ProgramViewModel(
         val programFirstResults: ProgramFirstResults,
         val programSecondResults: ProgramSecondResults,
         val programThirdResults: ProgramThirdResults,
-        val programFourthResults: ProgramFourthResults
+        val programFourthResults: ProgramFourthResults,
+        val programDeadline: Int?
     )
 }

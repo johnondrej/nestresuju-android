@@ -5,6 +5,7 @@ import com.airbnb.epoxy.EpoxyController
 import cz.nestresuju.R
 import cz.nestresuju.common.extensions.formatDayMonth
 import cz.nestresuju.model.entities.domain.program.overview.ProgramOverview
+import cz.nestresuju.screens.home.epoxy.homeProgramDeadline
 import cz.nestresuju.views.common.epoxy.navigationCard
 
 /**
@@ -13,6 +14,7 @@ import cz.nestresuju.views.common.epoxy.navigationCard
 class ProgramController(
     private val applicationContext: Context,
     private val overview: List<ProgramOverview>,
+    private val deadlineInDays: Int?,
     private val onProgramSelected: (ProgramOverview) -> Unit,
     private val onClosedProgramSelected: () -> Unit,
     private val onOutputTestSelected: () -> Unit
@@ -61,6 +63,13 @@ class ProgramController(
             title(applicationContext.getString(R.string.output_test_title))
             stateText(applicationContext.getString(R.string.program_state_open))
             onItemClicked(onOutputTestSelected)
+        }
+
+        deadlineInDays?.let { deadline ->
+            homeProgramDeadline {
+                id("item-deadline")
+                daysUntilDeadline(deadline)
+            }
         }
     }
 }

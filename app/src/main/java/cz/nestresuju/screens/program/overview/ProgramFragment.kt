@@ -57,6 +57,7 @@ class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
                     controller = ProgramController(
                         applicationContext = requireContext().applicationContext,
                         overview = state.data.overview,
+                        deadlineInDays = state.data.programDeadline,
                         onProgramSelected = { program -> onProgramSelected(program.id, state.data) },
                         onClosedProgramSelected = { onClosedProgramSelected() },
                         onOutputTestSelected = { onOutputTestSelected() }
