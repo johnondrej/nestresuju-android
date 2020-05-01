@@ -1,5 +1,6 @@
 package cz.nestresuju.networking
 
+import cz.nestresuju.model.entities.api.about.ApiFeedbackRequest
 import cz.nestresuju.model.entities.api.about.ContactsResponse
 import cz.nestresuju.model.entities.api.about.ResearchResponse
 import cz.nestresuju.model.entities.api.auth.LoginChecklistResponse
@@ -110,4 +111,7 @@ interface ApiDefinition {
 
     @GET("v1/program-deadline")
     suspend fun getProgramDeadline(): ProgramDeadlineResponse
+
+    @POST("v1/about/feedback")
+    suspend fun sendEmailFeedback(@Body feedback: ApiFeedbackRequest): Response<Unit>
 }

@@ -44,12 +44,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
-        if (navController.currentDestination?.id == R.id.navigation_library) {
-            // handle up navigation differently for library fragment
-            onBackPressed()
-            return true
-        } else {
-            return navController.navigateUp() || super.onSupportNavigateUp()
+        return when (navController.currentDestination?.id) {
+            R.id.navigation_library, R.id.fragment_about_app_feedback -> {
+                // enable custom "up" button handling for some fragments
+                onBackPressed()
+                true
+            }
+            else -> {
+                navController.navigateUp() || super.onSupportNavigateUp()
+            }
         }
     }
 

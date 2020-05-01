@@ -123,5 +123,5 @@ val viewModelModule = module {
 
     viewModel { ResearchViewModel(aboutAppRepository = get()) }
 
-    viewModel { FeedbackViewModel() }
+    viewModel { FeedbackViewModel(apiDefinition = get()) }
 }

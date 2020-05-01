@@ -10,6 +10,8 @@
     <string name="general_finish">Dokončit</string>
     <string name="general_send">Odeslat</string>
     <string name="general_begin">Začít</string>
+    <string name="general_back">Zpět</string>
+    <string name="general_discard">Zahodit</string>
     <string name="general_try_again">Zkusit znovu</string>
     <string name="general_add">Přidat</string>
     <string name="general_choose">Vybrat</string>
@@ -245,6 +247,7 @@
     <string name="about_feedback_title">Zpětná vazba</string>
     <string name="about_feedback_instructions">Líbí se ti aplikace, nebo máš nápad na zlepšení? Dej nám vědět!</string>
     <string name="about_feedback_discard_warning">Máš rozepsanou zprávu, chceš ji zahodit?</string>
+    <string name="about_feedback_sent_dialog">Tvoje zpráva byla úspěšně odeslána, děkujeme za tvoji zpětnou vazbu!</string>
 
     <!-- About app - technical info -->
 
