@@ -4,17 +4,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import cz.nestresuju.model.entities.domain.program.ProgramId
 import cz.nestresuju.model.entities.domain.program.fourth.ProgramFourthAnswer
 import cz.nestresuju.model.entities.domain.program.fourth.ProgramFourthQuestion
 import cz.nestresuju.model.repositories.ProgramFourthRepository
+import cz.nestresuju.model.repositories.ProgramOverviewRepository
 import cz.nestresuju.screens.base.BaseViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.threeten.bp.ZonedDateTime
 
 /**
  * [ViewModel] for questions from program 4.
  */
 class ProgramFourthQuestionViewModel(
+    private val programOverviewRepository: ProgramOverviewRepository,
     private val programRepository: ProgramFourthRepository
 ) : BaseViewModel() {
 
@@ -90,7 +94,8 @@ class ProgramFourthQuestionViewModel(
 
     fun submitResults() {
         GlobalScope.launch {
-            programRepository.submitResults()
+            programRepository.submitResults(programCompletedDate = ZonedDateTime.now())
+            programOverviewRepository.markProgramAsCompleted(ProgramId.PROGRAM_FOURTH_ID)
         }
     }
 

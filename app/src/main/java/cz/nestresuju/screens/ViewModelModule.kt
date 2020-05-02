@@ -80,13 +80,13 @@ val viewModelModule = module {
 
     viewModel { ProgramFirstSatisfiabilityViewModel(programRepository = get()) }
 
-    viewModel { ProgramFirstOverviewViewModel(programRepository = get()) }
+    viewModel { ProgramFirstOverviewViewModel(programOverviewRepository = get(), programRepository = get()) }
 
     viewModel { ProgramFirstSummaryViewModel(programRepository = get()) }
 
     viewModel { (progress: Int) -> ProgramSecondInstructionsViewModel(progress, programRepository = get()) }
 
-    viewModel { ProgramSecondRelaxationViewModel(programRepository = get()) }
+    viewModel { ProgramSecondRelaxationViewModel(programOverviewRepository = get(), programRepository = get()) }
 
     viewModel { ProgramThirdTimetableViewModel(programRepository = get()) }
 
@@ -100,7 +100,7 @@ val viewModelModule = module {
 
     viewModel { ProgramThirdGoalSatisfiabilityViewModel(programRepository = get()) }
 
-    viewModel { ProgramThirdOverviewViewModel(programRepository = get()) }
+    viewModel { ProgramThirdOverviewViewModel(programOverviewRepository = get(), programRepository = get()) }
 
     viewModel { ProgramThirdSummaryViewModel(programRepository = get()) }
 
@@ -108,7 +108,7 @@ val viewModelModule = module {
 
     viewModel { ProgramFourthQuestionsIntroViewModel(programRepository = get()) }
 
-    viewModel { ProgramFourthQuestionViewModel(programRepository = get()) }
+    viewModel { ProgramFourthQuestionViewModel(programOverviewRepository = get(), programRepository = get()) }
 
     viewModel { ProgramFourthSummaryViewModel(programRepository = get()) }
 

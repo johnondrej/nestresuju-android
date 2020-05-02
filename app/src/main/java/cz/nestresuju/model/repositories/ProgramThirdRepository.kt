@@ -46,11 +46,11 @@ class ProgramThirdRepositoryImpl(
         database.programThirdDao().updateResults(entityConverter.programThirdResultsToDb(updater(getProgramResults())))
     }
 
-    override suspend fun submitResults() {
+    override suspend fun submitResults(programCompletedDate: ZonedDateTime) {
         val programDao = database.programThirdDao()
         val currentResults = programDao.getFullResults()
 
-        programDao.updateResults(currentResults.copy(results = currentResults.results.copy(programCompleted = ZonedDateTime.now())))
+        programDao.updateResults(currentResults.copy(results = currentResults.results.copy(programCompleted = programCompletedDate)))
         dataSynchronizer.synchronizeProgram()
     }
 

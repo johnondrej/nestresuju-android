@@ -1,21 +1,24 @@
 package cz.nestresuju.screens.program.second
 
 import androidx.lifecycle.viewModelScope
+import cz.nestresuju.model.entities.domain.program.ProgramId
+import cz.nestresuju.model.repositories.ProgramOverviewRepository
 import cz.nestresuju.model.repositories.ProgramSecondRepository
 import cz.nestresuju.screens.base.BaseViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.threeten.bp.Duration
-import org.threeten.bp.LocalDateTime
+import org.threeten.bp.ZonedDateTime
 
 /**
  * ViewModel for last relaxation phase of second program.
  */
 class ProgramSecondRelaxationViewModel(
+    private val programOverviewRepository: ProgramOverviewRepository,
     private val programRepository: ProgramSecondRepository
 ) : BaseViewModel() {
 
-    private var startTime: LocalDateTime = LocalDateTime.now()
+    private var startTime: ZonedDateTime = ZonedDateTime.now()
 
     init {
         viewModelScope.launch {
@@ -30,11 +33,16 @@ class ProgramSecondRelaxationViewModel(
                 return@launch
             }
 
-            val now = LocalDateTime.now()
+            val now = ZonedDateTime.now()
             programRepository.updateProgramResults { currentResults ->
                 currentResults.copy(relaxationDuration = Duration.between(startTime, now).seconds)
             }
-            programRepository.submitResults()
+            programRepository.submitResults(programCompletedDate = now)
+            programOverviewRepository.updateStartDateForProgram(
+                ProgramId.PROGRAM_THIRD_ID,
+                previousProgramCompletedAt = now,
+                completedProgramId = ProgramId.PROGRAM_SECOND_ID
+            )
         }
     }
 }

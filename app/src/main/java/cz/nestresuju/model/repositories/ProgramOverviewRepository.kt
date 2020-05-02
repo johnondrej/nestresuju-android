@@ -8,6 +8,7 @@ import cz.nestresuju.model.entities.domain.program.overview.ProgramOverview
 import cz.nestresuju.networking.ApiDefinition
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import org.threeten.bp.Duration
 import org.threeten.bp.ZonedDateTime
 
 /**
@@ -24,6 +25,10 @@ interface ProgramOverviewRepository {
     suspend fun fetchProgramDeadline()
 
     suspend fun getProgramDeadline(): ZonedDateTime?
+
+    suspend fun updateStartDateForProgram(programId: ProgramId, previousProgramCompletedAt: ZonedDateTime, completedProgramId: ProgramId)
+
+    suspend fun markProgramAsCompleted(programId: ProgramId)
 }
 
 class ProgramOverviewRepositoryImpl(
@@ -32,6 +37,11 @@ class ProgramOverviewRepositoryImpl(
     private val sharedPreferencesInteractor: SharedPreferencesInteractor,
     private val entityConverter: ProgramOverviewConverter
 ) : ProgramOverviewRepository {
+
+    companion object {
+
+        private val PROGRAM_OPEN_INTERVAL = Duration.ofMinutes(5) // TODO: modify to 6 days when interval on API is correct
+    }
 
     override suspend fun fetchOverview() {
         val apiOverview = apiDefinition.getProgramOverview()
@@ -59,5 +69,14 @@ class ProgramOverviewRepositoryImpl(
 
     override suspend fun getProgramDeadline(): ZonedDateTime? {
         return sharedPreferencesInteractor.getProgramDeadline()
+    }
+
+    override suspend fun updateStartDateForProgram(programId: ProgramId, previousProgramCompletedAt: ZonedDateTime, completedProgramId: ProgramId) {
+        database.programOverviewDao()
+            .onProgramCompleted(programId.txtId, previousProgramCompletedAt + PROGRAM_OPEN_INTERVAL, completedProgramId.txtId)
+    }
+
+    override suspend fun markProgramAsCompleted(programId: ProgramId) {
+        database.programOverviewDao().markProgramAsCompleted(programId.txtId)
     }
 }

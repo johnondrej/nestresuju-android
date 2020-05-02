@@ -56,7 +56,7 @@ class ProgramFourthRepositoryImpl(
         database.programFourthDao().updateResults(entityConverter.programFourthResultsToDb(updater(getProgramResults())).results)
     }
 
-    override suspend fun submitResults() {
+    override suspend fun submitResults(programCompletedDate: ZonedDateTime) {
         val programDao = database.programFourthDao()
         val results = entityConverter.dbProgramFourthResultsToDomain(programDao.getResults())
         val presentScore = results.questions.filter { it.type == ProgramFourthQuestion.QuestionType.PRESENT }.sumBy { it.answer!!.intValue }
@@ -67,7 +67,7 @@ class ProgramFourthRepositoryImpl(
                 results.copy(
                     presentScore = presentScore,
                     searchingScore = searchingScore,
-                    programCompleted = ZonedDateTime.now()
+                    programCompleted = programCompletedDate
                 )
             ).results
         )

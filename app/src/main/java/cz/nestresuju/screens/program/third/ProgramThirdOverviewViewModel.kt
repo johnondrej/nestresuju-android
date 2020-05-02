@@ -4,17 +4,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import cz.nestresuju.model.entities.domain.program.ProgramId
+import cz.nestresuju.model.repositories.ProgramOverviewRepository
 import cz.nestresuju.model.repositories.ProgramThirdRepository
 import cz.nestresuju.screens.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.threeten.bp.ZonedDateTime
 
 /**
  * ViewModel for last screen of program 3.
  */
 class ProgramThirdOverviewViewModel(
+    private val programOverviewRepository: ProgramOverviewRepository,
     private val programRepository: ProgramThirdRepository
 ) : BaseViewModel() {
 
@@ -48,7 +52,13 @@ class ProgramThirdOverviewViewModel(
 
     fun submitResults() {
         GlobalScope.launch {
-            programRepository.submitResults()
+            val now = ZonedDateTime.now()
+            programRepository.submitResults(programCompletedDate = now)
+            programOverviewRepository.updateStartDateForProgram(
+                ProgramId.PROGRAM_FOURTH_ID,
+                previousProgramCompletedAt = now,
+                completedProgramId = ProgramId.PROGRAM_THIRD_ID
+            )
         }
     }
 }
