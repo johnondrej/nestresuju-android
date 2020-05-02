@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import cz.nestresuju.common.extensions.visible
 import cz.nestresuju.common.interfaces.OnBackPressedListener
@@ -51,10 +52,14 @@ class FeedbackFragment :
                 }
             }
 
+            editFeedback.doAfterTextChanged { feedback ->
+                btnSend.isEnabled = !feedback.isNullOrBlank()
+            }
+
             viewModel.completionStream.observe(viewLifecycleOwner, Observer { state ->
                 val loading = state == State.Loading
                 progress.visible = loading
-                btnSend.isEnabled = !loading
+                btnSend.isEnabled = !loading && !editFeedback.text?.toString().isNullOrBlank()
                 editFeedback.isEnabled = !loading
 
                 if (state is State.Loaded) {
