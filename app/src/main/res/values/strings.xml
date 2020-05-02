@@ -2,6 +2,8 @@
     <string name="app_name">Nestresuju</string>
 
     <!-- General -->
+    <string name="general_yes">Ano</string>
+    <string name="general_no">Ne</string>
     <string name="general_continue">Pokračovat</string>
     <string name="general_next">Další</string>
     <string name="general_save">Uložit</string>
@@ -210,6 +212,19 @@
     <string name="output_test_intro_1">V rámci výzkumného šetření o účinnosti Nestresuju tě prosíme o vyplnění dvou krátkých dotazníků týkající se tvého prožívaného stresu. Jejich vyplňování ti zabere jen několik minut.</string>
     <string name="output_test_intro_2">První dotazník obsahuje otázky zaměřeny na to, jak ses cítil/a a jak jsi uvažoval/a během posledního měsíce. Označ odpověď vystihující, jak často ses popsaným způsobem cítil/a nebo uvažoval/a (0=nikdy, 4=velmi často). Dotazník obsahuje 10 otázek a vyplněný ho budeš mít do 5 minut.</string>
     <string name="output_test_confirmation_dialog_text">Děkujeme za vyplnění prvního dotazníku. Nyní se ti zobrazí závěrečných 5 otázek týkající se zhodnocení tvého pokroku s aplikací a tvé ohodnocení Nestresuju.</string>
+    <string name="output_test_2_question_1">Jak bys zhodnotil/a své schopnosti zvládání stresu před začátkem užívání Nestresuju?</string>
+    <string name="output_test_2_question_2">Jak bys zhodnotil/a své schopnosti zvládání stresu nyní na konci programu Nestresuju?</string>
+    <string name="output_test_2_question_3">Pomohla ti aplikace Nestresuju ve zvládání stresu?</string>
+    <string name="output_test_2_question_4">Ohodnoť prosím Nestresuju všeobecně (design, obsah, uživatelská přívětivost, apod.) a doplň své hodnocení o komentář.</string>
+    <string name="output_test_2_question_5">Máš nějaká doporučení pro tým Nestresuju? Rád bys nám něco sdělil?</string>
+    <string name="output_test_2_stress_management_answer_1">Nedostatečné</string>
+    <string name="output_test_2_stress_management_answer_2">Podprůměrné</string>
+    <string name="output_test_2_stress_management_answer_3">Průměrné</string>
+    <string name="output_test_2_stress_management_answer_4">Nadprůměrné</string>
+    <string name="output_test_2_stress_management_answer_5">Výjimečné</string>
+    <string name="output_test_2_question_3_hint">Co ti v aplikaci Nestresuju nejvíce pomohlo?</string>
+    <string name="output_test_2_question_4_hint">Komentář k aplikaci</string>
+    <string name="output_test_2_confirmation_dialog_text">Děkujeme za tvůj čas a tvé odpovědi. Zároveň děkujeme za tvou účast na výzkumu a užívání aplikace Nestresuju. Brzy ti přijde email s informacemi týkající se termínů závěrečného setkání k ukončení tvé účasti na výzkumu. Zároveň bude Nestresuju deaktivováno tak, aby mohla být aplikace aktualizována a vylepšena na základě podnětů a zkušeností od uživatelů. Děkujeme!</string>
 
     <!-- Diary -->
 

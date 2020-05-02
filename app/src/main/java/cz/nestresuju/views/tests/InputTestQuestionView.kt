@@ -55,6 +55,16 @@ class InputTestQuestionView(context: Context, attributes: AttributeSet) : Linear
         ignoreIsCheckedListeners = false
     }
 
+    fun setAnswersOptions(answerOptions: Array<String>) {
+        with(binding) {
+            radioBtnAnswer0.text = answerOptions[0]
+            radioBtnAnswer1.text = answerOptions[1]
+            radioBtnAnswer2.text = answerOptions[2]
+            radioBtnAnswer3.text = answerOptions[3]
+            radioBtnAnswer4.text = answerOptions[4]
+        }
+    }
+
     fun unselectAll() {
         ignoreIsCheckedListeners = true
         binding.radioGroupAnswers.clearCheck()

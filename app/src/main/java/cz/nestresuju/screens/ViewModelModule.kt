@@ -25,6 +25,7 @@ import cz.nestresuju.screens.program.second.ProgramSecondRelaxationViewModel
 import cz.nestresuju.screens.program.third.*
 import cz.nestresuju.screens.tests.input.InputTestViewModel
 import cz.nestresuju.screens.tests.output.OutputTestFirstViewModel
+import cz.nestresuju.screens.tests.output.OutputTestSecondViewModel
 import cz.nestresuju.screens.tests.screening.ScreeningTestViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -41,8 +42,6 @@ val viewModelModule = module {
     viewModel { LoginViewModel(authRepository = get()) }
 
     viewModel { InputTestViewModel(inputTestsRepository = get()) }
-
-    viewModel { OutputTestFirstViewModel(inputTestsRepository = get()) }
 
     viewModel { ScreeningTestViewModel(inputTestsRepository = get()) }
 
@@ -124,4 +123,8 @@ val viewModelModule = module {
     viewModel { ResearchViewModel(aboutAppRepository = get(), apiDefinition = get()) }
 
     viewModel { FeedbackViewModel(apiDefinition = get()) }
+
+    viewModel { OutputTestFirstViewModel(inputTestsRepository = get()) }
+
+    viewModel { OutputTestSecondViewModel(apiDefinition = get()) }
 }

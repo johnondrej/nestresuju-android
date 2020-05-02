@@ -650,7 +650,7 @@
 
         <action
             android:id="@+id/action_fragment_output_test_1_to_fragment_output_test_2"
-            app:destination="@id/fragment_output_test_2"
+            app:destination="@id/fragment_output_test_2_phase_1"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -660,8 +660,68 @@
     </fragment>
 
     <fragment
-        android:id="@+id/fragment_output_test_2"
-        android:name="cz.nestresuju.screens.tests.output.OutputTestSecondFragment"
+        android:id="@+id/fragment_output_test_2_phase_1"
+        android:name="cz.nestresuju.screens.tests.output.OutputTestSecondPhase1Fragment"
+        android:label="@string/output_test_title">
+
+        <action
+            android:id="@+id/action_fragment_output_test_2_phase_1_to_fragment_output_test_2_phase_2"
+            app:destination="@id/fragment_output_test_2_phase_2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_output_test_2_phase_2"
+        android:name="cz.nestresuju.screens.tests.output.OutputTestSecondPhase2Fragment"
+        android:label="@string/output_test_title">
+
+        <action
+            android:id="@+id/action_fragment_output_test_2_phase_2_to_fragment_output_test_2_phase_3"
+            app:destination="@id/fragment_output_test_2_phase_3"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_output_test_2_phase_3"
+        android:name="cz.nestresuju.screens.tests.output.OutputTestSecondPhase3Fragment"
+        android:label="@string/output_test_title">
+
+        <action
+            android:id="@+id/action_fragment_output_test_2_phase_3_to_fragment_output_test_2_phase_4"
+            app:destination="@id/fragment_output_test_2_phase_4"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_output_test_2_phase_4"
+        android:name="cz.nestresuju.screens.tests.output.OutputTestSecondPhase4Fragment"
+        android:label="@string/output_test_title">
+
+        <action
+            android:id="@+id/action_fragment_output_test_2_phase_4_to_fragment_output_test_2_phase_5"
+            app:destination="@id/fragment_output_test_2_phase_5"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_output_test_2_phase_5"
+        android:name="cz.nestresuju.screens.tests.output.OutputTestSecondPhase5Fragment"
         android:label="@string/output_test_title" />
 
     <fragment

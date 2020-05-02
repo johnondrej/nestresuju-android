@@ -63,7 +63,7 @@ class InputTestsRepositoryImpl(
 
     override suspend fun submitOutputTestResults(results: List<InputTestQuestionAnswer>) {
         try {
-            apiDefinition.submitOutputTestResults(
+            apiDefinition.submitOutputTestFirstResults(
                 ApiInputTestResults(
                     results = results.map { answer ->
                         entityConverter.inputTestQuestionAnswerToApi(answer)

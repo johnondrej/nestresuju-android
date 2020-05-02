@@ -20,6 +20,7 @@ import cz.nestresuju.model.entities.api.tests.input.ApiInputTestResults
 import cz.nestresuju.model.entities.api.tests.input.ApiScreeningTestResults
 import cz.nestresuju.model.entities.api.tests.input.InputTestQuestionsResponse
 import cz.nestresuju.model.entities.api.tests.input.ScreeningTestOptionsResponse
+import cz.nestresuju.model.entities.api.tests.output.ApiOutputTestSecondResults
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -44,7 +45,10 @@ interface ApiDefinition {
     suspend fun getOutputTestQuestions(): InputTestQuestionsResponse
 
     @POST("v1/final-test")
-    suspend fun submitOutputTestResults(@Body results: ApiInputTestResults): Response<Unit>
+    suspend fun submitOutputTestFirstResults(@Body results: ApiInputTestResults): Response<Unit>
+
+    @POST("v1/final-test/second")
+    suspend fun submitOutputTestSecondResults(@Body results: ApiOutputTestSecondResults): Response<Unit>
 
     @GET("v1/screening-test/options")
     suspend fun getScreeningTestOptions(): ScreeningTestOptionsResponse
