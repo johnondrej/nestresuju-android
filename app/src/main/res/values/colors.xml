@@ -1,35 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Main style -->
-
     <color name="primary">#43a047</color>
     <color name="primaryDark">#00701a</color>
     <color name="accent">#ffb300</color>
+    <color name="accentTransparent">#22ffb300</color>
     <color name="background">#ededed</color>
-
-    <!-- Program style -->
-
-    <color name="programPrimary">#02a7ab</color>
-    <color name="programPrimaryDark">#00777c</color>
-    <color name="programAccent">#ab0602</color>
-
-    <!-- Diary style -->
-
-    <color name="diaryPrimary">#6b5b95</color>
-    <color name="diaryPrimaryDark">#3e3167</color>
-    <color name="diaryAccent">#85955b</color>
-
-    <!-- Library style -->
-
-    <color name="libraryPrimary">#d64161</color>
-    <color name="libraryPrimaryDark">#9f0037</color>
-    <color name="libraryAccent">#41d6b6</color>
-
-    <!-- About app style -->
-
-    <color name="aboutPrimary">#ff7b25</color>
-    <color name="aboutPrimaryDark">#c54c00</color>
-    <color name="aboutAccent">#25a9ff</color>
 
     <!-- Text colors -->
 

@@ -9,7 +9,6 @@ import com.airbnb.epoxy.EpoxyModelWithView
 import cz.nestresuju.R
 import cz.nestresuju.common.extensions.visible
 import cz.nestresuju.databinding.ModelNavigationCardBinding
-import io.multimoon.colorful.Colorful
 
 /**
  * Epoxy model for UI card for navigation to other parts of the application.
@@ -46,7 +45,7 @@ open class NavigationCardModel : EpoxyModelWithView<CardView>() {
             card.setOnClickListener { onItemClicked() }
 
             if (active) {
-                txtTitle.setTextColor(Colorful().getAccentColor().getColorPack().normal().asInt())
+                txtTitle.setTextColor(view.context.getColor(R.color.accent))
                 card.setCardBackgroundColor(view.context.getColor(android.R.color.white))
             } else {
                 txtTitle.setTextColor(view.context.getColor(R.color.textPrimary))

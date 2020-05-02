@@ -16,53 +16,6 @@
         <item name="android:colorBackground">@color/background</item>
     </style>
 
-    <!-- Colorful library custom styles -->
-
-    <style name="HomeStyle">
-        <item name="android:colorPrimary">@color/primary</item>
-        <item name="colorPrimary">@color/primary</item>
-        <item name="android:colorPrimaryDark">@color/primaryDark</item>
-        <item name="colorPrimaryDark">@color/primaryDark</item>
-        <item name="android:colorAccent">@color/accent</item>
-        <item name="colorAccent">@color/accent</item>
-    </style>
-
-    <style name="ProgramStyle">
-        <item name="android:colorPrimary">@color/programPrimary</item>
-        <item name="colorPrimary">@color/programPrimary</item>
-        <item name="android:colorPrimaryDark">@color/programPrimaryDark</item>
-        <item name="colorPrimaryDark">@color/programPrimaryDark</item>
-        <item name="android:colorAccent">@color/programAccent</item>
-        <item name="colorAccent">@color/programAccent</item>
-    </style>
-
-    <style name="DiaryStyle">
-        <item name="android:colorPrimary">@color/diaryPrimary</item>
-        <item name="colorPrimary">@color/diaryPrimary</item>
-        <item name="android:colorPrimaryDark">@color/diaryPrimaryDark</item>
-        <item name="colorPrimaryDark">@color/diaryPrimaryDark</item>
-        <item name="android:colorAccent">@color/diaryAccent</item>
-        <item name="colorAccent">@color/diaryAccent</item>
-    </style>
-
-    <style name="LibraryStyle">
-        <item name="android:colorPrimary">@color/libraryPrimary</item>
-        <item name="colorPrimary">@color/libraryPrimary</item>
-        <item name="android:colorPrimaryDark">@color/libraryPrimaryDark</item>
-        <item name="colorPrimaryDark">@color/libraryPrimaryDark</item>
-        <item name="android:colorAccent">@color/libraryAccent</item>
-        <item name="colorAccent">@color/libraryAccent</item>
-    </style>
-
-    <style name="AboutStyle">
-        <item name="android:colorPrimary">@color/aboutPrimary</item>
-        <item name="colorPrimary">@color/aboutPrimary</item>
-        <item name="android:colorPrimaryDark">@color/aboutPrimaryDark</item>
-        <item name="colorPrimaryDark">@color/aboutPrimaryDark</item>
-        <item name="android:colorAccent">@color/aboutAccent</item>
-        <item name="colorAccent">@color/aboutAccent</item>
-    </style>
-
     <!-- Text styles -->
 
     <style name="TextAppearance.PrimaryText" parent="TextAppearance.MaterialComponents.Body2">
