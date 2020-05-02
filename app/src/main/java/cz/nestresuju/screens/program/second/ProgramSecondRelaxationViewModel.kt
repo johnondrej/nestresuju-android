@@ -37,12 +37,12 @@ class ProgramSecondRelaxationViewModel(
             programRepository.updateProgramResults { currentResults ->
                 currentResults.copy(relaxationDuration = Duration.between(startTime, now).seconds)
             }
-            programRepository.submitResults(programCompletedDate = now)
             programOverviewRepository.updateStartDateForProgram(
                 ProgramId.PROGRAM_THIRD_ID,
                 previousProgramCompletedAt = now,
                 completedProgramId = ProgramId.PROGRAM_SECOND_ID
             )
+            programRepository.submitResults(programCompletedDate = now)
         }
     }
 }

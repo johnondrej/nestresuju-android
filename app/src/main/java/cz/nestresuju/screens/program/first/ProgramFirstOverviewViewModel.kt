@@ -53,12 +53,12 @@ class ProgramFirstOverviewViewModel(
     fun submitResults() {
         GlobalScope.launch {
             val now = ZonedDateTime.now()
-            programRepository.submitResults(programCompletedDate = now)
             programOverviewRepository.updateStartDateForProgram(
                 ProgramId.PROGRAM_SECOND_ID,
                 previousProgramCompletedAt = now,
                 completedProgramId = ProgramId.PROGRAM_FIRST_ID
             )
+            programRepository.submitResults(programCompletedDate = now)
         }
     }
 }

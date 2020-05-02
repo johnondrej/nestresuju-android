@@ -94,8 +94,8 @@ class ProgramFourthQuestionViewModel(
 
     fun submitResults() {
         GlobalScope.launch {
-            programRepository.submitResults(programCompletedDate = ZonedDateTime.now())
             programOverviewRepository.markProgramAsCompleted(ProgramId.PROGRAM_FOURTH_ID)
+            programRepository.submitResults(programCompletedDate = ZonedDateTime.now())
         }
     }
 

@@ -88,6 +88,12 @@ class DataSynchronizerImpl(
         } catch (e: Exception) {
             // silent fail, synchronization will be performed next time
         }
+
+        try {
+            performProgramEvaluationsSynchronization()
+        } catch (e: Exception) {
+            // silent fail, synchronization will be performed next time
+        }
     }
 
     override suspend fun synchronizeDiary() {
