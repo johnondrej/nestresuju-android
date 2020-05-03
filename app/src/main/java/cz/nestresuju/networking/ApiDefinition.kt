@@ -41,10 +41,10 @@ interface ApiDefinition {
     @POST("v1/input-test")
     suspend fun submitInputTestResults(@Body results: ApiInputTestResults): Response<Unit>
 
-    @GET("v1/final-test/questions")
+    @GET("v1/final-test/first/questions")
     suspend fun getOutputTestQuestions(): InputTestQuestionsResponse
 
-    @POST("v1/final-test")
+    @POST("v1/final-test/first")
     suspend fun submitOutputTestFirstResults(@Body results: ApiInputTestResults): Response<Unit>
 
     @POST("v1/final-test/second")

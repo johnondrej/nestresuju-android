@@ -11,7 +11,7 @@ class ApiProgramOverview(
     val order: Int,
     val title: String,
     val name: String,
-    val isCompleted: Boolean,
-    val isEvaluated: Boolean,
+    val completed: Boolean,
+    val evaluated: Boolean,
     val startDate: ZonedDateTime?
 )

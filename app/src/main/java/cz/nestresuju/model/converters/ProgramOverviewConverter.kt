@@ -44,8 +44,8 @@ class ProgramOverviewConverterImpl : ProgramOverviewConverter {
         return DbProgramOverview(
             id = apiProgramOverview.title,
             name = apiProgramOverview.name,
-            completed = apiProgramOverview.isCompleted,
-            evaluated = apiProgramOverview.isEvaluated,
+            completed = apiProgramOverview.completed,
+            evaluated = apiProgramOverview.evaluated,
             startDate = apiProgramOverview.startDate,
             order = apiProgramOverview.order
         )

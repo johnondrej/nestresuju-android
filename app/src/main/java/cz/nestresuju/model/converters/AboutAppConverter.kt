@@ -50,7 +50,7 @@ class AboutAppConverterImpl : AboutAppConverter {
             category = DbContactsCategory(
                 name = apiContactsCategory.name,
                 order = order
-            ), contacts = apiContactsCategory.members.mapIndexed { index, apiContact ->
+            ), contacts = apiContactsCategory.items.mapIndexed { index, apiContact ->
                 DbContact(
                     categoryName = apiContactsCategory.name,
                     order = index,

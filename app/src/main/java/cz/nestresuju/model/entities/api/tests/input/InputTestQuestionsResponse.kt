@@ -9,7 +9,7 @@ import cz.nestresuju.model.entities.api.TimestampedResponse
 @JsonClass(generateAdapter = true)
 class InputTestQuestionsResponse(
     override val timestamp: Long,
-    val items: List<ApiInputTestQuestion>
+    val questions: List<ApiInputTestQuestion>
 ) : TimestampedResponse {
 
     @JsonClass(generateAdapter = true)
