@@ -57,7 +57,7 @@ interface ApiDefinition {
     suspend fun submitScreeningTestResults(@Body results: ApiScreeningTestResults): Response<Unit>
 
     @POST("v1/program/evaluate")
-    suspend fun submitProgramEvaluation(@Body evaluation: ApiProgramEvaluation)
+    suspend fun submitProgramEvaluation(@Body evaluation: ApiProgramEvaluation): Response<Unit>
 
     @GET("v1/program/state")
     suspend fun getProgramOverview(): ProgramOverviewResponse
