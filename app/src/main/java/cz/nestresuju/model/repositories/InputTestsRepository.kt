@@ -11,6 +11,7 @@ import cz.nestresuju.model.entities.domain.tests.screening.ScreeningTestOption
 import cz.nestresuju.model.errors.DuplicitDataException
 import cz.nestresuju.networking.ApiDefinition
 import kotlinx.coroutines.flow.Flow
+import org.threeten.bp.ZonedDateTime
 
 /**
  * Repository for accessing data related to input and screening tests.
@@ -54,7 +55,7 @@ class InputTestsRepositoryImpl(
                 ApiInputTestResults(
                     results = results.map { answer ->
                         entityConverter.inputTestQuestionAnswerToApi(answer)
-                    }
+                    }, programCompletedDate = ZonedDateTime.now()
                 )
             )
         } catch (e: DuplicitDataException) {
@@ -72,7 +73,7 @@ class InputTestsRepositoryImpl(
     override suspend fun submitScreeningTestResults(results: List<Long>) {
         try {
             apiDefinition.submitScreeningTestResults(
-                ApiScreeningTestResults(selectedOptionIds = results)
+                ApiScreeningTestResults(selectedOptionIds = results, programCompletedDate = ZonedDateTime.now())
             )
         } catch (e: DuplicitDataException) {
             // do nothing, test was already successfully submitted earlier
@@ -96,7 +97,7 @@ class InputTestsRepositoryImpl(
                 ApiInputTestResults(
                     results = results.map { answer ->
                         entityConverter.inputTestQuestionAnswerToApi(answer)
-                    }
+                    }, programCompletedDate = ZonedDateTime.now()
                 )
             )
         } catch (e: DuplicitDataException) {

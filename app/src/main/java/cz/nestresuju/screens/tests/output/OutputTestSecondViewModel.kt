@@ -9,6 +9,7 @@ import cz.nestresuju.model.entities.api.tests.output.ApiOutputTestSecondResults
 import cz.nestresuju.model.entities.domain.tests.input.InputTestAnswer
 import cz.nestresuju.model.repositories.InputTestsRepository
 import cz.nestresuju.screens.base.BaseViewModel
+import org.threeten.bp.ZonedDateTime
 
 /**
  * [ViewModel] for second output test screen.
@@ -65,7 +66,8 @@ class OutputTestSecondViewModel(
                 helpComment = if (state.wasAppHelpful) state.helpComment else null,
                 appRating = state.appRating!!,
                 appRatingComment = state.appRatingComment,
-                recommendation = state.recommendation
+                recommendation = state.recommendation,
+                programCompletedDate = ZonedDateTime.now()
             )
             inputTestsRepository.submitOutputTestSecondResults(results)
             completionStream.loaded()

@@ -1,6 +1,7 @@
 package cz.nestresuju.model.entities.api.tests.output
 
 import com.squareup.moshi.JsonClass
+import org.threeten.bp.ZonedDateTime
 
 /**
  * API entity with data for second final test.
@@ -13,5 +14,6 @@ class ApiOutputTestSecondResults(
     val helpComment: String?,
     val appRating: Int,
     val appRatingComment: String?,
-    val recommendation: String?
+    val recommendation: String?,
+    val programCompletedDate: ZonedDateTime
 )
