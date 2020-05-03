@@ -1,13 +1,17 @@
 package cz.nestresuju.screens.about
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import cz.nestresuju.model.logouter.LogoutHandler
 import cz.nestresuju.screens.base.BaseViewModel
 
-class AboutAppViewModel : BaseViewModel() {
+/**
+ * [ViewModel] for "about app" section.
+ */
+class AboutAppViewModel(
+    private val logoutHandler: LogoutHandler
+) : BaseViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "O aplikaci"
+    fun logout() {
+        logoutHandler.logout()
     }
-    val text: LiveData<String> = _text
 }

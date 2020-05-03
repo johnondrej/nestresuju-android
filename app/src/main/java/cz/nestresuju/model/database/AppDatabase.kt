@@ -1,8 +1,11 @@
 package cz.nestresuju.model.database
 
+import android.content.Context
+import androidx.annotation.StringRes
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import cz.nestresuju.R
 import cz.nestresuju.model.database.converters.RoomTypeConverters
 import cz.nestresuju.model.database.dao.*
 import cz.nestresuju.model.entities.database.about.DbContact
@@ -52,6 +55,38 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
 
         const val NAME = "nestresuju_db"
+
+        suspend fun initDefaultValues(applicationContext: Context, database: AppDatabase) {
+            database.programFirstDao().updateResults(DbProgramFirstResults())
+            database.programSecondDao().updateResults(DbProgramSecondResults())
+            database.programThirdDao().updateResults(DbProgramThirdResults())
+            database.programFourthDao().updateResults(DbProgramFourthResults())
+            addDefaultActivities(applicationContext, database)
+        }
+
+        private suspend fun addDefaultActivities(applicationContext: Context, database: AppDatabase) {
+            val defaultActivities = listOf(
+                defaultActivity(applicationContext, R.string.program_3_activities_hygiene),
+                defaultActivity(applicationContext, R.string.program_3_activities_study),
+                defaultActivity(applicationContext, R.string.program_3_activities_sport),
+                defaultActivity(applicationContext, R.string.program_3_activities_work),
+                defaultActivity(applicationContext, R.string.program_3_activities_household_care),
+                defaultActivity(applicationContext, R.string.program_3_activities_culture),
+                defaultActivity(applicationContext, R.string.program_3_activities_food),
+                defaultActivity(applicationContext, R.string.program_3_activities_family_time),
+                defaultActivity(applicationContext, R.string.program_3_activities_friends_time),
+                defaultActivity(applicationContext, R.string.program_3_activities_partner_time)
+            )
+
+            database.programThirdDao().updateActivities(defaultActivities)
+        }
+
+        private fun defaultActivity(applicationContext: Context, @StringRes nameRes: Int) = DbProgramThirdActivity(
+            name = applicationContext.getString(nameRes),
+            hours = 0,
+            minutes = 0,
+            userDefined = false
+        )
     }
 
     abstract fun programOverviewDao(): ProgramOverviewDao

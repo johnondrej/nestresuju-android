@@ -10,7 +10,8 @@ class AboutAppController(
     private val onContactsClicked: () -> Unit,
     private val onResearchClicked: () -> Unit,
     private val onFeedbackClicked: () -> Unit,
-    private val onTechnicalInfoClicked: () -> Unit
+    private val onTechnicalInfoClicked: () -> Unit,
+    private val onLogoutClicked: () -> Unit
 ) : EpoxyController() {
 
     override fun buildModels() {
@@ -40,6 +41,13 @@ class AboutAppController(
             title(R.string.about_app_technical_info_title)
             icon(R.drawable.ic_nav_about_app)
             onSectionClicked(onTechnicalInfoClicked)
+        }
+
+        aboutAppSection {
+            id("logout")
+            title(R.string.about_app_logout)
+            icon(R.drawable.ic_logout)
+            onSectionClicked(onLogoutClicked)
         }
     }
 }

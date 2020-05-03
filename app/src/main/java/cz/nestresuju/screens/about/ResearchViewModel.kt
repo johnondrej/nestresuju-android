@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import cz.nestresuju.model.common.State
 import cz.nestresuju.model.entities.domain.domain.ResearchInfo
+import cz.nestresuju.model.logouter.LogoutHandler
 import cz.nestresuju.model.repositories.AboutAppRepository
 import cz.nestresuju.networking.ApiDefinition
 import cz.nestresuju.screens.base.BaseViewModel
@@ -14,7 +15,8 @@ import cz.nestresuju.screens.base.BaseViewModel
  */
 class ResearchViewModel(
     private val aboutAppRepository: AboutAppRepository,
-    private val apiDefinition: ApiDefinition
+    private val apiDefinition: ApiDefinition,
+    private val logoutHandler: LogoutHandler
 ) : BaseViewModel() {
 
     private val _screenStateLiveData = MutableLiveData(
@@ -51,7 +53,7 @@ class ResearchViewModel(
         viewModelScope.launchWithErrorHandling {
             try {
                 apiDefinition.cancelUserAccount()
-                updateScreenState { it.copy(cancelAccountState = State.Loaded(Unit)) }
+                logoutHandler.logout()
             } catch (e: Exception) {
                 // Rethrow exception to allow further error handling, but show content again
                 updateScreenState { it.copy(cancelAccountState = State.Idle) }

@@ -6,6 +6,7 @@ import cz.nestresuju.model.database.sharedprefs.SharedPreferencesInteractor
 import cz.nestresuju.model.entities.api.auth.AuthResponse
 import cz.nestresuju.model.entities.domain.auth.LoginChecklistCompletion
 import cz.nestresuju.model.errors.ConsentNotGivenException
+import cz.nestresuju.model.logouter.LogoutHandler
 import cz.nestresuju.networking.ApiDefinition
 import cz.nestresuju.networking.AuthApiDefinition
 import cz.nestresuju.networking.NetworkingConstants.AUTH_CLIENT_ID
@@ -25,7 +26,8 @@ class AuthRepository(
     private val apiDefinition: ApiDefinition,
     private val authEntitiesConverter: AuthEntitiesConverter,
     private val oAuthManager: OAuthManager,
-    private val sharedPreferencesInteractor: SharedPreferencesInteractor
+    private val sharedPreferencesInteractor: SharedPreferencesInteractor,
+    private val logoutHandler: LogoutHandler
 ) {
 
     private var consentContinuation: Continuation<Boolean>? = null
@@ -109,8 +111,6 @@ class AuthRepository(
     }
 
     private fun logout() {
-        oAuthManager.clearCredentials()
-        sharedPreferencesInteractor.clearAllData()
-        // TODO
+        logoutHandler.logout()
     }
 }

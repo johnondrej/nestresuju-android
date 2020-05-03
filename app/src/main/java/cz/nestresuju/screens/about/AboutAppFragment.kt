@@ -26,7 +26,8 @@ class AboutAppFragment : BaseArchFragment<FragmentCustomListBinding>() {
                 onContactsClicked = { findNavController().navigate(R.id.action_fragment_about_app_to_fragment_about_app_contacts) },
                 onResearchClicked = { findNavController().navigate(R.id.action_fragment_about_app_to_fragment_about_app_research) },
                 onFeedbackClicked = { findNavController().navigate(R.id.action_fragment_about_app_to_fragment_about_app_feedback) },
-                onTechnicalInfoClicked = { findNavController().navigate(R.id.action_fragment_about_app_to_fragment_about_app_technical_info) }
+                onTechnicalInfoClicked = { findNavController().navigate(R.id.action_fragment_about_app_to_fragment_about_app_technical_info) },
+                onLogoutClicked = { viewModel.logout() }
             ))
             list.requestModelBuild()
         }

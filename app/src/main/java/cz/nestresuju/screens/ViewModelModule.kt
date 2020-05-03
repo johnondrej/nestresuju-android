@@ -118,11 +118,11 @@ val viewModelModule = module {
 
     viewModel { LibraryViewModel(libraryRepository = get()) }
 
-    viewModel { AboutAppViewModel() }
+    viewModel { AboutAppViewModel(logoutHandler = get()) }
 
     viewModel { ContactsViewModel(aboutAppRepository = get()) }
 
-    viewModel { ResearchViewModel(aboutAppRepository = get(), apiDefinition = get()) }
+    viewModel { ResearchViewModel(aboutAppRepository = get(), apiDefinition = get(), logoutHandler = get()) }
 
     viewModel { FeedbackViewModel(apiDefinition = get()) }
 

@@ -2,6 +2,7 @@ package cz.nestresuju.model.repositories
 
 import android.content.Context
 import cz.nestresuju.model.database.sharedprefs.SharedPreferencesInteractor
+import cz.nestresuju.model.logouter.LogoutHandler
 import cz.nestresuju.model.synchronization.DataSynchronizer
 import cz.nestresuju.model.synchronization.DataSynchronizerImpl
 import org.koin.android.ext.koin.androidContext
@@ -21,7 +22,8 @@ val repositoryModule = module {
             apiDefinition = get(),
             authEntitiesConverter = get(),
             oAuthManager = get(),
-            sharedPreferencesInteractor = get()
+            sharedPreferencesInteractor = get(),
+            logoutHandler = get()
         )
     }
 
@@ -32,7 +34,6 @@ val repositoryModule = module {
             sharedPreferencesInteractor = get()
         )
     }
-
     factory<ProgramOverviewRepository> {
         ProgramOverviewRepositoryImpl(
             apiDefinition = get(),
@@ -124,4 +125,13 @@ val repositoryModule = module {
     factory { SharedPreferencesInteractor(sharedPreferences = get()) }
 
     factory { androidContext().getSharedPreferences(SHARED_PREFS_KEY, Context.MODE_PRIVATE) }
+
+    factory {
+        LogoutHandler(
+            applicationContext = androidContext(),
+            oAuthManager = get(),
+            sharedPreferencesInteractor = get(),
+            appDatabase = get()
+        )
+    }
 }

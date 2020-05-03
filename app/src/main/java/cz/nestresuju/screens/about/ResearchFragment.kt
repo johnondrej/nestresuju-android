@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import com.google.android.material.snackbar.Snackbar
 import cz.nestresuju.R
 import cz.nestresuju.databinding.FragmentCustomListBinding
 import cz.nestresuju.model.common.State
@@ -49,11 +48,6 @@ class ResearchFragment : BaseArchFragment<FragmentCustomListBinding>(), Research
 
                 if (screenState.researchInfoState is State.Loaded) {
                     controller.researchInfo = screenState.researchInfoState.data
-                }
-
-                if (screenState.cancelAccountState is State.Loaded) {
-                    Snackbar.make(requireView(), "Účet zrušen!", Snackbar.LENGTH_LONG).show()
-                    // TODO: logout
                 }
             })
 
