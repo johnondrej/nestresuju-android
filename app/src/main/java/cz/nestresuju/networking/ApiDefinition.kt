@@ -113,7 +113,7 @@ interface ApiDefinition {
     @GET("v1/about/research")
     suspend fun getResearchInfo(): ResearchResponse
 
-    @GET("v1/program-deadline")
+    @GET("v1/program-deadline/state")
     suspend fun getProgramDeadline(): ProgramDeadlineResponse
 
     @POST("v1/about/feedback")

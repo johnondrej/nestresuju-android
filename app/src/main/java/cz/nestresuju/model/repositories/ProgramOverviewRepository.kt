@@ -63,8 +63,7 @@ class ProgramOverviewRepositoryImpl(
     }
 
     override suspend fun fetchProgramDeadline() {
-        val deadline = apiDefinition.getProgramDeadline().deadline
-        sharedPreferencesInteractor.setProgramDeadline(deadline)
+        apiDefinition.getProgramDeadline().deadline?.let { deadline -> sharedPreferencesInteractor.setProgramDeadline(deadline) }
     }
 
     override suspend fun getProgramDeadline(): ZonedDateTime? {

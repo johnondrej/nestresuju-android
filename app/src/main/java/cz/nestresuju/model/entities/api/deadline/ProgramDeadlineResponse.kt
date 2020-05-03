@@ -8,5 +8,5 @@ import org.threeten.bp.ZonedDateTime
  */
 @JsonClass(generateAdapter = true)
 class ProgramDeadlineResponse(
-    val deadline: ZonedDateTime
+    val deadline: ZonedDateTime?
 )
