@@ -9,7 +9,7 @@ import com.airbnb.epoxy.EpoxyModelWithView
 import cz.nestresuju.databinding.ModelLibraryContentBinding
 
 /**
- * TODO add class description
+ * Epoxy model for displaying content in library section.
  */
 @EpoxyModelClass
 open class LibraryContentModel : EpoxyModelWithView<TextView>() {

@@ -56,7 +56,6 @@ class ProgramViewModel(
             }
             val programThirdResultsJob = viewModelScope.launch {
                 try {
-                    // TODO: verify that this is working correctly when missing attributes from API for program 3 are fixed
                     programThirdRepository.fetchProgramResults()
                 } catch (e: Exception) {
                     // do nothing, data will be updated next time
