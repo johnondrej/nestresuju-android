@@ -15,7 +15,11 @@ class AuthEntitiesConverterImpl : AuthEntitiesConverter {
 
     override fun apiLoginChecklistToDomain(apiLoginChecklist: LoginChecklistResponse): LoginChecklistCompletion {
         return LoginChecklistCompletion(
-            apiLoginChecklist.consentGiven, apiLoginChecklist.inputTestSubmitted, apiLoginChecklist.screeningTestSubmitted
+            apiLoginChecklist.consentGiven,
+            apiLoginChecklist.inputTestSubmitted,
+            apiLoginChecklist.screeningTestSubmitted,
+            apiLoginChecklist.finalTestFirstSubmitted,
+            apiLoginChecklist.finalTestSecondSubmitted
         )
     }
 }

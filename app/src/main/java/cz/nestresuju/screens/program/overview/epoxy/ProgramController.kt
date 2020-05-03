@@ -14,6 +14,7 @@ import cz.nestresuju.views.common.epoxy.navigationCard
 class ProgramController(
     private val applicationContext: Context,
     private val overview: List<ProgramOverview>,
+    private val showOutputTest: Boolean,
     private val deadlineInDays: Int?,
     private val onProgramSelected: (ProgramOverview) -> Unit,
     private val onClosedProgramSelected: () -> Unit,
@@ -57,12 +58,13 @@ class ProgramController(
                 }
             }
 
-        // TODO: show only when program 4 is completed
-        navigationCard {
-            id("output-test")
-            title(applicationContext.getString(R.string.output_test_title))
-            stateText(applicationContext.getString(R.string.program_state_open))
-            onItemClicked(onOutputTestSelected)
+        if (showOutputTest) {
+            navigationCard {
+                id("output-test")
+                title(applicationContext.getString(R.string.output_test_title))
+                stateText(applicationContext.getString(R.string.program_state_open))
+                onItemClicked(onOutputTestSelected)
+            }
         }
 
         deadlineInDays?.let { deadline ->

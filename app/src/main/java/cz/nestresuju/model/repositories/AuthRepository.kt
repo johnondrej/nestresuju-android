@@ -42,17 +42,7 @@ class AuthRepository(
 
         saveAuthCredentials(authResponse)
 
-        val loginChecklist = authEntitiesConverter.apiLoginChecklistToDomain(apiDefinition.getLoginPrerequirements())
-        if (loginChecklist.consentGiven) {
-            sharedPreferencesInteractor.setConsentGiven()
-        }
-        if (loginChecklist.inputTestSubmitted) {
-            sharedPreferencesInteractor.setInputTestCompleted()
-        }
-        if (loginChecklist.screeningTestSubmitted) {
-            sharedPreferencesInteractor.setScreeningTestCompleted()
-        }
-
+        val loginChecklist = updateLoginChecklistData()
         if (loginChecklist.consentGiven) {
             return loginChecklist
         } else {
@@ -82,6 +72,26 @@ class AuthRepository(
 
     fun onConsentConfirmed(confirmed: Boolean) {
         consentContinuation?.resume(confirmed)
+    }
+
+    suspend fun updateLoginChecklistData(): LoginChecklistCompletion {
+        val loginChecklist = authEntitiesConverter.apiLoginChecklistToDomain(apiDefinition.getLoginPrerequirements())
+        if (loginChecklist.consentGiven) {
+            sharedPreferencesInteractor.setConsentGiven()
+        }
+        if (loginChecklist.inputTestSubmitted) {
+            sharedPreferencesInteractor.setInputTestCompleted()
+        }
+        if (loginChecklist.screeningTestSubmitted) {
+            sharedPreferencesInteractor.setScreeningTestCompleted()
+        }
+        if (loginChecklist.finalTestFirstSubmitted) {
+            sharedPreferencesInteractor.setOutputTestFirstCompleted()
+        }
+        if (loginChecklist.finalTestSecondSubmitted) {
+            sharedPreferencesInteractor.setOutputTestSecondCompleted()
+        }
+        return loginChecklist
     }
 
     private suspend fun giveConsent() {

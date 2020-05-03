@@ -12,6 +12,7 @@ import cz.nestresuju.model.synchronization.DataSynchronizer
 import cz.nestresuju.screens.base.BaseViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.conflate
 import kotlinx.coroutines.launch
 import org.threeten.bp.LocalDate
 import org.threeten.bp.temporal.ChronoUnit
@@ -22,6 +23,7 @@ class ProgramViewModel(
     private val programSecondRepository: ProgramSecondRepository,
     private val programThirdRepository: ProgramThirdRepository,
     private val programFourthRepository: ProgramFourthRepository,
+    private val inputTestsRepository: InputTestsRepository,
     private val dataSynchronizer: DataSynchronizer
 ) : BaseViewModel() {
 
@@ -78,6 +80,8 @@ class ProgramViewModel(
             val programSecondFlow = programSecondRepository.observeProgramResults()
             val programThirdFlow = programThirdRepository.observeProgramResults()
             val programFourthFlow = programFourthRepository.observeProgramResults()
+            val firstOutputTestFlow = inputTestsRepository.observeOutputTestFirstCompletion().conflate()
+            val secondOutputTestFlow = inputTestsRepository.observeOutputTestSecondCompletion().conflate()
 
             val deadline = programOverviewRepository.getProgramDeadline()
             val deadlineInDays = deadline?.let { ChronoUnit.DAYS.between(LocalDate.now(), it) }
@@ -87,9 +91,25 @@ class ProgramViewModel(
                 programFirstFlow,
                 programSecondFlow,
                 programThirdFlow,
-                programFourthFlow
-            ) { overview, firstResults, secondResults, thirdResults, fourthResults ->
-                ScreenState(overview, firstResults, secondResults, thirdResults, fourthResults, deadlineInDays?.takeIf { it > 0 }?.toInt())
+                programFourthFlow,
+                firstOutputTestFlow,
+                secondOutputTestFlow
+            ) { flows ->
+                val firstOutputTestCompleted = flows[5] as Boolean
+                val secondOutputTestCompleted = flows[6] as Boolean
+                val overview = flows[0] as List<ProgramOverview>
+                val showOutputTest = (!firstOutputTestCompleted || !secondOutputTestCompleted) && overview.all { it.completed }
+
+                ScreenState(
+                    overview = overview,
+                    programFirstResults = flows[1] as ProgramFirstResults,
+                    programSecondResults = flows[2] as ProgramSecondResults,
+                    programThirdResults = flows[3] as ProgramThirdResults,
+                    programFourthResults = flows[4] as ProgramFourthResults,
+                    showOutputTest = showOutputTest,
+                    firstOutputTestCompleted = firstOutputTestCompleted,
+                    programDeadline = deadlineInDays?.takeIf { it > 0 }?.toInt()
+                )
             }.collect { screenState ->
                 screenStateStream.loaded(screenState)
             }
@@ -102,6 +122,8 @@ class ProgramViewModel(
         val programSecondResults: ProgramSecondResults,
         val programThirdResults: ProgramThirdResults,
         val programFourthResults: ProgramFourthResults,
+        val showOutputTest: Boolean,
+        val firstOutputTestCompleted: Boolean,
         val programDeadline: Int?
     )
 }

@@ -9,5 +9,7 @@ import com.squareup.moshi.JsonClass
 class LoginChecklistResponse(
     val consentGiven: Boolean,
     val inputTestSubmitted: Boolean,
-    val screeningTestSubmitted: Boolean
+    val screeningTestSubmitted: Boolean,
+    val finalTestFirstSubmitted: Boolean,
+    val finalTestSecondSubmitted: Boolean
 )

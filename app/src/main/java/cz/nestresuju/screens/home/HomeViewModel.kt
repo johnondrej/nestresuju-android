@@ -19,6 +19,7 @@ import org.threeten.bp.LocalDate
 import org.threeten.bp.temporal.ChronoUnit
 
 class HomeViewModel(
+    private val authRepository: AuthRepository,
     private val programOverviewRepository: ProgramOverviewRepository,
     private val programFirstRepository: ProgramFirstRepository,
     private val programSecondRepository: ProgramSecondRepository,
@@ -38,6 +39,12 @@ class HomeViewModel(
                 programOverviewRepository.fetchProgramDeadline()
             } catch (e: Exception) {
                 // do nothing, value will be fetched next time
+            }
+
+            try {
+                authRepository.updateLoginChecklistData()
+            } catch (e: Exception) {
+                // do nothing, checklist will be updated next time
             }
 
             val programDeadline = programOverviewRepository.getProgramDeadline()

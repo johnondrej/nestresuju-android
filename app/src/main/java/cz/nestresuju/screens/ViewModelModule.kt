@@ -47,6 +47,7 @@ val viewModelModule = module {
 
     viewModel {
         HomeViewModel(
+            authRepository = get(),
             programOverviewRepository = get(),
             programFirstRepository = get(),
             programSecondRepository = get(),
@@ -64,6 +65,7 @@ val viewModelModule = module {
             programSecondRepository = get(),
             programThirdRepository = get(),
             programFourthRepository = get(),
+            inputTestsRepository = get(),
             dataSynchronizer = get()
         )
     }
@@ -126,5 +128,5 @@ val viewModelModule = module {
 
     viewModel { OutputTestFirstViewModel(inputTestsRepository = get()) }
 
-    viewModel { OutputTestSecondViewModel(apiDefinition = get()) }
+    viewModel { OutputTestSecondViewModel(inputTestsRepository = get()) }
 }

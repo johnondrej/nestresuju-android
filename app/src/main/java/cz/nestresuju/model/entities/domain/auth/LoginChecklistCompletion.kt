@@ -6,5 +6,7 @@ package cz.nestresuju.model.entities.domain.auth
 data class LoginChecklistCompletion(
     val consentGiven: Boolean,
     val inputTestSubmitted: Boolean,
-    val screeningTestSubmitted: Boolean
+    val screeningTestSubmitted: Boolean,
+    val finalTestFirstSubmitted: Boolean,
+    val finalTestSecondSubmitted: Boolean
 )

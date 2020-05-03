@@ -2,6 +2,8 @@ package cz.nestresuju.model.database.sharedprefs
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.callbackFlow
 import org.threeten.bp.ZonedDateTime
 import org.threeten.bp.format.DateTimeFormatter
 
@@ -15,9 +17,12 @@ class SharedPreferencesInteractor(private val sharedPreferences: SharedPreferenc
         private const val KEY_CONSENT_GIVEN = "consent_given"
         private const val KEY_INPUT_TEST_COMPLETED = "input_test_completed"
         private const val KEY_SCREENING_TEST_COMPLETED = "screening_test_completed"
-        private const val KEY_OUTPUT_TEST_COMPLETED = "output_test_completed"
+        private const val KEY_OUTPUT_TEST_FIRST_COMPLETED = "output_test_first_completed"
+        private const val KEY_OUTPUT_TEST_SECOND_COMPLETED = "output_test_second_completed"
         private const val KEY_PROGRAM_DEADLINE = "program_deadline"
     }
+
+    private val observer = PreferencesObserver(sharedPreferences)
 
     fun isConsentGiven() = sharedPreferences.getBoolean(KEY_CONSENT_GIVEN, false)
 
@@ -31,14 +36,46 @@ class SharedPreferencesInteractor(private val sharedPreferences: SharedPreferenc
         putBoolean(KEY_INPUT_TEST_COMPLETED, true)
     }
 
-    fun setOutputTestCompleted() = sharedPreferences.edit {
-        putBoolean(KEY_OUTPUT_TEST_COMPLETED, true)
-    }
-
     fun isScreeningTestCompleted() = sharedPreferences.getBoolean(KEY_SCREENING_TEST_COMPLETED, false)
 
     fun setScreeningTestCompleted() = sharedPreferences.edit {
         putBoolean(KEY_SCREENING_TEST_COMPLETED, true)
+    }
+
+    fun isOutputTestFirstCompleted() = sharedPreferences.getBoolean(KEY_OUTPUT_TEST_FIRST_COMPLETED, false)
+
+    fun observeOutputTestFirstCompleted() = callbackFlow {
+        offer(isOutputTestFirstCompleted())
+        val keyObserver = { key: String ->
+            if (key == KEY_OUTPUT_TEST_FIRST_COMPLETED) {
+                offer(isOutputTestFirstCompleted())
+            }
+        }
+
+        observer.observeChanges(keyObserver)
+        awaitClose { observer.unregisterChangeListener(keyObserver) }
+    }
+
+    fun setOutputTestFirstCompleted() = sharedPreferences.edit {
+        putBoolean(KEY_OUTPUT_TEST_FIRST_COMPLETED, true)
+    }
+
+    fun isOutputTestSecondCompleted() = sharedPreferences.getBoolean(KEY_OUTPUT_TEST_SECOND_COMPLETED, false)
+
+    fun observeOutputTestSecondCompleted() = callbackFlow {
+        offer(isOutputTestSecondCompleted())
+        val keyObserver = { key: String ->
+            if (key == KEY_OUTPUT_TEST_SECOND_COMPLETED) {
+                offer(isOutputTestSecondCompleted())
+            }
+        }
+
+        observer.observeChanges(keyObserver)
+        awaitClose { observer.unregisterChangeListener(keyObserver) }
+    }
+
+    fun setOutputTestSecondCompleted() = sharedPreferences.edit {
+        putBoolean(KEY_OUTPUT_TEST_SECOND_COMPLETED, true)
     }
 
     fun getProgramDeadline(): ZonedDateTime? {
@@ -57,5 +94,30 @@ class SharedPreferencesInteractor(private val sharedPreferences: SharedPreferenc
 
     fun clearAllData() {
         sharedPreferences.edit().clear().apply()
+    }
+
+    private class PreferencesObserver(private val sharedPreferences: SharedPreferences) : SharedPreferences.OnSharedPreferenceChangeListener {
+
+        private var observers = mutableListOf<(String) -> Unit>()
+
+        fun observeChanges(onKeyChanged: (String) -> Unit) {
+            if (observers.isEmpty()) {
+                sharedPreferences.registerOnSharedPreferenceChangeListener(this)
+            }
+            observers.add(onKeyChanged)
+        }
+
+        fun unregisterChangeListener(onKeyChanged: (String) -> Unit) {
+            observers.remove(onKeyChanged)
+            if (observers.isEmpty()) {
+                sharedPreferences.unregisterOnSharedPreferenceChangeListener(this)
+            }
+        }
+
+        override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
+            observers.forEach { observer ->
+                observer(key)
+            }
+        }
     }
 }

@@ -14,10 +14,10 @@ class OutputTestFirstViewModel(
 ) : BaseTestViewModel() {
 
     override suspend fun fetchTestQuestions(): List<InputTestQuestion> {
-        return inputTestsRepository.fetchOutputTestQuestions()
+        return inputTestsRepository.fetchOutputTestFirstQuestions()
     }
 
     override suspend fun submitTestResults(results: List<InputTestQuestionAnswer>) {
-        inputTestsRepository.submitOutputTestResults(results)
+        inputTestsRepository.submitOutputTestFirstResults(results)
     }
 }

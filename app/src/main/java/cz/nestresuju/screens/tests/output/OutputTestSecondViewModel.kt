@@ -7,14 +7,14 @@ import androidx.lifecycle.viewModelScope
 import cz.nestresuju.model.common.EmptyStateLiveData
 import cz.nestresuju.model.entities.api.tests.output.ApiOutputTestSecondResults
 import cz.nestresuju.model.entities.domain.tests.input.InputTestAnswer
-import cz.nestresuju.networking.ApiDefinition
+import cz.nestresuju.model.repositories.InputTestsRepository
 import cz.nestresuju.screens.base.BaseViewModel
 
 /**
  * [ViewModel] for second output test screen.
  */
 class OutputTestSecondViewModel(
-    private val apiDefinition: ApiDefinition
+    private val inputTestsRepository: InputTestsRepository
 ) : BaseViewModel() {
 
     private val _screenStateLiveData = MutableLiveData(ScreenState())
@@ -67,7 +67,7 @@ class OutputTestSecondViewModel(
                 appRatingComment = state.appRatingComment,
                 recommendation = state.recommendation
             )
-            apiDefinition.submitOutputTestSecondResults(results)
+            inputTestsRepository.submitOutputTestSecondResults(results)
             completionStream.loaded()
         }
     }

@@ -57,10 +57,11 @@ class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
                     controller = ProgramController(
                         applicationContext = requireContext().applicationContext,
                         overview = state.data.overview,
+                        showOutputTest = state.data.showOutputTest,
                         deadlineInDays = state.data.programDeadline,
                         onProgramSelected = { program -> onProgramSelected(program.id, state.data) },
                         onClosedProgramSelected = { onClosedProgramSelected() },
-                        onOutputTestSelected = { onOutputTestSelected() }
+                        onOutputTestSelected = { onOutputTestSelected(state.data.firstOutputTestCompleted) }
                     ).also {
                         it.requestModelBuild()
                         customList.list.setController(it)
@@ -171,8 +172,11 @@ class ProgramFragment : BaseArchFragment<FragmentCustomListBinding>() {
         }
     }
 
-    // TODO: add final retest ("fifth" program) with evaluation of program 4
-    private fun onOutputTestSelected() {
-        findNavController().navigate(R.id.action_fragment_program_overview_to_fragment_output_test_intro)
+    private fun onOutputTestSelected(firstOutputTestCompleted: Boolean) {
+        if (!firstOutputTestCompleted) {
+            findNavController().navigate(R.id.action_fragment_program_overview_to_fragment_output_test_intro)
+        } else {
+            findNavController().navigate(R.id.action_fragment_program_overview_to_fragment_output_test_2)
+        }
     }
 }
