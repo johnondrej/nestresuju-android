@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import cz.nestresuju.MainActivity
+import cz.nestresuju.model.entities.api.notifications.NotificationConstants
 import cz.nestresuju.screens.login.LoginActivity
 import cz.nestresuju.screens.tests.input.InputTestsActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -17,13 +18,14 @@ class RouterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val deepLink = intent?.extras?.getString(NotificationConstants.KEY_CLICK_ACTION)
 
         viewModel.routeStream.observe(this, Observer { route ->
             when (route) {
                 InitialRoute.Login -> LoginActivity.launch(context = this)
                 InitialRoute.InputTest -> InputTestsActivity.launch(context = this, redirectToScreeningTest = false)
                 InitialRoute.ScreeningTest -> InputTestsActivity.launch(context = this, redirectToScreeningTest = true)
-                InitialRoute.Main -> MainActivity.launch(context = this)
+                InitialRoute.Main -> MainActivity.launch(context = this, deepLink = deepLink)
             }
             finish()
         })

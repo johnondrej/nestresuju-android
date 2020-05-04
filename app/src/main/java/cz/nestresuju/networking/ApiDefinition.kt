@@ -1,5 +1,6 @@
 package cz.nestresuju.networking
 
+import cz.ackee.ackroutine.IgnoreAuth
 import cz.nestresuju.model.entities.api.about.ApiFeedbackRequest
 import cz.nestresuju.model.entities.api.about.ContactsResponse
 import cz.nestresuju.model.entities.api.about.ResearchResponse
@@ -9,6 +10,7 @@ import cz.nestresuju.model.entities.api.diary.ApiNewDiaryEntry
 import cz.nestresuju.model.entities.api.diary.DiaryEntriesResponse
 import cz.nestresuju.model.entities.api.diary.MoodQuestionsResponse
 import cz.nestresuju.model.entities.api.library.LibraryResponse
+import cz.nestresuju.model.entities.api.notifications.ApiFirebaseTokenRequest
 import cz.nestresuju.model.entities.api.program.evaluation.ApiProgramEvaluation
 import cz.nestresuju.model.entities.api.program.first.ApiProgramFirstResults
 import cz.nestresuju.model.entities.api.program.fourth.ApiProgramFourthResults
@@ -118,6 +120,13 @@ interface ApiDefinition {
 
     @POST("v1/about/feedback")
     suspend fun sendEmailFeedback(@Body feedback: ApiFeedbackRequest): Response<Unit>
+
+    @POST("v1/notifications/token")
+    suspend fun registerFirebaseToken(@Body request: ApiFirebaseTokenRequest): Response<Unit>
+
+    @IgnoreAuth
+    @DELETE("v1/notifications/token/{token}")
+    suspend fun removeFirebaseToken(@Path("token") token: String): Response<Unit>
 
     @DELETE("v1/remove-user")
     suspend fun cancelUserAccount(): Response<Unit>

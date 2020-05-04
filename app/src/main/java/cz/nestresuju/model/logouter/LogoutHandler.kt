@@ -5,6 +5,7 @@ import android.content.Intent
 import cz.ackee.ackroutine.OAuthManager
 import cz.nestresuju.model.database.AppDatabase
 import cz.nestresuju.model.database.sharedprefs.SharedPreferencesInteractor
+import cz.nestresuju.model.repositories.FirebaseTokenRepository
 import cz.nestresuju.screens.login.LoginActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -16,11 +17,13 @@ class LogoutHandler(
     private val applicationContext: Context,
     private val oAuthManager: OAuthManager,
     private val sharedPreferencesInteractor: SharedPreferencesInteractor,
-    private val appDatabase: AppDatabase
+    private val appDatabase: AppDatabase,
+    private val firebaseTokenRepository: FirebaseTokenRepository
 ) {
 
     fun logout() {
         GlobalScope.launch {
+            firebaseTokenRepository.unregisterFirebaseToken()
             oAuthManager.clearCredentials()
             sharedPreferencesInteractor.clearAllData()
             appDatabase.clearAllTables()

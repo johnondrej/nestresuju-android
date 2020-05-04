@@ -10,16 +10,23 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import cz.nestresuju.common.interfaces.OnBackPressedListener
+import cz.nestresuju.router.DeepLink
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
 
-        fun launch(context: Context) {
-            val intent = Intent(context, MainActivity::class.java)
+        private const val EXTRA_DEEP_LINK = "deep_link"
+
+        fun launch(context: Context, deepLink: String? = null) {
+            val intent = Intent(context, MainActivity::class.java).apply {
+                deepLink?.let { putExtra(EXTRA_DEEP_LINK, deepLink) }
+            }
             context.startActivity(intent)
         }
     }
+
+    private val deepLink by lazy(LazyThreadSafetyMode.NONE) { intent?.extras?.getString(EXTRA_DEEP_LINK)?.let { DeepLink.fromClickAction(it) } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +47,13 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        if (savedInstanceState == null) {
+            when (deepLink) {
+                DeepLink.DIARY -> navController.navigate(R.id.navigation_diary)
+                DeepLink.PROGRAM, DeepLink.OUTPUT_TEST -> navController.navigate(R.id.navigation_program)
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

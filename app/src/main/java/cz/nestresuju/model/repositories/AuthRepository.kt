@@ -27,7 +27,8 @@ class AuthRepository(
     private val authEntitiesConverter: AuthEntitiesConverter,
     private val oAuthManager: OAuthManager,
     private val sharedPreferencesInteractor: SharedPreferencesInteractor,
-    private val logoutHandler: LogoutHandler
+    private val logoutHandler: LogoutHandler,
+    private val firebaseTokenRepository: FirebaseTokenRepository
 ) {
 
     private var consentContinuation: Continuation<Boolean>? = null
@@ -108,6 +109,7 @@ class AuthRepository(
 
     private fun saveAuthCredentials(authResponse: AuthResponse) {
         oAuthManager.saveCredentials(authResponse)
+        firebaseTokenRepository.registerFirebaseToken()
     }
 
     private fun logout() {

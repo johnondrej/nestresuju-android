@@ -10,7 +10,10 @@ import org.threeten.bp.format.DateTimeFormatter
 /**
  * Class for obtaining data from shared preferences.
  */
-class SharedPreferencesInteractor(private val sharedPreferences: SharedPreferences) {
+class SharedPreferencesInteractor(
+    private val sharedPreferences: SharedPreferences,
+    private val sharedPreferencesFirebase: SharedPreferences
+) {
 
     companion object {
 
@@ -20,6 +23,8 @@ class SharedPreferencesInteractor(private val sharedPreferences: SharedPreferenc
         private const val KEY_OUTPUT_TEST_FIRST_COMPLETED = "output_test_first_completed"
         private const val KEY_OUTPUT_TEST_SECOND_COMPLETED = "output_test_second_completed"
         private const val KEY_PROGRAM_DEADLINE = "program_deadline"
+        private const val KEY_FIREBASE_TOKEN = "firebase_token"
+        private const val KEY_FIREBASE_TOKEN_INVALID = "invalid_firebase_token"
     }
 
     private val observer = PreferencesObserver(sharedPreferences)
@@ -89,6 +94,28 @@ class SharedPreferencesInteractor(private val sharedPreferences: SharedPreferenc
 
         sharedPreferences.edit {
             putString(KEY_PROGRAM_DEADLINE, formattedDate)
+        }
+    }
+
+    fun getFirebaseToken() = sharedPreferencesFirebase.getString(KEY_FIREBASE_TOKEN, null)
+
+    fun setFirebaseToken(token: String) {
+        sharedPreferencesFirebase.edit {
+            putString(KEY_FIREBASE_TOKEN, token)
+        }
+    }
+
+    fun getInvalidFirebaseToken() = sharedPreferencesFirebase.getString(KEY_FIREBASE_TOKEN_INVALID, null)
+
+    fun setInvalidFirebaseToken(invalidToken: String) {
+        sharedPreferencesFirebase.edit {
+            putString(KEY_FIREBASE_TOKEN_INVALID, invalidToken)
+        }
+    }
+
+    fun clearInvalidFirebaseToken() {
+        sharedPreferencesFirebase.edit {
+            remove(KEY_FIREBASE_TOKEN_INVALID)
         }
     }
 

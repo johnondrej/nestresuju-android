@@ -6,6 +6,7 @@ import cz.nestresuju.model.logouter.LogoutHandler
 import cz.nestresuju.model.synchronization.DataSynchronizer
 import cz.nestresuju.model.synchronization.DataSynchronizerImpl
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 /**
@@ -13,6 +14,7 @@ import org.koin.dsl.module
  */
 
 private const val SHARED_PREFS_KEY = "shared_prefs"
+private const val SHARED_PREFS_FIREBASE_KEY = "firebase_shared_prefs"
 
 val repositoryModule = module {
 
@@ -23,7 +25,8 @@ val repositoryModule = module {
             authEntitiesConverter = get(),
             oAuthManager = get(),
             sharedPreferencesInteractor = get(),
-            logoutHandler = get()
+            logoutHandler = get(),
+            firebaseTokenRepository = get()
         )
     }
 
@@ -122,16 +125,27 @@ val repositoryModule = module {
         )
     }
 
-    factory { SharedPreferencesInteractor(sharedPreferences = get()) }
+    factory<FirebaseTokenRepository> {
+        FirebaseTokenRepositoryImpl(
+            apiDefinition = get(),
+            oAuthManager = get(),
+            sharedPreferencesInteractor = get()
+        )
+    }
+
+    factory { SharedPreferencesInteractor(sharedPreferences = get(), sharedPreferencesFirebase = get(named(SHARED_PREFS_FIREBASE_KEY))) }
 
     factory { androidContext().getSharedPreferences(SHARED_PREFS_KEY, Context.MODE_PRIVATE) }
+
+    factory(named(SHARED_PREFS_FIREBASE_KEY)) { androidContext().getSharedPreferences(SHARED_PREFS_FIREBASE_KEY, Context.MODE_PRIVATE) }
 
     factory {
         LogoutHandler(
             applicationContext = androidContext(),
             oAuthManager = get(),
             sharedPreferencesInteractor = get(),
-            appDatabase = get()
+            appDatabase = get(),
+            firebaseTokenRepository = get()
         )
     }
 }

@@ -284,4 +284,10 @@
     <string name="error_http_format">Chyba HTTP %1$d</string>
     <string name="error_http_detail_format">Chyba %1$d - %2$s</string>
     <string name="error_internet_connection">Internet není dostupný</string>
+
+    <!-- Notifications -->
+
+    <string name="notification_channel_id">default_channel</string>
+    <string name="notification_channel_name">Oznámení Nestresuju</string>
+    <string name="notification_channel_description">Oznámení z aplikace Nestresuju</string>
 </resources>
