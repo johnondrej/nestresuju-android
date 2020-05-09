@@ -6,4 +6,6 @@ package cz.nestresuju.model.errors.constants
 object AuthErrorCodes {
 
     const val INVALID_GRANT = "invalid_grant"
+
+    const val DESCRIPTION_INVALID_CREDENTIALS = "invalid_username_or_password"
 }

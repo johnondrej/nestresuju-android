@@ -5,6 +5,7 @@ import cz.ackee.ackroutine.OAuthCallInterceptor
 import cz.ackee.ackroutine.OAuthManager
 import cz.ackee.retrofitadapter.AckroutineCallAdapterFactory
 import cz.nestresuju.BuildConfig
+import cz.nestresuju.model.errors.checker.NestresujuAuthErrorChecker
 import cz.nestresuju.model.logouter.LogoutHandler
 import cz.nestresuju.model.repositories.AuthRepository
 import okhttp3.OkHttpClient
@@ -78,7 +79,8 @@ val networkingModule = module {
         OAuthManager(
             context = androidContext(),
             refreshTokenAction = { refreshToken -> get<AuthRepository>().loginWithRefreshToken(refreshToken) },
-            onRefreshTokenFailed = { get<LogoutHandler>().logout() }
+            onRefreshTokenFailed = { get<LogoutHandler>().logout() },
+            errorChecker = NestresujuAuthErrorChecker()
         )
     }
 

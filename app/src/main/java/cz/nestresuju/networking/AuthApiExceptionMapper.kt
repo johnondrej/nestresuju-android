@@ -33,7 +33,12 @@ class AuthApiExceptionMapper(
             errorResponse?.let { error ->
                 when (exception.code()) {
                     HttpErrorCodes.BAD_REQUEST -> when (error.error) {
-                        AuthErrorCodes.INVALID_GRANT -> InvalidCredentialsException()
+                        AuthErrorCodes.INVALID_GRANT -> {
+                            when (error.errorDescription) {
+                                AuthErrorCodes.DESCRIPTION_INVALID_CREDENTIALS -> InvalidCredentialsException()
+                                else -> null
+                            }
+                        }
                         else -> null
                     }
                     else -> null
