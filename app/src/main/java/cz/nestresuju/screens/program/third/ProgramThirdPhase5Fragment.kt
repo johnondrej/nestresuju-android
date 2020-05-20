@@ -18,11 +18,6 @@ class ProgramThirdPhase5Fragment : ProgramThirdBaseGoalQuestionFragment() {
     override val viewModel by viewModel<ProgramThirdGoalQuestionViewModel> { parametersOf(5) }
     override val phaseProgress = 5
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewBinding.btnBack.visible = false
-    }
-
     override fun onContinueClicked() {
         findNavController().navigate(R.id.action_fragment_program_3_5_to_fragment_program_3_6)
     }
