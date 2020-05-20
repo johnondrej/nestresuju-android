@@ -108,7 +108,7 @@
     <string name="program_1_question_1">Čeho přesně chceš dosáhnout? Co k tomu budeš potřebovat? Komu můžeš říct o pomoc?</string>
     <string name="program_1_question_2">Jak poznáš, že se ti povedlo tvůj úkol splnit?</string>
     <string name="program_1_question_3">Na této škále označ, jak moc si myslíš, že je tvůj cíl dosažitelný a že se ti povede ho splnit v následujících 6 dnech? (1 - absolutně nedosažitelný, 10 - naprosto dosažitelný)</string>
-    <string name="program_1_question_3_warning">Dobře definovaný cíl, který ti pomůže kontrolovat úroveň tvého stresu musí být reálně dosažitelný. Zamysli si, jak by šlo tvůj cíl pozměnit, aby si ho dokázal(a) splnit nebo si zkus vymyslet jiný cíl.</string>
+    <string name="program_1_question_3_warning">Dobře definovaný cíl, který ti pomůže kontrolovat úroveň tvého stresu musí být reálně dosažitelný. Zamysli si, jak by šlo tvůj cíl pozměnit, abys ho dokázal(a) splnit nebo si zkus vymyslet jiný cíl.</string>
     <string name="program_1_question_4">Co ti splnění úkolu přinese? Proč má pro tebe tento cíl význam a smysl?</string>
     <string name="program_1_question_5">Do kdy si myslíš, že se ti povede tvůj cíl splnit?</string>
     <string name="program_1_question_hint">Zadej odpověď</string>
@@ -177,7 +177,7 @@
     <string name="program_3_activities_add_dialog_title">Přidat novou aktivitu</string>
     <string name="program_3_activities_add_dialog_name">Název:</string>
     <string name="program_3_activities_add_dialog_duration">Délka:</string>
-    <string name="program_3_activities_summary_intro">Podívej se na shrnutí aktivit během tvého běžného dne, kdy zažíváš průměrnou úroveň stresu.\n\nMáš svůj čas a energii rozloženou mezi tyto aktivity tak, jak by sis přál(a)? Existuje nějaká možnost zlepšení tak, aby si se cítil(a) lépe a lépe zvládal(a) stres? Co bys změnil(a)?\n\nVyber si jednu aktivitu, u které by sis přál(a) změnu. Můžeš si přát trávit méně nebo naopak více času s nějakou aktivitou. Nebo si přeješ změnit čas, kdy ji vykonáváš? Je to na tobě!</string>
+    <string name="program_3_activities_summary_intro">Podívej se na shrnutí aktivit během tvého běžného dne, kdy zažíváš průměrnou úroveň stresu.\n\nMáš svůj čas a energii rozloženou mezi tyto aktivity tak, jak by sis přál(a)? Existuje nějaká možnost zlepšení tak, aby ses cítil(a) lépe a lépe zvládal(a) stres? Co bys změnil(a)?\n\nVyber si jednu aktivitu, u které by sis přál(a) změnu. Můžeš si přát trávit méně nebo naopak více času s nějakou aktivitou. Nebo si přeješ změnit čas, kdy ji vykonáváš? Je to na tobě!</string>
     <string name="program_3_activities_summary_percent">%1$d %%</string>
     <string name="program_3_goal_intro_1">U své vybrané aktivity se zamysli, jak by sis přál(a), aby se situace změnila. Jak by měl vypadat ideální stav? A co dokážeš změnit během následujících 6ti dnů? Co můžeš pro takovou změnu udělat?</string>
     <string name="program_3_goal_intro_2">Pojďme využít toho, že už si umíš díky první části programu dobře stanovit krátkodobý cíl. Měj na mysli změnu v denní aktivitě v tvém běžném dni a za pomocí známých otázek si nadefinuj cíl, který ti k takové změně pomůže. Jdeme na to!</string>
@@ -273,7 +273,7 @@
 
     <string name="about_app_technical_info_title">Technické informace</string>
     <string name="about_app_technical_info_author">Ondřej John, 2020</string>
-    <string name="about_app_technical_info_description">Tato aplikace je zveřejněná pod licencí <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>. Zdrojový kód je dostupný na <a href="https://github.com/ondrej-john/nestresuju-android">GitHubu</a>.</string>
+    <string name="about_app_technical_info_description">Aplikace byla vytvořena v rámci diplomové práce \"Vývoj mobilní aplikace pro Android obsahující program na posílení stres managementu\" na FIT ČVUT.</string>
 
     <!-- About app - logout -->
 
