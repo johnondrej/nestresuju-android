@@ -16,12 +16,25 @@ import kotlin.math.roundToInt
 /**
  * Screen with fourth part of third program.
  */
-class ProgramThirdPhase4Fragment : BaseArchFragment<FragmentProgram3ActivitiesSummaryBinding>() {
+class ProgramThirdPhase4Fragment : BaseArchFragment<FragmentProgram3ActivitiesSummaryBinding>(),
+    ProgramThirdSecondPartIntroDialogFragment1.OnProgramThirdIntro1ConfirmedListener,
+    ProgramThirdSecondPartIntroDialogFragment2.OnProgramThirdIntro2ConfirmedListener {
+
+    companion object {
+
+        private const val TAG_DIALOG_INTRO_1 = "intro_1_dialog"
+        private const val TAG_DIALOG_INTRO_2 = "intro_2_dialog"
+    }
 
     override val viewModel by viewModel<ProgramThirdActivitiesSummaryViewModel>()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return FragmentProgram3ActivitiesSummaryBinding.inflate(inflater, container, false).also { _binding = it }.root
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return FragmentProgram3ActivitiesSummaryBinding.inflate(inflater, container, false)
+            .also { _binding = it }.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,12 +61,20 @@ class ProgramThirdPhase4Fragment : BaseArchFragment<FragmentProgram3ActivitiesSu
             })
 
             btnContinue.setOnClickListener {
-                findNavController().navigate(R.id.action_fragment_program_3_4_to_fragment_program_3_5)
+                ProgramThirdSecondPartIntroDialogFragment1().show(childFragmentManager, TAG_DIALOG_INTRO_2)
             }
 
             btnBack.setOnClickListener {
                 activity?.onBackPressed()
             }
         }
+    }
+
+    override fun onFirstIntroConfirmed() {
+        ProgramThirdSecondPartIntroDialogFragment2().show(childFragmentManager, TAG_DIALOG_INTRO_1)
+    }
+
+    override fun onSecondIntroConfirmed() {
+        findNavController().navigate(R.id.action_fragment_program_3_4_to_fragment_program_3_5)
     }
 }
