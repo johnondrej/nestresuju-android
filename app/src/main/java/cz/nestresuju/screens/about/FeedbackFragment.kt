@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import cz.nestresuju.common.extensions.visible
@@ -50,6 +51,14 @@ class FeedbackFragment :
                 editFeedback.text?.toString()?.let { feedback ->
                     viewModel.sendFeedback(feedback)
                 }
+            }
+
+            editFeedback.setOnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    btnSend.performClick()
+                    return@setOnEditorActionListener true
+                }
+                return@setOnEditorActionListener false
             }
 
             editFeedback.doAfterTextChanged { feedback ->
