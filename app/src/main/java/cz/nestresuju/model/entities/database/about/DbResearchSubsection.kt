@@ -12,5 +12,5 @@ data class DbResearchSubsection(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     @ColumnInfo(name = "order") val order: Int,
     @ColumnInfo(name = "name") val name: String?,
-    @ColumnInfo(name = "text") val text: String
+    @ColumnInfo(name = "text") val text: String?
 )

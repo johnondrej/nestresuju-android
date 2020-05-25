@@ -5,5 +5,5 @@ package cz.nestresuju.model.entities.domain.domain
  */
 data class ResearchSubsection(
     val name: String,
-    val text: String
+    val text: String?
 )

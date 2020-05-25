@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import cz.nestresuju.R
 import cz.nestresuju.databinding.FragmentCustomListBinding
 import cz.nestresuju.model.common.State
+import cz.nestresuju.model.entities.domain.domain.ResearchInfo
 import cz.nestresuju.screens.about.epoxy.ResearchController
 import cz.nestresuju.screens.base.BaseArchFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -42,9 +43,10 @@ class ResearchFragment : BaseArchFragment<FragmentCustomListBinding>(), Research
             viewModel.screenStateStream.observe(viewLifecycleOwner, Observer { screenState ->
                 val data = (screenState.researchInfoState as? State.Loaded)?.data
 
-                contentVisible = data?.text?.isNotEmpty() == true && screenState.cancelAccountState != State.Loading
+                contentVisible = !data.areDataEmpty() && screenState.cancelAccountState != State.Loading
                 refreshLayout.isRefreshing = screenState.researchInfoState == State.Loading || screenState.cancelAccountState == State.Loading
-                emptyTextVisible = data?.text?.isEmpty() == true && screenState.cancelAccountState != State.Loading
+                emptyTextVisible =
+                    data.areDataEmpty() && screenState.researchInfoState is State.Loaded && screenState.cancelAccountState != State.Loading
 
                 if (screenState.researchInfoState is State.Loaded) {
                     controller.researchInfo = screenState.researchInfoState.data
@@ -60,6 +62,8 @@ class ResearchFragment : BaseArchFragment<FragmentCustomListBinding>(), Research
     private fun onCancelAccountButtonClicked() {
         ResearchAccountCancelConfirmationDialog().show(childFragmentManager, TAG_ACCOUNT_CANCEL_DIALOG)
     }
+
+    private fun ResearchInfo?.areDataEmpty() = this == null || (text.isBlank() && subsections.isEmpty())
 
     override fun onAccountCancelConfirmedListener() {
         viewModel.cancelAccount()

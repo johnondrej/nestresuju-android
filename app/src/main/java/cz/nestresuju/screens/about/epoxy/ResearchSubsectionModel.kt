@@ -20,7 +20,7 @@ open class ResearchSubsectionModel : EpoxyModelWithView<View>() {
     lateinit var headlineText: String
 
     @EpoxyAttribute
-    lateinit var contentText: String
+    var contentText: String? = null
 
     override fun buildView(parent: ViewGroup): View {
         return ModelAboutResearchSubsectionBinding.inflate(LayoutInflater.from(parent.context), parent, false).root
@@ -30,7 +30,7 @@ open class ResearchSubsectionModel : EpoxyModelWithView<View>() {
         super.bind(view)
         with(ModelAboutResearchSubsectionBinding.bind(view)) {
             txtHeadline.text = headlineText
-            text.text = HtmlCompat.fromHtml(contentText, FROM_HTML_MODE_COMPACT)
+            text.text = contentText?.let { HtmlCompat.fromHtml(it, FROM_HTML_MODE_COMPACT) }
         }
     }
 }

@@ -7,6 +7,6 @@ import com.squareup.moshi.JsonClass
  */
 @JsonClass(generateAdapter = true)
 class ResearchResponse(
-    val text: String,
+    val text: String?,
     val subsections: List<ApiResearchSubsection>
 )
