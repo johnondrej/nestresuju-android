@@ -3,6 +3,7 @@ package cz.nestresuju.screens.library.epoxy
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.text.HtmlCompat
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithView
@@ -24,7 +25,7 @@ open class LibraryContentModel : EpoxyModelWithView<TextView>() {
     override fun bind(view: TextView) {
         super.bind(view)
         with(ModelLibraryContentBinding.bind(view)) {
-            txtContent.text = content
+            txtContent.text = HtmlCompat.fromHtml(content, HtmlCompat.FROM_HTML_MODE_LEGACY)
         }
     }
 }
