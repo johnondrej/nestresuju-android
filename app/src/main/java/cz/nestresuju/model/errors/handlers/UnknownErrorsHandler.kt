@@ -1,8 +1,8 @@
 package cz.nestresuju.model.errors.handlers
 
 import androidx.fragment.app.Fragment
-import com.crashlytics.android.Crashlytics
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import cz.nestresuju.R
 import cz.nestresuju.model.errors.UnknownException
 import timber.log.Timber
@@ -17,7 +17,7 @@ class UnknownErrorsHandler : FragmentErrorHandler {
             view?.let {
                 return when (error) {
                     is UnknownException -> {
-                        Crashlytics.logException(error)
+                        FirebaseCrashlytics.getInstance().recordException(error)
                         Timber.e(error)
                         Snackbar.make(it, R.string.error_unknown, Snackbar.LENGTH_LONG).show()
                         true
