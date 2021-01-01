@@ -28,7 +28,7 @@ stages:
 assembleAndDeployDebug:
   stage: buildAndDeploy
   script:
-    - ./gradlew assembleStageApiDebug appDistributionUploadStageApiDebug
+    - ./gradlew assembleStageApiRelease appDistributionUploadStageApiRelease
   artifacts:
     expire_in: 1 day
     paths:
