@@ -20,6 +20,10 @@ class MainActivity : AppCompatActivity() {
 
         fun launch(context: Context, deepLink: String? = null) {
             val intent = Intent(context, MainActivity::class.java).apply {
+                if (deepLink != null) {
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }
                 deepLink?.let { putExtra(EXTRA_DEEP_LINK, deepLink) }
             }
             context.startActivity(intent)
@@ -49,11 +53,14 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         if (savedInstanceState == null) {
-            when (deepLink) {
-                DeepLink.DIARY -> navController.navigate(R.id.navigation_diary)
-                DeepLink.PROGRAM, DeepLink.OUTPUT_TEST -> navController.navigate(R.id.navigation_program)
-            }
+            handleDeepLink()
         }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        handleDeepLink()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -81,5 +88,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
         super.onBackPressed()
+    }
+
+    private fun handleDeepLink() {
+        val navController = findNavController(R.id.nav_host_fragment)
+
+        when (deepLink) {
+            DeepLink.DIARY -> navController.navigate(R.id.navigation_diary)
+            DeepLink.PROGRAM, DeepLink.OUTPUT_TEST -> navController.navigate(R.id.navigation_program)
+        }
     }
 }
