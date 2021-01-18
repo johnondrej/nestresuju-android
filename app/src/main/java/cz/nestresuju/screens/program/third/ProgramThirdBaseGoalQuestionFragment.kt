@@ -41,10 +41,7 @@ abstract class ProgramThirdBaseGoalQuestionFragment : BaseArchFragment<FragmentP
                 setLines(10)
                 setOnEditorActionListener { _, actionId, _ ->
                     if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                        if (!editAnswer.text.isNullOrBlank()) {
-                            context?.hideKeyboard(view)
-                            onContinueClicked()
-                        }
+                        context?.hideKeyboard(view)
                         return@setOnEditorActionListener true
                     }
                     return@setOnEditorActionListener false

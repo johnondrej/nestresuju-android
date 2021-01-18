@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.DialogFragment
+import cz.nestresuju.common.extensions.hideKeyboard
 import cz.nestresuju.databinding.DialogAddActivityBinding
 
 /**
@@ -34,10 +35,8 @@ class ProgramThirdNewActivityDialogFragment : DialogFragment() {
             }
             editActivityName.setOnEditorActionListener { _, actionId, _ ->
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    if (!editActivityName.text.isNullOrBlank()) {
-                        btnAdd.performClick()
-                        return@setOnEditorActionListener true
-                    }
+                    context?.hideKeyboard(view)
+                    return@setOnEditorActionListener true
                 }
                 return@setOnEditorActionListener false
             }

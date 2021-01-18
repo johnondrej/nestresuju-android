@@ -47,7 +47,6 @@ class OutputTestSecondPhase4Fragment : BaseArchFragment<FragmentOutputTest2Quest
                 setOnEditorActionListener { _, actionId, _ ->
                     if (actionId == EditorInfo.IME_ACTION_NEXT) {
                         context?.hideKeyboard(view)
-                        btnContinue.performClick()
                     }
                     return@setOnEditorActionListener true
                 }

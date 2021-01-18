@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
+import cz.nestresuju.common.extensions.hideKeyboard
 import cz.nestresuju.common.extensions.visible
 import cz.nestresuju.common.interfaces.OnBackPressedListener
 import cz.nestresuju.databinding.FragmentAboutFeedbackBinding
@@ -55,7 +56,7 @@ class FeedbackFragment :
 
             editFeedback.setOnEditorActionListener { _, actionId, _ ->
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    btnSend.performClick()
+                    context?.hideKeyboard(view)
                     return@setOnEditorActionListener true
                 }
                 return@setOnEditorActionListener false

@@ -83,10 +83,7 @@ class ProgramEvaluationFragment : BaseArchFragment<FragmentProgramEvaluationBind
                 setLines(10)
                 setOnEditorActionListener { _, actionId, _ ->
                     if (actionId == EditorInfo.IME_ACTION_DONE) {
-                        if (!text.isNullOrBlank()) {
-                            context?.hideKeyboard(view)
-                            onSubmitClicked()
-                        }
+                        context?.hideKeyboard(view)
                         return@setOnEditorActionListener true
                     }
                     return@setOnEditorActionListener false

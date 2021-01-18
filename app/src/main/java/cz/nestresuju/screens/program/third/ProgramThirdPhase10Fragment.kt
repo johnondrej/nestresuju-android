@@ -38,10 +38,7 @@ class ProgramThirdPhase10Fragment :
             with(editSummary) {
                 setOnEditorActionListener { _, actionId, _ ->
                     if (actionId == EditorInfo.IME_ACTION_DONE) {
-                        if (!editSummary.text.isNullOrBlank()) {
-                            context?.hideKeyboard(view)
-                            onSubmitClicked(editSummary.text.toString())
-                        }
+                        context?.hideKeyboard(view)
                         return@setOnEditorActionListener true
                     }
                     return@setOnEditorActionListener false
